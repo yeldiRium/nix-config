@@ -69,6 +69,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
       extraCommands = lib.mkBefore [
@@ -109,7 +110,7 @@
 	let
 	  tofi = lib.getExe config.programs.tofi.package;
 	in
-	  lib.optionals config.programs.tofi.enabled [
+	  lib.optionals config.programs.tofi.enable [
             "$mod, A, exec, ${tofi}-drun | xargs hyprctl dispatch exec --" # Opens app launcher
 	  ]
       ) ++ (
@@ -170,13 +171,6 @@
   services = {
     mako = {
       enable = true;
-    };
-    xsettingsd = {
-      enable = true;
-      settings = {
-        "Net/ThemeName" = "${gtk.theme.name}";
-	"Net/IconThemeName" = "${gtk.iconTheme.name}";
-      };
     };
   };
 

@@ -112,7 +112,7 @@
     allowAuxiliaryImperativeNetworks = true;
     userControlled = {
       enable = true;
-      group = "wireless"
+      group = "wireless";
     };
     extraConfig = ''
       update_config=1
@@ -120,7 +120,7 @@
   };
   # Ensure group exists
   users.groups.wireless = {};
-  systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf"
+  systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf";
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
