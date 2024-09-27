@@ -63,10 +63,6 @@
         allowOther = true;
       };
     };
-
-    packages = [
-      pkgs.wpa_supplicant_gui
-    ];
   };
 
   wayland.windowManager.hyprland = {
@@ -87,6 +83,7 @@
       input = {
         kb_layout = "de";
 	kb_variant = "neo";
+	resolve_binds_by_sym = true;
       };
       device = map (keyboard: {
         name = "${keyboard}";
@@ -101,7 +98,7 @@
 
       exec = [
         "${pkgs.waybar}/bin/waybar"
-	"hyperctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
+	#"hyperctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       ];
 
       "$mod" = "SUPER";
@@ -187,6 +184,9 @@
 
   services = {
     mako = {
+      enable = true;
+    };
+    network-manager-applet = {
       enable = true;
     };
   };

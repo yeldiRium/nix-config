@@ -69,6 +69,7 @@
         "/var/lib/bluetooth"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
+	"/etc/NetworkManager/system-connections"
         {
           directory = "/var/lib/colord";
           user = "colord";
@@ -82,7 +83,6 @@
           file = "/var/keys/secret_file";
           parentDirectory = {mode = "u=rwx,g=,o=";};
         }
-	"/etc/wpa_supplicant.conf"
       ];
     };
   };
@@ -107,20 +107,23 @@
   };
 
   networking.hostName = "laboratory"; # Define your hostname.
-  networking.wireless = {
+  networking.networkmanager = {
     enable = true;
-    allowAuxiliaryImperativeNetworks = true;
-    userControlled = {
-      enable = true;
-      group = "wireless";
-    };
-    extraConfig = ''
-      update_config=1
-    '';
   };
-  # Ensure group exists
-  users.groups.wireless = {};
-  systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf";
+  # networking.wireless = {
+  #   enable = true;
+  #   allowAuxiliaryImperativeNetworks = true;
+  #   userControlled = {
+  #     enable = true;
+  #     group = "wireless";
+  #   };
+  #   extraConfig = ''
+  #     update_config=1
+  #   '';
+  # };
+  # # Ensure group exists
+  # users.groups.wireless = {};
+  # systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf";
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
