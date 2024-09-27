@@ -1,58 +1,16 @@
-{ config, inputs, lib, pkgs, ... }: {
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
   ];
 
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
-
-  programs = {
-    git = {
-      enable = true;
-      userName = "Hannes Leutloff";
-      userEmail = "hannes.leutloff@yeldirium.de";
-    };
-    ranger = {
-      enable = true;
-      settings = {
-        show_hidden = true;
-      };
-    };
-    ssh = {
-      enable = true;
-      matchBlocks = {
-        "github.com" = {
-	  user = "yeldir";
-	  identityFile = "~/.ssh/hleutloff";
-	};
-	"git.yeldirium.de" = {
-	  user = "yeldir";
-	  identityFile = "~/.ssh/hleutloff";
-	  port = 30022;
-	};
-        "datengrab" = {
-	  user = "yeldir";
-	  identityFile = "~/.ssh/hleutloff";
-	};
-        "heck" = {
-	  hostname = "yeldirium.de";
-	  user = "yeldir";
-	  identityFile = "~/.ssh/hleutloff";
-	};
-      };
-    };
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      oh-my-zsh = {
-        enable = true;
-	plugins = [
-	  "git"
-	  "wd"
-	];
-      };
-    };
+    settings.experimental-features = ["nix-command" "flakes"];
   };
 
   home = {
@@ -64,6 +22,9 @@
     ];
     sessionVariables = {
       FLAKE = "$HOME/querbeet/workspace/nix-config";
+      EDITOR = "nvim";
+      BROWSER = "google-chrome";
+      TERMINAL = "kitty";
     };
 
     shellAliases = {
@@ -75,9 +36,9 @@
     persistence = {
       "/persist/${config.home.homeDirectory}" = {
         directories = [
-	  ".config/google-chrome"
-	  ".local/share/keyrings"
-	  ".ssh"
+          ".config/google-chrome"
+          ".local/share/keyrings"
+          ".ssh"
           "Documents"
           "Downloads"
           "Music"
@@ -90,6 +51,64 @@
     };
   };
 
+  wayland.windowManager.hyprland = {
+    enable = true;
 
-  home.packages = [ ];
+    settings = {
+    };
+  };
+
+  programs = {
+    git = {
+      enable = true;
+      userName = "Hannes Leutloff";
+      userEmail = "hannes.leutloff@yeldirium.de";
+    };
+    kitty = {
+      enable = true;
+      shellIntegration.enableZshIntegration = true;
+    };
+    ranger = {
+      enable = true;
+      settings = {
+        show_hidden = true;
+      };
+    };
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "github.com" = {
+          user = "yeldir";
+          identityFile = "~/.ssh/hleutloff";
+        };
+        "git.yeldirium.de" = {
+          user = "yeldir";
+          identityFile = "~/.ssh/hleutloff";
+          port = 30022;
+        };
+        "datengrab" = {
+          user = "yeldir";
+          identityFile = "~/.ssh/hleutloff";
+        };
+        "heck" = {
+          hostname = "yeldirium.de";
+          user = "yeldir";
+          identityFile = "~/.ssh/hleutloff";
+        };
+      };
+    };
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "git"
+          "wd"
+        ];
+      };
+    };
+  };
+
+  home.packages = [];
 }

@@ -1,6 +1,6 @@
 {
   description = "Nixos config flake";
-     
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -18,18 +18,21 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
   };
 
-  outputs = {nixpkgs, ...} @ inputs:
-  {
+  outputs = {nixpkgs, ...} @ inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
         inputs.disko.nixosModules.default
-        (import ./disko.nix { device = "/dev/sda"; })
+        (import ./disko.nix {device = "/dev/sda";})
 
         ./configuration.nix
-              
+
         inputs.home-manager.nixosModules.default
         inputs.impermanence.nixosModules.impermanence
       ];

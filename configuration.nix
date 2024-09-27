@@ -1,14 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, inputs, lib, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs = {
     config = {
@@ -51,7 +54,7 @@
       home = "/home/yeldir";
       createHome = true;
       initialPassword = "12345";
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = ["wheel" "networkmanager"];
     };
   };
 
@@ -62,16 +65,24 @@
       hideMounts = true;
       directories = [
         "/etc/nixos"
-	"/var/log"
-	"/var/lib/bluetooth"
-	"/var/lib/nixos"
-	"/var/lib/systemd/coredump"
-	"/etc/NetworkManager/system-connections"
-	{ directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+        "/var/log"
+        "/var/lib/bluetooth"
+        "/var/lib/nixos"
+        "/var/lib/systemd/coredump"
+        "/etc/NetworkManager/system-connections"
+        {
+          directory = "/var/lib/colord";
+          user = "colord";
+          group = "colord";
+          mode = "u=rwx,g=rx,o=";
+        }
       ];
       files = [
         "/etc/machine-id"
-	{ file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+        {
+          file = "/var/keys/secret_file";
+          parentDirectory = {mode = "u=rwx,g=,o=";};
+        }
       ];
     };
   };
@@ -80,9 +91,9 @@
   system.activationScripts.persistent-dirs.text = let
     mkHomePersist = user:
       lib.optionalString user.createHome ''
-      	mkdir -p /persist/${user.home}
-	chown ${user.name}:${user.group} /persist/${user.home}
-	chmod ${user.homeMode} /persist/${user.home}
+             	mkdir -p /persist/${user.home}
+        chown ${user.name}:${user.group} /persist/${user.home}
+        chmod ${user.homeMode} /persist/${user.home}
       '';
     users = lib.attrValues config.users.users;
   in
@@ -110,19 +121,22 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-  #   font = "Lat2-Terminus16";
+    #   font = "Lat2-Terminus16";
     keyMap = "de";
-  #   useXkbConfig = true; # use xkb.options in tty.
+    #   useXkbConfig = true; # use xkb.options in tty.
   };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  # Enable hyprland Desktop Environment.
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -150,24 +164,24 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-   environment.systemPackages = with pkgs; [
-     google-chrome
-     # wget
-   ];
-   programs.neovim = {
-     enable = true;
-     defaultEditor = true;
-     configure = {
-       customRC = ''
-         set number relativenumber
-       '';
-     };
-   };
-   programs.zsh = {
-     enable = true;
-     enableCompletion = true;
-   };
-   users.defaultUserShell = pkgs.zsh;
+  environment.systemPackages = with pkgs; [
+    google-chrome
+    # wget
+  ];
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    configure = {
+      customRC = ''
+        set number relativenumber
+      '';
+    };
+  };
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+  };
+  users.defaultUserShell = pkgs.zsh;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -211,6 +225,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
-
