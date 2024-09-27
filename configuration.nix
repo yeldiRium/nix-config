@@ -157,6 +157,15 @@
    programs.neovim = {
      enable = true;
      defaultEditor = true;
+     configure = {
+       customRC = ''
+         set number relativenumber
+       '';
+     };
+   };
+   programs.zsh = {
+     enable = true;
+     enableCompletion = true;
    };
 
   # Some programs need SUID wrappers, can be configured further or are
