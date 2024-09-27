@@ -46,6 +46,9 @@
           "querbeet"
           "Videos"
         ];
+	files = [
+	  ".warprc"
+	];
         allowOther = true;
       };
     };
