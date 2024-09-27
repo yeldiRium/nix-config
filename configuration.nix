@@ -54,7 +54,7 @@
       home = "/home/yeldir";
       createHome = true;
       initialPassword = "12345";
-      extraGroups = ["wheel" "networkmanager"];
+      extraGroups = ["wheel" "networkmanager" "wireless"];
     };
   };
 
@@ -106,10 +106,21 @@
     };
   };
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.hostName = "laboratory"; # Define your hostname.
+  networking.wireless = {
+    enable = true;
+    allowAuxiliaryImperativeNetworks = true;
+    userControlled = {
+      enable = true;
+      group = "wireless"
+    };
+    extraConfig = ''
+      update_config=1
+    '';
+  };
+  # Ensure group exists
+  users.groups.wireless = {};
+  systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf"
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
@@ -182,6 +193,10 @@
     enableCompletion = true;
   };
   users.defaultUserShell = pkgs.zsh;
+
+  security.pam.services = {
+    swaylock = {};
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

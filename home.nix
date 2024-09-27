@@ -22,9 +22,18 @@
     ];
     sessionVariables = {
       FLAKE = "$HOME/querbeet/workspace/nix-config";
+
+      # Set default applications. Should also/alternatively be done using mime apps.
       EDITOR = "nvim";
       BROWSER = "google-chrome";
       TERMINAL = "kitty";
+
+      # Makes firefox use wayland directly, improves performance.
+      MOZ_ENABLE_WAYLAND = 1;
+      # Makes QT applications use wayland.
+      QT_QPA_PLATFORM = "wayland";
+      # Idk what this does yet.
+      LIBSEAT_BACKEND = "logind";
     };
 
     shellAliases = { # TODO: replace #default with hostname when restructuring config
@@ -52,6 +61,10 @@
         allowOther = true;
       };
     };
+
+    packages = [
+      pkgs.wpa_supplicant_gui
+    ];
   };
 
   wayland.windowManager.hyprland = {
@@ -77,11 +90,38 @@
       "$mod" = "SUPER";
       "$terminal" = "kitty";
 
-      bind = [
-        "$mod, A, exec, tofi-drun | xargs hyprctl dispatch exec --" # Opens app launcher
-	"$mod, Q, killactive" # Closes the focussed window
-	"$mod, Return, exec, $terminal"
+      # TODO: add swaybg or similar for wallpaper
 
+      # TODO: configure monitors
+
+      # TODO: configure hyprland appearance
+
+      # TODO: add bindings for
+      # - pactl (volume)
+      # - playerctl (track)
+      # - screenshots
+      # - brightness (lightd)
+      bind = [
+	"$mod, Q, killactive" # Closes the focused window
+	"$mod, Return, exec, $terminal" # Launches a terminal
+      ] ++ (
+        # Launch programs with tofi
+	let
+	  tofi = lib.getExe config.programs.tofi.package;
+	in
+	  lib.optionals config.programs.tofi.enabled [
+            "$mod, A, exec, ${tofi}-drun | xargs hyprctl dispatch exec --" # Opens app launcher
+	  ]
+      ) ++ (
+        # Lock screen with swaylock
+        let
+	  swaylock = lib.getExe config.programs.swaylock.package;
+	in
+	  lib.optionals config.programs.swaylock.enable [
+	    "$mod, L, exec, ${swaylock} -S --grace 2 --grace-no-mouse"
+	    "$mod, XF86ScreenSaver, exec, ${swaylock} -S --grace 2 --grace-no-mouse"
+	  ]
+      ) ++ [
 	# navigate around windows
 	"$mod, left, movefocus, l"
 	"$mod, right, movefocus, r"
@@ -91,10 +131,11 @@
 	"$mod SHIFT, right, movewindow, r"
 	"$mod SHIFT, up, movewindow, u"
 	"$mod SHIFT, down, movewindow, d"
-
+      ] ++ [
 	# adjust layout
 	"$mod, Space, togglefloating"
 	"$mod, G, togglegroup"
+	"$mod, F, fullscreen"
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
@@ -110,16 +151,32 @@
     };
   };
 
+  xdg.mimeApps.enable = true;
   xdg.portal = {
-    extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
     config.hyprland = {
       default = ["wlr" "gtk"];
     };
   };
 
+  gtk = {
+    enable = true;
+  };
+
   services = {
     mako = {
       enable = true;
+    };
+    xsettingsd = {
+      enable = true;
+      settings = {
+        "Net/ThemeName" = "${gtk.theme.name}";
+	"Net/IconThemeName" = "${gtk.iconTheme.name}";
+      };
     };
   };
 
@@ -162,6 +219,10 @@
         };
       };
     };
+    swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
+    };
     tofi = {
       enable = true;
     };
@@ -181,6 +242,8 @@
       };
     };
   };
-
-  home.packages = [];
+  # It seems waybar sometimes doesn't want to start. Give it a few trys.
+  systemd.user.services.waybar = {
+    Unit.StartLimitBurst = 30;
+  };
 }
