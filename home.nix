@@ -7,6 +7,8 @@
 }: {
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
+
+    ./waybar.nix
   ];
 
   nix = {
@@ -69,7 +71,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
     systemd = {
       enable = true;
       extraCommands = lib.mkBefore [
@@ -79,7 +80,7 @@
     };
 
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      pkgs.hyprlandPlugins.hyprbars
     ];
 
     settings = {
@@ -87,6 +88,21 @@
         kb_layout = "de";
 	kb_variant = "neo";
       };
+      device = map (keyboard: {
+        name = "${keyboard}";
+	kb_layout = "de";
+	kb_variant = "";
+      }) [
+        "zsa-technology-labs-inc-ergodox-ez"
+        "zsa-technology-labs-inc-ergodox-ez-keyboard"
+        "zsa-technology-labs-inc-ergodox-ez-system-control"
+        "zsa-technology-labs-inc-ergodox-ez-consumer-control"
+      ];
+
+      exec = [
+        "${pkgs.waybar}/bin/waybar"
+	"hyperctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
+      ];
 
       "$mod" = "SUPER";
       "$terminal" = "kitty";
@@ -220,10 +236,6 @@
     };
     tofi = {
       enable = true;
-    };
-    waybar = {
-      enable = true;
-      systemd.enable = true;
     };
     zsh = {
       enable = true;

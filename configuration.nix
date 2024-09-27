@@ -69,7 +69,6 @@
         "/var/lib/bluetooth"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
-        "/etc/NetworkManager/system-connections"
         {
           directory = "/var/lib/colord";
           user = "colord";
@@ -83,6 +82,7 @@
           file = "/var/keys/secret_file";
           parentDirectory = {mode = "u=rwx,g=,o=";};
         }
+	"/etc/wpa_supplicant.conf"
       ];
     };
   };
@@ -141,12 +141,11 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # Enable hyprland Desktop Environment.
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   };
 
   # Configure keymap in X11
@@ -156,19 +155,24 @@
       variant = "neo";
     };
   };
-  # services.xserver.xkb.layout = "de(neo)";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+
+  hardware = {
+    keyboard.qmk.enable = true;
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  security.rtkit.enable = true;
+  hardware.pulseaudio.enable = false;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -240,4 +244,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
+
 }
