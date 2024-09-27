@@ -27,10 +27,10 @@
       TERMINAL = "kitty";
     };
 
-    shellAliases = {
-      nbuild = "sudo nixos-rebuild build --flake $FLAKE";
-      nboot = "sudo nixos-rebuild boot --flake $FLAKE";
-      nswitch = "sudo nixos-rebuild switch --flake $FLAKE";
+    shellAliases = { # TODO: replace #default with hostname when restructuring config
+      nbuild = "sudo nixos-rebuild build --flake $FLAKE#default"; 
+      nboot = "sudo nixos-rebuild boot --flake $FLAKE#default";
+      nswitch = "sudo nixos-rebuild switch --flake $FLAKE#default";
     };
 
     persistence = {
@@ -56,8 +56,70 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd = {
+      enable = true;
+      extraCommands = lib.mkBefore [
+        "systemctl --user stop graphical-session.target"
+	"systemctl --user start hyprland-session.targer"
+      ];
+    };
+
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+    ];
 
     settings = {
+      input = {
+        kb_layout = "de";
+	kb_variant = "neo";
+      };
+
+      "$mod" = "SUPER";
+      "$terminal" = "kitty";
+
+      bind = [
+        "$mod, A, exec, tofi-drun | xargs hyprctl dispatch exec --" # Opens app launcher
+	"$mod, Q, killactive" # Closes the focussed window
+	"$mod, Return, exec, $terminal"
+
+	# navigate around windows
+	"$mod, left, movefocus, l"
+	"$mod, right, movefocus, r"
+	"$mod, up, movefocus, u"
+	"$mod, down, movefocus, d"
+	"$mod SHIFT, left, movewindow, l"
+	"$mod SHIFT, right, movewindow, r"
+	"$mod SHIFT, up, movewindow, u"
+	"$mod SHIFT, down, movewindow, d"
+
+	# adjust layout
+	"$mod, Space, togglefloating"
+	"$mod, G, togglegroup"
+      ] ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+        builtins.concatLists (builtins.genList (i:
+            let ws = i + 1;
+            in [
+              "$mod, code:1${toString i}, workspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            ]
+          )
+          9)
+      );
+    };
+  };
+
+  xdg.portal = {
+    extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    config.hyprland = {
+      default = ["wlr" "gtk"];
+    };
+  };
+
+  services = {
+    mako = {
+      enable = true;
     };
   };
 
@@ -99,6 +161,13 @@
           identityFile = "~/.ssh/hleutloff";
         };
       };
+    };
+    tofi = {
+      enable = true;
+    };
+    waybar = {
+      enable = true;
+      systemd.enable = true;
     };
     zsh = {
       enable = true;
