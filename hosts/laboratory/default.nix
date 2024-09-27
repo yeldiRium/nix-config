@@ -27,10 +27,10 @@
     ../common/users/yeldir
   ];
 
-  networking.hostName = "laboratory";
-
-  # Configure system-wide user settings (groups, etc), add more users as needed.
-  users.users = {};
+  networking = {
+    hostName = "laboratory";
+    useDHCP = true;
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
