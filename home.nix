@@ -69,7 +69,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
     systemd = {
       enable = true;
       extraCommands = lib.mkBefore [
@@ -103,6 +103,7 @@
       # - screenshots
       # - brightness (lightd)
       bind = [
+        "$mod SHIFT, E, exit" # Exits out of hyprland
 	"$mod, Q, killactive" # Closes the focused window
 	"$mod, Return, exec, $terminal" # Launches a terminal
       ] ++ (
