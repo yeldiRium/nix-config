@@ -44,6 +44,11 @@
       nswitch = "sudo nixos-rebuild switch --flake $FLAKE#default";
     };
 
+    packages = with pkgs; [
+      libnotify
+      pavucontrol
+    ];
+
     persistence = {
       "/persist/${config.home.homeDirectory}" = {
         directories = [
@@ -116,7 +121,7 @@
       # - screenshots
       # - brightness (lightd)
       bind = [
-        "$mod SHIFT, E, exit" # Exits out of hyprland
+        "$mod SHIFT, Q, exit" # Exits out of hyprland
 	"$mod, Q, killactive" # Closes the focused window
 	"$mod, Return, exec, $terminal" # Launches a terminal
       ] ++ (

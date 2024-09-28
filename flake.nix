@@ -19,13 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #hyprland = {
-    #  url = "github:hyprwm/Hyprland";
-    #};
-    #hyprland-plugins = {
-    #  url = "github:hyprwm/hyprland-plugins";
-    #  inputs.hyprland.follows = "hyprland";
-    #};
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

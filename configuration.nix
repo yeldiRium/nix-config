@@ -9,6 +9,8 @@
   ...
 }: {
   imports = [
+    inputs.sops-nix.nixosModules.sops
+
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -53,8 +55,9 @@
       isNormalUser = true;
       home = "/home/yeldir";
       createHome = true;
-      initialPassword = "12345";
-      extraGroups = ["wheel" "networkmanager" "wireless"];
+      # initialPassword = "12345";
+      hashedPasswordFile = config.sops.secrets.yeldir-password.path;
+      extraGroups = ["wheel" "networkmanager"];
     };
   };
 
@@ -64,7 +67,6 @@
       enable = true;
       hideMounts = true;
       directories = [
-        "/etc/nixos"
         "/var/log"
         "/var/lib/bluetooth"
         "/var/lib/nixos"
@@ -145,6 +147,8 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
+  # Load keyboard layout in gdm:
+  services.gnome.gnome-settings-daemon.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # Enable hyprland Desktop Environment.
   programs.hyprland = {
@@ -184,6 +188,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     google-chrome
+    sops
     # wget
   ];
   programs.neovim = {
@@ -203,6 +208,23 @@
 
   security.pam.services = {
     swaylock = {};
+  };
+
+  # Manage secrets
+  environment.sessionVariables = {
+    SOPS_AGE_KEY_FILE = "/persist/sops/age/keys.txt";
+  };
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+
+    age.keyFile = "/persist/sops/age/keys.txt";
+
+    secrets = {
+      yeldir-password = {
+        neededForUsers = true;
+      };
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
