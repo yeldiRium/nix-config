@@ -14,8 +14,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
-    # ../common/optional/keyring.nix
-
     inputs.home-manager.nixosModules.default
     inputs.impermanence.nixosModules.impermanence
     inputs.sops-nix.nixosModules.sops
