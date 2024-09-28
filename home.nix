@@ -41,6 +41,7 @@
     };
 
     packages = with pkgs; [
+      alejandra
       libnotify
       pavucontrol
     ];
@@ -197,6 +198,10 @@
       enable = true;
       userName = "Hannes Leutloff";
       userEmail = "hannes.leutloff@yeldirium.de";
+
+      ignores = [
+        ".vscode"
+      ];
     };
     kitty = {
       enable = true;
@@ -237,6 +242,45 @@
     };
     tofi = {
       enable = true;
+    };
+    vscode = {
+      enable = true;
+
+      extensions = with pkgs; [
+        vscode-extensions.bbenoist.nix
+        vscode-extensions.kamadorueda.alejandra
+        vscode-extensions.vscodevim.vim
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "advanced-new-file";
+          publisher = "patbenatar";
+          version = "1.2.2";
+          sha256 = "sha256-z1QYlYn0RSy2FWCZBYYHbN5BTWp4cp/sOy19tRr1RiU=";
+        }
+      ];
+      keybindings = [
+        {
+          key = "shift+alt+a";
+          command = "workbench.action.showCommands";
+        }
+        {
+          key = "ctrl+shift+p";
+          command = "-workbench.action.showCommands";
+        }
+        {
+          key = "shift+alt+t";
+          command = "workbench.action.terminal.toggleTerminal";
+          when = "terminal.active";
+        }
+        {
+          key = "ctrl+shift+[Equal]";
+          command = "-workbench.action.terminal.toggleTerminal";
+          when = "terminal.active";
+        }
+      ];
+      userSettings = {
+        "editor.lineNumbers" = "relative";
+      };
     };
     zsh = {
       enable = true;
