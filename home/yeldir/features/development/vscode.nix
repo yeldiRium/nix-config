@@ -22,8 +22,8 @@
           vscode-extensions.bbenoist.nix
           vscode-extensions.kamadorueda.alejandra
           vscode-extensions.vscodevim.vim
-          vscode-extensions.github.copilot
-          vscode-extensions.github.copilot-chat
+          unstable.vscode-extensions.github.copilot
+          unstable.vscode-extensions.github.copilot-chat
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
