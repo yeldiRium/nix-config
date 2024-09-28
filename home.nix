@@ -260,7 +260,7 @@
         [
           vscode-extensions.bbenoist.nix
           vscode-extensions.kamadorueda.alejandra
-          vscode-extensions.vscodevim.vim
+          vscode-extensions.asvetliakov.vscode-neovim
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
@@ -292,6 +292,10 @@
       ];
       userSettings = {
         "editor.lineNumbers" = "relative";
+        "extensions.experimental.affinity" = {
+          "asvetliakov.vscode-neovim" = 1;
+        };
+        "vscode-neovim.neovimExecutablePaths.linux" = "${pkgs.neovim}/bin/nvim";
       };
     };
     zsh = {
