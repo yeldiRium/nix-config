@@ -36,9 +36,9 @@
 
     shellAliases = {
       # TODO: replace #default with hostname when restructuring config
-      nbuild = "sudo nixos-rebuild build --flake $FLAKE#default";
-      nboot = "sudo nixos-rebuild boot --flake $FLAKE#default";
-      nswitch = "sudo nixos-rebuild switch --flake $FLAKE#default";
+      nbuild = "sudo nixos-rebuild build --flake $FLAKE#laboratory";
+      nboot = "sudo nixos-rebuild boot --flake $FLAKE#laboratory";
+      nswitch = "sudo nixos-rebuild switch --flake $FLAKE#laboratory";
     };
 
     packages = with pkgs; [
@@ -296,6 +296,7 @@
           "asvetliakov.vscode-neovim" = 1;
         };
         "vscode-neovim.neovimExecutablePaths.linux" = "${pkgs.neovim}/bin/nvim";
+        "vscode-neovim.logOutputToConsole" = true;
       };
     };
     zsh = {
@@ -314,4 +315,20 @@
   systemd.user.services.waybar = {
     Unit.StartLimitBurst = 30;
   };
+
+  # monitors = [
+  #   {
+  #     name = "LVDS-1";
+  #     width = 1600;
+  #     height = 900;
+  #     workspace = "2";
+  #   }
+  #   {
+  #     name = "HDMI-A-1";
+  #     width = 1920;
+  #     height = 1080;
+  #     workspace = "1";
+  #     primary = true;
+  #   }
+  # ];
 }

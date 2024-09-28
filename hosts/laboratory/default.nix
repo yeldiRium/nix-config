@@ -1,19 +1,30 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
   config,
   inputs,
+  outputs,
   lib,
   pkgs,
   ...
 }: {
   imports = [
+    # Configure filesystems for impermanence
+    inputs.disko.nixosModules.default
+    (import ./disko.nix {device = "/dev/sda";})
+
+    inputs.home-manager.nixosModules.default
+    inputs.impermanence.nixosModules.impermanence
     inputs.sops-nix.nixosModules.sops
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   nix = {
     settings = {
@@ -36,11 +47,8 @@
       options = "--delete-older-than +15";
     };
   };
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+
+  networking.hostName = "laboratory"; # Define your hostname.
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -71,12 +79,13 @@
     umount /btrfs_tmp
   '';
 
+  users.mutableUsers = false;
   users.users = {
     yeldir = {
       isNormalUser = true;
+      shell = pkgs.zsh;
       home = "/home/yeldir";
       createHome = true;
-      # initialPassword = "12345";
       hashedPasswordFile = config.sops.secrets.yeldir-password.path;
       extraGroups = ["wheel" "networkmanager"];
     };
@@ -126,11 +135,10 @@
     useGlobalPkgs = true;
     extraSpecialArgs = {inherit inputs;};
     users = {
-      "yeldir" = import ./home.nix;
+      "yeldir" = import ../../home/yeldir/${config.networking.hostName}.nix;
     };
   };
 
-  networking.hostName = "laboratory"; # Define your hostname.
   networking.networkmanager = {
     enable = true;
   };
@@ -235,7 +243,7 @@
     SOPS_AGE_KEY_FILE = "/persist/sops/age/keys.txt";
   };
   sops = {
-    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFile = ../common/secrets.yaml;
     defaultSopsFormat = "yaml";
 
     age.keyFile = "/persist/sops/age/keys.txt";

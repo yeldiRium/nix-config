@@ -1,5 +1,5 @@
 {
-  description = "Nixos config flake";
+  description = "NixOS config flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -26,31 +26,36 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixpkgs-unstable,
+    home-manager,
     ...
   } @ inputs: let
-    overlay-unstable = final: prev: {
-      unstable = import nixpkgs-unstable {
-        system = prev.system;
-        config.allowUnfree = true;
-      };
-    };
+    inherit (self) outputs;
+    systems = [
+      "x86_64-linux"
+    ];
+
+    lib = nixpkgs.lib // home-manager.lib;
+    forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs;
+    inherit lib;
+
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    overlays = import ./overlays {inherit inputs outputs;};
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
+
+    nixosConfigurations = {
+      laboratory = lib.nixosSystem {
+        modules = [./hosts/laboratory];
+        specialArgs = {
+          inherit inputs outputs;
+        };
       };
-      modules = [
-        ({...}: {nixpkgs.overlays = [overlay-unstable];})
-        inputs.disko.nixosModules.default
-        (import ./disko.nix {device = "/dev/sda";})
-
-        ./configuration.nix
-
-        inputs.home-manager.nixosModules.default
-        inputs.impermanence.nixosModules.impermanence
-      ];
     };
   };
 }
