@@ -11,10 +11,6 @@
     ./waybar.nix
   ];
 
-  nix = {
-    settings.experimental-features = ["nix-command" "flakes"];
-  };
-
   home = {
     username = lib.mkDefault "yeldir";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";

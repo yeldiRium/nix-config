@@ -15,6 +15,27 @@
     ./hardware-configuration.nix
   ];
 
+  nix = {
+    settings = {
+      trusted-users = [
+        "root"
+	"@wheel"
+      ];
+
+      auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      warn-dirty = false;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      # Keep the last 15 generations
+      options = "--delete-older-than +15";
+    };
+  };
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -102,6 +123,7 @@
     lib.concatLines (map mkHomePersist users);
 
   home-manager = {
+    useGlobalPkgs = true;
     extraSpecialArgs = {inherit inputs;};
     users = {
       "yeldir" = import ./home.nix;
@@ -147,8 +169,6 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  # Load keyboard layout in gdm:
-  services.gnome.gnome-settings-daemon.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # Enable hyprland Desktop Environment.
   programs.hyprland = {
