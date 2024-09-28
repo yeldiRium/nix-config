@@ -34,8 +34,9 @@
       LIBSEAT_BACKEND = "logind";
     };
 
-    shellAliases = { # TODO: replace #default with hostname when restructuring config
-      nbuild = "sudo nixos-rebuild build --flake $FLAKE#default"; 
+    shellAliases = {
+      # TODO: replace #default with hostname when restructuring config
+      nbuild = "sudo nixos-rebuild build --flake $FLAKE#default";
       nboot = "sudo nixos-rebuild boot --flake $FLAKE#default";
       nswitch = "sudo nixos-rebuild switch --flake $FLAKE#default";
     };
@@ -49,6 +50,7 @@
     persistence = {
       "/persist/${config.home.homeDirectory}" = {
         directories = [
+          ".config/Code"
           ".config/google-chrome"
           ".local/share/keyrings"
           ".ssh"
@@ -59,9 +61,9 @@
           "querbeet"
           "Videos"
         ];
-	files = [
-	  ".warprc"
-	];
+        files = [
+          ".warprc"
+        ];
         allowOther = true;
       };
     };
@@ -73,7 +75,7 @@
       enable = true;
       extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
-	"systemctl --user start hyprland-session.targer"
+        "systemctl --user start hyprland-session.target"
       ];
     };
 
@@ -84,23 +86,24 @@
     settings = {
       input = {
         kb_layout = "de";
-	kb_variant = "neo";
-	resolve_binds_by_sym = true;
+        kb_variant = "neo";
+        resolve_binds_by_sym = true;
       };
-      device = map (keyboard: {
-        name = "${keyboard}";
-	kb_layout = "de";
-	kb_variant = "";
-      }) [
-        "zsa-technology-labs-inc-ergodox-ez"
-        "zsa-technology-labs-inc-ergodox-ez-keyboard"
-        "zsa-technology-labs-inc-ergodox-ez-system-control"
-        "zsa-technology-labs-inc-ergodox-ez-consumer-control"
-      ];
+      device =
+        map (keyboard: {
+          name = "${keyboard}";
+          kb_layout = "de";
+          kb_variant = "";
+        }) [
+          "zsa-technology-labs-inc-ergodox-ez"
+          "zsa-technology-labs-inc-ergodox-ez-keyboard"
+          "zsa-technology-labs-inc-ergodox-ez-system-control"
+          "zsa-technology-labs-inc-ergodox-ez-consumer-control"
+        ];
 
       exec = [
         "${pkgs.waybar}/bin/waybar"
-	#"hyperctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
+        #"hyperctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       ];
 
       "$mod" = "SUPER";
@@ -117,54 +120,61 @@
       # - playerctl (track)
       # - screenshots
       # - brightness (lightd)
-      bind = [
-        "$mod SHIFT, Q, exit" # Exits out of hyprland
-	"$mod, Q, killactive" # Closes the focused window
-	"$mod, Return, exec, $terminal" # Launches a terminal
-      ] ++ (
-        # Launch programs with tofi
-	let
-	  tofi = lib.getExe config.programs.tofi.package;
-	in
-	  lib.optionals config.programs.tofi.enable [
-            "$mod, A, exec, ${tofi}-drun | xargs hyprctl dispatch exec --" # Opens app launcher
-	  ]
-      ) ++ (
-        # Lock screen with swaylock
-        let
-	  swaylock = lib.getExe config.programs.swaylock.package;
-	in
-	  lib.optionals config.programs.swaylock.enable [
-	    "$mod, L, exec, ${swaylock} -S --grace 2 --grace-no-mouse"
-	    "$mod, XF86ScreenSaver, exec, ${swaylock} -S --grace 2 --grace-no-mouse"
-	  ]
-      ) ++ [
-	# navigate around windows
-	"$mod, left, movefocus, l"
-	"$mod, right, movefocus, r"
-	"$mod, up, movefocus, u"
-	"$mod, down, movefocus, d"
-	"$mod SHIFT, left, movewindow, l"
-	"$mod SHIFT, right, movewindow, r"
-	"$mod SHIFT, up, movewindow, u"
-	"$mod SHIFT, down, movewindow, d"
-      ] ++ [
-	# adjust layout
-	"$mod, Space, togglefloating"
-	"$mod, G, togglegroup"
-	"$mod, F, fullscreen"
-      ] ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (builtins.genList (i:
-            let ws = i + 1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+      bind =
+        [
+          "$mod SHIFT, Q, exit" # Exits out of hyprland
+          "$mod, Q, killactive" # Closes the focused window
+          "$mod, Return, exec, $terminal" # Launches a terminal
+        ]
+        ++ (
+          # Launch programs with tofi
+          let
+            tofi = lib.getExe config.programs.tofi.package;
+          in
+            lib.optionals config.programs.tofi.enable [
+              "$mod, A, exec, ${tofi}-drun | xargs hyprctl dispatch exec --" # Opens app launcher
             ]
-          )
-          9)
-      );
+        )
+        ++ (
+          # Lock screen with swaylock
+          let
+            swaylock = lib.getExe config.programs.swaylock.package;
+          in
+            lib.optionals config.programs.swaylock.enable [
+              "$mod, L, exec, ${swaylock} -S --grace 2 --grace-no-mouse"
+              "$mod, XF86ScreenSaver, exec, ${swaylock} -S --grace 2 --grace-no-mouse"
+            ]
+        )
+        ++ [
+          # navigate around windows
+          "$mod, left, movefocus, l"
+          "$mod, right, movefocus, r"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
+          "$mod SHIFT, left, movewindow, l"
+          "$mod SHIFT, right, movewindow, r"
+          "$mod SHIFT, up, movewindow, u"
+          "$mod SHIFT, down, movewindow, d"
+        ]
+        ++ [
+          # adjust layout
+          "$mod, Space, togglefloating"
+          "$mod, G, togglegroup"
+          "$mod, F, fullscreen"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+          builtins.concatLists (builtins.genList (
+              i: let
+                ws = i + 1;
+              in [
+                "$mod, code:1${toString i}, workspace, ${toString ws}"
+                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              ]
+            )
+            9)
+        );
     };
   };
 
@@ -246,18 +256,20 @@
     vscode = {
       enable = true;
 
-      extensions = with pkgs; [
-        vscode-extensions.bbenoist.nix
-        vscode-extensions.kamadorueda.alejandra
-        vscode-extensions.vscodevim.vim
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "advanced-new-file";
-          publisher = "patbenatar";
-          version = "1.2.2";
-          sha256 = "sha256-z1QYlYn0RSy2FWCZBYYHbN5BTWp4cp/sOy19tRr1RiU=";
-        }
-      ];
+      extensions = with pkgs;
+        [
+          vscode-extensions.bbenoist.nix
+          vscode-extensions.kamadorueda.alejandra
+          vscode-extensions.vscodevim.vim
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "advanced-new-file";
+            publisher = "patbenatar";
+            version = "1.2.2";
+            sha256 = "sha256-z1QYlYn0RSy2FWCZBYYHbN5BTWp4cp/sOy19tRr1RiU=";
+          }
+        ];
       keybindings = [
         {
           key = "shift+alt+a";
