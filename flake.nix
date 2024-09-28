@@ -25,10 +25,24 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
+  outputs = {
+    nixpkgs,
+    nixpkgs-unstable,
+    ...
+  } @ inputs: let
+    overlay-unstable = final: prev: {
+      unstable = import nixpkgs-unstable {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
+    };
+  in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+      };
       modules = [
+        ({...}: {nixpkgs.overlays = [overlay-unstable];})
         inputs.disko.nixosModules.default
         (import ./disko.nix {device = "/dev/sda";})
 
