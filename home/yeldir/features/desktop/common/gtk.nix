@@ -7,5 +7,6 @@
 
   gtk = {
     enable = true;
+    # TODO: lots of ricing
   };
 }

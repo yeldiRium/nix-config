@@ -66,6 +66,7 @@
       # - playerctl (track)
       # - screenshots
       # - brightness (lightd)
+      # - lock (swaylock or similar)
       bind =
         [
           "$mod SHIFT, Q, exit" # Exits out of hyprland
@@ -87,8 +88,8 @@
             swaylock = lib.getExe config.programs.swaylock.package;
           in
             lib.optionals config.programs.swaylock.enable [
-              "$mod, L, exec, ${swaylock} -S --grace 2 --grace-no-mouse"
-              "$mod, XF86ScreenSaver, exec, ${swaylock} -S --grace 2 --grace-no-mouse"
+              "$mod, L, exec, ${swaylock} --screenshots --grace 2 --grace-no-mouse"
+              "$mod, XF86ScreenSaver, exec, ${swaylock} --screenshots --grace 2 --grace-no-mouse"
             ]
         )
         ++ [

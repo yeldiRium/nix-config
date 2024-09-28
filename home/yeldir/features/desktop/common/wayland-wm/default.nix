@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   imports = [
+    ./mako.nix
+    ./swaylock.nix
     ./waybar.nix
   ];
 

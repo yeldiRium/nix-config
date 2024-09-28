@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   programs = {
     ssh = {
       enable = true;
@@ -21,6 +21,15 @@
           user = "yeldir";
           identityFile = "~/.ssh/hleutloff";
         };
+      };
+    };
+  };
+  home = {
+    persistence = {
+      "/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".ssh"
+        ];
       };
     };
   };

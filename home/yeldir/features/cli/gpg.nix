@@ -62,4 +62,14 @@
       Install.WantedBy = ["default.target"];
     };
   };
+
+  home = {
+    persistence = {
+      "/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".gnupg/private-keys-v1.d"
+        ];
+      };
+    };
+  };
 }
