@@ -1,6 +1,7 @@
 # TODO
 
-- [ ] install and configure vscode
+- [x] install and configure vscode
+- [ ] configure default audio device
 - [ ] set timezone
 - [ ] restructure configs
 - [ ] switch greeter to ReGreet
@@ -10,3 +11,5 @@
   - [ ] for ssh key
   - [ ] for gpg key
   - [-] for wifi network
+- [ ] adjust vscode settings and keybindings
+- [ ] install apps
