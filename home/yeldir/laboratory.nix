@@ -8,7 +8,12 @@
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
 
-    ./waybar.nix
+    ./global
+
+    ./features/cli
+    ./features/desktop/hyprland
+    ./features/development
+    ./features/pass
   ];
 
   home = {
@@ -39,6 +44,7 @@
       nbuild = "sudo nixos-rebuild build --flake $FLAKE#laboratory";
       nboot = "sudo nixos-rebuild boot --flake $FLAKE#laboratory";
       nswitch = "sudo nixos-rebuild switch --flake $FLAKE#laboratory";
+      nrepl = "sudo nixos-rebuild repl --flake $FLAKE#laboratory";
     };
 
     packages = with pkgs; [
@@ -50,9 +56,7 @@
     persistence = {
       "/persist/${config.home.homeDirectory}" = {
         directories = [
-          ".config/Code"
           ".config/google-chrome"
-          ".local/share/keyrings"
           ".ssh"
           "Documents"
           "Downloads"
@@ -64,7 +68,6 @@
         files = [
           ".warprc"
         ];
-        allowOther = true;
       };
     };
   };
@@ -252,52 +255,6 @@
     };
     tofi = {
       enable = true;
-    };
-    vscode = {
-      enable = true;
-
-      extensions = with pkgs;
-        [
-          vscode-extensions.bbenoist.nix
-          vscode-extensions.kamadorueda.alejandra
-          vscode-extensions.asvetliakov.vscode-neovim
-        ]
-        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "advanced-new-file";
-            publisher = "patbenatar";
-            version = "1.2.2";
-            sha256 = "sha256-z1QYlYn0RSy2FWCZBYYHbN5BTWp4cp/sOy19tRr1RiU=";
-          }
-        ];
-      keybindings = [
-        {
-          key = "shift+alt+a";
-          command = "workbench.action.showCommands";
-        }
-        {
-          key = "ctrl+shift+p";
-          command = "-workbench.action.showCommands";
-        }
-        {
-          key = "shift+alt+t";
-          command = "workbench.action.terminal.toggleTerminal";
-          when = "terminal.active";
-        }
-        {
-          key = "ctrl+shift+[Equal]";
-          command = "-workbench.action.terminal.toggleTerminal";
-          when = "terminal.active";
-        }
-      ];
-      userSettings = {
-        "editor.lineNumbers" = "relative";
-        "extensions.experimental.affinity" = {
-          "asvetliakov.vscode-neovim" = 1;
-        };
-        "vscode-neovim.neovimExecutablePaths.linux" = "${pkgs.neovim}/bin/nvim";
-        "vscode-neovim.logOutputToConsole" = true;
-      };
     };
     zsh = {
       enable = true;

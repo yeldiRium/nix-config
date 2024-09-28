@@ -11,12 +11,14 @@
     inputs.disko.nixosModules.default
     (import ./disko.nix {device = "/dev/sda";})
 
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+
+    # ../common/optional/keyring.nix
+
     inputs.home-manager.nixosModules.default
     inputs.impermanence.nixosModules.impermanence
     inputs.sops-nix.nixosModules.sops
-
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
   ];
 
   nixpkgs = {
