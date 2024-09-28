@@ -19,7 +19,7 @@
     settings = {
       trusted-users = [
         "root"
-	"@wheel"
+        "@wheel"
       ];
 
       auto-optimise-store = true;
@@ -92,7 +92,7 @@
         "/var/lib/bluetooth"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
-	"/etc/NetworkManager/system-connections"
+        "/etc/NetworkManager/system-connections"
         {
           directory = "/var/lib/colord";
           user = "colord";
@@ -289,5 +289,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
