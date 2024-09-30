@@ -4,6 +4,8 @@
 - [ ] configure default audio device
 - [ ] set timezone
 - [ ] restructure configs
+  - [x] home configs
+  - [ ] host configs
 - [ ] switch greeter to ReGreet
 - [ ] look into full disk encryption (might require re-setup)
 - [ ] setup sops
@@ -11,5 +13,5 @@
   - [ ] for ssh key
   - [ ] for gpg key
   - [-] for wifi network
-- [ ] adjust vscode settings and keybindings
+- [x] adjust vscode settings and keybindings
 - [ ] install apps

@@ -6,9 +6,6 @@
 }: {
   services.gpg-agent = {
     enable = true;
-    enableSshSupport = true;
-    sshKeys = ["8DFC1FE97A49B7CEF042DE06BA239C4139A9A514"];
-    enableExtraSocket = true;
     pinentryPackage =
       if config.gtk.enable
       then pkgs.pinentry-gnome3
@@ -67,7 +64,7 @@
     persistence = {
       "/persist/${config.home.homeDirectory}" = {
         directories = [
-          ".gnupg/private-keys-v1.d"
+          ".gnupg"
         ];
       };
     };

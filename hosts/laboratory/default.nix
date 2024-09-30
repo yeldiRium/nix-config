@@ -171,6 +171,7 @@
     keyMap = "de";
     #   useXkbConfig = true; # use xkb.options in tty.
   };
+  time.timeZone = "Europe/Berlin";
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
