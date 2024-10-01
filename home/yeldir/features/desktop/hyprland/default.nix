@@ -91,7 +91,7 @@
           in
             lib.optionals config.programs.wofi.enable [
               "$mod, D, exec, ${wofi} --show run"
-              "$mod SHIFT, D, exec, ${wofi} --show drun -x 10 -y 10 --width 25% --height 80%"
+              "$mod SHIFT, D, exec, ${wofi} --show drun -x 10 -y 10 --width 20% --height 50%"
             ]
         )
         ++ (
