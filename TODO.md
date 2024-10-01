@@ -1,5 +1,7 @@
 # TODO
 
+last working generation: 73
+
 - [x] install and configure vscode
 - [x] set timezone
 - [ ] configure default audio device
