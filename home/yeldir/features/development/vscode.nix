@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -12,6 +13,34 @@
       };
     };
   };
+
+  xdg.desktopEntries = let
+    command = "${lib.getExe pkgs.vscode} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto";
+  in {
+    code = {
+      name = "Visual Studio Code";
+      type = "Application";
+      exec = "${command} %F";
+      icon = "vscode";
+      categories = ["Utility" "TextEditor" "Development" "IDE"];
+      mimeType = ["text/plain" "inode/directory"];
+      startupNotify = true;
+      genericName = "Text Editor";
+      settings = {
+        Keywords = "vscode";
+        StartupWMClass = "Code";
+      };
+
+      actions = {
+        new-empty-window = {
+          name = "New Empty Window";
+          exec = "${command} --new-window %F";
+          icon = "vscode";
+        };
+      };
+    };
+  };
+
   programs = {
     vscode = {
       enable = true;
