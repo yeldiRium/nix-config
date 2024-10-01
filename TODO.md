@@ -21,3 +21,4 @@
   - [-] for wifi network
 - [x] adjust vscode settings and keybindings
 - [ ] experiment with GameMode on desktop PC
+- [ ] fix home manager switch: delete zsh_history file before starting service home-manager-yeldir
