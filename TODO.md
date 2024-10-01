@@ -20,3 +20,4 @@ last working generation: 73
   - [-] for wifi network
 - [x] adjust vscode settings and keybindings
 - [ ] experiment with GameMode on desktop PC
+- [ ] install seahorse
