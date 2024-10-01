@@ -13,6 +13,7 @@
     ../common/global
 
     ../common/optional/bluetooth.nix
+    ../common/optional/greetd.nix
     ../common/optional/networkmanager.nix
     ../common/optional/pipewire.nix
     # TODO: activate once the rest works ../common/optional/quietboot.nix
