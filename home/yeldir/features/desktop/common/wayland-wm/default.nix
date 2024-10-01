@@ -3,6 +3,7 @@
     ./mako.nix
     ./swaylock.nix
     ./waybar.nix
+    ./wofi.nix
   ];
 
   home.sessionVariables = {

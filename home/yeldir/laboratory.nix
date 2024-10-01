@@ -14,13 +14,6 @@
     ./features/pass
   ];
 
-  programs = {
-    # TODO: replace tofi with wofi
-    tofi = {
-      enable = true;
-    };
-  };
-
   hostName = "laboratory";
 
   # monitors = [
