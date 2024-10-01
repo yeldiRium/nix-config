@@ -12,6 +12,8 @@
     QT_QPA_PLATFORM = "wayland";
     # Idk what this does yet.
     LIBSEAT_BACKEND = "logind";
+    # Make electron based apps use wayland.
+    NIXOS_OZONE_WL = "1";
   };
 
   xdg.mimeApps.enable = true;
