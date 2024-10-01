@@ -17,3 +17,4 @@
   - [ ] for gpg key
   - [-] for wifi network
 - [x] adjust vscode settings and keybindings
+- [ ] experiment with GameMode on desktop PC

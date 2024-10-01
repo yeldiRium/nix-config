@@ -9,20 +9,10 @@
     ./global
 
     ./features/desktop/hyprland
+    ./features/desktop/chrome.nix
     ./features/development
     ./features/pass
   ];
-
-  home = {
-    persistence = {
-      "/persist/${config.home.homeDirectory}" = {
-        directories = [
-          # TODO: make chrome module
-          ".config/google-chrome"
-        ];
-      };
-    };
-  };
 
   programs = {
     # TODO: replace tofi with wofi

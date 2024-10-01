@@ -4,6 +4,7 @@
     ./git.nix
     ./gpg.nix
     ./kitty.nix
+    ./nvim.nix
     ./ranger.nix
     ./ssh.nix
     ./zsh.nix
