@@ -71,15 +71,27 @@
         [
           "$mod SHIFT, Q, exit" # Exits out of hyprland
           "$mod, Q, killactive" # Closes the focused window
+          "$mod, X, killactive" # Closes the focused window
           "$mod, Return, exec, $terminal" # Launches a terminal
         ]
         ++ (
-          # Launch programs with tofi
+          # Notification manager
           let
-            tofi = lib.getExe config.programs.tofi.package;
+            makoctl = lib.getExe' config.services.mako.package "makoctl";
           in
-            lib.optionals config.programs.tofi.enable [
-              "$mod, A, exec, ${tofi}-drun | xargs hyprctl dispatch exec --" # Opens app launcher
+            lib.optionals config.services.mako.enable [
+              "SUPER, w, exec, ${makoctl} dismiss"
+              "SUPERSHIFT, w, exec, ${makoctl} restore"
+            ]
+        )
+        ++ (
+          # Launch programs with wofi
+          let
+            wofi = lib.getExe config.programs.wofi.package;
+          in
+            lib.optionals config.programs.wofi.enable [
+              "$mod, D, exec, ${wofi} --show run"
+              "$mod SHIFT, D, exec, ${wofi} --show drun -x 10 -y 10 --width 25% --height 80%"
             ]
         )
         ++ (
