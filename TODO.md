@@ -10,21 +10,26 @@
   - hopefully fix keyboard layout on login
     - nope :/
 - [x] auto-lazy-mount datengrab
-- [ ] install seahorse
-- [ ] look into full disk encryption (might require re-setup)
 - [x] configure gtk, hyperland, waybar to look actually bearable
-- [ ] adjust ricing to my liking
+- [x] adjust ricing to my liking
   - reduce gaps
   - move wofi below waybar
   - make waybar slimmer
+- [x] adjust vscode settings and keybindings
+- [ ] install spotify and make it work through wofi
 - [ ] overhaul desktop entries to only show what I need
 - [ ] consider hy3 hyperland plugin
 - [ ] install apps
+- [ ] experiment with GameMode on desktop PC
+- [ ] fix home manager switch: delete zsh_history file before starting service home-manager-yeldir
+- [ ] fix keyboard layout in regreet
+- [ ] install seahorse
+- [ ] fix keyring
+- [ ] log into github copilot
+- [ ] setup bluetooth and add it to waybar
+- [ ] look into full disk encryption (might require re-setup)
 - [ ] setup sops
   - [x] for user password
   - [ ] for ssh key
   - [ ] for gpg key
   - [-] for wifi network
-- [x] adjust vscode settings and keybindings
-- [ ] experiment with GameMode on desktop PC
-- [ ] fix home manager switch: delete zsh_history file before starting service home-manager-yeldir
