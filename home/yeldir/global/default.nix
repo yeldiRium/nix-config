@@ -2,15 +2,17 @@
   config,
   inputs,
   lib,
-  #outputs,
+  outputs,
   pkgs,
   ...
 }: {
-  imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
+  imports =
+    [
+      inputs.impermanence.nixosModules.home-manager.impermanence
 
-    ../features/cli
-  ]; # ++ (builtins.attrValues outputs.homeManagerModules);
+      ../features/cli
+    ]
+    ++ (builtins.attrValues outputs.homeManagerModules);
 
   options = {
     hostName = lib.mkOption {
@@ -54,9 +56,9 @@
 
         # Set default applications. Should also/alternatively be done using mime apps.
         # TODO: maybe remove these.
-        EDITOR = "nvim";
-        BROWSER = "google-chrome";
-        TERMINAL = "kitty";
+        # EDITOR = "nvim";
+        # BROWSER = "google-chrome";
+        # TERMINAL = "kitty";
       };
 
       shellAliases = {
@@ -82,6 +84,11 @@
           allowOther = true;
         };
       };
+    };
+
+    colorscheme.mode = lib.mkOverride 1499 "dark";
+    home.file = {
+      ".colorscheme.json".text = builtins.toJSON config.colorscheme;
     };
   };
 }

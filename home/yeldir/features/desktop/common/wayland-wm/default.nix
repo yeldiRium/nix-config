@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   imports = [
+    ./cliphist.nix
     ./mako.nix
+    ./playerctl.nix
     ./swaylock.nix
     ./waybar.nix
     ./wofi.nix

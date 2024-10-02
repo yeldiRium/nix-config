@@ -5,20 +5,16 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    impermanence.url = "github:nix-community/impermanence";
+    nix-colors.url = "github:misterio77/nix-colors";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    impermanence = {
-      url = "github:nix-community/impermanence";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +35,13 @@
 
     lib = nixpkgs.lib // home-manager.lib;
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    pkgsFor = lib.genAttrs systems (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
   in {
     inherit lib;
 
@@ -53,6 +56,16 @@
       laboratory = lib.nixosSystem {
         modules = [./hosts/laboratory];
         specialArgs = {
+          inherit inputs outputs;
+        };
+      };
+    };
+
+    homeConfigurations = {
+      "yeldir@laboratory" = lib.homeManagerConfiguration {
+        modules = [./home/yeldir/laboratory.nix ./home/yeldir/nixpkgs.nix];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {
           inherit inputs outputs;
         };
       };
