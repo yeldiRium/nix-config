@@ -24,6 +24,7 @@
       width = 1600;
       height = 900;
       workspace = "2";
+      position = "1920x800";
     }
     {
       name = "HDMI-A-1";
@@ -31,6 +32,7 @@
       height = 1080;
       workspace = "1";
       primary = true;
+      position = "0x0";
     }
   ];
 }
