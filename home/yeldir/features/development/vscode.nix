@@ -30,14 +30,6 @@
         Keywords = "vscode";
         StartupWMClass = "Code";
       };
-
-      actions = {
-        new-empty-window = {
-          name = "New Empty Window";
-          exec = "${command} --new-window %F";
-          icon = "vscode";
-        };
-      };
     };
   };
 
