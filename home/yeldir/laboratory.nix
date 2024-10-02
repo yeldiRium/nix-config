@@ -9,9 +9,11 @@
     ./global
 
     ./features/desktop/hyprland
-    ./features/desktop/chrome.nix
     ./features/development
     ./features/pass
+
+    ./features/desktop/chrome.nix
+    ./features/desktop/spotify.nix
   ];
 
   hostName = "laboratory";
