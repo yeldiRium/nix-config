@@ -3,9 +3,10 @@
     ./cliphist.nix
     ./mako.nix
     ./playerctl.nix
+    ./rofi.nix
     ./swaylock.nix
     ./waybar.nix
-    ./wofi.nix
+    # ./wofi.nix
   ];
 
   home.sessionVariables = {

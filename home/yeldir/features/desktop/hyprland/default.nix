@@ -121,8 +121,8 @@ in {
         "blur,notifications"
         "ignorezero,notifications"
 
-        "blur,wofi"
-        "ignorezero,wofi"
+        "blur,rofi"
+        "ignorezero,rofi"
 
         "noanim,wallpaper"
       ];

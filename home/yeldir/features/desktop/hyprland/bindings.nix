@@ -49,21 +49,21 @@
         "$mod, Return, exec, $terminal" # Launches a terminal
       ]
       ++
-      # Launch programs with wofi
+      # Launch programs with rofi
       (
         let
-          wofi = lib.getExe config.programs.wofi.package;
+          rofi = lib.getExe config.programs.rofi.package;
         in
-          lib.optionals config.programs.wofi.enable [
-            "$mod, D, exec, ${wofi} --show run"
-            "$mod SHIFT, D, exec, ${wofi} --show drun -x 10 -y 10 --width 20% --height 50%"
+          lib.optionals config.programs.rofi.enable [
+            "$mod, D, exec, ${rofi} -show run"
+            "$mod SHIFT, D, exec, ${rofi} -show drun"
           ]
           ++ (
             let
               cliphist = lib.getExe config.services.cliphist.package;
             in
               lib.optionals config.services.cliphist.enable [
-                ''SUPER, C, exec, selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
+                ''SUPER, C, exec, selected=$(${cliphist} list | ${rofi} -show dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
               ]
           )
       )

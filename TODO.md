@@ -16,7 +16,8 @@
   - move wofi below waybar
   - make waybar slimmer
 - [x] adjust vscode settings and keybindings
-- [ ] install spotify and make it work through wofi
+- [x] install spotify and make it work through wofi
+- [ ] skin rofi to fit with the theme
 - [ ] overhaul desktop entries to only show what I need
 - [ ] consider hy3 hyperland plugin
 - [ ] install apps
