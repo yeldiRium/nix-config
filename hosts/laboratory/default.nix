@@ -18,6 +18,8 @@
     ../common/optional/pipewire.nix
     # TODO: activate once the rest works ../common/optional/quietboot.nix
 
+    ../common/optional/mounts/datengrab.nix
+
     ../common/users/yeldir
   ];
 

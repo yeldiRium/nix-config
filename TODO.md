@@ -9,7 +9,7 @@
 - [x] switch greeter to ReGreet
   - hopefully fix keyboard layout on login
     - nope :/
-- [ ] auto-lazy-mount datengrab
+- [x] auto-lazy-mount datengrab
 - [ ] install seahorse
 - [ ] look into full disk encryption (might require re-setup)
 - [x] configure gtk, hyperland, waybar to look actually bearable
