@@ -9,9 +9,15 @@
 - [x] switch greeter to ReGreet
   - hopefully fix keyboard layout on login
     - nope :/
+- [ ] auto-lazy-mount datengrab
 - [ ] install seahorse
 - [ ] look into full disk encryption (might require re-setup)
-- [ ] configure gtk, hyperland, waybar to look actually bearable
+- [x] configure gtk, hyperland, waybar to look actually bearable
+- [ ] adjust ricing to my liking
+  - reduce gaps
+  - move wofi below waybar
+  - make waybar slimmer
+- [ ] overhaul desktop entries to only show what I need
 - [ ] consider hy3 hyperland plugin
 - [ ] install apps
 - [ ] setup sops
