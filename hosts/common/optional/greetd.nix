@@ -1,7 +1,8 @@
 {
-  pkgs,
-  lib,
   config,
+  inputs,
+  lib,
+  pkgs,
   ...
 }: let
   homeCfgs = config.home-manager.users;
@@ -19,6 +20,13 @@
     exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
   ''}";
 in {
+  imports = [
+    "${inputs.nixpkgs-unstable}/nixos/modules/programs/regreet.nix"
+  ];
+  disabledModules = [
+    "programs/regreet.nix"
+  ];
+
   users.extraUsers.greeter = {
     # For caching and such
     home = "/tmp/greeter-home";
@@ -27,7 +35,16 @@ in {
 
   programs.regreet = {
     enable = true;
-    # TODO: ricing
+    iconTheme = yeldirCfg.gtk.iconTheme;
+    theme = yeldirCfg.gtk.theme;
+    font = yeldirCfg.fontProfiles.regular;
+    cursorTheme = {
+      inherit (yeldirCfg.gtk.cursorTheme) name package;
+    };
+    settings.background = {
+      path = yeldirCfg.wallpaper;
+      fit = "Cover";
+    };
   };
   services.greetd = {
     enable = true;
