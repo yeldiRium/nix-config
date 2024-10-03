@@ -21,12 +21,30 @@
 - [ ] overhaul desktop entries to only show what I need
 - [ ] consider hy3 hyperland plugin
 - [ ] install apps
+  - [ ] nextcloud client with sync (maybe lazy sync and no persistence?)
+  - [ ] thunderbird, email accounts and calendars
+  - [ ] obsidian
+  - [ ] neogit or emacs with magit
+  - [ ] telegram desktop
+  - [ ] signal desktop
+  - [ ] calculator (speedcrunch?)
+  - [ ] clementine
+  - [ ] gimp
+  - [ ] AusweisApp
+  - [ ] audacity
+  - [ ] calibre
+  - [ ] discord
+  - [ ] image viewer
+  - [ ] libreoffice
+  - [ ] transmission gui
+  - [ ] VLC
 - [ ] experiment with GameMode on desktop PC
 - [ ] fix home manager switch: delete zsh_history file before starting service home-manager-yeldir
 - [ ] fix keyboard layout in regreet
-- [ ] install seahorse
 - [ ] fix keyring
-- [ ] log into github copilot
+    - [ ] install seahorse
+    - [ ] create default keyring with password
+    - [ ] log into github copilot
 - [ ] setup bluetooth and add it to waybar
 - [ ] look into full disk encryption (might require re-setup)
 - [ ] setup sops
