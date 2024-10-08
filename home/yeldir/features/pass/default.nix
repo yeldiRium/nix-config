@@ -11,6 +11,10 @@
     package = pkgs.pass.withExtensions (p: [p.pass-otp]);
   };
 
+  home.packages = with pkgs; [
+    gnome.seahorse
+  ];
+
   services.pass-secret-service = {
     enable = true;
     storePath = "${config.home.homeDirectory}/.password-store";
