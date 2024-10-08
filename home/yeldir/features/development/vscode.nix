@@ -23,7 +23,7 @@
       exec = "${command} %F";
       icon = "vscode";
       categories = ["Utility" "TextEditor" "Development" "IDE"];
-      mimeType = ["text/plain" "inode/directory"];
+      mimeType = ["text/plain" "inode/directory" "x-scheme-handler/vscode"];
       startupNotify = true;
       genericName = "Text Editor";
       settings = {
