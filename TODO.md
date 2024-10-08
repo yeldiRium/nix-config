@@ -17,10 +17,10 @@
 - [x] adjust vscode settings and keybindings
 - [x] install spotify and make it work through wofi
 - [ ] configure default audio device
-- [ ] fix keyring
-    - [ ] install seahorse
-    - [ ] create default keyring with password
-    - [ ] log into github copilot
+- [x] fix keyring
+    - [x] install seahorse
+    - [x] create default keyring with password
+    - [x] log into github copilot
 - [ ] skin rofi to fit with the theme
 - [ ] overhaul desktop entries to only show what I need
 - [ ] consider hy3 hyperland plugin
