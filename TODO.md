@@ -42,6 +42,8 @@
   - [ ] libreoffice
   - [ ] transmission gui
   - [ ] VLC
+- [ ] configure hibernate and suspend
+- [ ] try to get apps to auto-start after reboot
 - [ ] experiment with GameMode on desktop PC
 - [ ] fix home manager switch: delete zsh_history file before starting service home-manager-yeldir
 - [ ] fix keyboard layout in regreet
