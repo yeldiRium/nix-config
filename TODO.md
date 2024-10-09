@@ -25,6 +25,7 @@
 - [ ] overhaul desktop entries to only show what I need
 - [ ] consider hy3 hyperland plugin
 - [ ] install apps
+  - [ ] spotify (still won't start with rofi)
   - [ ] nextcloud client with sync (maybe lazy sync and no persistence?)
   - [ ] thunderbird, email accounts and calendars
   - [ ] obsidian
