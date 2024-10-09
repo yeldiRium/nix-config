@@ -17,17 +17,25 @@
 
         # navigate around windows
         "$mod, left, movefocus, l"
+        "$mod, I, movefocus, l"
         "$mod, right, movefocus, r"
+        "$mod, E, movefocus, r"
         "$mod, up, movefocus, u"
+        "$mod, L, movefocus, u"
         "$mod, down, movefocus, d"
+        "$mod, A, movefocus, d"
         "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, I, movewindow, l"
         "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, E, movewindow, r"
         "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, L, movewindow, u"
         "$mod SHIFT, down, movewindow, d"
+        "$mod SHIFT, A, movewindow, d"
 
         # adjust layout
         "$mod, Space, togglefloating"
-        "$mod, G, togglegroup"
+        "$mod, T, togglegroup"
         "$mod, F, fullscreen"
       ]
       ++ (
@@ -74,7 +82,7 @@
           swaylock = lib.getExe config.programs.swaylock.package;
         in
           lib.optionals config.programs.swaylock.enable [
-            "$mod, L, exec, ${swaylock} --screenshots --grace 2 --grace-no-mouse"
+            "$mod, G, exec, ${swaylock} --screenshots --grace 2 --grace-no-mouse"
             "$mod, XF86ScreenSaver, exec, ${swaylock} --screenshots --grace 2 --grace-no-mouse"
           ]
       )
