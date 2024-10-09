@@ -42,6 +42,7 @@
   - [ ] libreoffice
   - [ ] transmission gui
   - [ ] VLC
+- [ ] make ranger show graphical file previews
 - [ ] configure hibernate and suspend
 - [ ] try to get apps to auto-start after reboot
 - [ ] experiment with GameMode on desktop PC
