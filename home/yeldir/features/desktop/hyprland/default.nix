@@ -111,20 +111,21 @@ in {
           )
           remoteColorschemes);
       layerrule = [
-        "animation fade,hyprpicker"
-        "animation fade,selection"
+        "animation fade, hyprpicker"
+        "animation fade, selection"
 
-        "animation fade,waybar"
-        "blur,waybar"
-        "ignorezero,waybar"
+        "animation fade, waybar"
+        "blur, waybar"
+        "ignorezero, waybar"
 
-        "blur,notifications"
-        "ignorezero,notifications"
+        "blur, notifications"
+        "ignorezero, notifications"
 
-        "blur,rofi"
-        "ignorezero,rofi"
+        "blur, rofi"
+        "ignorezero, rofi"
+        "dimaround, rofi"
 
-        "noanim,wallpaper"
+        "noanim, wallpaper"
       ];
 
       decoration = {
