@@ -55,15 +55,15 @@
           rofi = lib.getExe config.programs.rofi.package;
         in
           lib.optionals config.programs.rofi.enable [
-            "$mod, D, exec, ${rofi} -show run"
-            "$mod SHIFT, D, exec, ${rofi} -show drun"
+            "$mod SHIFT, D, exec, ${rofi} -show run"
+            "$mod, D, exec, ${rofi} -show drun"
           ]
           ++ (
             let
               cliphist = lib.getExe config.services.cliphist.package;
             in
               lib.optionals config.services.cliphist.enable [
-                ''SUPER, C, exec, selected=$(${cliphist} list | ${rofi} -show dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
+                ''SUPER, C, exec, selected=$(${cliphist} list | ${rofi} -dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
               ]
           )
       )
