@@ -57,3 +57,4 @@
   - [ ] for ssh key
   - [ ] for gpg key
   - [-] for wifi network
+- [ ] add options to disable animations and transparency in hyprland and wayland
