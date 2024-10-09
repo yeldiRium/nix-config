@@ -58,3 +58,4 @@
   - [ ] for gpg key
   - [-] for wifi network
 - [ ] add options to disable animations and transparency in hyprland and wayland
+- [ ] add hyprland input mode that makes power options accessible - poweroff, suspend, logout etc.
