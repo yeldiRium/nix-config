@@ -56,7 +56,7 @@
         in
           lib.optionals config.programs.rofi.enable [
             "$mod SHIFT, D, exec, ${rofi} -show run"
-            "$mod, D, exec, ${rofi} -show drun"
+            "$mod, D, exec, ${rofi} -show combi -modes combi -combi-modes \"window,drun\""
           ]
           ++ (
             let
