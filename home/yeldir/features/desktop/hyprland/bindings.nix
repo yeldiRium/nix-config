@@ -8,49 +8,83 @@
     "$mod" = "SUPER";
     "$terminal" = "kitty";
 
-    # Window management bindings
-    bind =
-      [
+    bind = let
+      workspaces = [
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+        "7"
+        "8"
+        "9"
+      ];
+      directions = rec {
+        left = "l";
+        right = "r";
+        up = "u";
+        down = "d";
+        I = left;
+        E = right;
+        L = up;
+        A = down;
+      };
+    in
+      (
+        # Go to workspace
+        map (n: "$mod, ${n}, workspace, ${n}") workspaces
+      )
+      ++ (
+        # Move window to workspace
+        map (n: "$mod SHIFT, ${n}, movetoworkspacesilent, ${n}") workspaces
+      )
+      ++ (
+        # Move focus
+        (lib.mapAttrsToList (key: direction: "$mod, ${key}, movefocus, ${direction}") directions)
+      )
+      ++ (
+        # Swap windows
+        (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, swapwindow, ${direction}") directions)
+      )
+      ++ (
+        # Move workspace to other monitor
+        (lib.mapAttrsToList (key: direction: "$mod SHIFT ALT, ${key}, movecurrentworkspacetomonitor, ${direction}") directions)
+      )
+      ++ [
+        # Window management bindings
+
         "$mod SHIFT, Q, exit" # Exits out of hyprland
         "$mod, Q, killactive" # Closes the focused window
         "$mod, X, killactive" # Closes the focused window
-
-        # navigate around windows
-        "$mod, left, movefocus, l"
-        "$mod, I, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, E, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, L, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod, A, movefocus, d"
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, I, movewindow, l"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, E, movewindow, r"
-        "$mod SHIFT, up, movewindow, u"
-        "$mod SHIFT, L, movewindow, u"
-        "$mod SHIFT, down, movewindow, d"
-        "$mod SHIFT, A, movewindow, d"
 
         # adjust layout
         "$mod, Space, togglefloating"
         "$mod, T, togglegroup"
         "$mod, F, fullscreen"
+        "$mod, S, togglesplit"
       ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (builtins.genList (
-            i: let
-              ws = i + 1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          )
-          9)
-      )
+      ++ [
+        # system shortcuts
+
+        # Set shut down, restart and locking features
+        # bindsym $mod+0 mode "$mode_system"
+        # set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+        # mode "$mode_system" {
+        #     bindsym l exec --no-startup-id i3exit lock, mode "default"
+        #     bindsym s exec --no-startup-id i3exit suspend, mode "default"
+        #     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+        #     bindsym e exec --no-startup-id i3exit logout, mode "default"
+        #     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+        #     bindsym r exec --no-startup-id i3exit reboot, mode "default"
+        #     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+        #
+        #     # exit system mode: "Enter" or "Escape"
+        #     bindsym Return mode "default"
+        #     bindsym Escape mode "default"
+        # }
+        "$mod, 0, submap, system"
+      ]
       ++
       # Important applications with shortcuts
       [

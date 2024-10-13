@@ -50,7 +50,7 @@
 - [ ] experiment with GameMode on desktop PC
 - [ ] fix home manager switch: delete zsh_history file before starting service home-manager-yeldir
 - [ ] fix keyboard layout in regreet
-- [ ] setup bluetooth and add it to waybar
+- [x] setup bluetooth and add it to waybar
 - [ ] look into full disk encryption (might require re-setup)
 - [ ] setup sops
   - [x] for user password

@@ -85,6 +85,8 @@ in {
       dwindle = {
         split_width_multiplier = 1.35;
         pseudotile = true;
+        force_split = 2;
+        preserve_split = true;
       };
       misc = {
         vfr = true;
