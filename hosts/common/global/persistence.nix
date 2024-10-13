@@ -5,7 +5,7 @@
   ...
 }: {
   # This requires that a volume group named `root_vg` exists.
-  # Achive this by importing ./disko.nix in the host and giving it the correct device name.
+  # Achive this by importing a disko.nix in the host and giving it the correct device name.
 
   imports = [
     inputs.impermanence.nixosModules.impermanence
