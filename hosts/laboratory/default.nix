@@ -8,7 +8,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    (import ../common/global/disko.nix {device = "/dev/sda";})
+    (import ./disko.nix {device = "/dev/sda";})
 
     ../common/global
 

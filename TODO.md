@@ -21,8 +21,8 @@
     - [x] install seahorse
     - [x] create default keyring with password
     - [x] log into github copilot
-- [ ] skin rofi to fit with the theme
-- [ ] move disko.nix and add documentation about sizing the swap disk
+- [x] skin rofi to fit with the theme
+- [x] move disko.nix and add documentation about sizing the swap disk
 - [ ] overhaul desktop entries to only show what I need
 - [ ] consider hy3 hyperland plugin
 - [ ] install apps
