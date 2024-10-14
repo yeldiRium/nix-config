@@ -37,15 +37,15 @@
       )
       ++ (
         # Move window to workspace
-        map (n: "$mod SHIFT, ${n}, movetoworkspacesilent, ${n}") workspaces
+        map (n: "$mod SHIFT, ${n}, hy3:movetoworkspace, ${n}") workspaces
       )
       ++ (
         # Move focus
-        (lib.mapAttrsToList (key: direction: "$mod, ${key}, movefocus, ${direction}") directions)
+        (lib.mapAttrsToList (key: direction: "$mod, ${key}, hy3:movefocus, ${direction}") directions)
       )
       ++ (
-        # Swap windows
-        (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, swapwindow, ${direction}") directions)
+        # Move windows
+        (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, hy3:movewindow, ${direction}") directions)
       )
       ++ (
         # Move workspace to other monitor
@@ -55,35 +55,17 @@
         # Window management bindings
 
         "$mod SHIFT, Q, exit" # Exits out of hyprland
-        "$mod, Q, killactive" # Closes the focused window
-        "$mod, X, killactive" # Closes the focused window
+        "$mod, Q, hy3:killactive" # Closes the focused window
+        "$mod, X, hy3:killactive" # Closes the focused window
 
         # adjust layout
         "$mod, Space, togglefloating"
-        "$mod, T, togglegroup"
         "$mod, F, fullscreen"
-        "$mod, S, togglesplit"
-      ]
-      ++ [
-        # system shortcuts
-
-        # Set shut down, restart and locking features
-        # bindsym $mod+0 mode "$mode_system"
-        # set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-        # mode "$mode_system" {
-        #     bindsym l exec --no-startup-id i3exit lock, mode "default"
-        #     bindsym s exec --no-startup-id i3exit suspend, mode "default"
-        #     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-        #     bindsym e exec --no-startup-id i3exit logout, mode "default"
-        #     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-        #     bindsym r exec --no-startup-id i3exit reboot, mode "default"
-        #     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-        #
-        #     # exit system mode: "Enter" or "Escape"
-        #     bindsym Return mode "default"
-        #     bindsym Escape mode "default"
-        # }
-        "$mod, 0, submap, system"
+        "$mod, T, hy3:makegroup, tab"
+        "$mod, V, hy3:makegroup, v"
+        "$mod, H, hy3:makegroup, h"
+        "$mod, S, hy3:changefocus, raise"
+        "$mod SHIFT, S, hy3:changefocus, lower"
       ]
       ++
       # Important applications with shortcuts
@@ -176,5 +158,9 @@
         "    , XF86MonBrightnessUp, exec, light -A 10"
         "    , XF86MonBrightnessDown, exec, light -U 10"
       ];
+
+    bindn = [
+      ", mouse:272, hy3:focustab, mouse"
+    ];
   };
 }

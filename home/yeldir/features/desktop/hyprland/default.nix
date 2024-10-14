@@ -38,6 +38,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
+    plugins = [pkgs.hyprlandPlugins.hy3];
     systemd = {
       enable = true;
       # Same as default, but stop graphical-session too
@@ -55,6 +56,7 @@ in {
         "col.active_border" = rgba config.colorscheme.colors.primary "aa";
         "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
         allow_tearing = true;
+        layout = "hy3";
       };
       cursor.inactive_timeout = 4;
       group = {
@@ -82,12 +84,6 @@ in {
           "zsa-technology-labs-inc-ergodox-ez-system-control"
           "zsa-technology-labs-inc-ergodox-ez-consumer-control"
         ];
-      dwindle = {
-        split_width_multiplier = 1.35;
-        pseudotile = true;
-        force_split = 2;
-        preserve_split = true;
-      };
       misc = {
         vfr = true;
         close_special_on_empty = true;
@@ -96,13 +92,10 @@ in {
         new_window_takes_over_fullscreen = 2;
       };
       windowrulev2 = let
-        sweethome3d-tooltips = "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
         steam = "title:^()$,class:^(steam)$";
         steamGame = "class:^(steam_app_[0-9]*)$";
       in
         [
-          "nofocus, ${sweethome3d-tooltips}"
-
           "stayfocused, ${steam}"
           "minsize 1 1, ${steam}"
 
@@ -228,11 +221,34 @@ in {
     };
     # This is order sensitive, so it has to come here.
     extraConfig = ''
+      # system shortcuts
+      bind = $mod, 0, submap, system
+      submap = system
+      bind = , escape, submap, reset
+      bind = , s, exec, systemctl suspend
+      bind = , p, exec, systemctl poweroff
+      bind = , r, exec, systemctl reboot
+      submap = reset
+
+      # resize
+      bind = $mod, R, submap, resize
+      submap = resize
+      bind = , escape, submap, reset
+      binde = , I, resizeactive, -10 0
+      binde = , E, resizeactive, 10 0
+      binde = , L, resizeactive, 0 -10
+      binde = , A, resizeactive, 0 10
+      binde = , left, resizeactive, -10 0
+      binde = , right, resizeactive, 10 0
+      binde = , up, resizeactive, 0 -10
+      binde = , down, resizeactive, 0 10
+      submap = reset
+
       # Passthrough mode (e.g. for VNC)
-      bind=SUPER,P,submap,passthrough
-      submap=passthrough
-      bind=SUPER,P,submap,reset
-      submap=reset
+      bind = $mod, P, submap, passthrough
+      submap = passthrough
+      bind = $mod, P, submap, reset
+      submap = reset
     '';
   };
 }
