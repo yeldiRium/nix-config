@@ -8,6 +8,7 @@
     ./gtk.nix
     ./networkmanager.nix
     ./pavucontrol.nix
+    ./wireplumber.nix
   ];
 
   home.packages = with pkgs; [
