@@ -9,7 +9,7 @@ Using the nixos installer image...
 5. nboot & reboot
 6. Add ssh key
 7. Import private gpg key matching above fingerprint
-8. Initialize pass store using `pass init "8DFC1FE97A49B7CEF042DE06BA239C4139A9A514"`
+8. Create a new keyring using seahorse and mark it as default
 9. Reboot
 
 This was written without testing. It might fail and after doing everything something might be missing in the persisted folders. Needs to be evaluated!

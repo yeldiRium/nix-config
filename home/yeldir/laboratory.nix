@@ -10,7 +10,7 @@
 
     ./features/desktop/hyprland
     ./features/development
-    ./features/pass
+    ./features/keyring
 
     ./features/desktop/chrome.nix
     ./features/desktop/spotify.nix
