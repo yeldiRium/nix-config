@@ -10,7 +10,11 @@
     ./pavucontrol.nix
   ];
 
-  home.packages = [pkgs.libnotify];
+  home.packages = with pkgs; [
+    libnotify
+
+    d-spy
+  ];
 
   # Also sets org.freedesktop.appearance color-scheme
   dconf.settings."org/gnome/desktop/interface".color-scheme =

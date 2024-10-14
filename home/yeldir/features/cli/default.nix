@@ -19,6 +19,7 @@
     # poweruser
     jq
     silver-searcher
+    btop
 
     # nix utils
     alejandra
