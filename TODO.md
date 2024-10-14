@@ -24,7 +24,7 @@
 - [x] skin rofi to fit with the theme
 - [x] move disko.nix and add documentation about sizing the swap disk
 - [ ] overhaul desktop entries to only show what I need
-- [ ] consider hy3 hyperland plugin
+- [x] consider hy3 hyperland plugin
 - [ ] install apps
   - [ ] spotify (still won't start with rofi)
   - [ ] nextcloud client with sync (maybe lazy sync and no persistence?)
@@ -58,4 +58,4 @@
   - [ ] for gpg key
   - [-] for wifi network
 - [ ] add options to disable animations and transparency in hyprland and wayland
-- [ ] add hyprland input mode that makes power options accessible - poweroff, suspend, logout etc.
+- [x] add hyprland input mode that makes power options accessible - poweroff, suspend, logout etc.
