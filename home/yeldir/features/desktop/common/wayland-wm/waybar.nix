@@ -66,10 +66,6 @@ in {
         position = "top";
         modules-left =
           ["custom/menu"]
-          ++ (lib.optionals swayCfg.enable [
-            "sway/workspaces"
-            "sway/mode"
-          ])
           ++ (lib.optionals hyprlandCfg.enable [
             "hyprland/workspaces"
             "hyprland/submap"
@@ -84,12 +80,10 @@ in {
           #"custom/gpu"
           "memory"
           "clock"
-          #"custom/unread-mail"
         ];
 
         modules-right = [
           "tray"
-          "custom/rfkill"
           "network"
           "pulseaudio"
           "battery"
@@ -157,9 +151,6 @@ in {
           format-charging = "󰂄 {capacity}%";
           onclick = "";
         };
-        "sway/window" = {
-          max-length = 20;
-        };
         network = {
           interval = 3;
           format-wifi = "   {essid}";
@@ -196,33 +187,6 @@ in {
             script = ''
               systemctl --user restart waybar
             '';
-          };
-        };
-        "custom/unread-mail" = {
-          interval = 5;
-          return-type = "json";
-          exec = mkScriptJson {
-            deps = [pkgs.findutils pkgs.procps];
-            script = ''
-              count=$(find ~/Mail/*/Inbox/new -type f | wc -l)
-              if pgrep mbsync &>/dev/null; then
-                status="syncing"
-              else
-                if [ "$count" == "0" ]; then
-                  status="read"
-                else
-                  status="unread"
-                fi
-              fi
-            '';
-            text = "$count";
-            alt = "$status";
-          };
-          format = "{icon}  ({})";
-          format-icons = {
-            "read" = "󰇯";
-            "unread" = "󰇮";
-            "syncing" = "󰁪";
           };
         };
         "custom/currentplayer" = {
@@ -280,13 +244,6 @@ in {
           on-click = mkScript {
             deps = [pkgs.playerctl];
             script = "playerctl play-pause";
-          };
-        };
-        "custom/rfkill" = {
-          interval = 1;
-          exec-if = mkScript {
-            deps = [pkgs.util-linux];
-            script = "rfkill | grep '\<blocked\>'";
           };
         };
       };
