@@ -17,6 +17,7 @@
     ./features/desktop/office/calendar.nix
     ./features/desktop/office/contacts.nix
     ./features/desktop/office/email.nix
+    ./features/desktop/office/obsidian.nix
   ];
 
   hostName = "laboratory";
