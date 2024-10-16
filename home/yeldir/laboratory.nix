@@ -23,7 +23,7 @@
 
   hostName = "laboratory";
 
-  wallpaper = pkgs.wallpapers.nature-calm-valley;
+  wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;
 
   monitors = [
     {

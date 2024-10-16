@@ -4,5 +4,11 @@
     "id": "JzIO85D",
     "name": "nature-calm-valley",
     "sha256": "854d5eaf89ba0a3a7d4ed140a22a8653b9419dfa6772d919c5de5ee61441161a"
+  },
+  {
+    "ext": "png",
+    "id": "dxbYP0H",
+    "name": "cyberpunk-tree-landscape",
+    "sha256": "bebc766c5468a3e683c6cf0e55719cb6cb2c2ede1fc0a6a40889af4f72a3ae23"
   }
 ]
