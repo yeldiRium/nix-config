@@ -30,7 +30,7 @@
   - [ ] spotify (still won't start with rofi)
   - [ ] nextcloud client with sync (maybe lazy sync and no persistence?)
   - [x] thunderbird, email accounts and calendars
-  - [ ] obsidian
+  - [x] obsidian
   - [ ] neogit or emacs with magit
   - [ ] telegram desktop
   - [ ] signal desktop
