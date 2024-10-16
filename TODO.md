@@ -16,7 +16,8 @@
   - make waybar slimmer
 - [x] adjust vscode settings and keybindings
 - [x] install spotify and make it work through wofi
-- [ ] configure default audio device
+- [x] configure default audio device
+  - did not do that. Instead I persisted the wireplumber state for my user
 - [x] fix keyring
     - [x] install seahorse
     - [x] create default keyring with password

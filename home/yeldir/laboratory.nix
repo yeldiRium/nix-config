@@ -14,6 +14,7 @@
 
     ./features/desktop/chrome.nix
     ./features/desktop/spotify.nix
+    ./features/desktop/office/thunderbird.nix
   ];
 
   hostName = "laboratory";
