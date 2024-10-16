@@ -8,12 +8,12 @@
     ./nvim.nix
     ./ranger.nix
     ./ssh.nix
+    ./thefuck.nix
     ./zsh.nix
   ];
 
   # TODO:
   # - add hstr package
-  # - add gh package
 
   home.packages = with pkgs; [
     # poweruser
