@@ -14,7 +14,9 @@
 
     ./features/desktop/chrome.nix
     ./features/desktop/spotify.nix
-    ./features/desktop/office/thunderbird.nix
+    ./features/desktop/office/calendar.nix
+    ./features/desktop/office/contacts.nix
+    ./features/desktop/office/email.nix
   ];
 
   hostName = "laboratory";

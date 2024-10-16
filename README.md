@@ -14,7 +14,7 @@ Using the nixos installer image...
 10. Application specific setup
   1. Chrome - Log in, enable sync for extensions and settings
     - Log into 1password
-  2. Thunderbird - create accounts, import gpg key (unfortunately this seems unavoidable)
+  2. Thunderbird - import public gpg key (this somehow can't be avoided)
   3. VSCode - log into GitHub account, Copilot
 
 This was written without testing. It might fail and after doing everything something might be missing in the persisted folders. Needs to be evaluated!

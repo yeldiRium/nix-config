@@ -38,6 +38,13 @@
       enable = true;
       mutableExtensionsDir = false;
 
+      # To add a new extension that does not have a prebuilt package:
+      # Find the package version you want on the online marketplace https://marketplace.visualstudio.com/
+      # Get the download link for the specific version
+      # run nix repl and enter:
+      # > builtins.fetchurl { url = "<download url here>"; sha256 = ""; }
+      # Nix will then complain about the sha256 mismatch and print the actual sha256. You can then use
+      # this sha256 in the extensions list below.
       extensions = with pkgs;
         [
           vscode-extensions.bbenoist.nix
@@ -51,7 +58,13 @@
             name = "advanced-new-file";
             publisher = "patbenatar";
             version = "1.2.2";
-            sha256 = "sha256-z1QYlYn0RSy2FWCZBYYHbN5BTWp4cp/sOy19tRr1RiU=";
+            sha256 = "sha256:09a6yldbaz9d7gn9ywkqd96l3pkc0y30b6b02nv2qigli6aihm6g";
+          }
+          {
+            name = "vscode-fileutils";
+            publisher = "sleistner";
+            version = "3.10.3";
+            sha256 = "sha256:0c8zj98sq9yf8v72952phpcc0y2i3np3v8gc719b2wc1mai35nmz";
           }
         ];
       keybindings = [
