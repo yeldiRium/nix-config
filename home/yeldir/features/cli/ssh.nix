@@ -7,7 +7,7 @@
           user = "yeldir";
           identityFile = "~/.ssh/hleutloff";
         };
-        "git.yeldirium.de" = {
+        "git.staubwolke.org" = {
           user = "yeldir";
           identityFile = "~/.ssh/hleutloff";
           port = 30022;
