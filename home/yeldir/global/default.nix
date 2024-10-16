@@ -90,5 +90,9 @@
     home.file = {
       ".colorscheme.json".text = builtins.toJSON config.colorscheme;
     };
+
+    gtk.gtk3.bookmarks = [
+      "file:///mnt/datengrab"
+    ];
   };
 }
