@@ -19,6 +19,7 @@
     ./features/desktop/office/email.nix
     ./features/desktop/office/obsidian.nix
     ./features/desktop/video
+    ./features/games
   ];
 
   hostName = "recreate";
@@ -31,12 +32,12 @@
       width = 1920;
       height = 1080;
       position = "1080x200";
+      primary = true;
     }
     {
       name = "HDMI-A-1";
       width = 1920;
       height = 1080;
-      primary = true;
       position = "0x0";
       transform = 3;
     }

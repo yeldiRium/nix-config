@@ -7,6 +7,10 @@
   ...
 }: {
   imports = [
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-pc-ssd
+
     ./hardware-configuration.nix
     (import ./disko.nix {device = "/dev/nvme0n1";})
 
@@ -36,6 +40,14 @@
 
   programs = {
     dconf.enable = true;
+    xwayland.enable = true;
+  };
+
+  hardware.graphics.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,

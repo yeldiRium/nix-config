@@ -12,6 +12,7 @@
     ./nix.nix
     ./persistence.nix
     ./sops.nix
+    ./steam-hardware.nix
     ./upower.nix
     ./zsh.nix
   ];

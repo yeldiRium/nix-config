@@ -24,4 +24,8 @@
     # nix utils
     alejandra
   ];
+
+  home.shellAliases = {
+    ll = "ls -al";
+  };
 }
