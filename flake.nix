@@ -59,11 +59,24 @@
           inherit inputs outputs;
         };
       };
+      recreate = lib.nixosSystem {
+        modules = [./hosts/recreate];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
     };
 
     homeConfigurations = {
       "yeldir@laboratory" = lib.homeManagerConfiguration {
         modules = [./home/yeldir/laboratory.nix ./home/yeldir/nixpkgs.nix];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+      "yeldir@recreate" = lib.homeManagerConfiguration {
+        modules = [./home/yeldir/recreate.nix ./home/yeldir/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;

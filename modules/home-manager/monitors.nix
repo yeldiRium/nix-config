@@ -41,6 +41,10 @@ in {
             type = types.nullOr types.str;
             default = null;
           };
+          transform = mkOption {
+            type = types.int;
+            default = 0;
+          };
         };
       }
     );

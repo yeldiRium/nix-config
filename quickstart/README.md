@@ -8,3 +8,4 @@
 7. Run `mkdir -p /mnt/etc/nixos && cp -r . /mnt/etc/nixos && cd /mnt/etc/nixos`
 8. Run `nixos-generate-config --no-filesystems --show-hardware-config > /mnt/etc/nixos/hardware-configuration.nix`
 9. Run `nixos-install --root /mnt --flake /mnt/etc/nixos#default`
+10. Reboot into the newly installed nixos
