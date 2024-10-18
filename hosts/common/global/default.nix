@@ -11,6 +11,7 @@
     ./nix-ld.nix
     ./nix.nix
     ./persistence.nix
+    ./printing.nix
     ./sops.nix
     ./upower.nix
     ./zsh.nix
