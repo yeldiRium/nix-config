@@ -12,6 +12,7 @@
     ./features/development
     ./features/keyring
 
+    ./features/desktop/communication
     ./features/desktop/chrome.nix
     ./features/desktop/spotify.nix
     ./features/desktop/office/calendar.nix
@@ -45,6 +46,16 @@
   ];
   autostart = [
     {
+      command = "${lib.getExe pkgs.telegram-desktop}";
+      workspace = "1";
+      monitor = "DP-3";
+    }
+    {
+      command = "${lib.getExe pkgs.vesktop}";
+      workspace = "1";
+      monitor = "DP-3";
+    }
+    {
       command = "${lib.getExe pkgs.google-chrome}";
       workspace = "2";
       monitor = "DP-3";
@@ -55,8 +66,18 @@
       monitor = "DP-3";
     }
     {
+      command = "${lib.getExe pkgs.steam}";
+      workspace = "3";
+      monitor = "DP-3";
+    }
+    {
       command = "${lib.getExe pkgs.obsidian}";
       workspace = "5";
+      monitor = "DP-3";
+    }
+    {
+      command = "${lib.getExe pkgs.spotify}";
+      workspace = "6";
       monitor = "DP-3";
     }
     {

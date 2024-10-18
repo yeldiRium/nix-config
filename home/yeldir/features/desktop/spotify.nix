@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -6,6 +7,12 @@
   home.packages = with pkgs; [
     spotifywm
   ];
+
+  home.persistence."/persist/${config.home.homeDirectory}" = {
+    directories = [
+      ".config/spotify"
+    ];
+  };
 
   xdg.desktopEntries = {
     spotify = {
