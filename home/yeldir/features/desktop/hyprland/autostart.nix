@@ -1,12 +1,21 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
-  wayland.windowManager.hyprland.settings.exec-once = [
-    "[workspace 2 silent; monitor DP-3] ${lib.getExe pkgs.google-chrome}"
-    "[workspace 3 silent; monitor DP-3] ${lib.getExe pkgs.lutris}"
-    "[workspace 5 silent; monitor DP-3] ${lib.getExe pkgs.obsidian}"
-    "[workspace 7 silent; monitor DP-3] ${lib.getExe pkgs.thunderbird}"
-  ];
+{config, ...}: {
+  wayland.windowManager.hyprland.settings.exec-once = let
+    windowrule = monitor: workspace:
+      if monitor == null && workspace && null
+      then ""
+      else
+        "["
+        + (
+          if monitor == null
+          then ""
+          else "monitor " + monitor + ";"
+        )
+        + (
+          if workspace == null
+          then ""
+          else "workspace " + workspace + " silent;"
+        )
+        + "] ";
+  in
+    map (m: "${windowrule m.monitor m.workspace}${m.command}") config.autostart;
 }

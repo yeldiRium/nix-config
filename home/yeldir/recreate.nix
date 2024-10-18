@@ -43,4 +43,26 @@
       workspace = "1";
     }
   ];
+  autostart = [
+    {
+      command = "${lib.getExe pkgs.google-chrome}";
+      workspace = "2";
+      monitor = "DP-3";
+    }
+    {
+      command = "${lib.getExe pkgs.lutris}";
+      workspace = "3";
+      monitor = "DP-3";
+    }
+    {
+      command = "${lib.getExe pkgs.obsidian}";
+      workspace = "5";
+      monitor = "DP-3";
+    }
+    {
+      command = "${lib.getExe pkgs.thunderbird}";
+      workspace = "7";
+      monitor = "DP-3";
+    }
+  ];
 }
