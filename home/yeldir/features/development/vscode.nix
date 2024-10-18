@@ -15,7 +15,7 @@
   };
 
   xdg.desktopEntries = let
-    command = "${lib.getExe pkgs.vscode} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto --password-store=\"gnome-libsecret\"";
+    command = "${lib.getExe pkgs.vscode} --enable-features=UseOzonePlatform,WaylandWindowDecorations --password-store=\"gnome-libsecret\"";
   in {
     code = {
       name = "Visual Studio Code";
