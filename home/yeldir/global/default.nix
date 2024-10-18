@@ -10,6 +10,7 @@
     [
       inputs.impermanence.nixosModules.home-manager.impermanence
 
+      ./sops.nix
       ../features/cli
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);

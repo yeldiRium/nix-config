@@ -6,4 +6,7 @@ creation_rules:
     key_groups:
       - age:
         - *laboratory
-
+  - path_regex: home/yeldir/secrets.yaml$
+    key_groups:
+      - age:
+        - *laboratory

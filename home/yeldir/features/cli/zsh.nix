@@ -10,6 +10,9 @@
           "wd"
         ];
       };
+
+      # Source secrets that are mounted via sops
+      envExtra = "source ~/.secretenv";
     };
   };
 
@@ -21,6 +24,12 @@
           ".zsh_history"
         ];
       };
+    };
+  };
+
+  sops = {
+    secrets.secretenv = {
+      path = "${config.home.homeDirectory}/.secretenv";
     };
   };
 }
