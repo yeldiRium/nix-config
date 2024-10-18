@@ -53,4 +53,12 @@ in {
     enable = true;
     settings.default_session.command = sway-kiosk (lib.getExe config.programs.regreet.package);
   };
+
+  environment.persistence = {
+    "/persist/system" = {
+      directories = [
+        "/var/cache/regreet"
+      ];
+    };
+  };
 }
