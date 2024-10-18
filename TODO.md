@@ -45,12 +45,12 @@
   - [ ] libreoffice
   - [ ] transmission gui
   - [ ] VLC
-- [ ] make ranger show graphical file previews
-- [ ] configure hibernate and suspend
-- [ ] try to get apps to auto-start after reboot
+- [x] make ranger show graphical file previews
+- [x] configure hibernate and suspend
+- [x] try to get apps to auto-start after reboot
 - [ ] experiment with GameMode on desktop PC
 - [ ] fix home manager switch: delete zsh_history file before starting service home-manager-yeldir
-- [ ] fix keyboard layout in regreet
+- [x] fix keyboard layout in regreet
 - [x] setup bluetooth and add it to waybar
 - [ ] look into full disk encryption (might require re-setup)
 - [ ] setup sops
