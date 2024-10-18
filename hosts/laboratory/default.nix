@@ -32,6 +32,7 @@
 
   networking = {
     hostName = "laboratory";
+    hostId = "18e8eddb";
   };
 
   programs = {

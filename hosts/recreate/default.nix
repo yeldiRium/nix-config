@@ -37,6 +37,7 @@
 
   networking = {
     hostName = "recreate";
+    hostId = "5444b7b4";
   };
 
   programs = {

@@ -7,6 +7,7 @@
   imports = [
     inputs.home-manager.nixosModules.default
 
+    ./filesystems.nix
     ./locale.nix
     ./nix-ld.nix
     ./nix.nix
