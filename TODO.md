@@ -28,7 +28,7 @@
 - [x] consider hy3 hyperland plugin
 - [ ] install apps
   - [x] spotify (still won't start with rofi)
-  - [ ] nextcloud client with sync (maybe lazy sync and no persistence?)
+  - [x] nextcloud client with sync (maybe lazy sync and no persistence?)
   - [x] thunderbird, email accounts and calendars
   - [x] obsidian
   - [ ] neogit or emacs with magit
