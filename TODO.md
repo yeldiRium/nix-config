@@ -27,24 +27,24 @@
 - [ ] overhaul desktop entries to only show what I need
 - [x] consider hy3 hyperland plugin
 - [ ] install apps
-  - [ ] spotify (still won't start with rofi)
+  - [x] spotify (still won't start with rofi)
   - [ ] nextcloud client with sync (maybe lazy sync and no persistence?)
   - [x] thunderbird, email accounts and calendars
   - [x] obsidian
   - [ ] neogit or emacs with magit
-  - [ ] telegram desktop
-  - [ ] signal desktop
+  - [x] telegram desktop
+  - [-] signal desktop
   - [ ] calculator (speedcrunch?)
   - [ ] clementine
   - [ ] gimp
   - [ ] AusweisApp
   - [ ] audacity
   - [ ] calibre
-  - [ ] discord
+  - [x] discord
   - [ ] image viewer
   - [ ] libreoffice
   - [ ] transmission gui
-  - [ ] VLC
+  - [x] VLC
 - [x] make ranger show graphical file previews
 - [x] configure hibernate and suspend
 - [x] try to get apps to auto-start after reboot
