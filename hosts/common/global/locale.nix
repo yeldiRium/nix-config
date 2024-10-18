@@ -11,7 +11,6 @@
   services.xserver = {
     xkb = {
       layout = "de";
-      variant = "neo";
     };
   };
 }

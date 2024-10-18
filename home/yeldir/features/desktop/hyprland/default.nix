@@ -69,21 +69,9 @@ in {
       };
       input = {
         kb_layout = "de";
-        kb_variant = "neo";
         resolve_binds_by_sym = true;
         touchpad.disable_while_typing = false;
       };
-      device =
-        map (keyboard: {
-          name = "${keyboard}";
-          kb_layout = "de";
-          kb_variant = "";
-        }) [
-          "zsa-technology-labs-inc-ergodox-ez"
-          "zsa-technology-labs-inc-ergodox-ez-keyboard"
-          "zsa-technology-labs-inc-ergodox-ez-system-control"
-          "zsa-technology-labs-inc-ergodox-ez-consumer-control"
-        ];
       misc = {
         vfr = true;
         close_special_on_empty = true;

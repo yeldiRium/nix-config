@@ -12,6 +12,9 @@
   yeldirCfg = homeCfgs.yeldir;
 
   sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
+    input * {
+      xkb_layout "de"
+    }
     output * bg #000000 solid_color
     xwayland disable
     input "type:touchpad" {
