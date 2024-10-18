@@ -1,6 +1,16 @@
 {pkgs, ...}: {
   home = let
-    hltool = name: (pkgs.writeShellScriptBin name (builtins.readFile ./hledger-scripts/${name}.sh));
+    hltool = name:
+      pkgs.writeTextFile {
+        inherit name;
+        executable = true;
+        destination = "/bin/${name}";
+        text = builtins.readFile ./hledger-scripts/${name}.sh;
+        checkPhase = ''
+          ${pkgs.stdenv.shellDryRun} "$target"
+        '';
+        meta.mainProgram = name;
+      };
   in {
     packages = with pkgs; [
       hledger
