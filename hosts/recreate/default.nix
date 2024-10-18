@@ -16,6 +16,7 @@
 
     ../common/global
 
+    ../common/optional/gaming
     ../common/optional/bluetooth.nix
     ../common/optional/greetd.nix
     ../common/optional/networkmanager.nix
@@ -40,14 +41,6 @@
 
   programs = {
     dconf.enable = true;
-    xwayland.enable = true;
-  };
-
-  hardware.graphics.enable = true;
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
