@@ -19,6 +19,7 @@ in {
     ../common
     ../common/wayland-wm
 
+    ./autostart.nix
     ./bindings.nix
     ./hyprbars.nix
   ];

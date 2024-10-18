@@ -40,6 +40,7 @@
       height = 1080;
       position = "0x0";
       transform = 3;
+      workspace = "1";
     }
   ];
 }
