@@ -21,7 +21,6 @@ in {
 
     ./autostart.nix
     ./bindings.nix
-    ./hyprbars.nix
   ];
 
   xdg.portal = {
