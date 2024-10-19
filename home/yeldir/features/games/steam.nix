@@ -22,34 +22,10 @@
   # Games can only be registered with lutris after logging
   # into steam once and setting the games on your user
   # profile to public.
-  steam-with-pkgs = pkgs.steam.override {
-    extraPkgs = pkgs:
-      with pkgs; [
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
-        libpng
-        libpulseaudio
-        libvorbis
-        stdenv.cc.cc.lib
-        libkrb5
-        keyutils
-        gamescope
-      ];
-  };
 in {
-  home.packages = [
-    steam-with-pkgs
-  ];
-
-  # TODO: disable steam desktop entry
-  #xdg.desktopEntries = {
-  #  steam = {
-  #    noDisplay = true;
-  #  };
-  #};
-
+  # Steam installation is done host wide, since nixos has
+  # more scripts for it.
+  # This file only contains persistence for game saves.
   home.persistence = {
     "/persist/${config.home.homeDirectory}" = {
       allowOther = true;

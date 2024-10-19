@@ -6,6 +6,7 @@
   imports = [
     ./lutris.nix
     ./minecraft.nix
+    ./protonup.nix
     ./steam.nix
   ];
 

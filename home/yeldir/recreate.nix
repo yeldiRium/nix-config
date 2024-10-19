@@ -59,16 +59,6 @@
       monitor = "DP-3";
     }
     {
-      command = "${lib.getExe pkgs.lutris}";
-      workspace = "3";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.steam}";
-      workspace = "3";
-      monitor = "DP-3";
-    }
-    {
       command = "${lib.getExe pkgs.obsidian}";
       workspace = "5";
       monitor = "DP-3";

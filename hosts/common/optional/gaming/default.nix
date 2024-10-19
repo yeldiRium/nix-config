@@ -5,7 +5,7 @@
 }: {
   imports = [
     ./gamemode.nix
-    ./steam-hardware.nix
+    ./steam.nix
   ];
 
   programs = {
