@@ -26,6 +26,7 @@
 - [x] move disko.nix and add documentation about sizing the swap disk
 - [ ] overhaul desktop entries to only show what I need
 - [x] consider hy3 hyperland plugin
+- [ ] setup docker
 - [ ] install apps
   - [x] spotify (still won't start with rofi)
   - [x] nextcloud client with sync (maybe lazy sync and no persistence?)

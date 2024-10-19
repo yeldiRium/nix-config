@@ -1,8 +1,16 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./lutris.nix
-    #./minecraft.nix
+    ./minecraft.nix
     ./steam.nix
+  ];
+
+  home.packages = with pkgs; [
+    gamescope
   ];
 
   home.persistence = {

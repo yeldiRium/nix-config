@@ -1,5 +1,10 @@
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
+    ./gamemode.nix
     ./steam-hardware.nix
   ];
 
@@ -7,10 +12,11 @@
     xwayland.enable = true;
   };
 
-  hardware.graphics.enable = true;
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  services.xserver.videoDrivers = ["amdgpu"];
 }

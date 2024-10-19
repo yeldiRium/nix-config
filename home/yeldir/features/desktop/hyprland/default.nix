@@ -50,32 +50,29 @@ in {
 
     settings = {
       general = {
+        layout = "hy3";
         gaps_in = 8;
         gaps_out = 12;
         border_size = 2;
         "col.active_border" = rgba config.colorscheme.colors.primary "aa";
         "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
         allow_tearing = true;
-        layout = "hy3";
       };
-      cursor.inactive_timeout = 4;
       group = {
         "col.border_active" = rgba config.colorscheme.colors.primary "aa";
         "col.border_inactive" = rgba config.colorscheme.colors.surface "aa";
         groupbar.font_size = 11;
       };
-      binds = {
-        movefocus_cycles_fullscreen = false;
-      };
       input = {
         kb_layout = "de";
         resolve_binds_by_sym = true;
         touchpad.disable_while_typing = false;
+
+        accel_profile = "flat";
       };
       misc = {
-        vfr = true;
-        close_special_on_empty = true;
-        focus_on_activate = false;
+        disable_hyprland_logo = true;
+
         # Unfullscreen when opening something
         new_window_takes_over_fullscreen = 2;
       };

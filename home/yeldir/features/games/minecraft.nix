@@ -1,13 +1,18 @@
-{pkgs, ...}: let
-  gdlauncher = pkgs.appimageTools.wrapType2 {
-    name = "gdlauncher";
-    src = pkgs.fetchurl {
-      url = "https://cdn-raw.gdl.gg/launcher/GDLauncher__2.0.20__linux__x64.AppImage";
-      hash = "sha256-tI9RU8qO3MHbImOGw2Wl1dksNbhqrYFyGemqms8aAio=";
+{
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [
+    prismlauncher
+  ];
+
+  home.persistence = {
+    "/persist/${config.home.homeDirectory}" = {
+      allowOther = true;
+      directories = [
+        ".local/share/PrismLauncher"
+      ];
     };
   };
-in {
-  home.packages = [
-    gdlauncher
-  ];
 }
