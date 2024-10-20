@@ -26,7 +26,7 @@ in {
   home.shellAliases = {
     # Steam doesn't always shutdown properly. This catches
     # all steam processes but avoids impermanence mounts.
-    killsteam = "ps aux | ag steam | ag -v bindfs | sed -E \"s/^yeldir\s+([0-9]+).*/\1/\" | xargs kill";
+    killsteam = "ps aux | ag steam | ag --invert-match bindfs | sed --regexp-extended \"s/^yeldir\s+([0-9]+).*/\1/\" | xargs kill";
   };
 
   # Steam installation is done host wide, since nixos has
