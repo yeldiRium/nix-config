@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./filemanager.nix
     ./font.nix
     ./gtk.nix
     ./networkmanager.nix
