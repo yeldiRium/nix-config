@@ -23,16 +23,23 @@
   # into steam once and setting the games on your user
   # profile to public.
 in {
+  home.shellAliases = {
+    # Steam doesn't always shutdown properly. This catches
+    # all steam processes but avoids impermanence mounts.
+    killsteam = "ps aux | ag steam | ag -v bindfs | sed -E \"s/^yeldir\s+([0-9]+).*/\1/\" | xargs kill";
+  };
+
   # Steam installation is done host wide, since nixos has
   # more scripts for it.
   # This file only contains persistence for game saves.
   home.persistence = {
     "/persist/${config.home.homeDirectory}" = {
-      allowOther = true;
       directories = [
         ".local/share/Steam"
 
         ".factorio"
+        ".config/Loop_Hero"
+        ".config/unity3d/Ludeon Studios/Rimworld by Ludeon Studios"
         ".local/share/aspyr-media" # Borderlands
         ".local/share/Baba_Is_You"
         ".local/share/IntoTheBreach"

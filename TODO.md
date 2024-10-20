@@ -14,6 +14,7 @@
   - reduce gaps
   - move wofi below waybar
   - make waybar slimmer
+  - [ ] adjust color of hy3 bars
 - [x] adjust vscode settings and keybindings
 - [x] install spotify and make it work through wofi
 - [x] configure default audio device
@@ -62,3 +63,4 @@
 - [ ] add options to disable animations and transparency in hyprland and wayland
 - [x] add hyprland input mode that makes power options accessible - poweroff, suspend, logout etc.
 - [ ] backups with borg
+- [ ] lookup logitech G903 high resolution scrolling. might be related to very fast scrolling issues

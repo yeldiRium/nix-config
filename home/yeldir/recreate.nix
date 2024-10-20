@@ -17,7 +17,6 @@
     ./features/desktop/office
     ./features/desktop/spotify.nix
     ./features/desktop/video
-    ./features/hardware/logitech.nix
     ./features/games
   ];
 
