@@ -9,17 +9,21 @@
     "$terminal" = "kitty";
 
     bind = let
-      workspaces = [
-        "1"
-        "2"
-        "3"
-        "4"
-        "5"
-        "6"
-        "7"
-        "8"
-        "9"
-      ];
+      keys = {
+        "1" = "exclam";
+        "2" = "quotedbl";
+        "3" = "section";
+        "4" = "dollar";
+        "5" = "percent";
+        "6" = "ampersand";
+        "7" = "slash";
+        "8" = "parenleft";
+        "9" = "parenright";
+      };
+      workspaces = builtins.attrNames keys;
+      key = n: n;
+      shiftKey = n: keys.${n};
+
       directions = rec {
         left = "l";
         right = "r";
@@ -33,11 +37,11 @@
     in
       (
         # Go to workspace
-        map (n: "$mod, ${n}, workspace, ${n}") workspaces
+        map (n: "$mod, ${key n}, workspace, ${n}") workspaces
       )
       ++ (
         # Move window to workspace
-        map (n: "$mod SHIFT, ${n}, hy3:movetoworkspace, ${n}") workspaces
+        map (n: "$mod SHIFT, ${shiftKey n}, hy3:movetoworkspace, ${n}") workspaces
       )
       ++ (
         # Move focus

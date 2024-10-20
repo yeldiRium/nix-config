@@ -1,4 +1,8 @@
-{inputs, ...}: let
+{
+  inputs,
+  lib,
+  ...
+}: let
   addPatches = pkg: patches:
     pkg.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or []) ++ patches;
@@ -13,7 +17,14 @@ in {
     };
   };
 
-  modifications = final: prev: {
-    hyprlandPlugins.hy3 = addPatches prev.hyprlandPlugins.hy3 [./hy3-disable-selection-hook.patch];
+  zz-modifications = final: prev: {
+    unstable =
+      lib.updateManyAttrsByPath [
+        {
+          path = ["hyprlandPlugins" "hy3"];
+          update = old: addPatches old [./hy3-0.43.0-disable-selection-hook.patch];
+        }
+      ]
+      prev.unstable;
   };
 }

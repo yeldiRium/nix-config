@@ -50,7 +50,7 @@
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    overlays = import ./overlays {inherit inputs outputs;};
+    overlays = import ./overlays {inherit inputs lib outputs;};
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
 

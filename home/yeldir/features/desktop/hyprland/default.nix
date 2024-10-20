@@ -37,8 +37,11 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
-    plugins = [pkgs.hyprlandPlugins.hy3];
+    package = pkgs.unstable.hyprland.override {
+      wrapRuntimeDeps = false;
+      mesa = pkgs.mesa;
+    };
+    plugins = [pkgs.unstable.hyprlandPlugins.hy3];
     systemd = {
       enable = true;
       # Same as default, but stop graphical-session too
