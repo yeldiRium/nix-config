@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./bottles.nix
     ./heroic.nix
     ./lutris.nix
     ./minecraft.nix
