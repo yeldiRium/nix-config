@@ -20,6 +20,8 @@
     jq
     silver-searcher
     btop
+    zip
+    unzip
 
     # nix utils
     alejandra
