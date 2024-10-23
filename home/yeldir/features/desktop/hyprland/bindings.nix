@@ -100,10 +100,11 @@
       (
         let
           swaylock = lib.getExe config.programs.swaylock.package;
+          swaylockCmd = "${swaylock} --screenshots --grace 2 --grace-no-mouse";
         in
           lib.optionals config.programs.swaylock.enable [
-            "$mod, G, exec, ${swaylock} --screenshots --grace 2 --grace-no-mouse"
-            "$mod, XF86ScreenSaver, exec, ${swaylock} --screenshots --grace 2 --grace-no-mouse"
+            "$mod, G, exec, ${swaylockCmd}"
+            "$mod, XF86ScreenSaver, exec, ${swaylockCmd}"
           ]
       )
       ++

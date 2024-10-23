@@ -208,12 +208,24 @@ in {
       );
     };
     # This is order sensitive, so it has to come here.
-    extraConfig = ''
+    # TODO: Exit system submap with the suspend and hibernate command, so that I
+    # don't accidentally poweroff my system after wake-up.
+    extraConfig = let
+      swaylock = lib.getExe config.programs.swaylock.package;
+      swaylockCmd = "${swaylock} --screenshots --grace 2 --grace-no-mouse";
+
+      exitSubmapAndLock =
+        "hyprctl dispatch submap reset"
+        + (
+          lib.optionalString config.programs.swaylock.enable " && ${swaylockCmd}"
+        );
+    in ''
       # system shortcuts
       bind = $mod, 0, submap, system
       submap = system
       bind = , escape, submap, reset
-      bind = , s, exec, systemctl suspend
+      bind = , s, exec, ${exitSubmapAndLock} && systemctl suspend
+      bind = , h, exec, ${exitSubmapAndLock} && systemctl hibernate
       bind = , p, exec, systemctl poweroff
       bind = , r, exec, systemctl reboot
       submap = reset
