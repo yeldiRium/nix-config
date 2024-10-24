@@ -63,4 +63,5 @@
 - [ ] add options to disable animations and transparency in hyprland and wayland
 - [x] add hyprland input mode that makes power options accessible - poweroff, suspend, logout etc.
 - [ ] backups with borg
-- [ ] lookup logitech G903 high resolution scrolling. might be related to very fast scrolling issues
+- [x] lookup logitech G903 high resolution scrolling. might be related to very fast scrolling issues
+  - works since hyprland 0.43.0
