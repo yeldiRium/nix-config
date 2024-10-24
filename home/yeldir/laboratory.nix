@@ -9,7 +9,7 @@
     ./global
 
     ./features/desktop/hyprland
-    ./features/development
+    ./features/desktop/development
     ./features/keyring
 
     ./features/desktop/chrome.nix

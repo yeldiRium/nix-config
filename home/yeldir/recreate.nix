@@ -8,16 +8,16 @@
   imports = [
     ./global
 
+    ./features/desktop/development
     ./features/desktop/hyprland
-    ./features/development
     ./features/keyring
 
     ./features/desktop/communication
+    ./features/desktop/games
+    ./features/desktop/video
     ./features/desktop/chrome.nix
     ./features/desktop/office
     ./features/desktop/spotify.nix
-    ./features/desktop/video
-    ./features/games
   ];
 
   hostName = "recreate";
