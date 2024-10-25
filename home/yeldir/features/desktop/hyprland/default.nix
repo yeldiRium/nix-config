@@ -224,8 +224,8 @@ in {
       bind = $mod, 0, submap, system
       submap = system
       bind = , escape, submap, reset
-      bind = , s, exec, ${exitSubmapAndLock} && systemctl suspend
-      bind = , h, exec, ${exitSubmapAndLock} && systemctl hibernate
+      bind = , s, exec, ${exitSubmapAndLock} & systemctl suspend
+      bind = , h, exec, ${exitSubmapAndLock} & systemctl hibernate
       bind = , p, exec, systemctl poweroff
       bind = , r, exec, systemctl reboot
       submap = reset
