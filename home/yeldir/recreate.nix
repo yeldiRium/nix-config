@@ -22,7 +22,7 @@
 
   hostName = "recreate";
 
-  wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;
+  wallpaper = pkgs.wallpapers.space-cloud-orange;
 
   monitors = [
     {
