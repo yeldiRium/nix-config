@@ -91,7 +91,7 @@
               cliphist = lib.getExe config.services.cliphist.package;
             in
               lib.optionals config.services.cliphist.enable [
-                ''SUPER, C, exec, selected=$(${cliphist} list | ${rofi} -dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
+                ''$mod, C, exec, selected=$(${cliphist} list | ${rofi} -dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
               ]
           )
       )
@@ -114,8 +114,8 @@
           makoctl = lib.getExe' config.services.mako.package "makoctl";
         in
           lib.optionals config.services.mako.enable [
-            "SUPER, w, exec, ${makoctl} dismiss"
-            "SUPERSHIFT, w, exec, ${makoctl} restore"
+            "$mod, W, exec, ${makoctl} dismiss"
+            "$mod SHIFT, W, exec, ${makoctl} restore"
           ]
       )
       ++
