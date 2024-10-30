@@ -54,12 +54,6 @@
       ];
       sessionVariables = {
         FLAKE = "$HOME/querbeet/workspace/nix-config";
-
-        # Set default applications. Should also/alternatively be done using mime apps.
-        # TODO: maybe remove these.
-        # EDITOR = "nvim";
-        # BROWSER = "google-chrome";
-        # TERMINAL = "kitty";
       };
 
       shellAliases = {

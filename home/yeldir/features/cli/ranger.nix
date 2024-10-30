@@ -18,6 +18,10 @@
         condition = "ext lock";
         command = "\${VISUAL:-$EDITOR} -- \"$@\"";
       }
+      {
+        condition = "ext nix";
+        command = "\${VISUAL:-$EDITOR} -- \"$@\"";
+      }
       #
       # Everything below this is taken from the default rifle.conf
       # https://github.com/ranger/ranger/blob/master/ranger/config/rifle.conf
