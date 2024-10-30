@@ -11,6 +11,7 @@ in {
     ./plugins/neogit.nix
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
+    ./plugins/treesitter.nix
   ];
 
   home.sessionVariables.EDITOR = "nvim";
