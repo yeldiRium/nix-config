@@ -12,6 +12,7 @@ in {
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
     ./plugins/treesitter.nix
+    ./plugins/undotree.nix
   ];
 
   home.sessionVariables.EDITOR = "nvim";
