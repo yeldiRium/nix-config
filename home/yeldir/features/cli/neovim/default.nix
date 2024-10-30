@@ -1,5 +1,6 @@
 {
   imports = [
+    ./plugins/colorscheme.nix
     ./plugins/neogit.nix
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
