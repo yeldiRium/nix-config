@@ -1,6 +1,7 @@
 {
   imports = [
     ./plugins/neogit.nix
+    ./plugins/rnvimr.nix
     ./plugins/telescope.nix
   ];
 
