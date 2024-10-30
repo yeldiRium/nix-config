@@ -1,11 +1,12 @@
 {pkgs, ...}: {
   imports = [
+    ./neovim
+
     ./bat.nix
     ./gh.nix
     ./git.nix
     ./gpg.nix
     ./kitty.nix
-    ./nvim.nix
     ./ranger.nix
     ./ssh.nix
     ./thefuck.nix
