@@ -22,6 +22,10 @@
         condition = "ext nix";
         command = "\${VISUAL:-$EDITOR} -- \"$@\"";
       }
+      {
+        condition = "ext pdf, has google-chrome-stable,     X, flag f";
+        command = "google-chrome-stable \"$@\"";
+      }
       #
       # Everything below this is taken from the default rifle.conf
       # https://github.com/ranger/ranger/blob/master/ranger/config/rifle.conf
