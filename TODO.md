@@ -17,8 +17,8 @@
   - [ ] gimp
   - [ ] image viewer
   - [ ] libreoffice
-  - [ ] neovim
-    - [ ] lsp
+  - [x] neovim
+    - [x] lsp
   - [ ] pwvucontrol as replacement for pavucontrol
   - [ ] ranger
       - [ ] show video thumbnails
