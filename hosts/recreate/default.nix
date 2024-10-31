@@ -1,8 +1,5 @@
 {
-  config,
   inputs,
-  outputs,
-  lib,
   pkgs,
   ...
 }: {
@@ -21,9 +18,8 @@
     ../common/optional/greetd.nix
     ../common/optional/networkmanager.nix
     ../common/optional/pipewire.nix
-    # TODO: activate once the rest works ../common/optional/quietboot.nix
 
-    ../common/optional/mounts/datengrab.nix
+    ../common/optional/mounts
 
     ../common/users/yeldir
   ];
@@ -38,6 +34,10 @@
   networking = {
     hostName = "recreate";
     hostId = "5444b7b4";
+  };
+
+  mounts = {
+    datengrab.enable = true;
   };
 
   programs = {

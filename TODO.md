@@ -41,4 +41,4 @@
   - [ ] make impermanence optional
   - [ ] make system target configurable between linux and darwin
     - [ ] use it to build the shell aliases for nbuild/nswitch/nrepl
-  - [ ] make gtk3 bookmark for mounts optional
+  - [x] make gtk3 bookmark for mounts optional

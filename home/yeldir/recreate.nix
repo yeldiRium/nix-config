@@ -1,6 +1,4 @@
 {
-  config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -18,11 +16,16 @@
     ./optional/desktop/chrome.nix
     ./optional/desktop/office
     ./optional/desktop/spotify.nix
+    ./optional/mounts
   ];
 
   hostName = "recreate";
 
   wallpaper = pkgs.wallpapers.space-cloud-orange;
+
+  mounts = {
+    datengrab.enable = true;
+  };
 
   monitors = [
     {
