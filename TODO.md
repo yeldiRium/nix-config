@@ -34,7 +34,7 @@
   - [ ] backups with borg
 - darwin
 - modularity
-  - [ ] rename home features to optional for consistency with host directory structure
+  - [x] rename home features to optional for consistency with host directory structure
   - [ ] move sops out of home/*/global and into optional
   - [ ] add options to disable animations and transparency in hyprland and wayland
   - [ ] make impermanence optional

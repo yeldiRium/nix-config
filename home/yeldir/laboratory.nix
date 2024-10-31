@@ -8,17 +8,17 @@
   imports = [
     ./global
 
-    ./features/desktop/hyprland
-    ./features/desktop/development
-    ./features/keyring
+    ./optional/desktop/hyprland
+    ./optional/desktop/development
+    ./optional/keyring
 
-    ./features/desktop/chrome.nix
-    ./features/desktop/spotify.nix
-    ./features/desktop/office/calendar.nix
-    ./features/desktop/office/contacts.nix
-    ./features/desktop/office/email.nix
-    ./features/desktop/office/obsidian.nix
-    ./features/desktop/video
+    ./optional/desktop/chrome.nix
+    ./optional/desktop/spotify.nix
+    ./optional/desktop/office/calendar.nix
+    ./optional/desktop/office/contacts.nix
+    ./optional/desktop/office/email.nix
+    ./optional/desktop/office/obsidian.nix
+    ./optional/desktop/video
   ];
 
   hostName = "laboratory";
