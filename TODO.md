@@ -12,6 +12,7 @@
   - [ ] calibre
   - [ ] clementine
   - [ ] docker
+    - [ ] neovim dockerfile language server
   - [ ] devbox
   - [ ] gimp
   - [ ] image viewer

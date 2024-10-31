@@ -4,8 +4,14 @@
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
+        nvim-treesitter-parsers.go
+        nvim-treesitter-parsers.gomod
+        nvim-treesitter-parsers.gosum
+        nvim-treesitter-parsers.javascript
+        nvim-treesitter-parsers.typescript
         nvim-treesitter-parsers.ledger
         nvim-treesitter-parsers.lua
+        nvim-treesitter-parsers.markdown
         nvim-treesitter-parsers.nix
         {
             plugin = nvim-treesitter.withAllGrammars;

@@ -26,6 +26,9 @@
 
     # nix utils
     alejandra
+
+    # development
+    devbox
   ];
 
   home.shellAliases = {
