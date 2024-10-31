@@ -7,7 +7,6 @@
   '';
 in {
   imports = [
-    #./plugins/colorscheme.nix # maybe delete this, if I keep liking the auto generated theme
     ./plugins/neogit.nix
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
