@@ -17,8 +17,6 @@
   - [ ] gimp
   - [ ] image viewer
   - [ ] libreoffice
-  - [x] neovim
-    - [x] lsp
   - [ ] pwvucontrol as replacement for pavucontrol
   - [ ] ranger
       - [ ] show video thumbnails
@@ -35,10 +33,7 @@
   - [ ] backups with borg
 - darwin
 - modularity
-  - [x] rename home features to optional for consistency with host directory structure
-  - [ ] move sops out of home/*/global and into optional
   - [ ] add options to disable animations and transparency in hyprland and wayland
   - [ ] make impermanence optional
   - [ ] make system target configurable between linux and darwin
     - [ ] use it to build the shell aliases for nbuild/nswitch/nrepl
-  - [x] make gtk3 bookmark for mounts optional
