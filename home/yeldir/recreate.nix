@@ -29,6 +29,10 @@
         enableSecretEnv = true;
       };
     };
+    hyprland = {
+      enableAnimations = true;
+      enableTransparency = true;
+    };
     mounts = {
       datengrab.enable = true;
     };

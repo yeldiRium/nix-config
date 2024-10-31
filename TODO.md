@@ -33,7 +33,7 @@
   - [ ] backups with borg
 - darwin
 - modularity
-  - [ ] add options to disable animations and transparency in hyprland and wayland
+  - [x] add options to disable animations and transparency in hyprland and wayland
   - [x] make impermanence optional
   - [ ] make system target configurable between linux and darwin
     - [ ] use it to build the shell aliases for nbuild/nswitch/nrepl
