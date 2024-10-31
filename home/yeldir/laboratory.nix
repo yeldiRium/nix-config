@@ -19,11 +19,19 @@
     ./optional/desktop/office/email.nix
     ./optional/desktop/office/obsidian.nix
     ./optional/desktop/video
+
+    ./optional/mounts
   ];
 
   hostName = "laboratory";
 
   wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;
+
+  yeldirs = {
+    sops = {
+      keyFile = "/persist/sops/age/keys.txt";
+    };
+  };
 
   monitors = [
     {

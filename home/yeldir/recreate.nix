@@ -27,6 +27,18 @@
     datengrab.enable = true;
   };
 
+  yeldirs = {
+    cli = {
+      zsh = {
+        enableSecretEnv = true;
+      };
+    };
+    sops = {
+      keyFile = "/persist/sops/age/keys.txt";
+    };
+  };
+
+
   monitors = [
     {
       name = "DP-3";
