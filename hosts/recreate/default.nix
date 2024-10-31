@@ -36,8 +36,10 @@
     hostId = "5444b7b4";
   };
 
-  mounts = {
-    datengrab.enable = true;
+  yeldirs = {
+    mounts = {
+      datengrab.enable = true;
+    };
   };
 
   programs = {

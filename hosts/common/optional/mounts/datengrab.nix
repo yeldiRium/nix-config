@@ -1,8 +1,8 @@
 {config, lib, ...}: let
-  cfg = config.mounts.datengrab;
+  cfg = config.yeldirs.mounts.datengrab;
 in {
   options = {
-    mounts.datengrab.enable = lib.mkEnableOption "Enable mount datengrab";
+    yeldirs.mounts.datengrab.enable = lib.mkEnableOption "Enable mount datengrab";
   };
   config = lib.mkIf cfg.enable {
     boot.supportedFilesystems = ["nfs"];

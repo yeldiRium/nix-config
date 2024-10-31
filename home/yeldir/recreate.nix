@@ -23,21 +23,19 @@
 
   wallpaper = pkgs.wallpapers.space-cloud-orange;
 
-  mounts = {
-    datengrab.enable = true;
-  };
-
   yeldirs = {
     cli = {
       zsh = {
         enableSecretEnv = true;
       };
     };
+    mounts = {
+      datengrab.enable = true;
+    };
     sops = {
       keyFile = "/persist/sops/age/keys.txt";
     };
   };
-
 
   monitors = [
     {
