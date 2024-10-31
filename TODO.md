@@ -9,17 +9,15 @@
   - [ ] audacity
   - [ ] AusweisApp
   - [ ] calculator (speedcrunch?)
-  - [ ] calibre
+  - [x] calibre
   - [ ] clementine
-  - [x] docker
-    - [x] neovim dockerfile language server
-  - [ ] devbox
+  - [x] devbox
   - [ ] gimp
   - [ ] image viewer
   - [ ] libreoffice
   - [ ] pwvucontrol as replacement for pavucontrol
-  - [ ] ranger
-      - [ ] show video thumbnails
+  - [x] ranger
+      - [x] show video thumbnails
   - [ ] transmission gui
 - fixes
     - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
