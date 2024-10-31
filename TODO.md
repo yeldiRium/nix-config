@@ -34,6 +34,6 @@
 - darwin
 - modularity
   - [ ] add options to disable animations and transparency in hyprland and wayland
-  - [ ] make impermanence optional
+  - [x] make impermanence optional
   - [ ] make system target configurable between linux and darwin
     - [ ] use it to build the shell aliases for nbuild/nswitch/nrepl

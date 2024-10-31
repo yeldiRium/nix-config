@@ -10,6 +10,7 @@
     [
       inputs.impermanence.nixosModules.home-manager.impermanence
 
+      ./disable-impermanence.nix
       ./sops.nix
       ../optional/cli
     ]
