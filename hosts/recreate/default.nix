@@ -15,6 +15,7 @@
 
     ../common/optional/gaming
     ../common/optional/bluetooth.nix
+    ../common/optional/docker.nix
     ../common/optional/greetd.nix
     ../common/optional/networkmanager.nix
     ../common/optional/pipewire.nix

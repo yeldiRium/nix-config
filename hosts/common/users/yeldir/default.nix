@@ -11,6 +11,7 @@ in {
     shell = pkgs.zsh;
     extraGroups = ifTheyExist [
       "audio"
+      "docker"
       "git"
       "networkmanager"
       "video"

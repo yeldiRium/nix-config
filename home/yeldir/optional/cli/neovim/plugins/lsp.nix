@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # LSPs for Programming languages
+    docker-compose-language-service
+    dockerfile-language-server-nodejs
     gopls
     lua-language-server
     nixd
@@ -37,6 +39,8 @@
             end
           end
 
+          add_lsp(lspconfig.docker_compose_language_service, {})
+          add_lsp(lspconfig.dockerls, {})
           add_lsp(lspconfig.gopls, {})
           add_lsp(lspconfig.jsonls, {
             capabilities = {

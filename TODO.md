@@ -11,8 +11,8 @@
   - [ ] calculator (speedcrunch?)
   - [ ] calibre
   - [ ] clementine
-  - [ ] docker
-    - [ ] neovim dockerfile language server
+  - [x] docker
+    - [x] neovim dockerfile language server
   - [ ] devbox
   - [ ] gimp
   - [ ] image viewer
