@@ -4,6 +4,8 @@
     gopls
     lua-language-server
     nixd
+    nodePackages.typescript-language-server
+    vscode-langservers-extracted
   ];
   programs.neovim.plugins = with pkgs.vimPlugins; [
     otter-nvim # LSP for embedded languages
@@ -37,32 +39,33 @@
 
           add_lsp(lspconfig.gopls, {})
           add_lsp(lspconfig.jsonls, {
-              capabilities = {
-                  textDocument = {
-                      completion = {
-                          completionItem = {
-                              snippetSupport = true,
-                          },
-                      },
+            capabilities = {
+              textDocument = {
+                completion = {
+                  completionItem = {
+                    snippetSupport = true,
                   },
+                },
               },
+            },
           })
           add_lsp(lspconfig.lua_ls, {
-              settings = {
-                  Lua = {
-                      workspace = {
-                          library = {
-                              vim.env.VIMRUNTIME,
-                          },
-                      },
+            settings = {
+              Lua = {
+                workspace = {
+                  library = {
+                    vim.env.VIMRUNTIME,
                   },
+                },
               },
+            },
           })
           add_lsp(lspconfig.nixd, {
-              settings = { nixd = {
-                  formatting = { command = { "alejandra" }},
-              }},
+            settings = { nixd = {
+              formatting = { command = { "alejandra" }},
+            }},
           })
+          add_lsp(lspconfig.tsserver, {})
         '';
     }
 
@@ -101,7 +104,7 @@
                   ["<C-Down>"] = cmp.mapping.scroll_docs(4),
                   ["<C-Space>"] = cmp.mapping.complete(),
                   ["<C-Esc>"] = cmp.mapping.abort(),
-                  ["<CR>"] = cmp.mapping.confirm({ select = true })
+                  ["<Tab>"] = cmp.mapping.confirm({ select = true })
               }),
               sources = {
                   { name = "otter" },
