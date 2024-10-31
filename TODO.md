@@ -1,67 +1,43 @@
 # TODO
 
-- [x] install and configure vscode
-- [x] set timezone
-- [x] restructure configs
-  - [x] home configs
-  - [x] host configs
-- [x] switch greeter to ReGreet
-  - hopefully fix keyboard layout on login
-    - nope :/
-- [x] auto-lazy-mount datengrab
-- [x] configure gtk, hyperland, waybar to look actually bearable
-- [x] adjust ricing to my liking
-  - reduce gaps
-  - move wofi below waybar
-  - make waybar slimmer
-  - [ ] adjust color of hy3 bars
-- [x] adjust vscode settings and keybindings
-- [x] install spotify and make it work through wofi
-- [x] configure default audio device
-  - did not do that. Instead I persisted the wireplumber state for my user
-- [x] fix keyring
-    - [x] install seahorse
-    - [x] create default keyring with password
-    - [x] log into github copilot
-- [x] skin rofi to fit with the theme
-- [x] move disko.nix and add documentation about sizing the swap disk
-- [ ] overhaul desktop entries to only show what I need
-- [x] consider hy3 hyperland plugin
-- [ ] setup docker
-- [ ] install apps
-  - [x] spotify (still won't start with rofi)
-  - [x] nextcloud client with sync (maybe lazy sync and no persistence?)
-  - [x] thunderbird, email accounts and calendars
-  - [x] obsidian
-  - [ ] neogit or emacs with magit
-  - [x] telegram desktop
-  - [-] signal desktop
-  - [ ] calculator (speedcrunch?)
-  - [ ] clementine
-  - [ ] gimp
-  - [ ] AusweisApp
+- system
+  - [ ] adjust ricing to my liking
+    - [ ] adjust color of hy3 bars
+  - [ ] overhaul desktop entries to only show what I need
+  - [ ] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
+- apps
   - [ ] audacity
+  - [ ] AusweisApp
+  - [ ] calculator (speedcrunch?)
   - [ ] calibre
-  - [x] discord
+  - [ ] clementine
+  - [ ] docker
+  - [ ] devbox
+  - [ ] gimp
   - [ ] image viewer
   - [ ] libreoffice
+  - [ ] neovim
+    - [ ] lsp
+  - [ ] pwvucontrol as replacement for pavucontrol
+  - [ ] ranger
+      - [ ] show video thumbnails
   - [ ] transmission gui
-  - [x] VLC
-- [x] make ranger show graphical file previews
-- [x] configure hibernate and suspend
-- [x] try to get apps to auto-start after reboot
-- [ ] experiment with GameMode on desktop PC
-- [ ] fix home manager switch: delete zsh_history file before starting service home-manager-yeldir
-- [x] fix keyboard layout in regreet
-- [x] setup bluetooth and add it to waybar
-- [ ] look into full disk encryption (might require re-setup)
-- [ ] setup sops
-  - [x] for user password
-  - [ ] for ssh key
-  - [ ] for gpg key
-  - [-] for wifi network
-- [ ] add options to disable animations and transparency in hyprland and wayland
-- [x] add hyprland input mode that makes power options accessible - poweroff, suspend, logout etc.
-- [ ] backups with borg
-- [x] lookup logitech G903 high resolution scrolling. might be related to very fast scrolling issues
-  - works since hyprland 0.43.0
+- fixes
+    - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
+- security
+  - [ ] look into full disk encryption (might require re-setup)
+  - [ ] setup sops
+    - [x] for user password
+    - [ ] for ssh key
+    - [ ] for gpg key
+    - [-] for wifi network
+  - [ ] backups with borg
+- darwin
+- modularity
+  - [ ] rename home features to optional for consistency with host directory structure
+  - [ ] move sops out of home/*/global and into optional
+  - [ ] add options to disable animations and transparency in hyprland and wayland
+  - [ ] make impermanence optional
+  - [ ] make system target configurable between linux and darwin
+    - [ ] use it to build the shell aliases for nbuild/nswitch/nrepl
+  - [ ] make gtk3 bookmark for mounts optional
