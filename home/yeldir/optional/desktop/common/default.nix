@@ -8,7 +8,7 @@
     ./font.nix
     ./gtk.nix
     ./networkmanager.nix
-    ./pavucontrol.nix
+    ./volumecontrol.nix
     ./wireplumber.nix
   ];
 
