@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./global
+    ./modules/system/mounts
 
     ./optional/desktop/development
     ./optional/desktop/hyprland
@@ -15,8 +16,6 @@
     ./optional/desktop/office
     ./optional/desktop/chrome.nix
     ./optional/desktop/spotify.nix
-
-    ./optional/mounts
   ];
 
   hostName = "laboratory";
@@ -33,11 +32,13 @@
       enableAnimations = false;
       enableTransparency = false;
     };
-    mounts = {
-      datengrab.enable = true;
-    };
     sops = {
       keyFile = "/persist/sops/age/keys.txt";
+    };
+    system = {
+      mounts = {
+        datengrab.enable = true;
+      };
     };
   };
 
