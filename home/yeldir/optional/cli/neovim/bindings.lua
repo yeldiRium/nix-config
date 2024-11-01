@@ -6,9 +6,12 @@ vim.keymap.set("n", "<S-A-Right>", "<C-w><Right>")
 vim.keymap.set("n", "<S-A-Up>", "<C-w><Up>")
 vim.keymap.set("n", "<S-A-Down>", "<C-w><Down>")
 
--- Move through history
+-- Move through navigationhistory
 vim.keymap.set("n", "<A-Left>", "<C-O>")
 vim.keymap.set("n", "<A-Right>", "<C-I>")
+
+-- Working with registers
+vim.keymap.set("n", "<leader>fr", require("telescope.builtin").registers)
 
 -- Clear search highlight
 vim.keymap.set("n", "<leader>/", ":nohlsearch<cr>")
