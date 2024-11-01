@@ -5,7 +5,7 @@
     dockerfile-language-server-nodejs
     gopls
     lua-language-server
-    nixd
+    unstable.nixd
     nodePackages.typescript-language-server
     vscode-langservers-extracted
   ];
@@ -67,6 +67,11 @@
           add_lsp(lspconfig.nixd, {
             settings = { nixd = {
               formatting = { command = { "alejandra" }},
+              diagnostic = {
+                suppress = {
+                  "sema-extra-with",
+                },
+              },
             }},
           })
           add_lsp(lspconfig.tsserver, {})
