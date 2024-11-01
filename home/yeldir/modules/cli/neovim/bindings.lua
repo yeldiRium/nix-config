@@ -10,18 +10,6 @@ vim.keymap.set("n", "<S-A-Down>", "<C-w><Down>")
 vim.keymap.set("n", "<A-Left>", "<C-O>")
 vim.keymap.set("n", "<A-Right>", "<C-I>")
 
--- Working with registers
-vim.keymap.set("n", "<leader>fr", require("telescope.builtin").registers)
-
--- Harpoon2 (quasi bookmarks)
-local harpoon = require("harpoon")
-vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
-vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
-
 -- Clear search highlight
 vim.keymap.set("n", "<leader>/", ":nohlsearch<cr>")
 

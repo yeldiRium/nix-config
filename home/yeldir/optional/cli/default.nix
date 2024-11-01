@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   imports = [
-    ./neovim
-
     ./bat.nix
     ./gh.nix
     ./git.nix

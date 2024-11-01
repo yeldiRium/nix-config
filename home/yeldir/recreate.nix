@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./global
+    ./modules/cli/neovim
     ./modules/system/mounts
 
     ./optional/desktop/development
@@ -25,6 +26,29 @@
 
   yeldirs = {
     cli = {
+      neovim = {
+        enable = true;
+
+        supportedLanguages = [
+          "docker"
+          "go"
+          "javascript"
+          "json"
+          "ledger"
+          "lua"
+          "markdown"
+          "nix"
+          "typescript"
+        ];
+
+        harpoon2.enable = true;
+        lsp.enable = true;
+        neogit.enable = true;
+        nrvimr.enable = true;
+        telescope.enable = true;
+        treesitter.enable = true;
+        undotree.enable = true;
+      };
       zsh = {
         enableSecretEnv = true;
       };

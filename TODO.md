@@ -15,6 +15,8 @@
   - [ ] gimp
   - [x] image viewer
   - [x] libreoffice
+  - neovim
+    - [ ] remove harpoon2 telescope integration code
   - [ ] pwvucontrol as replacement for pavucontrol
   - [x] ranger
       - [x] show video thumbnails
