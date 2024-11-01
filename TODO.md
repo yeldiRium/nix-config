@@ -13,7 +13,7 @@
   - [ ] clementine
   - [x] devbox
   - [ ] gimp
-  - [ ] image viewer
+  - [x] image viewer
   - [x] libreoffice
   - [ ] pwvucontrol as replacement for pavucontrol
   - [x] ranger
