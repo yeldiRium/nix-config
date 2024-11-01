@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   ...
 }: {
@@ -9,7 +10,7 @@
     ./optional/desktop/hyprland
     ./optional/keyring
 
-    ./optional/desktop/communication
+    ./optional/desktop/communication/telegram.nix
     ./optional/desktop/media
     ./optional/desktop/office
     ./optional/desktop/chrome.nix
@@ -23,6 +24,18 @@
   wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;
 
   yeldirs = {
+    cli = {
+      zsh = {
+        enableSecretEnv = true;
+      };
+    };
+    hyprland = {
+      enableAnimations = false;
+      enableTransparency = false;
+    };
+    mounts = {
+      datengrab.enable = true;
+    };
     sops = {
       keyFile = "/persist/sops/age/keys.txt";
     };
@@ -42,6 +55,28 @@
       height = 1080;
       primary = true;
       position = "0x0";
+    }
+  ];
+  autostart = [
+    {
+      command = "${lib.getExe pkgs.telegram-desktop}";
+      workspace = "1";
+      monitor = "DP-3";
+    }
+    {
+      command = "${lib.getExe pkgs.google-chrome}";
+      workspace = "2";
+      monitor = "DP-3";
+    }
+    {
+      command = "${lib.getExe pkgs.obsidian}";
+      workspace = "5";
+      monitor = "DP-3";
+    }
+    {
+      command = "${lib.getExe pkgs.thunderbird}";
+      workspace = "7";
+      monitor = "DP-3";
     }
   ];
 }
