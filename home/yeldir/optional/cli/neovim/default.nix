@@ -12,6 +12,7 @@
   '';
 in {
   imports = [
+    ./plugins/harpoon2.nix
     ./plugins/lsp.nix
     ./plugins/neogit.nix
     ./plugins/rnvimr.nix
