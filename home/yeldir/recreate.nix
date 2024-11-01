@@ -12,10 +12,11 @@
 
     ./optional/desktop/communication
     ./optional/desktop/games
-    ./optional/desktop/video
-    ./optional/desktop/chrome.nix
+    ./optional/desktop/media
     ./optional/desktop/office
+    ./optional/desktop/chrome.nix
     ./optional/desktop/spotify.nix
+
     ./optional/mounts
   ];
 

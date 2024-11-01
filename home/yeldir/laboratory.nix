@@ -5,17 +5,15 @@
   imports = [
     ./global
 
-    ./optional/desktop/hyprland
     ./optional/desktop/development
+    ./optional/desktop/hyprland
     ./optional/keyring
 
+    ./optional/desktop/communication
+    ./optional/desktop/media
+    ./optional/desktop/office
     ./optional/desktop/chrome.nix
     ./optional/desktop/spotify.nix
-    ./optional/desktop/office/calendar.nix
-    ./optional/desktop/office/contacts.nix
-    ./optional/desktop/office/email.nix
-    ./optional/desktop/office/obsidian.nix
-    ./optional/desktop/video
 
     ./optional/mounts
   ];
