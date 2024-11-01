@@ -12,6 +12,8 @@
       nvim --server $server --remote-send '<Esc>:source ${vimConfigPath}<CR>' &
     done
   '';
+
+  optionalAttrs = language: attrs: lib.optionalAttrs (builtins.elem language cfg.supportedLanguages) attrs;
 in {
   imports = [
     ./plugins/harpoon2.nix
@@ -67,13 +69,36 @@ in {
       '';
     };
 
-    xdg.configFile."nvim/color.vim".onChange = reloadNvim;
-    xdg.configFile."nvim/init.lua".onChange = reloadNvim;
-    xdg.configFile."nvim/color.vim".source = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
-    xdg.configFile."nvim/ftplugin/go.lua".source = pkgs.writeText "go.lua" (builtins.readFile ./ftplugin/go.lua);
-    xdg.configFile."nvim/ftplugin/javascript.lua".source = pkgs.writeText "javascript.lua" (builtins.readFile ./ftplugin/javascript.lua);
-    xdg.configFile."nvim/ftplugin/lua.lua".source = pkgs.writeText "lua.lua" (builtins.readFile ./ftplugin/lua.lua);
-    xdg.configFile."nvim/ftplugin/nix.lua".source = pkgs.writeText "nix.lua" (builtins.readFile ./ftplugin/nix.lua);
-    xdg.configFile."nvim/ftplugin/typescript.lua".source = pkgs.writeText "typescript.lua" (builtins.readFile ./ftplugin/typescript.lua);
+    xdg.configFile =
+      {
+        "nvim/init.lua".onChange = reloadNvim;
+
+        "nvim/color.vim".onChange = reloadNvim;
+        "nvim/color.vim".source = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
+      }
+      // optionalAttrs "go" {
+        "nvim/ftplugin/go.lua".source = pkgs.writeText "go.lua" (builtins.readFile ./ftplugin/go.lua);
+      }
+      // optionalAttrs "javascript" {
+        "nvim/ftplugin/javascript.lua".source = pkgs.writeText "javascript.lua" (builtins.readFile ./ftplugin/javascript.lua);
+      }
+      // optionalAttrs "json" {
+        "nvim/ftplugin/json.lua".source = pkgs.writeText "json.lua" (builtins.readFile ./ftplugin/json.lua);
+      }
+      // optionalAttrs "ledger" {
+        "nvim/ftplugin/ledger.lua".source = pkgs.writeText "ledger.lua" (builtins.readFile ./ftplugin/ledger.lua);
+      }
+      // optionalAttrs "lua" {
+        "nvim/ftplugin/lua.lua".source = pkgs.writeText "lua.lua" (builtins.readFile ./ftplugin/lua.lua);
+      }
+      // optionalAttrs "markdown" {
+        "nvim/ftplugin/markdown.lua".source = pkgs.writeText "markdown.lua" (builtins.readFile ./ftplugin/markdown.lua);
+      }
+      // optionalAttrs "nix" {
+        "nvim/ftplugin/nix.lua".source = pkgs.writeText "nix.lua" (builtins.readFile ./ftplugin/nix.lua);
+      }
+      // optionalAttrs "typescript" {
+        "nvim/ftplugin/typescript.lua".source = pkgs.writeText "typescript.lua" (builtins.readFile ./ftplugin/typescript.lua);
+      };
   };
 }

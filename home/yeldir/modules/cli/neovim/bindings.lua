@@ -13,6 +13,10 @@ vim.keymap.set("n", "<A-Right>", "<C-I>")
 -- Clear search highlight
 vim.keymap.set("n", "<leader>/", ":nohlsearch<cr>")
 
+-- Insert line without entering insert mode
+vim.keymap.set("n", "<A-o>", "o<Esc>")
+vim.keymap.set("n", "<A-O>", "O<Esc>")
+
 -- Programming
 -- LSP
 vim.keymap.set("n", "<leader>cr", "<cmd>LspRestart<cr>")
