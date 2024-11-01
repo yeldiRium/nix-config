@@ -62,6 +62,7 @@
         nboot = "sudo nixos-rebuild boot --flake $FLAKE#${config.hostName}";
         nswitch = "sudo nixos-rebuild switch --flake $FLAKE#${config.hostName}";
         nrepl = "sudo nixos-rebuild repl --flake $FLAKE#${config.hostName}";
+        nrollback = "sudo nixos-rebuild switch --flake $FLAKE#${config.hostName} --rollback";
       };
 
       persistence = {
