@@ -7,14 +7,14 @@
   - [ ] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
 - apps
   - [ ] audacity
-  - [ ] AusweisApp
-  - [ ] calculator (speedcrunch?)
+  - [-] AusweisApp (funktioniert nicht)
+  - [x] calculator (speedcrunch?)
   - [x] calibre
   - [ ] clementine
   - [x] devbox
   - [ ] gimp
   - [ ] image viewer
-  - [ ] libreoffice
+  - [x] libreoffice
   - [ ] pwvucontrol as replacement for pavucontrol
   - [x] ranger
       - [x] show video thumbnails
