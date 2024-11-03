@@ -54,13 +54,17 @@ in {
         {
           plugin = nvim-treesitter-parsers.ledger;
           type = "lua";
-          config = /* lua */ ''
+          config =
+            /*
+            lua
+            */
+            ''
               vim.filetype.add({
                   extension = {
                       prices = "ledger",
                   },
               })
-          '';
+            '';
         }
       ])
       ++ (optionals "lua" [
@@ -71,6 +75,9 @@ in {
       ])
       ++ (optionals "nix" [
         nvim-treesitter-parsers.nix
+      ])
+      ++ (optionals "yaml" [
+        nvim-treesitter-parsers.yaml
       ]);
   };
 }

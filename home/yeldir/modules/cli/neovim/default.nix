@@ -40,6 +40,7 @@ in {
           "markdown"
           "nix"
           "typescript"
+          "yaml"
         ]);
       };
     };

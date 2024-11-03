@@ -44,6 +44,9 @@ in {
       ])
       ++ (optionals "typescript" [
         nodePackages.typescript-language-server
+      ])
+      ++ (optionals "yaml" [
+        yaml-language-server
       ]);
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
@@ -169,6 +172,25 @@ in {
               */
               ''
                 add_lsp(lspconfig.ts_ls, {})
+              ''
+            else ""
+          )
+          (
+            if languageActive "yaml"
+            then
+              /*
+              lua
+              */
+              ''
+            add_lsp(lspconfig.yamlls, {
+              settings = {
+                yaml = {
+                  schemas = {
+                    ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                  }
+                }
+              },
+            })
               ''
             else ""
           )

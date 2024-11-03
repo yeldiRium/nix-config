@@ -39,6 +39,7 @@
           "markdown"
           "nix"
           "typescript"
+          "yaml"
         ];
 
         debugging.enable = true;
