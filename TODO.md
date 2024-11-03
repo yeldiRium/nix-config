@@ -16,8 +16,8 @@
   - [x] image viewer
   - [x] libreoffice
   - neovim
-    - [ ] remove harpoon2 telescope integration code
-  - [ ] pwvucontrol as replacement for pavucontrol
+    - [x] remove harpoon2 telescope integration code
+  - [x] pwvucontrol as replacement for pavucontrol
   - [x] ranger
       - [x] show video thumbnails
   - [ ] transmission gui
