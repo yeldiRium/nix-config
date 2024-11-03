@@ -14,6 +14,7 @@
   optionalAttrs = language: attrs: lib.optionalAttrs (builtins.elem language cfg.supportedLanguages) attrs;
 in {
   imports = [
+    ./plugins/debugging.nix
     ./plugins/harpoon2.nix
     ./plugins/lsp.nix
     ./plugins/neogit.nix

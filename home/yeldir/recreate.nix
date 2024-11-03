@@ -41,6 +41,7 @@
           "typescript"
         ];
 
+        debugging.enable = true;
         harpoon2.enable = true;
         lsp.enable = true;
         neogit.enable = true;

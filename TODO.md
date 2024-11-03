@@ -1,8 +1,8 @@
 # TODO
 
 - system
-  - [ ] adjust ricing to my liking
-    - [ ] adjust color of hy3 bars
+  - adjust ricing to my liking
+    - [x] adjust color of hy3 bars
   - [ ] overhaul desktop entries to only show what I need
   - [ ] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
 - apps
@@ -17,8 +17,13 @@
   - [x] libreoffice
   - neovim
     - [x] remove harpoon2 telescope integration code
-    - [ ] debugger, ui and bindings
+    - [x] debugger, ui and bindings
     - [ ] nvim-test and bindings
+    - syntax highlighting
+        - [ ] yaml
+    - lsp
+    - dap
+        - [ ] javascript, typescript
   - [x] pwvucontrol as replacement for pavucontrol
   - [x] ranger
       - [x] show video thumbnails
