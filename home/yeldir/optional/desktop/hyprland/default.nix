@@ -145,6 +145,21 @@ in {
           "col.shadow" = "0x44000000";
           "col.shadow_inactive" = "0x66000000";
         };
+        plugin = {
+          hy3 = {
+            tabs = let
+              activeAlpha = "ff";
+              nonActiveAlpha = if cfg.enableTransparency then "aa" else "ff";
+            in {
+              "col.active" = rgba config.colorscheme.colors.primary_container activeAlpha;
+              "col.urgent" = rgba config.colorscheme.colors.tertiary_container nonActiveAlpha;
+              "col.inactive" = rgba config.colorscheme.colors.surface nonActiveAlpha;
+              "col.text.active" = rgba config.colorscheme.colors.on_primary_container activeAlpha;
+              "col.text.urgent" = rgba config.colorscheme.colors.on_tertiary_container nonActiveAlpha;
+              "col.text.inactive" = rgba config.colorscheme.colors.on_surface nonActiveAlpha;
+            };
+          };
+        };
         animations = {
           enabled = cfg.enableAnimations;
           bezier = [
