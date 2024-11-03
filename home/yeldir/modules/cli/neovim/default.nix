@@ -5,11 +5,9 @@
   ...
 }: let
   cfg = config.yeldirs.cli.neovim;
-  vimConfigPath = "${config.home.homeDirectory}/.config/nvim/init.lua";
   reloadNvim = ''
-    XDG_RUNTIME_DIR=''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
-    for server in $XDG_RUNTIME_DIR/nvim.*; do
-      nvim --server $server --remote-send '<Esc>:source ${vimConfigPath}<CR>' &
+    for server in ''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/nvim.*; do
+      ${lib.getExe config.programs.neovim.finalPackage} --server $server --remote-send '<Esc>:source $MYVIMRC<CR>' &
     done
   '';
 
