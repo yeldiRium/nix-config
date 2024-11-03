@@ -21,7 +21,7 @@
     - [x] neotest and bindings
     - [ ] github copilot
     - syntax highlighting
-        - [ ] yaml
+        - [x] yaml
     - lsp
     - dap
         - [ ] javascript, typescript
