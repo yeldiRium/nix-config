@@ -47,6 +47,7 @@
         neogit.enable = true;
         nrvimr.enable = true;
         telescope.enable = true;
+        testing.enable = true;
         treesitter.enable = true;
         undotree.enable = true;
       };

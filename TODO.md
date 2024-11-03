@@ -18,7 +18,8 @@
   - neovim
     - [x] remove harpoon2 telescope integration code
     - [x] debugger, ui and bindings
-    - [ ] nvim-test and bindings
+    - [x] neotest and bindings
+    - [ ] github copilot
     - syntax highlighting
         - [ ] yaml
     - lsp

@@ -20,6 +20,7 @@ in {
     ./plugins/neogit.nix
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
+    ./plugins/testing.nix
     ./plugins/treesitter.nix
     ./plugins/undotree.nix
   ];
