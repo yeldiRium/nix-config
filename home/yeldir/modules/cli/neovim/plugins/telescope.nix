@@ -21,7 +21,7 @@ in {
       ripgrep
     ];
 
-    programs.neovim.plugins = with pkgs.vimPlugins; [
+    programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = telescope-nvim;
         type = "lua";

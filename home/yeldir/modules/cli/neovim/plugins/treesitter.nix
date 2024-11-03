@@ -18,7 +18,7 @@ in {
       gcc
     ];
 
-    programs.neovim.plugins = with pkgs.vimPlugins;
+    programs.neovim.plugins = with pkgs.unstable.vimPlugins;
       [
         {
           plugin = nvim-treesitter.withAllGrammars;

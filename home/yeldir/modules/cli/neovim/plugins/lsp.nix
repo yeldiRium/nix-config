@@ -7,8 +7,8 @@
   cfg = config.yeldirs.cli.neovim.lsp;
   supportedLanguages = config.yeldirs.cli.neovim.supportedLanguages;
 
-  optionals = language: list: lib.optionals (lib.elem language supportedLanguages) list;
   languageActive = language: lib.elem language supportedLanguages;
+  optionals = language: list: lib.optionals (languageActive language) list;
 in {
   options = {
     yeldirs.cli.neovim.lsp.enable = lib.mkEnableOption "neovim lsp support";
@@ -46,7 +46,7 @@ in {
         nodePackages.typescript-language-server
       ]);
 
-    programs.neovim.plugins = with pkgs.vimPlugins; [
+    programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       otter-nvim # LSP for embedded languages
 
       # LSP client configuration
@@ -168,7 +168,7 @@ in {
               lua
               */
               ''
-                add_lsp(lspconfig.tsserver, {})
+                add_lsp(lspconfig.ts_ls, {})
               ''
             else ""
           )

@@ -17,7 +17,7 @@ in {
       }
     ];
 
-    programs.neovim.plugins = with pkgs.vimPlugins; [
+    programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = harpoon2;
         type = "lua";

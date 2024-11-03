@@ -17,6 +17,8 @@
   - [x] libreoffice
   - neovim
     - [x] remove harpoon2 telescope integration code
+    - [ ] debugger, ui and bindings
+    - [ ] nvim-test and bindings
   - [x] pwvucontrol as replacement for pavucontrol
   - [x] ranger
       - [x] show video thumbnails
