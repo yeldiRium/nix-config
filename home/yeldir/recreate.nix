@@ -42,6 +42,7 @@
           "yaml"
         ];
 
+        copilot.enable = true;
         debugging.enable = true;
         harpoon2.enable = true;
         lsp.enable = true;
