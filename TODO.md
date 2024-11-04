@@ -2,33 +2,48 @@
 
 - system
   - adjust ricing to my liking
-    - [x] adjust color of hy3 bars
   - [ ] overhaul desktop entries to only show what I need
   - [ ] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
 - apps
-  - [ ] audacity
-  - [-] AusweisApp (funktioniert nicht)
-  - [x] calculator (speedcrunch?)
-  - [x] calibre
-  - [ ] clementine
-  - [x] devbox
-  - [ ] gimp
-  - [x] image viewer
-  - [x] libreoffice
+  - development
+    - [ ] kubectl
+    - [ ] k9s
   - neovim
-    - [x] remove harpoon2 telescope integration code
-    - [x] debugger, ui and bindings
-    - [x] neotest and bindings
     - [ ] github copilot
     - syntax highlighting
-        - [x] yaml
+      - [ ] css
+      - [ ] csv
+      - [ ] desktop
+      - [ ] diff
+      - [ ] dockerfile
+      - [ ] gitignore
+      - [ ] helm?
+      - [ ] html
+      - [ ] make
+      - [ ] poe-filter
+      - [ ] regex
+      - [ ] scss
+      - [ ] sh/bash
+      - [ ] sql
+      - [ ] ssh_config
+      - [ ] terraform
+      - [ ] toml
+      - [ ] xml
+      - [-] zsh (unfortunately no treesitter parser exists)
     - lsp
+      - [ ] bashls
+      - [ ] helm?
+      - [ ] html
+      - [ ] htmx
+      - [ ] hleder (might do this myself)
+      - [ ] terraformls
     - dap
         - [ ] javascript, typescript
-  - [x] pwvucontrol as replacement for pavucontrol
-  - [x] ranger
-      - [x] show video thumbnails
-  - [ ] transmission gui
+  - desktop apps
+    - [ ] audacity
+    - [ ] clementine
+    - [ ] gimp
+    - [ ] transmission gui
 - fixes
     - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
 - security
@@ -38,7 +53,9 @@
     - [ ] for ssh key
     - [ ] for gpg key
     - [-] for wifi network
-  - [ ] backups with borg
+  - backups with borg
+    - [ ] configurable per host
+    - [ ] with impermanence it's easy to just backup the entire /persist folder
 - darwin
 - modularity
   - [x] add options to disable animations and transparency in hyprland and wayland
