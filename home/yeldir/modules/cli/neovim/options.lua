@@ -9,4 +9,4 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:3"

@@ -18,7 +18,7 @@ in {
     ./plugins/debugging.nix
     ./plugins/harpoon2.nix
     ./plugins/lsp.nix
-    ./plugins/neogit.nix
+    ./plugins/git.nix
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix

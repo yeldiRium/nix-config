@@ -9,7 +9,7 @@
     - [ ] kubectl
     - [ ] k9s
   - neovim
-    - [ ] github copilot
+    - [x] github copilot
     - syntax highlighting
       - [ ] css
       - [ ] csv

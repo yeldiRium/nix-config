@@ -4,17 +4,21 @@
   pkgs,
   ...
 }: let
-  cfg = config.yeldirs.cli.neovim.neogit;
+  cfg = config.yeldirs.cli.neovim.git;
 in {
   options = {
-    yeldirs.cli.neovim.neogit.enable = lib.mkEnableOption "neovim plugin neogit";
+    yeldirs.cli.neovim.git.enable = lib.mkEnableOption "neovim git support";
   };
   config = lib.mkIf cfg.enable {
     assertions = [
       {
         assertion = config.yeldirs.cli.neovim.enable;
-        message = "neovim must be enabled for the plugin neogit to work";
+        message = "neovim must be enabled for the git support to work";
       }
+    ];
+
+    home.packages = with pkgs; [
+      git
     ];
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
@@ -30,6 +34,18 @@ in {
             neogit.setup({})
 
             vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>")
+          '';
+      }
+      {
+        plugin = gitsigns-nvim;
+        type = "lua";
+        config =
+          /*
+          lua
+          */
+          ''
+            local gitsigns = require("gitsigns")
+            gitsigns.setup({})
           '';
       }
     ];
