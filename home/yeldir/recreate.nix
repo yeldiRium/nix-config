@@ -6,6 +6,7 @@
   imports = [
     ./global
     ./modules/cli/neovim
+    ./modules/cli/taskwarrior.nix
     ./modules/system/mounts
 
     ./optional/desktop/development
@@ -26,6 +27,7 @@
 
   yeldirs = {
     cli = {
+      taskwarrior.enable = true;
       neovim = {
         enable = true;
 
