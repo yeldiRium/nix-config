@@ -8,6 +8,7 @@
   - development
     - [ ] kubectl
     - [ ] k9s
+    - [ ] k3s
   - neovim
     - [x] github copilot
     - syntax highlighting
@@ -62,3 +63,6 @@
   - [x] make impermanence optional
   - [ ] make system target configurable between linux and darwin
     - [ ] use it to build the shell aliases for nbuild/nswitch/nrepl
+  - [ ] rethink the "supported languages" support in my module options
+    - The list becomes very long and clutters the config
+    - I might want to cluster some languages, e.g. json/yaml/xml/csv because they are related, but they might have complicated setups
