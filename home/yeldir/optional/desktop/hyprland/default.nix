@@ -103,11 +103,7 @@ in {
             "minsize 1 1, ${steam}"
 
             "immediate, ${steamGame}"
-          ]
-          ++ (lib.mapAttrsToList (
-              name: colors: "bordercolor ${rgba colors.primary "aa"} ${rgba colors.primary_container "aa"}, title:^(\\[${name}\\])"
-            )
-            remoteColorschemes);
+          ];
         layerrule = [
           "animation fade, hyprpicker"
           "animation fade, selection"
