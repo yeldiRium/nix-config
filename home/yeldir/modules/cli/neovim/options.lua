@@ -10,3 +10,6 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.opt.signcolumn = "yes:3"
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
