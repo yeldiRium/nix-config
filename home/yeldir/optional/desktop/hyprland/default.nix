@@ -94,6 +94,9 @@ in {
           # Unfullscreen when opening something
           new_window_takes_over_fullscreen = 2;
         };
+        binds = {
+          workspace_back_and_forth = true;
+        };
         windowrulev2 = let
           steam = "title:^()$,class:^(steam)$";
           steamGame = "class:^(steam_app_[0-9]*)$";
