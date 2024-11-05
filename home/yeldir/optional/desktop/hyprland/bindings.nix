@@ -43,18 +43,15 @@
         # Move window to workspace
         map (n: "$mod SHIFT, ${shiftKey n}, hy3:movetoworkspace, ${n}") workspaces
       )
-      ++ (
-        # Move focus
-        (lib.mapAttrsToList (key: direction: "$mod, ${key}, hy3:movefocus, ${direction}") directions)
-      )
-      ++ (
-        # Move windows
-        (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, hy3:movewindow, ${direction}") directions)
-      )
-      ++ (
-        # Move workspace to other monitor
-        (lib.mapAttrsToList (key: direction: "$mod SHIFT ALT, ${key}, movecurrentworkspacetomonitor, ${direction}") directions)
-      )
+      ++
+      # Move focus
+      (lib.mapAttrsToList (key: direction: "$mod, ${key}, hy3:movefocus, ${direction}") directions)
+      ++
+      # Move windows
+      (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, hy3:movewindow, ${direction}") directions)
+      ++
+      # Move workspace to other monitor
+      (lib.mapAttrsToList (key: direction: "$mod SHIFT ALT, ${key}, movecurrentworkspacetomonitor, ${direction}") directions)
       ++ [
         # Window management bindings
 
@@ -83,8 +80,8 @@
           rofi = lib.getExe config.programs.rofi.package;
         in
           lib.optionals config.programs.rofi.enable [
-            "$mod SHIFT, D, exec, ${rofi} -show run"
-            "$mod, D, exec, ${rofi} -show combi -modes combi -combi-modes \"window,drun\""
+            "$mod, Tab, exec, ${rofi} -show window"
+            "$mod, D, exec, ${rofi} -show drun"
           ]
           ++ (
             let
