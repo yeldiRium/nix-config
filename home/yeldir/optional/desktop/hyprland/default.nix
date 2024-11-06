@@ -100,15 +100,20 @@ in {
         binds = {
           workspace_back_and_forth = true;
         };
+
+        # Specific window rules for games and applications
         windowrulev2 = let
           steam = "title:^()$,class:^(steam)$";
           steamGame = "class:^(steam_app_[0-9]*)$";
+          pathOfExile = "title:^(Path of Exile)$";
         in [
           "stayfocused, ${steam}"
           "minsize 1 1, ${steam}"
-
           "immediate, ${steamGame}"
+
+          "opaque on, ${pathOfExile}"
         ];
+
         layerrule = [
           "animation fade, hyprpicker"
           "animation fade, selection"
