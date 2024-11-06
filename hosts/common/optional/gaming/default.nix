@@ -1,11 +1,6 @@
 {
-  config,
-  pkgs,
-  ...
-}: {
   imports = [
     ./gamemode.nix
-    ./steam.nix
   ];
 
   programs = {

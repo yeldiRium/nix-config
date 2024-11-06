@@ -1,7 +1,6 @@
 {
-  pkgs,
-  lib,
   config,
+  pkgs,
   ...
 }: let
   # Steam usage guide with lutris:
@@ -22,16 +21,29 @@
   # Games can only be registered with lutris after logging
   # into steam once and setting the games on your user
   # profile to public.
-in {
-  home.shellAliases = {
-    # Steam doesn't always shutdown properly. This catches
-    # all steam processes but avoids impermanence mounts.
-    killsteam = "ps aux | ag steam | ag --invert-match bindfs | sed --regexp-extended \"s/^yeldir\s+([0-9]+).*/\1/\" | xargs kill";
+  steam-with-pkgs = pkgs.steam.override {
+    extraPkgs = pkgs:
+      with pkgs; [
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
+        gamescope
+      ];
   };
+in {
+  home.packages = [
+    steam-with-pkgs
+    pkgs.gamescope
+    pkgs.protontricks
+  ];
 
-  # Steam installation is done host wide, since nixos has
-  # more scripts for it.
-  # This file only contains persistence for game saves.
   home.persistence = {
     "/persist/${config.home.homeDirectory}" = {
       directories = [
