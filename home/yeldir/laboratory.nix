@@ -63,6 +63,8 @@
       keyFile = "/persist/sops/age/keys.txt";
     };
     system = {
+      keyboardLayout = "de";
+      keyboardVariant = "neo2";
       mounts = {
         datengrab.enable = true;
       };

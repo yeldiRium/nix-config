@@ -68,6 +68,8 @@
       keyFile = "/persist/sops/age/keys.txt";
     };
     system = {
+      keyboardLayout = "de";
+      keyboardVariant = "";
       mounts = {
         datengrab.enable = true;
       };

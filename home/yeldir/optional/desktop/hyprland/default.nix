@@ -82,7 +82,8 @@ in {
           groupbar.font_size = 11;
         };
         input = {
-          kb_layout = "de";
+          kb_layout = config.yeldirs.system.keyboardLayout;
+          kb_variant = config.yeldirs.system.keyboardVariant;
           resolve_binds_by_sym = true;
           touchpad.disable_while_typing = false;
 
