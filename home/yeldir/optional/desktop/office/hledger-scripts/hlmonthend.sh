@@ -1,5 +1,4 @@
-#!/usr/bin/env sh
-
+#!/usr/bin/env zsh
 
 ACTIVE_MONTH=$(date --date '-22days +1month' +%m)
 ACTIVE_YEAR=$(date --date '-22days +1month' +%Y)

@@ -19,6 +19,7 @@
   in {
     packages = with pkgs; [
       hledger
+      (hltool "hlc")
       (hltool "hlb")
       (hltool "hlbeom")
       (hltool "hlbudget")
@@ -30,7 +31,6 @@
     ];
     shellAliases = {
       "hl" = "hledger";
-      "hlc" = "hledger --strict check";
     };
     sessionVariables = {
       LEDGER_FILE = "$HOME/querbeet/workspace/ledger/all.journal";
