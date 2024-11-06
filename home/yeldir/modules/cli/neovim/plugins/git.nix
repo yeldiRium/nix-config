@@ -22,6 +22,8 @@ in {
     ];
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
+      nvim-web-devicons
+      diffview-nvim
       {
         plugin = neogit;
         type = "lua";
