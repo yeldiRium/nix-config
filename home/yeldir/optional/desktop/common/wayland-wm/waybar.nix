@@ -1,5 +1,4 @@
 {
-  outputs,
   config,
   lib,
   pkgs,
@@ -44,7 +43,6 @@
       '';
     };
 
-  swayCfg = config.wayland.windowManager.sway;
   hyprlandCfg = config.wayland.windowManager.hyprland;
 in {
   # Let it try to start a few more times

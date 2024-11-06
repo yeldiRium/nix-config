@@ -2,18 +2,9 @@
   lib,
   config,
   pkgs,
-  outputs,
   ...
 }: let
   cfg = config.yeldirs.hyprland;
-
-  getHostname = x: lib.last (lib.splitString "@" x);
-  remoteColorschemes =
-    lib.mapAttrs' (n: v: {
-      name = getHostname n;
-      value = v.config.colorscheme.rawColorscheme.colors.${config.colorscheme.mode};
-    })
-    outputs.homeConfigurations;
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
   imports = [
@@ -212,7 +203,7 @@ in {
         };
 
         exec = [
-          "${pkgs.waybar}/bin/waybar"
+          "${pkgs.waybar}/bin/waybar -c ${config.home.homeDirectory}/.config/waybar/config"
           "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
           "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
         ];
@@ -257,8 +248,6 @@ in {
         );
       };
       # This is order sensitive, so it has to come here.
-      # TODO: Exit system submap with the suspend and hibernate command, so that I
-      # don't accidentally poweroff my system after wake-up.
       extraConfig = let
         swaylock = lib.getExe config.programs.swaylock.package;
         swaylockCmd = "${swaylock} --screenshots --grace 2 --grace-no-mouse";
