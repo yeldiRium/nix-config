@@ -28,7 +28,6 @@ in {
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins;
       [
-        FixCursorHold-nvim
         nvim-nio
         {
           plugin = neotest;
