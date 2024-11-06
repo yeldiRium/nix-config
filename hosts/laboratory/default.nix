@@ -1,8 +1,4 @@
 {
-  config,
-  inputs,
-  outputs,
-  lib,
   pkgs,
   ...
 }: {
@@ -13,6 +9,7 @@
     ../common/global
 
     ../common/optional/bluetooth.nix
+    ../common/optional/docker.nix
     ../common/optional/greetd.nix
     ../common/optional/networkmanager.nix
     ../common/optional/pipewire.nix
@@ -35,8 +32,19 @@
     hostId = "18e8eddb";
   };
 
+  yeldirs = {
+    mounts = {
+      datengrab.enable = true;
+    };
+  };
+
   programs = {
     dconf.enable = true;
+  };
+
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,

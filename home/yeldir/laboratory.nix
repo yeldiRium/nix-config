@@ -5,6 +5,8 @@
 }: {
   imports = [
     ./global
+    ./modules/cli/neovim
+    ./modules/cli/taskwarrior.nix
     ./modules/system/mounts
 
     ./optional/desktop/development
@@ -24,6 +26,30 @@
 
   yeldirs = {
     cli = {
+      taskwarrior.enable = true;
+      neovim = {
+        enable = true;
+
+        supportedLanguages = [
+          "json"
+          "ledger"
+          "lua"
+          "markdown"
+          "nix"
+          "yaml"
+        ];
+
+        copilot.enable = true;
+        debugging.enable = true;
+        git.enable = true;
+        harpoon2.enable = true;
+        lsp.enable = true;
+        nrvimr.enable = true;
+        telescope.enable = true;
+        testing.enable = true;
+        treesitter.enable = true;
+        undotree.enable = true;
+      };
       zsh = {
         enableSecretEnv = true;
       };
