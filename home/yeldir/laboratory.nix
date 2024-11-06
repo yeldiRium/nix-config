@@ -64,7 +64,7 @@
     };
     system = {
       keyboardLayout = "de";
-      keyboardVariant = "neo2";
+      keyboardVariant = "neo";
       mounts = {
         datengrab.enable = true;
       };
