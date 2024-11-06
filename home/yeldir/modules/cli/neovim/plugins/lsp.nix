@@ -23,7 +23,10 @@ in {
 
     # LSP servers
     home.packages = with pkgs;
-      (optionals "docker" [
+      (optionals "bash" [
+        nodePackages.bash-language-server
+      ])
+      ++ (optionals "docker" [
         docker-compose-language-service
         dockerfile-language-server-nodejs
       ])
@@ -79,6 +82,17 @@ in {
               end
             end
           ''
+          (
+            if languageActive "bash"
+            then
+              /*
+              lua
+              */
+              ''
+                add_lsp(lspconfig.bashls, {})
+              ''
+            else ""
+          )
           (
             if languageActive "docker"
             then
@@ -182,15 +196,15 @@ in {
               lua
               */
               ''
-            add_lsp(lspconfig.yamlls, {
-              settings = {
-                yaml = {
-                  schemas = {
-                    ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                  }
-                }
-              },
-            })
+                add_lsp(lspconfig.yamlls, {
+                  settings = {
+                    yaml = {
+                      schemas = {
+                        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                      }
+                    }
+                  },
+                })
               ''
             else ""
           )

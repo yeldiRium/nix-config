@@ -32,7 +32,7 @@
       - [ ] xml
       - [-] zsh (unfortunately no treesitter parser exists)
     - lsp
-      - [ ] bashls
+      - [x] bashls
       - [ ] helm?
       - [ ] html
       - [ ] htmx

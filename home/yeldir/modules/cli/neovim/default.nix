@@ -32,6 +32,7 @@ in {
 
       supportedLanguages = lib.mkOption {
         type = lib.types.listOf (lib.types.enum [
+          "bash"
           "docker"
           "go"
           "javascript"
@@ -78,6 +79,9 @@ in {
 
         "nvim/color.vim".onChange = reloadNvim;
         "nvim/color.vim".source = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
+      }
+      // optionalAttrs "bash" {
+        "nvim/ftplugin/bash.lua".source = pkgs.writeText "bash.lua" (builtins.readFile ./ftplugin/bash.lua);
       }
       // optionalAttrs "go" {
         "nvim/ftplugin/go.lua".source = pkgs.writeText "go.lua" (builtins.readFile ./ftplugin/go.lua);

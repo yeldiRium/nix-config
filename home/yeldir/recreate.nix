@@ -32,6 +32,7 @@
         enable = true;
 
         supportedLanguages = [
+          "bash"
           "docker"
           "go"
           "javascript"

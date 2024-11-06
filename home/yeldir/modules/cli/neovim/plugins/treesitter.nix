@@ -39,6 +39,9 @@ in {
             '';
         }
       ]
+      ++ (optionals "bash" [
+        nvim-treesitter-parsers.bash
+      ])
       ++ (optionals "go" [
         nvim-treesitter-parsers.go
         nvim-treesitter-parsers.gomod

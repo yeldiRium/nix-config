@@ -31,6 +31,7 @@
         enable = true;
 
         supportedLanguages = [
+          "bash"
           "json"
           "ledger"
           "lua"
