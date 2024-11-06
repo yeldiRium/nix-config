@@ -30,7 +30,7 @@ in {
       description = "Enable hyprland animations";
       default = true;
     };
-    yeldirs.hyprland.enableTransparency = lib.mkOption{
+    yeldirs.hyprland.enableTransparency = lib.mkOption {
       type = lib.types.bool;
       description = "Enable hyprland transparency";
       default = true;
@@ -89,6 +89,17 @@ in {
 
           accel_profile = "flat";
         };
+        device =
+          map (keyboard: {
+            name = "${keyboard}";
+            kb_layout = "de";
+            kb_variant = "";
+          }) [
+            "zsa-technology-labs-inc-ergodox-ez"
+            "zsa-technology-labs-inc-ergodox-ez-keyboard"
+            "zsa-technology-labs-inc-ergodox-ez-system-control"
+            "zsa-technology-labs-inc-ergodox-ez-consumer-control"
+          ];
         misc = {
           disable_hyprland_logo = true;
 
@@ -101,13 +112,12 @@ in {
         windowrulev2 = let
           steam = "title:^()$,class:^(steam)$";
           steamGame = "class:^(steam_app_[0-9]*)$";
-        in
-          [
-            "stayfocused, ${steam}"
-            "minsize 1 1, ${steam}"
+        in [
+          "stayfocused, ${steam}"
+          "minsize 1 1, ${steam}"
 
-            "immediate, ${steamGame}"
-          ];
+          "immediate, ${steamGame}"
+        ];
         layerrule = [
           "animation fade, hyprpicker"
           "animation fade, selection"
@@ -127,8 +137,14 @@ in {
         ];
 
         decoration = {
-          active_opacity = if cfg.enableTransparency then 0.85 else 1;
-          inactive_opacity = if cfg.enableTransparency then 0.85 else 1;
+          active_opacity =
+            if cfg.enableTransparency
+            then 0.85
+            else 1;
+          inactive_opacity =
+            if cfg.enableTransparency
+            then 0.85
+            else 1;
           fullscreen_opacity = 1.0;
           rounding = 7;
           blur = {
@@ -149,7 +165,10 @@ in {
           hy3 = {
             tabs = let
               activeAlpha = "ff";
-              nonActiveAlpha = if cfg.enableTransparency then "aa" else "ff";
+              nonActiveAlpha =
+                if cfg.enableTransparency
+                then "aa"
+                else "ff";
             in {
               "col.active" = rgba config.colorscheme.colors.primary_container activeAlpha;
               "col.urgent" = rgba config.colorscheme.colors.tertiary_container nonActiveAlpha;
