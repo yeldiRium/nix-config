@@ -151,8 +151,8 @@
       (let
         grimblast = lib.getExe pkgs.grimblast;
       in [
-        "    , Print, exec, ${grimblast} --notify --freeze copy area"
-        "SHIFT, Print, exec, ${grimblast} --notify --freeze copy output"
+        "$mod      , M, exec, ${grimblast} --notify --freeze copy area"
+        "$mod SHIFT, M, exec, ${grimblast} --notify --freeze copy output"
       ])
       ++
       # Brightness control (only works if the system has lightd)
