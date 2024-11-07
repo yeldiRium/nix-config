@@ -14,4 +14,6 @@
   };
 
   services.xserver.videoDrivers = ["amdgpu"];
+
+  systemd.extraConfig = "DefaultLimitNOFILE=134217727:268435454";
 }
