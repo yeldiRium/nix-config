@@ -39,6 +39,9 @@ in {
       ++ (optionals "json" [
         vscode-langservers-extracted
       ])
+      ++ (optionals "ledger" [
+        hledger-language-server
+      ])
       ++ (optionals "lua" [
         lua-language-server
       ])
@@ -64,11 +67,10 @@ in {
           lua
           */
           ''
-            local lspconfig = require('lspconfig')
+            local lspconfig = require("lspconfig")
+            local lspConfigurations = require("lspconfig.configs")
+
             function add_lsp(server, options)
-              if not options["cmd"] then
-                options["cmd"] = server["document_config"]["default_config"]["cmd"]
-              end
               if not options["capabilities"] then
                 options["capabilities"] = {}
               end
@@ -77,9 +79,7 @@ in {
                 require("cmp_nvim_lsp").default_capabilities()
               )
 
-              if vim.fn.executable(options["cmd"][1]) == 1 then
-                server.setup(options)
-              end
+              server.setup(options)
             end
           ''
           (
@@ -113,6 +113,28 @@ in {
               */
               ''
                 add_lsp(lspconfig.gopls, {})
+              ''
+            else ""
+          )
+          (
+            if languageActive "ledger"
+            then
+              /*
+              lua
+              */
+              ''
+                if not lspConfigurations.hledger_ls then
+                  lspConfigurations.hledger_ls = {
+                    default_config = {
+                      cmd = { "${lib.getExe pkgs.hledger-language-server}" },
+                      filetypes = { "ledger" },
+                      root_dir = require("lspconfig.util").root_pattern(".git", "*.journal"),
+                      settings = {},
+                    },
+                  }
+                end
+
+                add_lsp(lspconfig.hledger_ls, {})
               ''
             else ""
           )

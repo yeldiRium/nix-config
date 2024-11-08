@@ -11,4 +11,6 @@
     combined = pkgs.writeText "colorschemes.json" (builtins.toJSON (pkgs.lib.mapAttrs (_: drv: drv.imported) colorschemes));
   in
     pkgs.linkFarmFromDrvs "colorschemes" (pkgs.lib.attrValues colorschemes ++ [combined]);
+
+  hledger-language-server = pkgs.callPackage ./hledger-language-server.nix {};
 }
