@@ -16,6 +16,7 @@
       };
 
       ignores = [
+        ".fuse_hidden*"
         ".vscode"
       ];
     };
