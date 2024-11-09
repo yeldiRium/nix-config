@@ -27,9 +27,8 @@ in {
           lua
           */
           ''
-            vim.keymap.set("i", "<Tab>", function()
-              vim.fn["copilot#Accept"]("<CR>")
-            end)
+            -- Default keybinding for github copilot it <Tab>, which I like.
+            -- Binding it explicitly somehow didn't work, so I'll just leave it as-is.
           '';
       }
       {
