@@ -126,7 +126,10 @@ in {
                 if not lspConfigurations.hledger_ls then
                   lspConfigurations.hledger_ls = {
                     default_config = {
-                      cmd = { "${lib.getExe pkgs.hledger-language-server}" },
+                      -- production:
+                      -- cmd = { "${lib.getExe pkgs.hledger-language-server}" },
+                      -- development:
+                      cmd = { "/home/yeldir/querbeet/workspace/private/projects/hledger-language-server/hledger-language-server" },
                       filetypes = { "ledger" },
                       root_dir = require("lspconfig.util").root_pattern(".git", "*.journal"),
                       settings = {},
