@@ -32,6 +32,8 @@
       - [ ] xml
       - [-] zsh (unfortunately no treesitter parser exists)
     - lsp
+      - bindings
+        - [ ] go to/list implementations
       - [x] bashls
       - [ ] helm?
       - [ ] html
