@@ -1,6 +1,7 @@
-{
+{pkgs, ...}: {
   imports = [
     ./gamemode.nix
+    ./steam.nix
   ];
 
   programs = {
@@ -11,6 +12,10 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+
+    # https://nixos.wiki/wiki/Steam#Changing_the_driver_on_AMD_GPUs
+    extraPackages = [pkgs.amdvlk];
+    extraPackages32 = [pkgs.driversi686Linux.amdvlk];
   };
 
   services.xserver.videoDrivers = ["amdgpu"];

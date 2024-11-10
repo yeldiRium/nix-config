@@ -21,27 +21,9 @@
   # Games can only be registered with lutris after logging
   # into steam once and setting the games on your user
   # profile to public.
-  steam-with-pkgs = pkgs.steam.override {
-    extraPkgs = pkgs:
-      with pkgs; [
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
-        libpng
-        libpulseaudio
-        libvorbis
-        stdenv.cc.cc.lib
-        libkrb5
-        keyutils
-        gamescope
-      ];
-  };
 in {
-  home.packages = [
-    steam-with-pkgs
-    pkgs.gamescope
-    pkgs.protontricks
+  home.packages = with pkgs; [
+    protontricks
   ];
 
   home.persistence = {
