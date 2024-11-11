@@ -8,6 +8,7 @@
     ./heroic.nix
     ./lutris.nix
     ./minecraft.nix
+    ./osu.nix
     ./protonup.nix
     ./steam.nix
   ];
