@@ -18,7 +18,5 @@
     extraPackages32 = [pkgs.driversi686Linux.amdvlk];
   };
 
-  services.xserver.videoDrivers = ["amdgpu"];
-
   systemd.extraConfig = "DefaultLimitNOFILE=134217727:268435454";
 }
