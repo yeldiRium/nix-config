@@ -47,6 +47,8 @@
     - [ ] clementine
     - [ ] gimp
     - [ ] transmission gui
+  - taskwarrior
+    - [ ] adjust settings to hackstack setup
 - fixes
     - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
 - security
