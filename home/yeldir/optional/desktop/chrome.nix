@@ -14,6 +14,13 @@
     ];
   };
 
+  xdg.mimeApps.defaultApplications = {
+    "application/pdf" = "google-chrome.desktop";
+    "application/xhtml+xml" = "google-chrome.desktop";
+    "application/xhtml_xml" = "google-chrome.desktop";
+    "text/html" = "google-chrome.desktop";
+  };
+
   xdg.desktopEntries = {
     google-chrome = {
       name = "Google Chrome";

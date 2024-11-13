@@ -87,5 +87,7 @@
     home.file = {
       ".colorscheme.json".text = builtins.toJSON config.colorscheme;
     };
+
+    xdg.mimeApps.enable = true;
   };
 }
