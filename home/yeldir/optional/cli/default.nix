@@ -7,7 +7,6 @@
     ./ranger.nix
     ./ssh.nix
     ./thefuck.nix
-    ./zsh.nix
   ];
 
   # TODO:

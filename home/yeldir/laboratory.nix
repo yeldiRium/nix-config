@@ -25,6 +25,7 @@
   yeldirs = {
     cli = {
       taskwarrior.enable = true;
+
       neovim = {
         enable = true;
 
@@ -49,7 +50,9 @@
         treesitter.enable = true;
         undotree.enable = true;
       };
+
       zsh = {
+        enable = true;
         enableSecretEnv = true;
       };
     };

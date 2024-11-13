@@ -6,13 +6,16 @@
   cfg = config.yeldirs.cli.zsh;
 in {
   options = {
-    yeldirs.cli.zsh.enableSecretEnv = lib.mkOption {
-      type = lib.types.bool;
-      description = "Requires sops to be enabled. Mounts ~/.secretenv from the sops secrets.";
-      default = false;
+    yeldirs.cli.zsh = {
+      enable = lib.mkEnableOption "zsh";
+      enableSecretEnv = lib.mkOption {
+        type = lib.types.bool;
+        description = "Requires sops to be enabled. Mounts ~/.secretenv from the sops secrets.";
+        default = false;
+      };
     };
   };
-  config = {
+  config = lib.mkIf cfg.enable {
     programs = {
       zsh = {
         enable = true;
