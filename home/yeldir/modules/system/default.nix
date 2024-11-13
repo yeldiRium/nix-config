@@ -1,4 +1,8 @@
 {lib, ...}: {
+  imports = [
+    ./mounts
+  ];
+
   options = {
     yeldirs.system.keyboardLayout = lib.mkOption {
       type = lib.types.str;

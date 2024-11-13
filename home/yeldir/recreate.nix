@@ -5,9 +5,7 @@
 }: {
   imports = [
     ./global
-    ./modules/cli/neovim
-    ./modules/cli/taskwarrior.nix
-    ./modules/system/mounts
+    ./modules
 
     ./optional/desktop/development
     ./optional/desktop/hyprland

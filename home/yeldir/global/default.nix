@@ -11,7 +11,6 @@
       inputs.impermanence.nixosModules.home-manager.impermanence
 
       ./disable-impermanence.nix
-      ./options.nix 
       ./sops.nix
       ../optional/cli
     ]
