@@ -105,13 +105,16 @@ in {
         windowrulev2 = let
           steam = "title:^()$,class:^(steam)$";
           steamGame = "class:^(steam_app_[0-9]*)$";
-          pathOfExile = "title:^(Path of Exile)$";
+          transparentApps =
+            if cfg.enableTransparency
+            then "class:^(kitty)$"
+            else "";
         in [
           "stayfocused, ${steam}"
           "minsize 1 1, ${steam}"
           "immediate, ${steamGame}"
 
-          "opaque on, ${pathOfExile}"
+          "opacity 0.85, ${transparentApps}"
         ];
 
         layerrule = [
@@ -133,14 +136,8 @@ in {
         ];
 
         decoration = {
-          active_opacity =
-            if cfg.enableTransparency
-            then 0.85
-            else 1;
-          inactive_opacity =
-            if cfg.enableTransparency
-            then 0.85
-            else 1;
+          active_opacity = 1.0;
+          inactive_opacity = 1.0;
           fullscreen_opacity = 1.0;
           rounding = 7;
           blur = {
