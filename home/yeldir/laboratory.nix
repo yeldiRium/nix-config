@@ -5,9 +5,7 @@
 }: {
   imports = [
     ./global
-    ./modules/cli/neovim
-    ./modules/cli/taskwarrior.nix
-    ./modules/system/mounts
+    ./modules
 
     ./optional/desktop/development
     ./optional/desktop/hyprland
@@ -55,19 +53,21 @@
         enableSecretEnv = true;
       };
     };
-    hyprland = {
-      enableAnimations = false;
-      enableTransparency = false;
-    };
-    sops = {
-      keyFile = "/persist/sops/age/keys.txt";
-    };
     system = {
       keyboardLayout = "de";
       keyboardVariant = "neo";
       mounts = {
         datengrab.enable = true;
       };
+    };
+
+    # Deprecated non-module options:
+    hyprland = {
+      enableAnimations = false;
+      enableTransparency = false;
+    };
+    sops = {
+      keyFile = "/persist/sops/age/keys.txt";
     };
   };
 

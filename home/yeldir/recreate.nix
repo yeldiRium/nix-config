@@ -58,12 +58,10 @@
         enableSecretEnv = true;
       };
     };
-    hyprland = {
-      enableAnimations = true;
-      enableTransparency = true;
-    };
-    sops = {
-      keyFile = "/persist/sops/age/keys.txt";
+    desktop = {
+      office = {
+        zotero.enable = true;
+      };
     };
     system = {
       keyboardLayout = "de";
@@ -71,6 +69,15 @@
       mounts = {
         datengrab.enable = true;
       };
+    };
+
+    # Deprecated non-module options.
+    hyprland = {
+      enableAnimations = true;
+      enableTransparency = true;
+    };
+    sops = {
+      keyFile = "/persist/sops/age/keys.txt";
     };
   };
 
