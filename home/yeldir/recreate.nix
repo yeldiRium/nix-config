@@ -62,6 +62,9 @@
       };
     };
     desktop = {
+      common = {
+        kitty.enable = true;
+      };
       office = {
         zotero.enable = true;
       };

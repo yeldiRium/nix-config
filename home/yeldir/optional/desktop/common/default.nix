@@ -7,7 +7,6 @@
     ./filemanager.nix
     ./font.nix
     ./gtk.nix
-    ./kitty.nix
     ./networkmanager.nix
     ./volumecontrol.nix
     ./wireplumber.nix

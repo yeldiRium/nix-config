@@ -56,6 +56,11 @@
         enableSecretEnv = true;
       };
     };
+    desktop = {
+      common = {
+        kitty.enable = true;
+      };
+    };
     system = {
       keyboardLayout = "de";
       keyboardVariant = "neo";
