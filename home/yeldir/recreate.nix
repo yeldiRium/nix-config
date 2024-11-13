@@ -126,6 +126,11 @@
       monitor = "DP-3";
     }
     {
+      command = "${lib.getExe pkgs.zotero}";
+      workspace = "5";
+      monitor = "DP-3";
+    }
+    {
       command = "${lib.getExe pkgs.spotify}";
       workspace = "6";
       monitor = "DP-3";
