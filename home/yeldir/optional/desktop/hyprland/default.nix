@@ -105,17 +105,21 @@ in {
         windowrulev2 = let
           steam = "title:^()$,class:^(steam)$";
           steamGame = "class:^(steam_app_[0-9]*)$";
+          unfloatApps = [
+            steam
+            steamGame
+          ];
           transparentApps =
             if cfg.enableTransparency
-            then "class:^(kitty)$"
-            else "";
+            then ["class:^(kitty)$"]
+            else [];
         in [
-          "stayfocused, ${steam}"
-          "minsize 1 1, ${steam}"
           "immediate, ${steamGame}"
-
-          "opacity 0.85, ${transparentApps}"
-        ];
+        ] ++ (
+          map (app: "tile, ${app}") unfloatApps
+        ) ++ (
+          map (app: "opacity 0.85, ${app}") transparentApps
+        );
 
         layerrule = [
           "animation fade, hyprpicker"
