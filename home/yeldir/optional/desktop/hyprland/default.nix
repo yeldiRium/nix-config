@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.yeldirs.hyprland;
+  yeldirsCfg = config.yeldirs;
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
   imports = [
@@ -111,7 +112,9 @@ in {
           ];
           transparentApps =
             if cfg.enableTransparency
-            then ["class:^(kitty)$"]
+            then [] ++ lib.optionals yeldirsCfg.desktop.common.kitty.enable [
+                "class:^(kitty)$"
+              ]
             else [];
         in [
           "immediate, ${steamGame}"
