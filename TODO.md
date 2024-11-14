@@ -38,7 +38,7 @@
       - [ ] helm?
       - [ ] html
       - [ ] htmx
-      - [ ] hleder (might do this myself)
+      - [ ] hledger (might do this myself)
       - [ ] terraformls
     - dap
         - [ ] javascript, typescript
@@ -49,6 +49,8 @@
     - [ ] transmission gui
   - taskwarrior
     - [ ] adjust settings to hackstack setup
+  - hledger
+    - [ ] check config against hackstack. strict checking does not seem to work
 - fixes
     - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
 - security
