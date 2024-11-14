@@ -107,7 +107,6 @@ in {
           steam = "title:^()$,class:^(steam)$";
           steamGame = "class:^(steam_app_[0-9]*)$";
           unfloatApps = [
-            steam
             steamGame
           ];
           transparentApps =
@@ -117,6 +116,8 @@ in {
               ]
             else [];
         in [
+          "stayfocused, ${steam}"
+          "minsize 1 1, ${steam}"
           "immediate, ${steamGame}"
         ] ++ (
           map (app: "tile, ${app}") unfloatApps
