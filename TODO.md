@@ -11,6 +11,7 @@
     - [ ] k3s
   - neovim
     - [x] github copilot
+    - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
     - syntax highlighting
       - [ ] css
       - [ ] csv
