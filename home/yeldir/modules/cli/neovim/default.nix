@@ -16,6 +16,7 @@ in {
   imports = [
     ./plugins/copilot.nix
     ./plugins/debugging.nix
+    ./plugins/early-retirement.nix
     ./plugins/harpoon2.nix
     ./plugins/lsp.nix
     ./plugins/git.nix
@@ -72,22 +73,6 @@ in {
         ${builtins.readFile ./options.lua}
         ${builtins.readFile ./bindings.lua}
       '';
-
-      plugins = [
-        {
-          plugin = pkgs.vimExtraPlugins.nvim-early-retirement;
-          type = "lua";
-          config = /* lua */ ''
-            require("early-retirement").setup({
-              retirementAgeMins = 0,
-              minimumBufferNum = 1,
-              ignoreVisibleBufs = true,
-              notificationOnAutoClose = true,
-              deleteBufferWhenFileDeleted = true,
-            })
-            '';
-        }
-      ];
     };
 
     xdg.configFile =
