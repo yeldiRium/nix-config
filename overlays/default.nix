@@ -8,14 +8,11 @@
       patches = (oldAttrs.patches or []) ++ patches;
     });
 in {
-  additions = final: prev: import ../pkgs {pkgs = final;};
-
-  neovimPlugins = final: prev: {
-    vimPlugins =
-      prev.vimPlugins
-      // {
-      };
-  };
+  additions = final: prev:
+    import ../pkgs {pkgs = final;}
+    // {
+      vimExtraPlugins = (prev.vimExtraPlugins or {}) // import ../pkgs/vim-plugins {pkgs = final;};
+    };
 
   unstable-packages = final: _: {
     unstable = import inputs.nixpkgs-unstable {
