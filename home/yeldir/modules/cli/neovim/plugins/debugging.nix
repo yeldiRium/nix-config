@@ -47,6 +47,7 @@ in {
 
               vim.keymap.set("n", "<leader>cdb", dap.toggle_breakpoint)
               vim.keymap.set("n", "<leader>cdc", dap.continue)
+              vim.keymap.set("n", "<leader>cdC", dap.terminate)
 
               vim.keymap.set("n", "<leader>cdo", dap.step_over) -- Step over
               vim.keymap.set("n", "<leader>cdi", dap.step_into) -- Step into
