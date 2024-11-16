@@ -54,6 +54,7 @@
     - [ ] check config against hackstack. strict checking does not seem to work
 - fixes
     - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
+    - [ ] still "too many open files" errors when starting games (e.g. kingdoms of amalur)
 - security
   - [ ] look into full disk encryption (might require re-setup)
   - [ ] setup sops
