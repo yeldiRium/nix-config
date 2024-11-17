@@ -21,14 +21,19 @@ in {
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = copilot-vim;
-        type = "lua";
+        type = "viml";
         config =
           /*
-          lua
+          vim
           */
           ''
-            -- Default keybinding for github copilot it <Tab>, which I like.
-            -- Binding it explicitly somehow didn't work, so I'll just leave it as-is.
+            " Default keybinding for github copilot it <Tab>, which I like.
+            " Binding it explicitly somehow didn't work, so I'll just leave it as-is.
+
+            " Disable copilot in certain filetypes
+            let g:copilot_filetypes = {
+            \ "ledger": v:false,
+            \ }
           '';
       }
       {
