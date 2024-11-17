@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-hledger --strict check
+hledger check --strict ordereddates payees
