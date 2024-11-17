@@ -18,5 +18,8 @@
     extraPackages32 = [pkgs.driversi686Linux.amdvlk];
   };
 
-  systemd.extraConfig = "DefaultLimitNOFILE=134217727:268435454";
+  # Many games error with "Too many open files" with the default setting of 1024:524288.
+  # I've tried a few very high values and this currently works okay-ish. Subject to change.
+  # Notes on this in obsidian.
+  systemd.extraConfig = "DefaultLimitNOFILE=1024:1048576";
 }
