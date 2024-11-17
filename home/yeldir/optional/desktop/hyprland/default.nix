@@ -66,7 +66,10 @@ in {
           border_size = 2;
           "col.active_border" = rgba config.colorscheme.colors.primary "aa";
           "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
-          allow_tearing = true;
+
+          # Tearing seems to freeze steam games in fullscreen with AMD GPUs
+          # https://github.com/hyprwm/Hyprland/issues/5097
+          allow_tearing = false;
         };
         group = {
           "col.border_active" = rgba config.colorscheme.colors.primary "aa";
