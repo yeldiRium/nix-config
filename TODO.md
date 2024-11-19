@@ -12,7 +12,8 @@
     - [ ] kubectl
     - [ ] k9s
     - [ ] k3s
-    - [ ] qmk development and flash setup
+    - [ ] lazydocker
+    - [ ] qmk development and flash setup (intsall qmk cli, configure qmk home, run `qmk setup`)
   - cli
     - taskwarrior
       - [ ] adjust settings to hackstack setup
