@@ -59,6 +59,8 @@
     - office
       - mail
         - [ ] add missing accounts, but probably put them into sops so not all my e-mail account names are visible to the public
+      - rss
+        - [ ] manage RSS feeds in thunderbird by generating `feeds.json`. this might not work, since thunderbird wants to write the file
       - hledger
         - [ ] check config against hackstack. strict checking does not seem to work
 - fixes
