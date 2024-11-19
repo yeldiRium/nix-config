@@ -1,5 +1,8 @@
 # TODO
 
+- legacy things
+  - [ ] go over actual dotfiles in gitea and see what needs to be migrated
+    - [ ] taskwarrior settings
 - system
   - adjust ricing to my liking
   - [ ] overhaul desktop entries to only show what I need
@@ -9,49 +12,54 @@
     - [ ] kubectl
     - [ ] k9s
     - [ ] k3s
-  - neovim
-    - [x] github copilot
-    - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
-    - syntax highlighting
-      - [ ] css
-      - [ ] csv
-      - [ ] desktop
-      - [ ] diff
-      - [ ] dockerfile
-      - [ ] gitignore
-      - [ ] helm?
-      - [ ] html
-      - [ ] make
-      - [ ] poe-filter
-      - [ ] regex
-      - [ ] scss
-      - [ ] sh/bash
-      - [ ] sql
-      - [ ] ssh_config
-      - [ ] terraform
-      - [ ] toml
-      - [ ] xml
-      - [-] zsh (unfortunately no treesitter parser exists)
-    - lsp
-      - bindings
-        - [ ] go to/list implementations
-      - [x] bashls
-      - [ ] helm?
-      - [ ] html
-      - [ ] htmx
-      - [ ] hledger (might do this myself)
-      - [ ] terraformls
-    - dap
-        - [ ] javascript, typescript
+    - [ ] qmk development and flash setup
+  - cli
+    - taskwarrior
+      - [ ] adjust settings to hackstack setup
+    - neovim
+      - [x] github copilot
+      - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
+      - syntax highlighting
+        - [ ] css
+        - [ ] csv
+        - [ ] desktop
+        - [ ] diff
+        - [x] dockerfile
+        - [ ] gitignore
+        - [ ] helm?
+        - [ ] html
+        - [ ] make
+        - [ ] poe-filter
+        - [ ] regex
+        - [ ] scss
+        - [ ] sh/bash
+        - [ ] sql
+        - [ ] ssh_config
+        - [ ] terraform
+        - [ ] toml
+        - [ ] xml
+        - [-] zsh (unfortunately no treesitter parser exists)
+      - lsp
+        - bindings
+          - [-] go to/list implementations
+        - [x] bashls
+        - [ ] helm?
+        - [ ] html
+        - [ ] htmx
+        - [ ] hledger (might do this myself)
+        - [ ] terraformls
+      - dap
+          - [ ] javascript, typescript
   - desktop apps
     - [ ] audacity
     - [ ] clementine
     - [ ] gimp
     - [ ] transmission gui
-  - taskwarrior
-    - [ ] adjust settings to hackstack setup
-  - hledger
-    - [ ] check config against hackstack. strict checking does not seem to work
+    - office
+      - mail
+        - [ ] add missing accounts, but probably put them into sops so not all my e-mail account names are visible to the public
+      - hledger
+        - [ ] check config against hackstack. strict checking does not seem to work
 - fixes
     - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
     - [ ] still "too many open files" errors when starting games (e.g. kingdoms of amalur)
