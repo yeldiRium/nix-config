@@ -25,6 +25,7 @@
 
   yeldirs = {
     cli = {
+      hstr.enable = true;
       qmk.enable = true;
       taskwarrior.enable = true;
 
