@@ -67,6 +67,9 @@
       common = {
         kitty.enable = true;
       };
+      media = {
+        gimp.enable = true;
+      };
       office = {
         zotero.enable = true;
       };
