@@ -30,7 +30,7 @@
         - [ ] helm?
         - [ ] html
         - [ ] make
-        - [ ] poe-filter
+        - [x] poe-filter
         - [ ] regex
         - [ ] scss
         - [ ] sh/bash

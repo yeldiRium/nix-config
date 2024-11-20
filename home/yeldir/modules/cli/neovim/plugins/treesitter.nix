@@ -43,6 +43,9 @@ in {
             '';
         }
       ]
+      ++ (optionals "poefilter" [
+        nvim-treesitter-parsers.poe_filter
+      ])
       ++ (optionals "bash" [
         nvim-treesitter-parsers.bash
       ])

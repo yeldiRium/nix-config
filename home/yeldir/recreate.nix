@@ -41,6 +41,7 @@
           "lua"
           "markdown"
           "nix"
+          "poefilter"
           "typescript"
           "yaml"
         ];
