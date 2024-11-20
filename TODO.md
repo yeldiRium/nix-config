@@ -13,7 +13,7 @@
     - [ ] k9s
     - [ ] k3s
     - [ ] lazydocker
-    - [ ] qmk development and flash setup (intsall qmk cli, configure qmk home, run `qmk setup`)
+    - [x] qmk development and flash setup (install qmk cli, configure qmk home, run `qmk setup`)
   - cli
     - taskwarrior
       - [ ] adjust settings to hackstack setup
