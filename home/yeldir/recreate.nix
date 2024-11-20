@@ -47,6 +47,7 @@
 
         copilot.enable = true;
         debugging.enable = true;
+        firenvim.enable = true;
         git.enable = true;
         harpoon2.enable = true;
         lsp.enable = true;

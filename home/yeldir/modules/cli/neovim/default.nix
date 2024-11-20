@@ -17,6 +17,7 @@ in {
     ./plugins/copilot.nix
     ./plugins/debugging.nix
     ./plugins/early-retirement.nix
+    ./plugins/firenvim.nix
     ./plugins/harpoon2.nix
     ./plugins/lsp.nix
     ./plugins/git.nix
