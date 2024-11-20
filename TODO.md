@@ -2,7 +2,7 @@
 
 - legacy things
   - [ ] go over actual dotfiles in gitea and see what needs to be migrated
-    - [ ] taskwarrior settings
+    - [x] taskwarrior settings
 - system
   - adjust ricing to my liking
   - [ ] overhaul desktop entries to only show what I need
@@ -16,7 +16,7 @@
     - [x] qmk development and flash setup (install qmk cli, configure qmk home, run `qmk setup`)
   - cli
     - taskwarrior
-      - [ ] adjust settings to hackstack setup
+      - [x] adjust settings to hackstack setup
     - neovim
       - [x] github copilot
       - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
