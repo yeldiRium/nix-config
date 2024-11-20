@@ -25,6 +25,7 @@
 
   yeldirs = {
     cli = {
+      qmk.enable = true;
       taskwarrior.enable = true;
 
       neovim = {
