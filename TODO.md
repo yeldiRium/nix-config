@@ -20,6 +20,9 @@
     - neovim
       - [x] github copilot
       - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
+      - features
+        - git
+          - [ ] add guides to git commit buffer at 50 and 72 characters
       - syntax highlighting
         - [ ] css
         - [ ] csv
