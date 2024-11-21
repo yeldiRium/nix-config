@@ -34,6 +34,9 @@ in {
                 ["https://www.google"] = {
                   takeover = "never",
                 },
+                ["https://docs.google"] = {
+                  takeover = "never",
+                },
               },
             }
 
