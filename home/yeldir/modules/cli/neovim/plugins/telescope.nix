@@ -36,7 +36,10 @@ in {
             vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Search files in pwd" })
             vim.keymap.set("n", "<C-o>", builtin.git_files, { desc = "Search files in current git project" })
             vim.keymap.set("n", "<leader>ps", function()
-                builtin.grep_string({ search = vim.fn.input("Grep > ")})
+              builtin.grep_string({
+                search = vim.fn.input("Grep > "),
+                use_regex = true,
+              })
             end, { desc = "Grep pwd using telescope" })
             vim.keymap.set("n", "<leader>fr", require("telescope.builtin").registers, { desc = "Show register contents using telescope" })
           '';
