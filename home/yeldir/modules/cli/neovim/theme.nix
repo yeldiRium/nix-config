@@ -20,7 +20,7 @@ in
     hi Bold          guifg=NONE guibg=NONE gui=bold guisp=NONE
     hi Debug         guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
     hi Directory     guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi Error         guifg=${c.surface} guibg=${c.red} gui=NONE guisp=NONE
+    hi Error         guifg=${c.red} guibg=${c.surface} gui=NONE guisp=NONE
     hi ErrorMsg      guifg=${c.red} guibg=${c.surface} gui=NONE guisp=NONE
     hi Exception     guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
     hi FoldColumn    guifg=${c.cyan} guibg=${c.surface} gui=NONE guisp=NONE
