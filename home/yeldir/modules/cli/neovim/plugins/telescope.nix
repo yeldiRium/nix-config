@@ -32,16 +32,16 @@ in {
           ''
             require("telescope").setup({})
 
-            local builtin = require("telescope.builtin")
-            vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Search files in pwd" })
-            vim.keymap.set("n", "<C-o>", builtin.git_files, { desc = "Search files in current git project" })
+            local telescope = require("telescope.builtin")
+            vim.keymap.set("n", "<leader>pf", telescope.find_files, { desc = "Search files in pwd" })
+            vim.keymap.set("n", "<C-o>", telescope.git_files, { desc = "Search files in current git project" })
             vim.keymap.set("n", "<leader>ps", function()
-              builtin.grep_string({
+              telescope.grep_string({
                 search = vim.fn.input("Grep > "),
                 use_regex = true,
               })
             end, { desc = "Grep pwd using telescope" })
-            vim.keymap.set("n", "<leader>fr", require("telescope.builtin").registers, { desc = "Show register contents using telescope" })
+            vim.keymap.set("n", "<leader>fr", telescope.registers, { desc = "Show register contents using telescope" })
           '';
       }
     ];
