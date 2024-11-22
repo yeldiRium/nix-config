@@ -92,3 +92,33 @@
   - [ ] rethink the "supported languages" support in my module options
     - The list becomes very long and clutters the config
     - I might want to cluster some languages, e.g. json/yaml/xml/csv because they are related, but they might have complicated setups
+
+## Restructure development feature
+- feature
+  - editor integration
+    - lsp software
+    - neovim config
+      - ftplugin (filetype specific settings)
+      - treesitter plugin (syntax highlighting)
+      - dap plugin (debugging)
+      - lsp binding
+      - neotest plugin (testing)
+  - specific software
+    - eg docker, kubectl
+    - no interpreters or compilers, those should be installed via devbox with the project-specific version
+    - scripts and aliases
+  - shell integration
+- what features are there?
+  - go (highlighting, lsp, dap, test plugin)
+  - lua (highlighting, lsp)
+  - git (gitignore, gitconfig, gh)
+  - shell (sh, bash, zsh)
+  - web (typescript, javascript, html, css, scss)
+  - docker (docker, lazydocker)
+  - kubernetes (kubectl, k9s, helm)
+  - minikube
+  - config/data files (json, csv, xml, yaml, toml)
+  - terraform (highlighting, lsp?, cli)
+  - make (makefile highlighting & lsp?, make cli)
+  - linux (desktop files)
+  - regex
