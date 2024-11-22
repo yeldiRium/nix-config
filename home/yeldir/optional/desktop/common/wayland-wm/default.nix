@@ -20,9 +20,6 @@
   };
 
   xdg.mimeApps.enable = true;
-  xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-wlr
-  ];
 
   home.packages = with pkgs; [
     wl-clipboard

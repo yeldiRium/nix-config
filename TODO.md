@@ -6,7 +6,7 @@
 - system
   - adjust ricing to my liking
   - [ ] overhaul desktop entries to only show what I need
-  - [ ] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
+  - [x] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
 - apps
   - development
     - [ ] kubectl

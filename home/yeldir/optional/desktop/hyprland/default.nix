@@ -31,9 +31,9 @@ in {
 
   config = {
     xdg.portal = {
-      extraPortals = [pkgs.xdg-desktop-portal-wlr];
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
       config.hyprland = {
-        default = ["wlr" "gtk"];
+        default = ["hyprland" "gtk"];
       };
     };
 
