@@ -9,10 +9,10 @@
   - [x] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
 - apps
   - development
-    - [ ] kubectl
-    - [ ] k9s
-    - [ ] minikube
-    - [ ] lazydocker
+    - [x] kubectl
+    - [x] k9s
+    - [x] minikube
+    - [x] lazydocker
     - [x] qmk development and flash setup (install qmk cli, configure qmk home, run `qmk setup`)
   - cli
     - taskwarrior
