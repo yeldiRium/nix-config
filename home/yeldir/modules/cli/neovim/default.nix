@@ -88,6 +88,9 @@ in {
       // optionalAttrs "bash" {
         "nvim/ftplugin/bash.lua".source = pkgs.writeText "bash.lua" (builtins.readFile ./ftplugin/bash.lua);
       }
+      // lib.optionalAttrs cfg.git.enable {
+        "nvim/ftplugin/NeogitCommitMessage.lua".source = pkgs.writeText "NeogitCommitMessage.lua" (builtins.readFile ./ftplugin/NeogitCommitMessage.lua);
+      }
       // optionalAttrs "go" {
         "nvim/ftplugin/go.lua".source = pkgs.writeText "go.lua" (builtins.readFile ./ftplugin/go.lua);
       }

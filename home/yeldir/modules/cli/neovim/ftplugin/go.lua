@@ -3,6 +3,8 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
 
+vim.opt.colorcolumn = "80,120"
+
 vim.keymap.set("n", "gm", function()
   local bufferNumber = vim.fn.bufnr()
   local node = vim.treesitter.get_node({
