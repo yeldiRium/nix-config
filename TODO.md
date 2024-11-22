@@ -20,14 +20,15 @@
     - neovim
       - [x] github copilot
       - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
+      - [ ] key-analyzer.nvim
       - features
         - git
-          - [ ] add guides to git commit buffer at 50 and 72 characters
+          - [x] add guides to git commit buffer at 50 and 72 characters
       - syntax highlighting
         - [ ] css
         - [ ] csv
         - [ ] desktop
-        - [ ] diff
+        - [x] diff
         - [x] dockerfile
         - [ ] gitignore
         - [ ] helm?
@@ -68,7 +69,7 @@
         - [ ] check config against hackstack. strict checking does not seem to work
 - fixes
     - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
-    - [ ] still "too many open files" errors when starting games (e.g. kingdoms of amalur)
+    - [x] still "too many open files" errors when starting games (e.g. kingdoms of amalur)
 - security
   - [ ] look into full disk encryption (might require re-setup)
   - [ ] setup sops
