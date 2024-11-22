@@ -137,6 +137,11 @@
       monitor = "DP-3";
     }
     {
+      command = "${lib.getExe pkgs.spotify}";
+      workspace = "1";
+      monitor = "DP-3";
+    }
+    {
       command = "${lib.getExe pkgs.google-chrome}";
       workspace = "2";
       monitor = "DP-3";
@@ -144,11 +149,6 @@
     {
       command = "${lib.getExe pkgs.obsidian}";
       workspace = "5";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.spotify}";
-      workspace = "6";
       monitor = "DP-3";
     }
     {
