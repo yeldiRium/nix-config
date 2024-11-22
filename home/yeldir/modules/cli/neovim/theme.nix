@@ -44,8 +44,8 @@ in
     hi Title         guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
     hi Conceal       guifg=${c.blue} guibg=${c.surface} gui=NONE guisp=NONE
     hi Cursor        guifg=${c.surface} guibg=${c.on_surface} gui=NONE guisp=NONE
-    hi NonText       guifg=${c.outline} guibg=NONE gui=NONE guisp=NONE
-    hi Whitespace    guifg=${c.outline} guibg=NONE gui=NONE guisp=NONE
+    hi NonText       guifg=${c.surface_container_highest} guibg=NONE gui=NONE guisp=NONE
+    hi Whitespace    guifg=${c.surface_container_highest} guibg=NONE gui=NONE guisp=NONE
     hi LineNr        guifg=${c.on_surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
     hi SignColumn    guifg=${c.on_surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
     hi StatusLine    guifg=${c.on_surface_variant} guibg=${c.tertiary_container} gui=NONE guisp=NONE

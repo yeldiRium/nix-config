@@ -19,6 +19,7 @@ in {
     ./plugins/early-retirement.nix
     ./plugins/firenvim.nix
     ./plugins/harpoon2.nix
+    ./plugins/layout.nix
     ./plugins/lsp.nix
     ./plugins/git.nix
     ./plugins/rnvimr.nix

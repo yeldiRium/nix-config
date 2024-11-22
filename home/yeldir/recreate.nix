@@ -47,6 +47,10 @@
           "yaml"
         ];
 
+        layout = {
+          indentation-guides.enable = true;
+        };
+
         copilot.enable = true;
         debugging.enable = true;
         firenvim.enable = true;
