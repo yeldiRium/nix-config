@@ -84,6 +84,9 @@
 - modularity
   - [x] add options to disable animations and transparency in hyprland and wayland
   - [x] make impermanence optional
+  - [ ] invert how support for programming languages is structured
+    - instead of having language support distributed across many files (neovim lsp, treesitter, other installations), each programming language or development feature should have one module
+    - this module contains configurations for all other programs (neovim, install additional things, shell integrations) depending on whether they are installed
   - [ ] make system target configurable between linux and darwin
     - [ ] use it to build the shell aliases for nbuild/nswitch/nrepl
   - [ ] rethink the "supported languages" support in my module options
