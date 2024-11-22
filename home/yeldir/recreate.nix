@@ -26,6 +26,9 @@
   yeldirs = {
     cli = {
       hstr.enable = true;
+      k9s.enable = true;
+      kubectl.enable = true;
+      minikube.enable = true;
       qmk.enable = true;
       taskwarrior.enable = true;
 

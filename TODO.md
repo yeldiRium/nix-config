@@ -5,13 +5,13 @@
     - [x] taskwarrior settings
 - system
   - adjust ricing to my liking
-  - [ ] overhaul desktop entries to only show what I need
+  - [x] overhaul desktop entries to only show what I need
   - [x] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
 - apps
   - development
     - [ ] kubectl
     - [ ] k9s
-    - [ ] k3s
+    - [ ] minikube
     - [ ] lazydocker
     - [x] qmk development and flash setup (install qmk cli, configure qmk home, run `qmk setup`)
   - cli
