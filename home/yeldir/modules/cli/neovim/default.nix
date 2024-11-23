@@ -22,6 +22,7 @@ in {
     ./plugins/layout.nix
     ./plugins/lsp.nix
     ./plugins/git.nix
+    ./plugins/obsidian.nix
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix

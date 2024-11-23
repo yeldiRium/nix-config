@@ -24,6 +24,10 @@
       - features
         - git
           - [x] add guides to git commit buffer at 50 and 72 characters
+        - obsidian
+          - [ ] add keybindings
+          - [ ] add custom template substitutions until all of my templates work
+          - [ ] maybe somehow support dataview? this might be a limitation
       - syntax highlighting
         - [ ] css
         - [ ] csv

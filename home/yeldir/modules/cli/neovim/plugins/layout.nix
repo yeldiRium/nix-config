@@ -36,6 +36,8 @@ in {
 
           vim.o.list = true
           vim.o.listchars = 'tab:▎»,space:·,lead:·,trail:·,eol:¬'
+
+          vim.o.conceallevel = 1
         '';
 
       plugins = with pkgs.unstable.vimPlugins;
