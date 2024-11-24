@@ -114,7 +114,7 @@ in {
           ];
           transparentApps =
             if cfg.enableTransparency
-            then [] ++ lib.optionals yeldirsCfg.desktop.common.kitty.enable [
+            then [] ++ lib.optionals yeldirsCfg.desktop.essentials.kitty.enable [
                 "class:^(kitty)$"
               ]
             else [];

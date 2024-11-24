@@ -25,58 +25,70 @@
 
   yeldirs = {
     cli = {
-      hstr.enable = true;
-      k9s.enable = true;
-      kubectl.enable = true;
-      lazydocker.enable = true;
-      minikube.enable = true;
-      qmk.enable = true;
-      taskwarrior.enable = true;
-
-      neovim = {
-        enable = true;
-
-        supportedLanguages = [
-          "bash"
-          "docker"
-          "go"
-          "javascript"
-          "json"
-          "ledger"
-          "lua"
-          "markdown"
-          "nix"
-          "poefilter"
-          "typescript"
-          "yaml"
-        ];
-
-        layout = {
-          indentation-guides.enable = true;
+      essentials = {
+        zsh = {
+          enable = true;
+          enableSecretEnv = true;
         };
 
-        copilot.enable = true;
-        debugging.enable = true;
-        early-retirement.enable = true;
-        firenvim.enable = true;
-        git.enable = true;
-        harpoon2.enable = true;
-        lsp.enable = true;
-        nrvimr.enable = true;
-        obsidian.enable = true;
-        telescope.enable = true;
-        testing.enable = true;
-        treesitter.enable = true;
-        undotree.enable = true;
+        hstr.enable = true;
+
+        neovim = {
+          enable = true;
+
+          supportedLanguages = [
+            "bash"
+            "docker"
+            "go"
+            "javascript"
+            "json"
+            "ledger"
+            "lua"
+            "markdown"
+            "nix"
+            "poefilter"
+            "typescript"
+            "yaml"
+          ];
+
+          layout = {
+            indentation-guides.enable = true;
+          };
+
+          copilot.enable = true;
+          debugging.enable = true;
+          early-retirement.enable = true;
+          firenvim.enable = true;
+          git.enable = true;
+          harpoon2.enable = true;
+          lsp.enable = true;
+          nrvimr.enable = true;
+          obsidian.enable = true;
+          telescope.enable = true;
+          testing.enable = true;
+          treesitter.enable = true;
+          undotree.enable = true;
+        };
       };
 
-      zsh = {
-        enable = true;
-        enableSecretEnv = true;
+      development = {
+        qmk.enable = true;
+      };
+
+      office = {
+        taskwarrior.enable = true;
+      };
+
+      ops = {
+        k9s.enable = true;
+        kubectl.enable = true;
+        lazydocker.enable = true;
+        minikube.enable = true;
       };
     };
+
     desktop = {
-      common = {
+      essentials = {
         kitty.enable = true;
       };
       media = {

@@ -1,6 +1,6 @@
 {
   imports = [
-    ./common
+    ./essentials
     ./media
     ./office
   ];

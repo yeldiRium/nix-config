@@ -24,43 +24,51 @@
 
   yeldirs = {
     cli = {
-      taskwarrior.enable = true;
+      essentials = {
+        zsh = {
+          enable = true;
+          enableSecretEnv = true;
+        };
 
-      neovim = {
-        enable = true;
+        hstr.enable = true;
 
-        supportedLanguages = [
-          "bash"
-          "json"
-          "ledger"
-          "lua"
-          "markdown"
-          "nix"
-          "yaml"
-        ];
+        neovim = {
+          enable = true;
 
-        copilot.enable = true;
-        debugging.enable = true;
-        git.enable = true;
-        harpoon2.enable = true;
-        lsp.enable = true;
-        nrvimr.enable = true;
-        telescope.enable = true;
-        testing.enable = true;
-        treesitter.enable = true;
-        undotree.enable = true;
+          supportedLanguages = [
+            "bash"
+            "json"
+            "ledger"
+            "lua"
+            "markdown"
+            "nix"
+            "yaml"
+          ];
+
+          copilot.enable = true;
+          debugging.enable = true;
+          git.enable = true;
+          harpoon2.enable = true;
+          lsp.enable = true;
+          nrvimr.enable = true;
+          telescope.enable = true;
+          testing.enable = true;
+          treesitter.enable = true;
+          undotree.enable = true;
+        };
       };
 
-      zsh = {
-        enable = true;
-        enableSecretEnv = true;
+      office = {
+        taskwarrior.enable = true;
       };
     };
+
     desktop = {
-      common = {
+      essentials = {
         kitty.enable = true;
       };
     };
+
     system = {
       keyboardLayout = "de";
       keyboardVariant = "neo";
