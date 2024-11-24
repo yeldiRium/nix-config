@@ -15,10 +15,10 @@ in {
         assertion = config.yeldirs.cli.essentials.neovim.enable;
         message = "neovim must be enabled for the git support to work";
       }
-    ];
-
-    home.packages = with pkgs; [
-      git
+      {
+        assertion = config.yeldirs.cli.essentials.git.enable;
+        message = "git must be enabled for the neovim git support to work";
+      }
     ];
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [

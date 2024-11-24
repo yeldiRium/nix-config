@@ -30,7 +30,16 @@
           enableSecretEnv = true;
         };
 
+        bat.enable = true;
+        git.enable = true;
+        gpg.enable = true;
         hstr.enable = true;
+        ranger = {
+          enable = true;
+          enableGui = true;
+        };
+        ssh.enable = true;
+        thefuck.enable = true;
 
         neovim = {
           enable = true;
