@@ -36,6 +36,23 @@ in {
                   path = "~/querbeet/workspace/obsidian/",
                 },
               },
+              mappings = {
+                ["gf"] = {
+                  action = function()
+                    require("obsidian").get_client():command("ObsidianFollowLink", {})
+                  end,
+                  opts = { noremap = false, expr = true, buffer = true },
+                },
+                ["<C-o>"] = {
+                  action = function()
+                    require("obsidian").get_client():command("ObsidianQuickSwitch", {})
+                  end,
+                  opts = { noremap = false, buffer = true },
+                },
+              },
+              picker = {
+                name = "telescope.nvim",
+              },
               daily_notes = {
                 folder = "daily/log",
                 date_format = "%Y-%m-%d %A",
@@ -44,7 +61,15 @@ in {
               templates = {
                 folder = "templates",
               },
+              disable_frontmatter = true,
+              ui = {
+                enable = false,
+              },
             })
+            vim.keymap.set("n", "<leader>od", function()
+              require("obsidian").get_client():command("ObsidianToday", {})
+            end, { desc = "Search files in pwd" })
+            vim.keymap.set("n", "<C-o>", telescope.git_files, { desc = "Search files in current git project" })
           '';
       }
     ];
