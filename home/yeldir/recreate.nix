@@ -68,6 +68,7 @@
           debugging.enable = true;
           early-retirement.enable = true;
           firenvim.enable = true;
+          fold-cycle.enable = true;
           git.enable = true;
           harpoon2.enable = true;
           lsp.enable = true;

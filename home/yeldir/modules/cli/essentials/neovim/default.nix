@@ -18,6 +18,7 @@ in {
     ./plugins/debugging.nix
     ./plugins/early-retirement.nix
     ./plugins/firenvim.nix
+    ./plugins/fold-cycle.nix
     ./plugins/harpoon2.nix
     ./plugins/layout.nix
     ./plugins/lsp.nix
