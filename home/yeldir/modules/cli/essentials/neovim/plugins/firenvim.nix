@@ -32,11 +32,17 @@ in {
             vim.g.firenvim_config = {
               localSettings = {
                 ["https://www.google"] = {
+                  priority = 99,
                   takeover = "never",
                 },
                 ["https://docs.google"] = {
+                  priority = 99,
                   takeover = "never",
                 },
+                ["https://regex101.com"] = {
+                  priority = 99,
+                  takeover = "never",
+                }
               },
             }
 
