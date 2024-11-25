@@ -37,14 +37,6 @@ in {
               foldCycle.open()
             end,
             { desc = "Open fold under cursor." })
-            vim.keymap.set("n", "<M-S-Up>", function()
-              foldCycle.close_all()
-            end,
-            { desc = "Recursively close fold under cursor and all nested folds." })
-            vim.keymap.set("n", "<M-S-Down>", function()
-              foldCycle.open_all()
-            end,
-            { desc = "Recursively open fold under cursor and all nested folds." })
           '';
       }
     ];
