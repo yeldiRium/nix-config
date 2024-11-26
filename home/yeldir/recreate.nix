@@ -98,6 +98,9 @@
     };
 
     desktop = {
+      communication = {
+        matrix.enable = true;
+      };
       essentials = {
         kitty.enable = true;
       };
