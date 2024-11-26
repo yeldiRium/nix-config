@@ -34,6 +34,11 @@ in {
             user = "yeldir";
             identityFile = "~/.ssh/hleutloff";
           };
+          "backup" = {
+            hostname = "192.168.178.41";
+            user = "yeldir";
+            identityFile = "~/.ssh/hleutloff";
+          };
         };
       };
     };
