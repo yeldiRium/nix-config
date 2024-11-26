@@ -42,7 +42,11 @@ in {
                 ["https://regex101.com"] = {
                   priority = 99,
                   takeover = "never",
-                }
+                },
+                ["https://web.whatsapp.com"] = {
+                  priority = 99,
+                  takeover = "never",
+                },
               },
             }
 
