@@ -33,7 +33,7 @@
       "hl" = "hledger";
     };
     sessionVariables = {
-      LEDGER_FILE = "$HOME/querbeet/workspace/ledger/all.journal";
+      LEDGER_FILE = "$HOME/querbeet/workspace/ledger/current.journal";
     };
   };
 
