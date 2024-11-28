@@ -15,6 +15,7 @@ vim.keymap.set("n", "gm", function()
     return
   end
   if node:type() ~= "type_identifier" then
+    print("Can only jump to methods on type identifiers.")
     return
   end
 
