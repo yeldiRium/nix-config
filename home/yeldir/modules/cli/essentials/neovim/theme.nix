@@ -48,7 +48,7 @@ in
     hi Whitespace    guifg=${c.surface_container_highest} guibg=NONE gui=NONE guisp=NONE
     hi LineNr        guifg=${c.on_surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
     hi SignColumn    guifg=${c.on_surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
-    hi StatusLine    guifg=${c.on_surface_variant} guibg=${c.tertiary_container} gui=NONE guisp=NONE
+    hi StatusLine    guifg=${c.on_tertiary_container} guibg=${c.tertiary_container} gui=NONE guisp=NONE
     hi StatusLineNC  guifg=${c.surface_variant} guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi VertSplit     guifg=${c.surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
     hi ColorColumn   guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
