@@ -21,19 +21,32 @@ in {
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = copilot-vim;
-        type = "viml";
+        type = "lua";
         config =
           /*
-          vim
+          lua
           */
           ''
-            " Default keybinding for github copilot it <Tab>, which I like.
-            " Binding it explicitly somehow didn't work, so I'll just leave it as-is.
+            vim.g.copilot_filetypes = {
+              ledger = false,
+            }
 
-            " Disable copilot in certain filetypes
-            let g:copilot_filetypes = {
-            \ "ledger": v:false,
-            \ }
+            local copilotEnabled = false
+            vim.api.nvim_create_autocmd("VimEnter", {
+                callback = function()
+                    vim.cmd(':Copilot disable')
+                end
+            })
+            vim.keymap.set("n", "<leader>cct", function()
+                if copilotEnabled then
+                    vim.cmd(':Copilot disable')
+                    print("Copilot disabled")
+                else
+                    vim.cmd(':Copilot enable')
+                    print("Copilot enabled")
+                end
+                copilotEnabled = not copilotEnabled
+            end)
           '';
       }
       {
