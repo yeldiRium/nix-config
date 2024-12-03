@@ -252,7 +252,10 @@ in {
           */
           ''
             local cmp = require('cmp')
+            local cmpEnabled = false
+
             cmp.setup({
+                enabled = cmpEnabled,
                 -- Put icons into completion suggestions
                 formatting = {
                   format = require('lspkind').cmp_format({
@@ -280,6 +283,17 @@ in {
                     { name = "path" },
                 },
             })
+
+            vim.keymap.set("n", "<leader>clt", function()
+              if cmpEnabled then
+                require("cmp").setup({ enabled = false })
+                print("cmp disabled")
+              else
+                require("cmp").setup({ enabled = true })
+                print("cmp enabled")
+              end
+              cmpEnabled = not cmpEnabled
+            end, {})
           '';
       }
     ];

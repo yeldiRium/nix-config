@@ -19,7 +19,7 @@ vim.keymap.set("n", "<A-O>", "O<Esc>")
 
 -- Programming
 -- LSP
-vim.keymap.set("n", "<leader>cR", "<cmd>LspRestart<cr>")
+vim.keymap.set("n", "<leader>clr", "<cmd>LspRestart<cr>")
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "Hover documentation" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
