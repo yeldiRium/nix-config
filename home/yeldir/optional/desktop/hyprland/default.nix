@@ -30,6 +30,12 @@ in {
   };
 
   config = {
+    home.packages = with pkgs; [
+      grimblast
+      hyprpicker
+      bibata-cursors
+    ];
+
     xdg.portal = {
       extraPortals = [pkgs.xdg-desktop-portal-hyprland];
       config.hyprland = {
@@ -37,11 +43,13 @@ in {
       };
     };
 
-    home.packages = with pkgs; [
-      grimblast
-      hyprpicker
-      bibata-cursors
-    ];
+    home.pointerCursor = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
+      gtk.enable = true;
+      # hyprcursor.enable = true;
+    };
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -118,19 +126,24 @@ in {
           ];
           transparentApps =
             if cfg.enableTransparency
-            then [] ++ lib.optionals yeldirsCfg.desktop.essentials.kitty.enable [
+            then
+              []
+              ++ lib.optionals yeldirsCfg.desktop.essentials.kitty.enable [
                 "class:^(kitty)$"
               ]
             else [];
-        in [
-          "stayfocused, ${steam}"
-          "minsize 1 1, ${steam}"
-          "immediate, ${steamGame}"
-        ] ++ (
-          map (app: "tile, ${app}") unfloatApps
-        ) ++ (
-          map (app: "opacity 0.85, ${app}") transparentApps
-        );
+        in
+          [
+            "stayfocused, ${steam}"
+            "minsize 1 1, ${steam}"
+            "immediate, ${steamGame}"
+          ]
+          ++ (
+            map (app: "tile, ${app}") unfloatApps
+          )
+          ++ (
+            map (app: "opacity 0.85, ${app}") transparentApps
+          );
 
         layerrule = [
           "animation fade, hyprpicker"
