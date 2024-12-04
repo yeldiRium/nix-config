@@ -40,6 +40,7 @@ in {
     home.packages = with pkgs; [
       grimblast
       hyprpicker
+      bibata-cursors
     ];
 
     wayland.windowManager.hyprland = {
@@ -83,6 +84,9 @@ in {
           touchpad.disable_while_typing = false;
 
           accel_profile = "flat";
+        };
+        cursor = {
+          enable_hyprcursor = true;
         };
         device =
           map (keyboard: {
@@ -218,7 +222,7 @@ in {
         exec = [
           "${pkgs.waybar}/bin/waybar -c ${config.home.homeDirectory}/.config/waybar/config"
           "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
-          "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
+          "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"
         ];
 
         monitor = let

@@ -36,7 +36,7 @@ in {
     theme = yeldirCfg.gtk.theme;
     font = yeldirCfg.fontProfiles.regular;
     cursorTheme = {
-      inherit (yeldirCfg.gtk.cursorTheme) name package;
+      inherit (yeldirCfg.home.pointerCursor) name package;
     };
     settings.background = {
       path = yeldirCfg.wallpaper;

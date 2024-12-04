@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -22,6 +23,14 @@
   hostName = "recreate";
 
   wallpaper = pkgs.wallpapers.space-cloud-orange;
+
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    # hyprcursor.enable = true;
+  };
 
   yeldirs = {
     cli = {
