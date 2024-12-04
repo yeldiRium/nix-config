@@ -1,17 +1,18 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
 }: let
   homeCfgs = config.home-manager.users;
   homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
-  vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0'';
+
+  # https://github.com/rharish101/ReGreet/issues/95#issuecomment-2490327065
+  vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0 GSK_RENDERER=ngl'';
 
   yeldirCfg = homeCfgs.yeldir;
 
-  sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
+  sway-kiosk = command: "${lib.getExe pkgs.sway} --config ${pkgs.writeText "kiosk.config" ''
     input * {
       xkb_layout "de"
     }
@@ -23,13 +24,6 @@
     exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
   ''}";
 in {
-  imports = [
-    "${inputs.nixpkgs-unstable}/nixos/modules/programs/regreet.nix"
-  ];
-  disabledModules = [
-    "programs/regreet.nix"
-  ];
-
   users.extraUsers.greeter = {
     # For caching and such
     home = "/tmp/greeter-home";

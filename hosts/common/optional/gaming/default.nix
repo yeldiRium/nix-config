@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./gamemode.nix
     ./steam.nix
@@ -8,14 +8,15 @@
     xwayland.enable = true;
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
+  };
 
-    # https://nixos.wiki/wiki/Steam#Changing_the_driver_on_AMD_GPUs
-    extraPackages = [pkgs.amdvlk];
-    extraPackages32 = [pkgs.driversi686Linux.amdvlk];
+  # https://nixos.wiki/wiki/Steam#Changing_the_driver_on_AMD_GPUs
+  hardware.amdgpu.amdvlk = {
+    enable = true;
+    support32Bit.enable = true;
   };
 
   # Many games error with "Too many open files" with the default setting of 1024:524288.

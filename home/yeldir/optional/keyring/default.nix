@@ -4,8 +4,8 @@
   ...
 }: {
   home.packages = with pkgs; [
-    gnome.gnome-keyring
-    gnome.seahorse
+    gnome-keyring
+    seahorse
   ];
   services.gnome-keyring.enable = true;
 
