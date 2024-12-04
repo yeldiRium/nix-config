@@ -58,6 +58,10 @@
   };
   programs.fuse.userAllowOther = true;
 
+  # https://app.semanticdiff.com/gh/NixOS/nixpkgs/pull/351151/overview
+  boot.initrd.systemd.suppressedUnits = [ "systemd-machine-id-commit.service" ];
+  systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+
   system.activationScripts.persistent-dirs.text = let
     mkHomePersist = user:
       lib.optionalString user.createHome ''
