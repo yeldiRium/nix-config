@@ -1,5 +1,8 @@
 # TODO
 
+- bugs
+    - [ ] fix ugly hyprland cursor wtf
+
 - legacy things
   - [ ] go over actual dotfiles in gitea and see what needs to be migrated
     - [x] taskwarrior settings
