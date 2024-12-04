@@ -2,6 +2,7 @@
 
 - bugs
   - [x] fix ugly hyprland cursor wtf
+  - [ ] make regreet show up on main monitor
 
 - legacy things
   - [ ] go over actual dotfiles in gitea and see what needs to be migrated
