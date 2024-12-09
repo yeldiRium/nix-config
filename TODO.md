@@ -12,6 +12,9 @@
   - [x] overhaul desktop entries to only show what I need
   - [x] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
 - apps
+  - more tui
+    - [ ] evaluate email client himalaya (https://github.com/pimalaya/himalaya)
+    - [ ] evaluate email client mutt (http://www.mutt.org/)
   - development
     - [x] kubectl
     - [x] k9s
