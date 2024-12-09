@@ -54,6 +54,12 @@
     homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
+      hackstack = lib.nixosSystem {
+        modules = [./hosts/hackstack];
+        secialArgs = {
+          inherit inputs outputs;
+        };
+      };
       laboratory = lib.nixosSystem {
         modules = [./hosts/laboratory];
         specialArgs = {
@@ -69,6 +75,13 @@
     };
 
     homeConfigurations = {
+      "yeldir@hackstack" = lib.homeManagerConfiguration {
+        modules = [./home/yeldir/hackstack.nix ./home/yeldir/nixpkgs.nix];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
       "yeldir@laboratory" = lib.homeManagerConfiguration {
         modules = [./home/yeldir/laboratory.nix ./home/yeldir/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
