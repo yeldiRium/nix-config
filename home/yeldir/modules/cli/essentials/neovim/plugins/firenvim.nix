@@ -24,40 +24,43 @@ in {
       {
         plugin = firenvim;
         type = "lua";
-        config =
+        config = let
+          disabledSites = [
+            "https://www.google"
+            "https://docs.google"
+            "https://regex101.com"
+            "https://web.whatsapp.com"
+            "https://www.youtube.com"
+          ];
+          localSettings = lib.concatMapStringsSep "\n" (siteName:
+            /*
+            lua
+            */
+            ''
+              ["${siteName}"] = {
+                priority = 99,
+                takeover = "never",
+              },
+            '')
+          disabledSites;
           /*
           lua
           */
-          ''
-            vim.g.firenvim_config = {
-              localSettings = {
-                ["https://www.google"] = {
-                  priority = 99,
-                  takeover = "never",
-                },
-                ["https://docs.google"] = {
-                  priority = 99,
-                  takeover = "never",
-                },
-                ["https://regex101.com"] = {
-                  priority = 99,
-                  takeover = "never",
-                },
-                ["https://web.whatsapp.com"] = {
-                  priority = 99,
-                  takeover = "never",
-                },
-              },
-            }
+        in ''
+          vim.g.firenvim_config = {
+            localSettings = {
+              ${localSettings}
+            },
+          }
 
-            vim.cmd({
-              cmd = "call",
-              args = { "firenvim#install(0)" },
-              mods = {
-                silent = true,
-              },
-            })
-          '';
+          vim.cmd({
+            cmd = "call",
+            args = { "firenvim#install(0)" },
+            mods = {
+              silent = true,
+            },
+          })
+        '';
       }
     ];
   };
