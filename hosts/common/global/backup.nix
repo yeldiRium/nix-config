@@ -38,6 +38,10 @@ in {
       }
     ];
 
+    environment.shellAliases = {
+      "backup-create" = "sudo borgmatic create --verbosity 1 --list --stats";
+    };
+
     services.borgmatic = {
       enable = true;
     };
