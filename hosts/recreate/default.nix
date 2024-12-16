@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   pkgs,
   ...
@@ -37,6 +36,10 @@
     hostName = "recreate";
     hostId = "5444b7b4";
   };
+
+  services.udev.packages = [
+    pkgs.qmk-udev-rules
+  ];
 
   yeldirs = {
     common = {
