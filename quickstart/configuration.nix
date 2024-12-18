@@ -1,10 +1,12 @@
-{ pkgs, lib, inputs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -12,14 +14,14 @@
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
-  };
+  ];
 
   system.stateVersion = "24.05"; # Did you read the comment?
 
   users.users."yeldir" = {
     isNormalUser = true;
     initialPassword = "12345";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
   };
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
