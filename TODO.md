@@ -77,9 +77,10 @@
       - rss
         - [ ] manage RSS feeds in thunderbird by generating `feeds.json`. this might not work, since thunderbird wants to write the file
       - hledger
-        - [ ] check config against hackstack. strict checking does not seem to work
+        - [x] check config against hackstack. strict checking does not seem to work
 - fixes
-  - [ ] investigate startup script. deleting btrfs subvolumes seems to be broken
+  - [x] investigate startup script. deleting btrfs subvolumes seems to be broken
+    - yep, it is, because my ssd seems to have corrupted sectors that btrfs can't handle. should not be a problem for other hosts
   - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
   - [x] still "too many open files" errors when starting games (e.g. kingdoms of amalur)
 - security
