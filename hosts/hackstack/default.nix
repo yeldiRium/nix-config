@@ -4,7 +4,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    (import ./disko.nix {device = "/dev/xxx-tbd";})
+    (import ./disko.nix {device = "/dev/nvme0n1";})
 
     ../common/global
 
