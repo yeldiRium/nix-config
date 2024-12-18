@@ -56,7 +56,7 @@
     nixosConfigurations = {
       hackstack = lib.nixosSystem {
         modules = [./hosts/hackstack];
-        secialArgs = {
+        specialArgs = {
           inherit inputs outputs;
         };
       };
