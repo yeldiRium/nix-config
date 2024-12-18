@@ -18,6 +18,10 @@
 
   system.stateVersion = "24.05"; # Did you read the comment?
 
+  environment.systemPackages = with pkgs; [
+    git
+  ];
+
   users.users."yeldir" = {
     isNormalUser = true;
     initialPassword = "12345";
