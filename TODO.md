@@ -26,6 +26,7 @@
       - [x] adjust settings to hackstack setup
     - neovim
       - [x] github copilot
+      - [ ] highlight uses of hovered symbol
       - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
       - [ ] key-analyzer.nvim
       - features
