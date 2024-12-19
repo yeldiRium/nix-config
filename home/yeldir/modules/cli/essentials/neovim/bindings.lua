@@ -26,6 +26,9 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action
 vim.keymap.set("n", "<leader>ci", function()
   vim.lsp.buf.code_action({ source = { only = { "source.organizeImports" }}, apply = true })
 end, { desc = "Organize imports" })
+vim.keymap.set("i", "<C-Space>", function()
+    require("cmp").complete()
+end, { desc = "Trigger completion suggestions request" })
 --   refactoring
 vim.keymap.set("n", "<leader>crr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 --   navigation
