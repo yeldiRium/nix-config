@@ -88,6 +88,7 @@
 
       office = {
         taskwarrior.enable = true;
+        yt-dlp.enable = true;
       };
 
       ops = {
