@@ -106,6 +106,7 @@
         kitty.enable = true;
       };
       media = {
+        clementine.enable = true;
         gimp.enable = true;
       };
       office = {
