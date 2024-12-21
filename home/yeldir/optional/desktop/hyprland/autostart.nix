@@ -1,4 +1,5 @@
 {config, ...}: {
+  # TODO: move autostart options definition here
   wayland.windowManager.hyprland.settings.exec-once = let
     windowrule = monitor: workspace:
       if monitor == null && workspace && null
