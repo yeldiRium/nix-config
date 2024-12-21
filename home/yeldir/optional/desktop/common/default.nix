@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -27,4 +28,16 @@
     else "default";
 
   xdg.portal.enable = true;
+
+  xdg.desktopEntries = {
+    "org.gnome.dspy" = {
+      name = "D-Spy";
+      type = "Application";
+      exec = "env GSK_RENDERER=ngl ${lib.getExe pkgs.d-spy}";
+      icon = "org.gnome.dspy";
+      categories = ["GNOME" "GTK" "Development"];
+      terminal = false;
+      startupNotify = true;
+    };
+  };
 }
