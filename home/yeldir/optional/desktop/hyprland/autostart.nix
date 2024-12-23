@@ -1,7 +1,7 @@
 {config, ...}: {
   wayland.windowManager.hyprland.settings.exec-once = let
     windowrule = monitor: workspace:
-      if monitor == null && workspace && null
+      if monitor == null && workspace == null
       then ""
       else
         "["
