@@ -54,14 +54,14 @@
             "yaml"
           ];
 
-          copilot.enable = false;
-          debugging.enable = false;
+          copilot.enable = true;
+          debugging.enable = true;
           git.enable = true;
           harpoon2.enable = true;
           lsp.enable = true;
           nrvimr.enable = true;
           telescope.enable = true;
-          testing.enable = false;
+          testing.enable = true;
           treesitter.enable = true;
           undotree.enable = true;
         };
