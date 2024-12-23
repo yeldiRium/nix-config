@@ -73,6 +73,9 @@
     };
 
     desktop = {
+      communication = {
+        matrix.enable = true;
+      };
       essentials = {
         kitty.enable = true;
       };
@@ -109,22 +112,27 @@
     {
       command = "${lib.getExe pkgs.telegram-desktop}";
       workspace = "1";
-      monitor = "DP-7";
+      monitor = null;
+    }
+    {
+      command = "${lib.getExe pkgs.element-desktop}";
+      workspace = "1";
+      monitor = null;
     }
     {
       command = "${lib.getExe pkgs.google-chrome}";
       workspace = "2";
-      monitor = "DP-6";
+      monitor = null;
     }
     {
       command = "${lib.getExe pkgs.obsidian}";
       workspace = "5";
-      monitor = "DP-6";
+      monitor = null;
     }
     {
       command = "${lib.getExe pkgs.thunderbird}";
       workspace = "7";
-      monitor = "DP-6";
+      monitor = null;
     }
   ];
 }
