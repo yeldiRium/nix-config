@@ -54,14 +54,14 @@
             "yaml"
           ];
 
-          copilot.enable = false;
-          debugging.enable = false;
+          copilot.enable = true;
+          debugging.enable = true;
           git.enable = true;
           harpoon2.enable = true;
           lsp.enable = true;
           nrvimr.enable = true;
           telescope.enable = true;
-          testing.enable = false;
+          testing.enable = true;
           treesitter.enable = true;
           undotree.enable = true;
         };
@@ -73,6 +73,9 @@
     };
 
     desktop = {
+      communication = {
+        matrix.enable = true;
+      };
       essentials = {
         kitty.enable = true;
       };
@@ -98,40 +101,38 @@
 
   monitors = [
     {
-      name = "LVDS-1";
-      width = 1600;
-      height = 900;
-      workspace = "9";
-      position = "1920x800";
-    }
-    {
-      name = "HDMI-A-1";
+      name = "eDP-1";
       width = 1920;
       height = 1080;
+      position = "1920x800";
       primary = true;
-      position = "0x0";
     }
   ];
   autostart = [
     {
       command = "${lib.getExe pkgs.telegram-desktop}";
       workspace = "1";
-      monitor = "DP-3";
+      monitor = null;
+    }
+    {
+      command = "${lib.getExe pkgs.element-desktop}";
+      workspace = "1";
+      monitor = null;
     }
     {
       command = "${lib.getExe pkgs.google-chrome}";
       workspace = "2";
-      monitor = "DP-3";
+      monitor = null;
     }
     {
       command = "${lib.getExe pkgs.obsidian}";
       workspace = "5";
-      monitor = "DP-3";
+      monitor = null;
     }
     {
       command = "${lib.getExe pkgs.thunderbird}";
       workspace = "7";
-      monitor = "DP-3";
+      monitor = null;
     }
   ];
 }

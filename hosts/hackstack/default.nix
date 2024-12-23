@@ -1,8 +1,12 @@
 {
+  inputs,
   pkgs,
   ...
 }: {
   imports = [
+    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-pc-ssd
+
     ./hardware-configuration.nix
     (import ./disko.nix {device = "/dev/nvme0n1";})
 
