@@ -161,17 +161,7 @@
       monitor = "DP-3";
     }
     {
-      command = "${lib.getExe pkgs.vesktop}";
-      workspace = "1";
-      monitor = "DP-3";
-    }
-    {
       command = "${lib.getExe pkgs.zotero}";
-      workspace = "1";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.spotify}";
       workspace = "1";
       monitor = "DP-3";
     }
