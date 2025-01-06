@@ -49,9 +49,13 @@
       ++
       # Move windows
       (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, hy3:movewindow, ${direction}") directions)
-      ++
-      # Move workspace to other monitor
-      (lib.mapAttrsToList (key: direction: "$mod SHIFT ALT, ${key}, movecurrentworkspacetomonitor, ${direction}") directions)
+      ++ [
+        # Move workspace to other monitor
+        "$mod SHIFT, U, movecurrentworkspacetomonitor, l"
+        "$mod SHIFT, home, movecurrentworkspacetomonitor, l"
+        "$mod SHIFT, O, movecurrentworkspacetomonitor, r"
+        "$mod SHIFT, end, movecurrentworkspacetomonitor, r"
+      ]
       ++ [
         # Window management bindings
 
