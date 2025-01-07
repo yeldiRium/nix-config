@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./wow.nix
+  ];
+}
+

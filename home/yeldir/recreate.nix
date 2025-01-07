@@ -106,6 +106,9 @@
       essentials = {
         kitty.enable = true;
       };
+      games = {
+        wow.enable = true;
+      };
       media = {
         clementine.enable = true;
         gimp.enable = true;
