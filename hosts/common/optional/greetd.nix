@@ -48,6 +48,8 @@ in {
     settings.default_session.command = sway-kiosk (lib.getExe config.programs.regreet.package);
   };
 
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
   environment.persistence = {
     "/persist/system" = {
       directories = [
