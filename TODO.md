@@ -11,6 +11,7 @@
   - adjust ricing to my liking
   - [x] overhaul desktop entries to only show what I need
   - [x] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
+  - [ ] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
 - apps
   - more tui
     - [ ] evaluate email client himalaya (https://github.com/pimalaya/himalaya)
