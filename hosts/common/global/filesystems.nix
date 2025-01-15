@@ -1,5 +1,5 @@
 {
-  boot.supportedFilesystems = ["nfs" "zfs" "nfts"];
+  boot.supportedFilesystems = ["nfs" "zfs" "ntfs"];
   boot.zfs.forceImportRoot = false;
   boot.zfs.allowHibernation = true;
 }
