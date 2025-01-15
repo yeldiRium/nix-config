@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.yeldirs.mounts.datengrab;
 in {
   options = {
@@ -9,11 +14,22 @@ in {
       sshfs
     ];
 
-    programs.ssh.extraConfig = ''
-      Host datengrab
-        User yeldir
-        IdentityFile ${config.users.users.yeldir.home}/.ssh/hleutloff
+    programs.ssh = {
+      extraConfig = ''
+        Host datengrab
+          User yeldir
+          IdentityFile ${config.users.users.yeldir.home}/.ssh/hleutloff
       '';
+      knownHosts = {
+        datengrab = {
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBHHAQQrrZtf+iL/QySaxfg29Y2hZx/6ySy4SbMOxdO9";
+        };
+        "datengrab/ecdsa" = {
+          hostNames = ["datengrab"];
+          publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPs4cbixkaqvjU5qJBVh2poCYDdOF1Q0pat0QL1vfBHXwG6AMCYJiqnshkKdBLAM9TbKOdDA/tsK70qFgtHVavM=";
+        };
+      };
+    };
 
     systemd.mounts = [
       {
