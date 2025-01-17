@@ -23,6 +23,7 @@
       allowOther = true;
       directories = [
         ".local/share/applications" # For application .desktop files
+        ".config/minigalaxy"
         "Games"
       ];
     };
