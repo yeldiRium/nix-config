@@ -107,6 +107,7 @@
         kitty.enable = true;
       };
       games = {
+        nds.enable = true;
         wow.enable = true;
       };
       media = {
