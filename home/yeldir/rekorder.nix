@@ -1,10 +1,12 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }: {
   imports = [
+    inputs.mac-app-util.homeManagerModules.default
     ./global
     ./modules
   ];

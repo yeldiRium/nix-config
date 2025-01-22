@@ -5,9 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-
     hardware.url = "github:nixos/nixos-hardware";
 
     impermanence.url = "github:nix-community/impermanence";
@@ -24,6 +21,13 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # darwin only
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = {
