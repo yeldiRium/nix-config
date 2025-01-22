@@ -11,7 +11,7 @@
 
   hostName = "rekorder";
 
-  wallpaper = pkgs.wallpapers.space-cloud-orange;
+  wallpaper = pkgs.wallpapers.cyberpunk-rainy-alley;
 
   yeldirs = {
     system = {
@@ -19,9 +19,6 @@
 
       keyboardLayout = "de";
       keyboardVariant = "";
-      mounts = {
-        datengrab.enable = true;
-      };
     };
     disable-impermanence = true;
 
