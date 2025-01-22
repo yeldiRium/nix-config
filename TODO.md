@@ -10,6 +10,7 @@
   - [ ] set yeldirs.system.platform = "linux" in home manager configs for linux systems
   - [ ] enable xdg.mimeApps only on linux
   - [ ] set fitting aliases for nswitch/nbuild/etc based on platform
+  - [ ] somehow store gpg passphrase on darwin
 
 - bugs
   - [x] fix ugly hyprland cursor wtf
