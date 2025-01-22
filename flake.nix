@@ -82,7 +82,7 @@
     darwinConfigurations = {
       rekorder = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
-        modules = [./hosts/rekorder];
+        modules = [./hosts/darwin/rekorder];
         specialArgs = {
           inherit inputs outputs;
         };

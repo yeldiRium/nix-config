@@ -10,7 +10,7 @@ in {
   imports = [
     #../common/global
 
-    #../common/users/yeldir
+    ../../common/darwin/users/yeldir
   ];
 
   environment.systemPackages = with pkgs; [
