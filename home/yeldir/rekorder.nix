@@ -1,7 +1,5 @@
 {
-  config,
   inputs,
-  lib,
   pkgs,
   ...
 }: {
@@ -16,6 +14,15 @@
   wallpaper = pkgs.wallpapers.space-cloud-orange;
 
   yeldirs = {
+    system = {
+      platform = "darwin";
+
+      keyboardLayout = "de";
+      keyboardVariant = "";
+      mounts = {
+        datengrab.enable = true;
+      };
+    };
     disable-impermanence = true;
 
     cli = {
@@ -79,13 +86,6 @@
     desktop = {
       essentials = {
         kitty.enable = true;
-      };
-    };
-    system = {
-      keyboardLayout = "de";
-      keyboardVariant = "";
-      mounts = {
-        datengrab.enable = true;
       };
     };
 

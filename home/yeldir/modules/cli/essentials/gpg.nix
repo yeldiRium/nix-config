@@ -4,6 +4,7 @@
   lib,
   ...
 }: let
+  platform = config.yeldirs.system.platform;
   cfg = config.yeldirs.cli.essentials.gpg;
 in {
   options = {
@@ -16,7 +17,9 @@ in {
     services.gpg-agent = {
       enable = true;
       pinentryPackage =
-        if config.gtk.enable
+        if platform == "darwin"
+        then pkgs.pinentry_mac
+        else if config.gtk.enable
         then pkgs.pinentry-gnome3
         else pkgs.pinentry-tty;
     };

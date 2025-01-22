@@ -4,6 +4,11 @@
   ];
 
   options = {
+    yeldirs.system.platform = lib.mkOption {
+      type = lib.types.enum ["linux" "darwin"];
+      description = "The system platform";
+    };
+
     yeldirs.system.keyboardLayout = lib.mkOption {
       type = lib.types.str;
       default = "de";
