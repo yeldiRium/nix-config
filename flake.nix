@@ -5,6 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     hardware.url = "github:nixos/nixos-hardware";
 
     impermanence.url = "github:nix-community/impermanence";
@@ -26,12 +29,14 @@
   outputs = {
     self,
     nixpkgs,
+    nix-darwin,
     home-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
     systems = [
       "x86_64-linux"
+      #"x86_64-darwin"
     ];
 
     lib = nixpkgs.lib // home-manager.lib;
@@ -68,6 +73,16 @@
       };
       recreate = lib.nixosSystem {
         modules = [./hosts/recreate];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
+    };
+
+    darwinConfigurations = {
+      rekorder = nix-darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [./hosts/rekorder];
         specialArgs = {
           inherit inputs outputs;
         };
