@@ -7,6 +7,7 @@
     - each host should include: common/global, <platform>/global, and any desired common/optional/... and <platform>/optional/...
   - [ ] split hosts into darwin and linux folders
   - the same thing will probably be necessary for home manager. maybe that is cross-platform though? we'll see.
+  - [ ] enable xdg.mimeApps only on linux
 
 - bugs
   - [x] fix ugly hyprland cursor wtf
