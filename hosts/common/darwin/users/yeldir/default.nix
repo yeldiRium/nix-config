@@ -10,5 +10,5 @@
     createHome = true;
   };
 
-  #home-manager.users.yeldir = import ../../../../home/yeldir/${config.networking.hostName}.nix;
+  home-manager.users.yeldir = import ../../../../../home/yeldir/${config.networking.hostName}.nix;
 }

@@ -8,19 +8,14 @@
   username = "yeldir";
 in {
   imports = [
-    #../common/global
+    #../../common/common/global
+    ../../common/darwin/global
 
     ../../common/darwin/users/yeldir
   ];
 
-  environment.systemPackages = with pkgs; [
-    kitty
-    ranger
-    neovim
-  ];
-
   nix.extraOptions = ''
-    auto-optimise-store = true
+    auto-optimise-store = false
     experimental-features = nix-command flakes
   '';
 
