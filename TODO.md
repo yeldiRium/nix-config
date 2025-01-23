@@ -25,6 +25,7 @@
   - [x] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
   - [ ] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
   - [ ] remove quietboot.nix, since i'm not going to use it
+  - [ ] fix garbage collection. unit is probably wrong. should be 15d instead of +15.
 - apps
   - more tui
     - [ ] evaluate email client himalaya (https://github.com/pimalaya/himalaya)
