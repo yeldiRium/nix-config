@@ -3,7 +3,10 @@
   outputs,
   ...
 }: {
-  imports = [];
+  imports = [
+    ./nix.nix
+    ./zsh.nix
+  ];
 
   home-manager = {
     useGlobalPkgs = true;
