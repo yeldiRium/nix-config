@@ -8,6 +8,7 @@
     ./backup.nix
     ./filesystems.nix
     ./locale.nix
+    ./nix.nix
     ./nix-ld.nix
     ./persistence.nix
     ./printing.nix
