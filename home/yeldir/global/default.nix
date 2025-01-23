@@ -5,7 +5,9 @@
   outputs,
   pkgs,
   ...
-}: {
+}: let
+  platform = config.yeldirs.system.platform;
+in {
   imports =
     [
       inputs.impermanence.nixosModules.home-manager.impermanence
@@ -58,12 +60,21 @@
         FLAKE = "$HOME/querbeet/workspace/nix-config";
       };
 
-      shellAliases = {
-        nbuild = "sudo nix run nix-darwin -- build --flake $FLAKE#${config.hostName}";
-        nboot = "sudo nix run nix-darwin -- boot --flake $FLAKE#${config.hostName}";
-        nswitch = "sudo nix run nix-darwin -- switch --flake $FLAKE#${config.hostName}";
-        nrollback = "sudo nix run nix-darwin switch --flake $FLAKE#${config.hostName} --rollback";
-      };
+      shellAliases =
+        if platform == "linux"
+        then {
+          nbuild = "sudo nixos-rebuild build --flake $FLAKE#${config.hostName}";
+          nboot = "sudo nixos-rebuild boot --flake $FLAKE#${config.hostName}";
+          nswitch = "sudo nixos-rebuild switch --flake $FLAKE#${config.hostName}";
+          nrepl = "sudo nixos-rebuild repl --flake $FLAKE#${config.hostName}";
+          nrollback = "sudo nixos-rebuild switch --flake $FLAKE#${config.hostName} --rollback";
+        }
+        else {
+          nbuild = "sudo nix run nix-darwin -- build --flake $FLAKE#${config.hostName}";
+          nboot = "sudo nix run nix-darwin -- boot --flake $FLAKE#${config.hostName}";
+          nswitch = "sudo nix run nix-darwin -- switch --flake $FLAKE#${config.hostName}";
+          nrollback = "sudo nix run nix-darwin switch --flake $FLAKE#${config.hostName} --rollback";
+        };
 
       persistence = {
         "/persist/${config.home.homeDirectory}" = {
