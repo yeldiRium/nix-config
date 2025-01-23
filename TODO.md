@@ -7,7 +7,7 @@
     - each host should include: common/global, <platform>/global, and any desired common/optional/... and <platform>/optional/...
   - [x] split hosts into darwin and linux folders
   - the same thing will probably be necessary for home manager. maybe that is cross-platform though? we'll see.
-  - [ ] set yeldirs.system.platform = "linux" in home manager configs for linux systems
+  - [x] set yeldirs.system.platform = "linux" in home manager configs for linux systems
   - [ ] enable xdg.mimeApps only on linux
   - [ ] set fitting aliases for nswitch/nbuild/etc based on platform
   - [ ] somehow store gpg passphrase on darwin

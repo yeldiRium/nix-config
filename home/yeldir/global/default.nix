@@ -87,8 +87,5 @@
     home.file = {
       ".colorscheme.json".text = builtins.toJSON config.colorscheme;
     };
-
-    # TODO: reenable after splitting linux/darwin. this only works on linux.
-    # xdg.mimeApps.enable = true;
   };
 }
