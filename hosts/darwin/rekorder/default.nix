@@ -1,17 +1,9 @@
 {
-  config,
-  inputs,
-  lib,
-  pkgs,
-  ...
-}: let
-  username = "yeldir";
-in {
   imports = [
-    #../../common/common/global
-    ../../common/darwin/global
+    ../../shared/common/global
+    ../../shared/darwin/global
 
-    ../../common/darwin/users/yeldir
+    ../../shared/darwin/users/yeldir
   ];
 
   nix.extraOptions = ''
