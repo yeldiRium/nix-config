@@ -1,31 +1,15 @@
 # TODO
 
-- ongoing darwin-induced restructure:
-  - [x] i have moved the previous hosts/common configs to hosts/common/linux. the linux hosts have not been adjusted yet and should all fail
-  - [ ] move config files from hosts/ that do not directly concern hosts (i.e. everything under hosts/common) into nixos modules. this includes users
-    - there should be three modules: common, linux and darwin. move everything first to linux, then start extracting to common and adding to darwin
-    - each host should include: common/global, <platform>/global, and any desired common/optional/... and <platform>/optional/...
-  - [x] split hosts into darwin and linux folders
-  - the same thing will probably be necessary for home manager. maybe that is cross-platform though? we'll see.
-  - [x] set yeldirs.system.platform = "linux" in home manager configs for linux systems
-  - [ ] enable xdg.mimeApps only on linux
-  - [ ] set fitting aliases for nswitch/nbuild/etc based on platform
-  - [ ] somehow store gpg passphrase on darwin
-
 - bugs
-  - [x] fix ugly hyprland cursor wtf
   - [ ] make regreet show up on main monitor
 
-- legacy things
-  - [ ] go over actual dotfiles in gitea and see what needs to be migrated
-    - [x] taskwarrior settings
 - system
   - adjust ricing to my liking
-  - [x] overhaul desktop entries to only show what I need
-  - [x] replace xdg-desktop-portal-wlr with xdg-desktop-portal-hyprland
   - [ ] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
   - [ ] remove quietboot.nix, since i'm not going to use it
-  - [ ] fix garbage collection. unit is probably wrong. should be 15d instead of +15.
+  - [x] fix garbage collection. unit is probably wrong. should be 15d instead of +15.
+- darwin
+  - [ ] store gpg-agent passphrase in keychain
 - apps
   - more tui
     - [ ] evaluate email client himalaya (https://github.com/pimalaya/himalaya)
