@@ -70,7 +70,7 @@ ${cfg.patterns}
     '';
 
     sops.secrets.borg-encryption-recreate = {
-      sopsFile = ../secrets.yaml;
+      sopsFile = ../../secrets.yaml;
     };
   };
 }

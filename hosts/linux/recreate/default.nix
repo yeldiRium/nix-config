@@ -4,23 +4,26 @@
   ...
 }: {
   imports = [
-    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
 
     ./hardware-configuration.nix
     (import ./disko.nix {device = "/dev/nvme0n1";})
 
-    ../common/global
+    ../../shared/common/global
+    ../../shared/linux/global
 
-    ../common/optional/bluetooth.nix
-    ../common/optional/greetd.nix
-    ../common/optional/networkmanager.nix
-    ../common/optional/pipewire.nix
-    # TODO: activate once the rest works ../common/optional/quietboot.nix
+    ../../shared/linux/optional/gaming
+    ../../shared/linux/optional/bluetooth.nix
+    ../../shared/linux/optional/docker.nix
+    ../../shared/linux/optional/greetd.nix
+    ../../shared/linux/optional/networkmanager.nix
+    ../../shared/linux/optional/pipewire.nix
 
-    ../common/optional/mounts/datengrab.nix
+    ../../shared/linux/optional/mounts/datengrab.nix
 
-    ../common/users/yeldir
+    ../../shared/linux/users/yeldir
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -31,11 +34,38 @@
   ];
 
   networking = {
-    hostName = "hackstack";
-    hostId = "963c546b";
+    hostName = "recreate";
+    hostId = "5444b7b4";
   };
 
+  services.udev.packages = [
+    pkgs.qmk-udev-rules
+  ];
+
   yeldirs = {
+    common = {
+      global = {
+        backup = {
+          enable = true;
+          sshKeyPath = "/home/yeldir/.ssh/hleutloff";
+          patterns = ''
+- "R /persist"
+- "! persist/system/var/lib/docker"
+- "! persist/system/var/lib/systemd/coredump"
+- "! persist/home/yeldir/.local/share/bottles"
+- "! persist/home/yeldir/.local/share/Steam"
+- "! persist/home/yeldir/Games"
+- "! persist/home/yeldir/querbeet/stuff/temp"
+- "! persist/home/yeldir/querbeet/workspace/private/qmk_firmware"
+- "! persist/home/yeldir/querbeet/workspace/vendor"
+- "- **/node_modules/**"
+- "+ persist/home/**"
+- "+ persist/system/**"
+          '';
+        };
+      };
+    };
+
     mounts = {
       datengrab.enable = true;
     };
@@ -43,6 +73,11 @@
 
   programs = {
     dconf.enable = true;
+  };
+
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
@@ -62,5 +97,5 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }

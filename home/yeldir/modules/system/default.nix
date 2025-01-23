@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ./mounts
   ];
@@ -19,5 +23,14 @@
       default = "";
       description = "The keyboard variant to use.";
     };
+  };
+
+  config = {
+    assertions = [
+      {
+        assertion = config.yeldirs.system.platform != "";
+        message = "Platform must be set to either 'linux' or 'darwin'.";
+      }
+    ];
   };
 }

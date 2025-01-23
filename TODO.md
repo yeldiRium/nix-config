@@ -1,11 +1,11 @@
 # TODO
 
 - ongoing darwin-induced restructure:
-  - [ ] i have moved the previous hosts/common configs to hosts/common/linux. the linux hosts have not been adjusted yet and should all fail
+  - [x] i have moved the previous hosts/common configs to hosts/common/linux. the linux hosts have not been adjusted yet and should all fail
   - [ ] move config files from hosts/ that do not directly concern hosts (i.e. everything under hosts/common) into nixos modules. this includes users
     - there should be three modules: common, linux and darwin. move everything first to linux, then start extracting to common and adding to darwin
     - each host should include: common/global, <platform>/global, and any desired common/optional/... and <platform>/optional/...
-  - [ ] split hosts into darwin and linux folders
+  - [x] split hosts into darwin and linux folders
   - the same thing will probably be necessary for home manager. maybe that is cross-platform though? we'll see.
   - [ ] set yeldirs.system.platform = "linux" in home manager configs for linux systems
   - [ ] enable xdg.mimeApps only on linux

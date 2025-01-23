@@ -3,10 +3,7 @@
   outputs,
   ...
 }: {
-  imports = [
-    inputs.mac-app-util.darwinModules.default
-    inputs.home-manager.darwinModules.default
-  ];
+  imports = [];
 
   home-manager = {
     useGlobalPkgs = true;

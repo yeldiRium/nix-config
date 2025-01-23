@@ -2,7 +2,7 @@ keys:
   - &hosts:
     - &laboratory age1vl5e32vpsdfevc5k9zgz3p524dlt85pkw6u3wuufdrm54ewp0u6q24g8ve
 creation_rules:
-  - path_regex: hosts/common/secrets.yaml$
+  - path_regex: hosts/shared/secrets.yaml$
     key_groups:
       - age:
         - *laboratory

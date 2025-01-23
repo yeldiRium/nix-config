@@ -64,19 +64,19 @@
 
     nixosConfigurations = {
       hackstack = lib.nixosSystem {
-        modules = [./hosts/hackstack];
+        modules = [./hosts/linux/hackstack];
         specialArgs = {
           inherit inputs outputs;
         };
       };
       laboratory = lib.nixosSystem {
-        modules = [./hosts/laboratory];
+        modules = [./hosts/linux/laboratory];
         specialArgs = {
           inherit inputs outputs;
         };
       };
       recreate = lib.nixosSystem {
-        modules = [./hosts/recreate];
+        modules = [./hosts/linux/recreate];
         specialArgs = {
           inherit inputs outputs;
         };

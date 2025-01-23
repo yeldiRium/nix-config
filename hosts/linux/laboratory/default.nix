@@ -1,28 +1,23 @@
 {
-  inputs,
   pkgs,
   ...
 }: {
   imports = [
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-amd
-    inputs.hardware.nixosModules.common-pc-ssd
-
     ./hardware-configuration.nix
-    (import ./disko.nix {device = "/dev/nvme0n1";})
+    (import ./disko.nix {device = "/dev/sda";})
 
-    ../common/global
+    ../../shared/common/global
+    ../../shared/linux/global
 
-    ../common/optional/gaming
-    ../common/optional/bluetooth.nix
-    ../common/optional/docker.nix
-    ../common/optional/greetd.nix
-    ../common/optional/networkmanager.nix
-    ../common/optional/pipewire.nix
+    ../../shared/linux/optional/bluetooth.nix
+    ../../shared/linux/optional/docker.nix
+    ../../shared/linux/optional/greetd.nix
+    ../../shared/linux/optional/networkmanager.nix
+    ../../shared/linux/optional/pipewire.nix
 
-    ../common/optional/mounts
+    ../../shared/linux/optional/mounts/datengrab.nix
 
-    ../common/users/yeldir
+    ../../shared/linux/users/yeldir
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -33,38 +28,11 @@
   ];
 
   networking = {
-    hostName = "recreate";
-    hostId = "5444b7b4";
+    hostName = "laboratory";
+    hostId = "18e8eddb";
   };
 
-  services.udev.packages = [
-    pkgs.qmk-udev-rules
-  ];
-
   yeldirs = {
-    common = {
-      global = {
-        backup = {
-          enable = true;
-          sshKeyPath = "/home/yeldir/.ssh/hleutloff";
-          patterns = ''
-- "R /persist"
-- "! persist/system/var/lib/docker"
-- "! persist/system/var/lib/systemd/coredump"
-- "! persist/home/yeldir/.local/share/bottles"
-- "! persist/home/yeldir/.local/share/Steam"
-- "! persist/home/yeldir/Games"
-- "! persist/home/yeldir/querbeet/stuff/temp"
-- "! persist/home/yeldir/querbeet/workspace/private/qmk_firmware"
-- "! persist/home/yeldir/querbeet/workspace/vendor"
-- "- **/node_modules/**"
-- "+ persist/home/**"
-- "+ persist/system/**"
-          '';
-        };
-      };
-    };
-
     mounts = {
       datengrab.enable = true;
     };

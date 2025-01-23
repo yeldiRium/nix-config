@@ -25,11 +25,11 @@ in {
   };
 
   sops.secrets.yeldir-password = {
-    sopsFile = ../../secrets.yaml;
+    sopsFile = ../../../secrets.yaml;
     neededForUsers = true;
   };
 
-  home-manager.users.yeldir = import ../../../../home/yeldir/${config.networking.hostName}.nix;
+  home-manager.users.yeldir = import ../../../../../home/yeldir/${config.networking.hostName}.nix;
 
   security.pam.services = {
     swaylock = {};

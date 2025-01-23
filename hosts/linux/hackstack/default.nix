@@ -1,23 +1,26 @@
 {
+  inputs,
   pkgs,
   ...
 }: {
   imports = [
+    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-pc-ssd
+
     ./hardware-configuration.nix
-    (import ./disko.nix {device = "/dev/sda";})
+    (import ./disko.nix {device = "/dev/nvme0n1";})
 
-    ../common/global
+    ../../shared/common/global
+    ../../shared/linux/global
 
-    ../common/optional/bluetooth.nix
-    ../common/optional/docker.nix
-    ../common/optional/greetd.nix
-    ../common/optional/networkmanager.nix
-    ../common/optional/pipewire.nix
-    # TODO: activate once the rest works ../common/optional/quietboot.nix
+    ../../shared/linux/optional/bluetooth.nix
+    ../../shared/linux/optional/greetd.nix
+    ../../shared/linux/optional/networkmanager.nix
+    ../../shared/linux/optional/pipewire.nix
 
-    ../common/optional/mounts/datengrab.nix
+    ../../shared/linux/optional/mounts/datengrab.nix
 
-    ../common/users/yeldir
+    ../../shared/linux/users/yeldir
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -28,8 +31,8 @@
   ];
 
   networking = {
-    hostName = "laboratory";
-    hostId = "18e8eddb";
+    hostName = "hackstack";
+    hostId = "963c546b";
   };
 
   yeldirs = {
@@ -40,11 +43,6 @@
 
   programs = {
     dconf.enable = true;
-  };
-
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
@@ -64,5 +62,5 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

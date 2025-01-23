@@ -79,6 +79,7 @@
     };
 
     system = {
+      platform = "linux";
       keyboardLayout = "de";
       keyboardVariant = "neo";
       mounts = {

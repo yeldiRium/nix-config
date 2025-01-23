@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -119,6 +118,8 @@
       };
     };
     system = {
+      platform = "linux";
+
       keyboardLayout = "de";
       keyboardVariant = "";
       mounts = {
