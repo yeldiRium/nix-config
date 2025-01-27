@@ -78,6 +78,9 @@
           undotree.enable = true;
         };
       };
+      ops = {
+        colima.enable = true;
+      };
     };
 
     desktop = {
