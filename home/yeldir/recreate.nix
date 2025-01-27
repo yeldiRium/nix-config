@@ -161,11 +161,6 @@
       monitor = "DP-3";
     }
     {
-      command = "${lib.getExe pkgs.element-desktop}";
-      workspace = "1";
-      monitor = "DP-3";
-    }
-    {
       command = "${lib.getExe pkgs.zotero}";
       workspace = "1";
       monitor = "DP-3";
