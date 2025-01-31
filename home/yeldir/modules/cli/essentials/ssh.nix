@@ -8,6 +8,7 @@ in {
   options = {
     yeldirs.cli.essentials.ssh = {
       enable = lib.mkEnableOption "ssh";
+      excludePrivate = lib.mkEnableOption "exclude private configs";
     };
   };
 
@@ -15,31 +16,38 @@ in {
     programs = {
       ssh = {
         enable = true;
-        matchBlocks = {
-          "github.com" = {
-            user = "yeldir";
-            identityFile = "~/.ssh/hleutloff";
-          };
-          "git.staubwolke.org" = {
-            user = "yeldir";
-            identityFile = "~/.ssh/hleutloff";
-            port = 30022;
-          };
-          "datengrab" = {
-            user = "yeldir";
-            identityFile = "~/.ssh/hleutloff";
-          };
-          "heck" = {
-            hostname = "yeldirium.de";
-            user = "yeldir";
-            identityFile = "~/.ssh/hleutloff";
-          };
-          "backup" = {
-            hostname = "192.168.178.41";
-            user = "yeldir";
-            identityFile = "~/.ssh/hleutloff";
-          };
-        };
+        matchBlocks =
+          {
+            "github.com" = {
+              user = "yeldir";
+              identityFile = "~/.ssh/hleutloff";
+            };
+            "git.staubwolke.org" = {
+              user = "yeldir";
+              identityFile = "~/.ssh/hleutloff";
+              port = 30022;
+            };
+          }
+          // (
+            if cfg.excludePrivate
+            then {}
+            else {
+              "datengrab" = {
+                user = "yeldir";
+                identityFile = "~/.ssh/hleutloff";
+              };
+              "heck" = {
+                hostname = "yeldirium.de";
+                user = "yeldir";
+                identityFile = "~/.ssh/hleutloff";
+              };
+              "backup" = {
+                hostname = "192.168.178.41";
+                user = "yeldir";
+                identityFile = "~/.ssh/hleutloff";
+              };
+            }
+          );
       };
     };
 
