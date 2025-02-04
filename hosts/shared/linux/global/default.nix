@@ -10,7 +10,6 @@
     ./locale.nix
     ./nix.nix
     ./nix-ld.nix
-    ./persistence.nix
     ./printing.nix
     ./sops.nix
     ./upower.nix
