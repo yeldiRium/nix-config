@@ -18,7 +18,6 @@
     ../../shared/linux/optional/networkmanager.nix
     ../../shared/linux/optional/persistence.nix
     ../../shared/linux/optional/pipewire.nix
-    ../../shared/linux/optional/sops.nix
 
     ../../shared/linux/optional/mounts/datengrab.nix
 
@@ -38,6 +37,7 @@
   };
 
   yeldirs = {
+    common.global.sops.enable = true;
     mounts = {
       datengrab.enable = true;
     };

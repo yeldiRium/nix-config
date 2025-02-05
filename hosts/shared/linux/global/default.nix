@@ -11,6 +11,7 @@
     ./nix.nix
     ./nix-ld.nix
     ./printing.nix
+    ./sops.nix
     ./upower.nix
   ];
 
