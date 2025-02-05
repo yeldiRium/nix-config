@@ -60,7 +60,9 @@ in {
         FLAKE = "$HOME/querbeet/workspace/nix-config";
       };
 
-      shellAliases =
+      shellAliases = {
+        ndiff = "nbuild && nix-shell -p nix-diff --run \"nix-diff result /nix/var/nix/profiles/system\"";
+      } // (
         if platform == "linux"
         then {
           nbuild = "sudo nixos-rebuild build --flake $FLAKE#${config.hostName}";
@@ -74,7 +76,7 @@ in {
           nboot = "nix run nix-darwin -- boot --flake $FLAKE#${config.hostName}";
           nswitch = "nix run nix-darwin -- switch --flake $FLAKE#${config.hostName}";
           nrollback = "nix run nix-darwin switch --flake $FLAKE#${config.hostName} --rollback";
-        };
+        });
 
       persistence = {
         "/persist/${config.home.homeDirectory}" = {
