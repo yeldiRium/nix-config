@@ -82,6 +82,10 @@
       platform = "linux";
       keyboardLayout = "de";
       keyboardVariant = "neo";
+      sops = {
+        enable = true;
+        keyFile = "/persist/sops/age/keys.txt";
+      };
       mounts = {
         datengrab.enable = true;
       };
@@ -91,9 +95,6 @@
     hyprland = {
       enableAnimations = false;
       enableTransparency = false;
-    };
-    sops = {
-      keyFile = "/persist/sops/age/keys.txt";
     };
   };
 

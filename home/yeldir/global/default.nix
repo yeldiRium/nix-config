@@ -14,7 +14,6 @@ in {
 
       ./disable-impermanence.nix
       ./scripts.nix
-      ./sops.nix
       ../optional/cli
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);

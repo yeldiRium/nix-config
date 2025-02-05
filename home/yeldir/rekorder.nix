@@ -88,9 +88,5 @@
         kitty.enable = true;
       };
     };
-
-    sops = {
-      keyFile = "/persist/sops/age/keys.txt";
-    };
   };
 }

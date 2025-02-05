@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./mounts
+    ./sops.nix
   ];
 
   options = {

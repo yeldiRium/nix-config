@@ -123,6 +123,10 @@
 
       keyboardLayout = "de";
       keyboardVariant = "";
+      sops = {
+        enable = true;
+        keyFile = "/persist/sops/age/keys.txt";
+      };
       mounts = {
         datengrab.enable = true;
       };
@@ -132,9 +136,6 @@
     hyprland = {
       enableAnimations = true;
       enableTransparency = true;
-    };
-    sops = {
-      keyFile = "/persist/sops/age/keys.txt";
     };
   };
 
