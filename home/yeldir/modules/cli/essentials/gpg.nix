@@ -22,6 +22,9 @@ in {
         else if config.gtk.enable
         then pkgs.pinentry-gnome3
         else pkgs.pinentry-tty;
+      extraConfig = ''
+        allow-loopback-pinentry
+        '';
     };
 
     home.packages = lib.optional config.gtk.enable pkgs.gcr;
@@ -38,6 +41,7 @@ in {
         enable = true;
         settings = {
           trust-model = "tofu+pgp";
+          pinentry-mode = "loopback";
         };
         publicKeys = [
           {
