@@ -8,21 +8,37 @@ in {
   options = {
     yeldirs.cli.essentials.git = {
       enable = lib.mkEnableOption "git";
+      userEmail = lib.mkOption {
+        type = lib.types.str;
+        description = "The user email for commits";
+      };
+      signCommits = lib.mkEnableOption "commit signing";
+      signingKey = lib.mkOption {
+        type = lib.types.str;
+        description = "Fingerprint for the key used to sign commits";
+      };
     };
   };
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = cfg.signCommits == false || cfg.signingKey != "";
+        message = "If commit signing is enabled, a signing key fingerprint must be set.";
+      }
+    ];
+
     programs = {
       git = {
         enable = true;
 
-        userName = "Hannes Leutloff";
-        userEmail = "hannes.leutloff@yeldirium.de";
+        userName = lib.mkDefault "Hannes Leutloff";
+        userEmail = lib.mkDefault cfg.userEmail;
 
         extraConfig = {
           init.defaultBranch = "main";
 
-          user.signing.key = "8DFC 1FE9 7A49 B7CE F042  DE06 BA23 9C41 39A9 A514";
-          commit.gpgSign = true;
+          commit.gpgSign = cfg.signCommits;
+          user.signing.key = cfg.signingKey;
 
           rerere.enabled = true;
         };
