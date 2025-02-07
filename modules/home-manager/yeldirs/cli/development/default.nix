@@ -1,5 +1,7 @@
 {
   imports = [
     ./qmk
+
+    ./gh.nix
   ];
 }

@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    ./gh.nix
-  ];
-
   home.packages = with pkgs; [
     # poweruser
     jq
