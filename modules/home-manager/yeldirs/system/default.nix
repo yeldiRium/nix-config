@@ -76,8 +76,8 @@ in {
     systemd.user.startServices = "sd-switch";
 
     home = {
-      username = cfg.username;
-      homeDirectory = "/home/${cfg.username}";
+      username = lib.mkDefault cfg.username;
+      homeDirectory = lib.mkDefault "/home/${cfg.username}";
       sessionPath = [
         "$HOME/.local/bin"
       ];
