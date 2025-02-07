@@ -95,21 +95,21 @@
 
     homeConfigurations = {
       "yeldir@hackstack" = lib.homeManagerConfiguration {
-        modules = [./home/yeldir/hackstack.nix ./home/yeldir/nixpkgs.nix];
+        modules = [./home/yeldir/hackstack.nix ./home/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
         };
       };
       "yeldir@laboratory" = lib.homeManagerConfiguration {
-        modules = [./home/yeldir/laboratory.nix ./home/yeldir/nixpkgs.nix];
+        modules = [./home/yeldir/laboratory.nix ./home/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
         };
       };
       "yeldir@recreate" = lib.homeManagerConfiguration {
-        modules = [./home/yeldir/recreate.nix ./home/yeldir/nixpkgs.nix];
+        modules = [./home/yeldir/recreate.nix ./home/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
