@@ -7,6 +7,7 @@
     inputs.mac-app-util.homeManagerModules.default
 
     ../shared
+    ./shared
 
     ./optional/cli
   ];
@@ -95,5 +96,9 @@
         kitty.enable = true;
       };
     };
+  };
+
+  home = {
+    stateVersion = "24.05";
   };
 }

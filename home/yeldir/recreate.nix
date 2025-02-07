@@ -5,6 +5,7 @@
 }: {
   imports = [
     ../shared
+    ./shared
 
     ./optional/cli
     ./optional/desktop/development
@@ -189,4 +190,8 @@
       monitor = "DP-3";
     }
   ];
+
+  home = {
+    stateVersion = "24.05";
+  };
 }

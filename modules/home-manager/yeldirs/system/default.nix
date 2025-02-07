@@ -18,6 +18,11 @@ in {
     ];
 
   options = {
+    yeldirs.system.username = lib.mkOption {
+      type = lib.types.str;
+      example = "yeldir";
+    };
+
     yeldirs.system.hostName = lib.mkOption {
       type = lib.types.str;
       default = "";
@@ -44,6 +49,10 @@ in {
   config = {
     assertions = [
       {
+        assertion = cfg.username != "";
+        message = "HostName must be set!";
+      }
+      {
         assertion = cfg.hostName != "";
         message = "HostName must be set!";
       }
@@ -67,9 +76,8 @@ in {
     systemd.user.startServices = "sd-switch";
 
     home = {
-      username = lib.mkDefault "yeldir";
-      homeDirectory = lib.mkDefault "/home/${config.home.username}";
-      stateVersion = lib.mkDefault "24.05";
+      username = cfg.username;
+      homeDirectory = "/home/${cfg.username}";
       sessionPath = [
         "$HOME/.local/bin"
       ];

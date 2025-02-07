@@ -5,6 +5,7 @@
 }: {
   imports = [
     ../shared
+    ./shared
 
     ./optional/cli
     ./optional/desktop/development
@@ -24,6 +25,7 @@
     system = {
       hostName = "laboratory";
       platform = "linux";
+
       keyboardLayout = "de";
       keyboardVariant = "neo";
       sops = {
@@ -141,4 +143,8 @@
       monitor = "DP-3";
     }
   ];
+
+  home = {
+    stateVersion = "24.05";
+  };
 }

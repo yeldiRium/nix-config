@@ -5,6 +5,7 @@
 }: {
   imports = [
     ../shared
+    ./shared
 
     ./optional/cli
     ./optional/desktop/development
@@ -24,6 +25,7 @@
     system = {
       hostName = "hackstack";
       platform = "linux";
+
       keyboardLayout = "de";
       keyboardVariant = "neo";
       sops = {
@@ -142,4 +144,8 @@
       monitor = null;
     }
   ];
+
+  home = {
+    stateVersion = "24.05";
+  };
 }
