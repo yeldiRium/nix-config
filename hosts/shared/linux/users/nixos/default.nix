@@ -9,7 +9,7 @@ in {
   users.users.nixos = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGrous = ifTheyExist [
+    extraGroups = ifTheyExist [
       "docker"
       "git"
       "wheel"
