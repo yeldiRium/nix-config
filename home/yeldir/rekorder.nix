@@ -29,7 +29,7 @@
       essentials = {
         zsh = {
           enable = true;
-          enableSecretEnv = true;
+          enableSecretEnv = false;
         };
 
         bat.enable = true;
