@@ -81,6 +81,13 @@
           inherit inputs outputs;
         };
       };
+
+      wsl = lib.nixosSystem {
+        modules = [./hosts/linux/wsl];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
     };
 
     darwinConfigurations = {
@@ -110,6 +117,14 @@
       };
       "yeldir@recreate" = lib.homeManagerConfiguration {
         modules = [./home/yeldir/recreate.nix ./home/nixpkgs.nix];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+
+      "nixos@wsl" = lib.homeManagerConfiguration {
+        modules = [./home/nixos/wsl.nix ./home/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
