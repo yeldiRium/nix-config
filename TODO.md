@@ -6,7 +6,6 @@
 - system
   - adjust ricing to my liking
   - [ ] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
-  - [ ] remove quietboot.nix, since i'm not going to use it
   - [x] fix garbage collection. unit is probably wrong. should be 15d instead of +15.
 - darwin
   - [ ] store gpg-agent passphrase in keychain
@@ -27,7 +26,6 @@
       - [x] github copilot
       - [ ] highlight uses of hovered symbol
       - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
-      - [ ] key-analyzer.nvim
       - features
         - git
           - [x] add guides to git commit buffer at 50 and 72 characters
@@ -91,8 +89,8 @@
     - [ ] for gpg key
     - [-] for wifi network
   - backups with borg
-    - [ ] configurable per host
-    - [ ] with impermanence it's easy to just backup the entire /persist folder
+    - [x] configurable per host
+    - [x] with impermanence it's easy to just backup the entire /persist folder
 - darwin
 - modularity
   - [x] add options to disable animations and transparency in hyprland and wayland
