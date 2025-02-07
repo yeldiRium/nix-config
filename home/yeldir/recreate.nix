@@ -7,7 +7,6 @@
     ../shared
     ./shared
 
-    ./optional/cli
     ./optional/desktop/development
     ./optional/desktop/hyprland
     ./optional/keyring
@@ -41,12 +40,13 @@
 
     cli = {
       essentials = {
+        enable = true;
+
         zsh = {
           enable = true;
           enableSecretEnv = true;
         };
 
-        bat.enable = true;
         git.enable = true;
         gpg = {
           enable = true;
@@ -54,13 +54,11 @@
             ./pgp.asc
           ];
         };
-        hstr.enable = true;
         ranger = {
           enable = true;
           enableGui = true;
         };
         ssh.enable = true;
-        thefuck.enable = true;
 
         neovim = {
           enable = true;
