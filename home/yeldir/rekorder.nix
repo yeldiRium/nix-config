@@ -6,7 +6,6 @@
   imports = [
     inputs.mac-app-util.homeManagerModules.default
     ./global
-    ./modules
   ];
 
   hostName = "rekorder";
@@ -31,7 +30,12 @@
 
         bat.enable = true;
         git.enable = true;
-        gpg.enable = true;
+        gpg = {
+          enable = true;
+          trustedPgpKeys = [
+            ./pgp.asc
+          ];
+        };
         hstr.enable = true;
         ranger = {
           enable = true;

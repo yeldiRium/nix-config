@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./global
-    ./modules
 
     ./optional/desktop/development
     ./optional/desktop/hyprland
@@ -33,7 +32,12 @@
 
         bat.enable = true;
         git.enable = true;
-        gpg.enable = true;
+        gpg = {
+          enable = true;
+          trustedPgpKeys = [
+            ./pgp.asc
+          ];
+        };
         hstr.enable = true;
         ranger = {
           enable = true;
@@ -125,6 +129,7 @@
       keyboardVariant = "";
       sops = {
         enable = true;
+        sopsFile = ./secrets.yaml;
         keyFile = "/persist/sops/age/keys.txt";
       };
       mounts = {

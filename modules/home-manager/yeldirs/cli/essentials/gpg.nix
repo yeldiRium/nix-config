@@ -10,6 +10,11 @@ in {
   options = {
     yeldirs.cli.essentials.gpg = {
       enable = lib.mkEnableOption "gpg";
+
+      trustedPgpKeys = lib.mkOption {
+        type = lib.types.listOf lib.types.path;
+        description = "a list of pgp keys that are imported with ultimat trust";
+      };
     };
   };
 
@@ -24,7 +29,7 @@ in {
         else pkgs.pinentry-tty;
       extraConfig = ''
         allow-loopback-pinentry
-        '';
+      '';
     };
 
     home.packages = lib.optional config.gtk.enable pkgs.gcr;
@@ -43,12 +48,14 @@ in {
           trust-model = "tofu+pgp";
           pinentry-mode = "loopback";
         };
-        publicKeys = [
-          {
-            source = ../../../pgp.asc;
-            trust = 5;
-          }
-        ];
+        publicKeys =
+          map (
+            trustedPgpPath: {
+              source = trustedPgpPath;
+              trust = 5;
+            }
+          )
+          cfg.trustedPgpKeys;
       };
     };
 
