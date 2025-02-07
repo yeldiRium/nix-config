@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ../shared
   ];
@@ -88,11 +92,11 @@
 
   home = {
     shellAliases = {
-      nbuild = "sudo nixos-rebuild build --flake $FLAKE#wsl --impure";
-      nboot = "sudo nixos-rebuild boot --flake $FLAKE#wsl --impure";
-      nswitch = "sudo nixos-rebuild switch --flake $FLAKE#wsl --impure";
-      nrepl = "sudo nixos-rebuild repl --flake $FLAKE#wsl --impure";
-      nrollback = "sudo nixos-rebuild switch --flake $FLAKE#wsl --impure --rollback";
+      nbuild = lib.mkForce "sudo nixos-rebuild build --flake $FLAKE#wsl --impure";
+      nboot = lib.mkForce "sudo nixos-rebuild boot --flake $FLAKE#wsl --impure";
+      nswitch = lib.mkForce "sudo nixos-rebuild switch --flake $FLAKE#wsl --impure";
+      nrepl = lib.mkForce "sudo nixos-rebuild repl --flake $FLAKE#wsl --impure";
+      nrollback = lib.mkForce "sudo nixos-rebuild switch --flake $FLAKE#wsl --impure --rollback";
     };
   };
 
