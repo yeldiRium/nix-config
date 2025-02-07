@@ -98,8 +98,12 @@
   - [ ] invert how support for programming languages is structured
     - instead of having language support distributed across many files (neovim lsp, treesitter, other installations), each programming language or development feature should have one module
     - this module contains configurations for all other programs (neovim, install additional things, shell integrations) depending on whether they are installed
-  - [ ] make system target configurable between linux and darwin
-    - [ ] use it to build the shell aliases for nbuild/nswitch/nrepl
+  - [x] make system target configurable between linux and darwin
+    - [x] use it to build the shell aliases for nbuild/nswitch/nrepl
+  - [ ] move home manager modules out of home, make user name configurable
+    - [ ] make optionals/cli into a module
+    - [ ] make keyring into a module
+    - [ ] check what all can be shared within the yeldir user
   - [ ] rethink the "supported languages" support in my module options
     - The list becomes very long and clutters the config
     - I might want to cluster some languages, e.g. json/yaml/xml/csv because they are related, but they might have complicated setups
