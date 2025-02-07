@@ -13,7 +13,6 @@ in {
       inputs.impermanence.nixosModules.home-manager.impermanence
 
       ./disable-impermanence.nix
-      ./scripts.nix
       ../optional/cli
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
