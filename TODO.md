@@ -101,9 +101,10 @@
   - [x] make system target configurable between linux and darwin
     - [x] use it to build the shell aliases for nbuild/nswitch/nrepl
   - [ ] move home manager modules out of home, make user name configurable
-    - [ ] make optionals/cli into a module
+    - [x] make optionals/cli into a module
     - [ ] make keyring into a module
     - [ ] check what all can be shared within the yeldir user
+    - [ ] move desktops and autostart into yeldirs.desktop configuration
   - [ ] rethink the "supported languages" support in my module options
     - The list becomes very long and clutters the config
     - I might want to cluster some languages, e.g. json/yaml/xml/csv because they are related, but they might have complicated setups
