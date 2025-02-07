@@ -13,6 +13,7 @@ in {
 
       trustedPgpKeys = lib.mkOption {
         type = lib.types.listOf lib.types.path;
+        default = [];
         description = "a list of pgp keys that are imported with ultimat trust";
       };
     };
