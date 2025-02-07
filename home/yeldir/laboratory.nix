@@ -4,8 +4,9 @@
   ...
 }: {
   imports = [
-    ./global
+    ../shared
 
+    ./optional/cli
     ./optional/desktop/development
     ./optional/desktop/hyprland
     ./optional/keyring
@@ -17,11 +18,24 @@
     ./optional/desktop/spotify.nix
   ];
 
-  hostName = "laboratory";
-
   wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;
 
   yeldirs = {
+    system = {
+      hostName = "laboratory";
+      platform = "linux";
+      keyboardLayout = "de";
+      keyboardVariant = "neo";
+      sops = {
+        enable = true;
+        sopsFile = ./secrets.yaml;
+        keyFile = "/persist/sops/age/keys.txt";
+      };
+      mounts = {
+        datengrab.enable = true;
+      };
+    };
+
     cli = {
       essentials = {
         zsh = {
@@ -79,20 +93,6 @@
     desktop = {
       essentials = {
         kitty.enable = true;
-      };
-    };
-
-    system = {
-      platform = "linux";
-      keyboardLayout = "de";
-      keyboardVariant = "neo";
-      sops = {
-        enable = true;
-        sopsFile = ./secrets.yaml;
-        keyFile = "/persist/sops/age/keys.txt";
-      };
-      mounts = {
-        datengrab.enable = true;
       };
     };
 

@@ -5,21 +5,24 @@
 }: {
   imports = [
     inputs.mac-app-util.homeManagerModules.default
-    ./global
-  ];
 
-  hostName = "rekorder";
+    ../shared
+
+    ./optional/cli
+  ];
 
   wallpaper = pkgs.wallpapers.cyberpunk-rainy-alley;
 
   yeldirs = {
     system = {
+      disable-impermanence = true;
+
+      hostName = "rekorder";
       platform = "darwin";
 
       keyboardLayout = "de";
       keyboardVariant = "";
     };
-    disable-impermanence = true;
 
     cli = {
       essentials = {

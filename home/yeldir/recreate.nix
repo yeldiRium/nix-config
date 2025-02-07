@@ -4,8 +4,9 @@
   ...
 }: {
   imports = [
-    ./global
+    ../shared
 
+    ./optional/cli
     ./optional/desktop/development
     ./optional/desktop/hyprland
     ./optional/keyring
@@ -18,11 +19,25 @@
     ./optional/desktop/spotify.nix
   ];
 
-  hostName = "recreate";
-
   wallpaper = pkgs.wallpapers.space-cloud-orange;
 
   yeldirs = {
+    system = {
+      hostName = "recreate";
+      platform = "linux";
+
+      keyboardLayout = "de";
+      keyboardVariant = "";
+      sops = {
+        enable = true;
+        sopsFile = ./secrets.yaml;
+        keyFile = "/persist/sops/age/keys.txt";
+      };
+      mounts = {
+        datengrab.enable = true;
+      };
+    };
+
     cli = {
       essentials = {
         zsh = {
@@ -120,20 +135,6 @@
       };
       office = {
         zotero.enable = true;
-      };
-    };
-    system = {
-      platform = "linux";
-
-      keyboardLayout = "de";
-      keyboardVariant = "";
-      sops = {
-        enable = true;
-        sopsFile = ./secrets.yaml;
-        keyFile = "/persist/sops/age/keys.txt";
-      };
-      mounts = {
-        datengrab.enable = true;
       };
     };
 
