@@ -6,6 +6,7 @@
   imports = [
     ../shared
     ./shared
+    ./shared/linux
 
     ./optional/desktop/development
     ./optional/desktop/hyprland
@@ -23,78 +24,8 @@
   yeldirs = {
     system = {
       hostName = "hackstack";
-      platform = "linux";
 
-      keyboardLayout = "de";
       keyboardVariant = "neo";
-      sops = {
-        enable = true;
-        sopsFile = ./secrets.yaml;
-        keyFile = "/persist/sops/age/keys.txt";
-      };
-      mounts = {
-        datengrab.enable = true;
-      };
-    };
-
-    cli = {
-      essentials = {
-        zsh = {
-          enable = true;
-          enableSecretEnv = true;
-        };
-
-        git.enable = true;
-        gpg = {
-          enable = true;
-          trustedPgpKeys = [
-            ./pgp.asc
-          ];
-        };
-        ranger = {
-          enable = true;
-          enableGui = true;
-        };
-        ssh.enable = true;
-
-        neovim = {
-          enable = true;
-
-          supportedLanguages = [
-            "bash"
-            "json"
-            "ledger"
-            "lua"
-            "markdown"
-            "nix"
-            "yaml"
-          ];
-
-          copilot.enable = true;
-          debugging.enable = true;
-          git.enable = true;
-          harpoon2.enable = true;
-          lsp.enable = true;
-          nrvimr.enable = true;
-          telescope.enable = true;
-          testing.enable = true;
-          treesitter.enable = true;
-          undotree.enable = true;
-        };
-      };
-
-      office = {
-        taskwarrior.enable = false;
-      };
-    };
-
-    desktop = {
-      communication = {
-        matrix.enable = true;
-      };
-      essentials = {
-        kitty.enable = true;
-      };
     };
 
     # Deprecated non-module options:

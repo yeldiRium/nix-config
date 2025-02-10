@@ -42,6 +42,37 @@ in {
               })
             end, { desc = "Grep pwd using telescope" })
             vim.keymap.set("n", "<leader>fr", telescope.registers, { desc = "Show register contents using telescope" })
+
+
+            --- Taken from https://github.com/jemag/telescope-diff.nvim/blob/master/lua/telescope/_extensions/diff.lua
+            local action_state = require("telescope.actions.state")
+            local actions = require("telescope.actions")
+            
+            local function split_files(first_file, second_file)
+              vim.cmd.tabnew(first_file)
+              vim.cmd("vertical diffsplit " .. second_file)
+              vim.cmd.normal({ args = { "gg" }, bang = true })
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+            end
+            
+            local function diff_current(opts)
+              opts = opts or {}
+              local local_opts = {
+                prompt_title = "Pick file to compare",
+                attach_mappings = function(_, map)
+                  map("i", "<CR>", function(prompt_bufnr)
+                    actions.close(prompt_bufnr)
+                    local current_filepath = vim.fn.expand(vim.api.nvim_buf_get_name(opts.bufnr))
+                    local selection = action_state.get_selected_entry()
+                    split_files(current_filepath, selection.path)
+                  end)
+                  return true
+                end,
+              }
+              opts = vim.tbl_extend("force", opts, local_opts)
+              telescope.find_files(opts)
+            end
+            vim.keymap.set("n", "<C-d>", diff_current, { desc = "Show register contents using telescope" })
           '';
       }
     ];
