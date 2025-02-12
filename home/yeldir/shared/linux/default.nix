@@ -29,6 +29,7 @@
             ./../../pgp.asc
           ];
         };
+        isd.enable = true;
         ranger = {
           enable = true;
           enableGui = true;
