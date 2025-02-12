@@ -43,6 +43,7 @@
 
       ops = {
         colima.enable = false;
+        helm.enable = true;
         k9s.enable = true;
         kubectl.enable = true;
         lazydocker.enable = true;
