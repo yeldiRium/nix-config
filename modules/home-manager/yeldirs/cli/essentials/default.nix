@@ -27,6 +27,7 @@ in {
       packages = with pkgs; [
         # poweruser
         jq
+        yq
         silver-searcher
         btop
         zip
