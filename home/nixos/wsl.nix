@@ -81,6 +81,10 @@
         };
       };
 
+      development = {
+        go-task.enable = true;
+      };
+
       ops = {
         colima.enable = true;
         crossplane.enable = true;
