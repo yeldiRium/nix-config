@@ -226,6 +226,7 @@ in {
                     yaml = {
                       schemas = {
                         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                        ["https://taskfile.dev/schema.json"] = "/Taskfile.yaml",
                       }
                     }
                   },
