@@ -87,7 +87,7 @@ in {
 
       shellAliases =
         {
-          ndiff = "nbuild && nix-shell -p nix-diff --run \"nix-diff result /nix/var/nix/profiles/system\"";
+          ndiff = "nbuild && nix-shell -p nix-diff --run \"nix-diff /nix/var/nix/profiles/system result\"";
         }
         // (
           if cfg.platform == "linux"
