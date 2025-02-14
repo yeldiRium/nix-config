@@ -26,7 +26,7 @@ vim.keymap.set("n", "gm", function()
   -- to be restructured so that we can only add the mapping
   -- when telescope is enabled.
   telescope.grep_string({
-    search = "func \\(.*" .. typeName .. "\\)",
+    search = "func \\((.*[* ])?" .. typeName .. "\\)",
     use_regex = true,
   })
 end, {
