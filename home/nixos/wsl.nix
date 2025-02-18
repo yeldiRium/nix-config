@@ -78,6 +78,7 @@
           testing.enable = true;
           treesitter.enable = true;
           undotree.enable = true;
+          zoom.enable = true;
         };
       };
 
