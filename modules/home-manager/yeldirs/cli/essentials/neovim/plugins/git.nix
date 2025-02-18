@@ -23,7 +23,22 @@ in {
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       nvim-web-devicons
-      diffview-nvim
+      {
+        plugin = diffview-nvim;
+        type = "lua";
+        config = /* lua */ ''
+          require("diffview").setup({
+            keymaps = {
+              view = {
+                { "n", "q", function() vim.cmd(":DiffviewClose") end },
+              },
+              file_panel = {
+                { "n", "q", function() vim.cmd(":DiffviewClose") end },
+              },
+            },
+          })
+          '';
+      }
       {
         plugin = pkgs.vimExtraPlugins.neogit;
         type = "lua";
