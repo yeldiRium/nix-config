@@ -12,12 +12,21 @@
 in {
   options = {
     yeldirs.cli.essentials.neovim.debugging.enable = lib.mkEnableOption "neovim debugging support";
+    yeldirs.cli.essentials.neovim.debugging.go-configurations = lib.mkOption {
+      type = lib.types.commas;
+      default = "";
+      description = "lua go dap configurations. See https://github.com/leoluz/nvim-dap-go?tab=readme-ov-file#debugging-with-build-flags. Must be enclosed in a table and have a trailing comma.";
+    };
   };
   config = lib.mkIf cfg.enable {
     assertions = [
       {
         assertion = config.yeldirs.cli.essentials.neovim.enable;
         message = "neovim must be enabled for the debugging support to work";
+      }
+      {
+        assertion = cfg.go-configurations == "" || languageActive "go";
+        message = "go debugging configurations can only be set if the language support for go is enabled";
       }
     ];
 
@@ -111,7 +120,11 @@ in {
             lua
             */
             ''
-              require('dap-go').setup({})
+              require('dap-go').setup({
+                dap_configurations = {
+                  ${cfg.go-configurations}
+                },
+              })
             '';
         }
       ]);
