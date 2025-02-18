@@ -13,6 +13,7 @@ in {
 
       ./mounts
 
+      ./keyring.nix
       ./disable-impermanence.nix
       ./sops.nix
     ];

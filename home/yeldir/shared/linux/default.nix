@@ -12,6 +12,7 @@
       mounts = {
         datengrab.enable = true;
       };
+      keyring.enable = true;
     };
 
     cli = {

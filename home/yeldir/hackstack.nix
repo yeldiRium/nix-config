@@ -10,7 +10,6 @@
 
     ./optional/desktop/development
     ./optional/desktop/hyprland
-    ./optional/keyring
 
     ./optional/desktop/communication/telegram.nix
     ./optional/desktop/media
