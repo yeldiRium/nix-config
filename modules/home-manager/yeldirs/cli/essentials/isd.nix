@@ -23,7 +23,7 @@ in {
     ];
 
     home.packages = with pkgs; [
-      inputs.isd.packages.x86_64-linux.default
+      inputs.isd.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 }
