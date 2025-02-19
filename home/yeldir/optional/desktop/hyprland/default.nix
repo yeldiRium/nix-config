@@ -63,15 +63,20 @@ in {
         enable = true;
       };
 
-      settings = {
+      settings = let
+        borderRadius = 0;
+        borderSize = 2;
+        gapSizeIn = 8;
+        gapSizeOut = 12;
+      in {
         debug = {
           disable_logs = false;
         };
         general = {
           layout = "hy3";
-          gaps_in = 8;
-          gaps_out = 12;
-          border_size = 2;
+          gaps_in = gapSizeIn;
+          gaps_out = gapSizeOut;
+          border_size = borderSize;
           "col.active_border" = rgba config.colorscheme.colors.primary "aa";
           "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
 
@@ -166,7 +171,7 @@ in {
           active_opacity = 1.0;
           inactive_opacity = 1.0;
           fullscreen_opacity = 1.0;
-          rounding = 7;
+          rounding = borderRadius;
           blur = {
             enabled = cfg.enableTransparency;
             size = 4;
@@ -188,21 +193,34 @@ in {
           hy3 = {
             tabs = let
               activeAlpha = "ff";
-              nonActiveAlpha =
+              inactiveAlpha =
                 if cfg.enableTransparency
                 then "aa"
                 else "ff";
             in {
+              blur = cfg.enableTransparency;
+
               height = 20;
+              padding = gapSizeIn;
+              border_width = borderSize;
+              radius = borderRadius;
+
               text_font = config.fontProfiles.regular.name;
               text_padding = 6;
               text_center = false;
+              text_height = 10;
+
               "col.active" = rgba config.colorscheme.colors.primary_container activeAlpha;
               "col.active.text" = rgba config.colorscheme.colors.on_primary_container activeAlpha;
-              "col.urgent" = rgba config.colorscheme.colors.tertiary_container nonActiveAlpha;
-              "col.urgent.text" = rgba config.colorscheme.colors.on_tertiary_container nonActiveAlpha;
-              "col.inactive" = rgba config.colorscheme.colors.surface nonActiveAlpha;
-              "col.inactive.text" = rgba config.colorscheme.colors.on_surface nonActiveAlpha;
+              "col.active.border" = rgba config.colorscheme.colors.primary "aa";
+
+              "col.urgent" = rgba config.colorscheme.colors.tertiary_container inactiveAlpha;
+              "col.urgent.text" = rgba config.colorscheme.colors.on_tertiary_container inactiveAlpha;
+              "col.urgent.border" = rgba config.colorscheme.colors.tertiary "aa";
+
+              "col.inactive" = rgba config.colorscheme.colors.surface inactiveAlpha;
+              "col.inactive.text" = rgba config.colorscheme.colors.on_surface inactiveAlpha;
+              "col.inactive.border" = rgba config.colorscheme.colors.surface "aa";
             };
           };
         };
