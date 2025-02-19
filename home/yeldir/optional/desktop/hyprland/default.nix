@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   config,
   pkgs,
@@ -37,7 +38,7 @@ in {
     ];
 
     xdg.portal = {
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+      extraPortals = [inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland];
       config.hyprland = {
         default = ["hyprland" "gtk"];
       };
@@ -53,21 +54,19 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = pkgs.unstable.hyprland.override {
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.override {
         wrapRuntimeDeps = false;
         mesa = pkgs.mesa;
       };
-      plugins = [pkgs.unstable.hyprlandPlugins.hy3];
+      plugins = [inputs.hy3.packages.${pkgs.stdenv.hostPlatform.system}.hy3];
       systemd = {
         enable = true;
-        # Same as default, but stop graphical-session too
-        extraCommands = lib.mkBefore [
-          "systemctl --user stop graphical-session.target"
-          "systemctl --user start hyprland-session.target"
-        ];
       };
 
       settings = {
+        debug = {
+          disable_logs = false;
+        };
         general = {
           layout = "hy3";
           gaps_in = 8;
@@ -176,12 +175,15 @@ in {
             ignore_opacity = true;
             popups = true;
           };
-          drop_shadow = true;
-          shadow_range = 12;
-          shadow_offset = "3 3";
-          "col.shadow" = "0x44000000";
-          "col.shadow_inactive" = "0x66000000";
+          shadow = {
+            enabled = true;
+            color = "0x44000000";
+            color_inactive = "0x66000000";
+            range = 12;
+            offset = "3 3";
+          };
         };
+
         plugin = {
           hy3 = {
             tabs = let
@@ -191,15 +193,20 @@ in {
                 then "aa"
                 else "ff";
             in {
+              height = 20;
+              text_font = config.fontProfiles.regular.name;
+              text_padding = 6;
+              text_center = false;
               "col.active" = rgba config.colorscheme.colors.primary_container activeAlpha;
+              "col.active.text" = rgba config.colorscheme.colors.on_primary_container activeAlpha;
               "col.urgent" = rgba config.colorscheme.colors.tertiary_container nonActiveAlpha;
+              "col.urgent.text" = rgba config.colorscheme.colors.on_tertiary_container nonActiveAlpha;
               "col.inactive" = rgba config.colorscheme.colors.surface nonActiveAlpha;
-              "col.text.active" = rgba config.colorscheme.colors.on_primary_container activeAlpha;
-              "col.text.urgent" = rgba config.colorscheme.colors.on_tertiary_container nonActiveAlpha;
-              "col.text.inactive" = rgba config.colorscheme.colors.on_surface nonActiveAlpha;
+              "col.inactive.text" = rgba config.colorscheme.colors.on_surface nonActiveAlpha;
             };
           };
         };
+
         animations = {
           enabled = cfg.enableAnimations;
           bezier = [

@@ -21,6 +21,13 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.47.0";
+    };
+    hy3 = {
+      url = "github:outfoxxed/hy3?ref=hl0.47.0";
+      inputs.hyprland.follows = "hyprland";
+    };
     isd = {
       url = "github:isd-project/isd";
       inputs.nixpkgs.follows = "nixpkgs";
