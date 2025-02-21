@@ -232,7 +232,7 @@ in {
           command = "$PAGER -- \"$@\"";
         }
         {
-          condition = "!mime ^text, label editor, ext xml|json|csv|tex|py|pl|rb|rs|js|sh|php|dart";
+          condition = "!mime ^text, label editor, ext xml|json|csv|tex|py|pl|rb|rs|js|sh|php|dart|tpl";
           command = "\${VISUAL:-$EDITOR} -- \"$@\"";
         }
         {
