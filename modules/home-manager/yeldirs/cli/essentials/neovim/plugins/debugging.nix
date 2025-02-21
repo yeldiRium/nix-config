@@ -12,10 +12,10 @@
 in {
   options = {
     yeldirs.cli.essentials.neovim.debugging.enable = lib.mkEnableOption "neovim debugging support";
-    yeldirs.cli.essentials.neovim.debugging.go-configurations = lib.mkOption {
-      type = lib.types.commas;
+    yeldirs.cli.essentials.neovim.debugging.dynamicGoConfig = lib.mkOption {
+      type = lib.types.str;
       default = "";
-      description = "lua go dap configurations. See https://github.com/leoluz/nvim-dap-go?tab=readme-ov-file#debugging-with-build-flags. Must be enclosed in a table and have a trailing comma.";
+      description = "absolute path to a lua file that is executed when <leader>cdl is run to reload debugger configs. make sure that it's idempotent.";
     };
   };
   config = lib.mkIf cfg.enable {
@@ -25,8 +25,8 @@ in {
         message = "neovim must be enabled for the debugging support to work";
       }
       {
-        assertion = cfg.go-configurations == "" || languageActive "go";
-        message = "go debugging configurations can only be set if the language support for go is enabled";
+        assertion = cfg.dynamicGoConfig == "" || languageActive "go";
+        message = "dynamic go debugging configurations can only be used if the language support for go is enabled";
       }
     ];
 
@@ -55,7 +55,7 @@ in {
               local dap = require("dap")
 
               vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = ""})
-              vim.fn.sign_define("DapStopped",{ text = "▶", texthl = "", linehl = "", numhl = ""})
+              vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = ""})
 
               vim.keymap.set("n", "<leader>cdb", dap.toggle_breakpoint)
               vim.keymap.set("n", "<leader>cdc", dap.continue)
@@ -64,17 +64,14 @@ in {
               vim.keymap.set("n", "<leader>cdo", dap.step_over) -- Step over
               vim.keymap.set("n", "<leader>cdi", dap.step_into) -- Step into
               vim.keymap.set("n", "<leader>cdx", dap.step_out) -- Step out
+
+              local dynamicDebuggerHooks = {}
+              vim.keymap.set("n", "<leader>cdl", function()
+                for i = 1, #dynamicDebuggerHooks, 1 do
+                  dynamicDebuggerHooks[i]()
+                end
+              end, { desc = "Reload debugger configurations." })
             ''
-            (
-              if languageActive "go"
-              then
-                /*
-                lua
-                */
-                ''
-                ''
-              else ""
-            )
           ];
         }
         {
@@ -120,11 +117,14 @@ in {
             lua
             */
             ''
-              require('dap-go').setup({
-                dap_configurations = {
-                  ${cfg.go-configurations}
-                },
-              })
+              local function reloadGoDebuggerConfigurations()
+                require("dap").configurations.go = {}
+                require("dap-go").setup({})
+
+                ${if cfg.dynamicGoConfig != "" then "dofile(\"" + cfg.dynamicGoConfig + "\")" else ""}
+              end
+              dynamicDebuggerHooks[#dynamicDebuggerHooks + 1] = reloadGoDebuggerConfigurations
+              reloadGoDebuggerConfigurations()
             '';
         }
       ]);
