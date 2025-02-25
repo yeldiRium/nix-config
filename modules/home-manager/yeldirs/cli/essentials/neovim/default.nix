@@ -20,6 +20,7 @@ in {
     ./plugins/firenvim.nix
     ./plugins/fold-cycle.nix
     ./plugins/harpoon2.nix
+    ./plugins/illuminate.nix
     ./plugins/layout.nix
     ./plugins/lsp.nix
     ./plugins/git.nix

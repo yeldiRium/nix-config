@@ -313,6 +313,8 @@ in
 
     hi TreesitterContext  guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE "was italic
 
+    hi def IlluminatedWordText gui=underline cterm=underline
+
     let g:terminal_color_background = "${c.surface}"
     let g:terminal_color_foreground = "${c.on_surface}"
 
