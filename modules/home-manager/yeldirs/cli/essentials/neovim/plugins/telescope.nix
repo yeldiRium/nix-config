@@ -39,7 +39,7 @@ in {
               telescope.grep_string({
                 search = vim.fn.input("Grep > "),
                 use_regex = true,
-                additional_args = { "--hidden" },
+                additional_args = { "--hidden", "--multiline" },
               })
             end, { desc = "Grep pwd using telescope" })
             vim.keymap.set("n", "<leader>fr", telescope.registers, { desc = "Show register contents using telescope" })
