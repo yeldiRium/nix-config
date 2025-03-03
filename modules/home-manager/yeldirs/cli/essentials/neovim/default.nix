@@ -50,6 +50,7 @@ in {
           "markdown"
           "nix"
           "poefilter"
+          "rego"
           "typescript"
           "yaml"
         ]);

@@ -48,6 +48,9 @@ in {
       ++ (optionals "nix" [
         unstable.nixd
       ])
+      ++ (optionals "rego" [
+        regols
+      ])
       ++ (optionals "typescript" [
         nodePackages.typescript-language-server
       ])
@@ -211,6 +214,17 @@ in {
               */
               ''
                 add_lsp(lspconfig.ts_ls, {})
+              ''
+            else ""
+          )
+          (
+            if languageActive "rego"
+            then
+              /*
+              lua
+              */
+              ''
+                add_lsp(lspconfig.regols, {})
               ''
             else ""
           )

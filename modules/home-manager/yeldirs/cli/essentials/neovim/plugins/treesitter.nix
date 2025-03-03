@@ -86,6 +86,9 @@ in {
       ++ (optionals "nix" [
         nvim-treesitter-parsers.nix
       ])
+      ++ (optionals "rego" [
+        nvim-treesitter-parsers.rego
+      ])
       ++ (optionals "yaml" [
         nvim-treesitter-parsers.yaml
       ]);
