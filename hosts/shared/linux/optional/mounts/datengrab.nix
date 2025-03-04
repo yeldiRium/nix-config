@@ -35,7 +35,7 @@ in {
       {
         type = "fuse.sshfs";
         mountConfig = {
-          Options = "allow_other,default_permissions";
+          Options = "allow_other";
         };
         what = "datengrab:/mnt/raid";
         where = "/mnt/datengrab";
