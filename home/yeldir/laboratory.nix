@@ -23,8 +23,6 @@
   yeldirs = {
     system = {
       hostName = "laboratory";
-
-      keyboardVariant = "neo";
     };
 
     # Deprecated non-module options:
