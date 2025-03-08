@@ -31,6 +31,9 @@ in {
       extraConfig = ''
         allow-loopback-pinentry
       '';
+
+      defaultCacheTtl = 28800;
+      maxCacheTtl = 28800;
     };
 
     home.packages = lib.optional config.gtk.enable pkgs.gcr;
