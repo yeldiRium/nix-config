@@ -36,6 +36,7 @@
           enableGui = true;
         };
         ssh.enable = true;
+        tmux.enable = true;
 
         neovim = {
           enable = true;

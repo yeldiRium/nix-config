@@ -15,6 +15,7 @@ in {
     ./isd.nix
     ./ranger.nix
     ./ssh.nix
+    ./tmux.nix
     ./zsh.nix
   ];
 
