@@ -17,6 +17,7 @@ in {
         enable = true;
         clock24 = true;
         keyMode = "vi";
+        shortcut = "n";
         escapeTime = 0;
       };
     };
