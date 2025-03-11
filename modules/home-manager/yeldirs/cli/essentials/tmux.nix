@@ -22,6 +22,7 @@ in {
         extraConfig = ''
           set -g mouse on
         '';
+        terminal = "tmux-256color";
       };
     };
   };
