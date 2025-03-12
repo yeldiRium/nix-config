@@ -58,10 +58,15 @@
     };
 
     desktop = {
+      communication = {
+        matrix.enable = true;
+      };
+
       games = {
         nds.enable = true;
         wow.enable = true;
       };
+
       media = {
         clementine.enable = true;
         gimp.enable = true;
