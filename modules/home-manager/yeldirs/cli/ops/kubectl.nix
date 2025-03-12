@@ -17,6 +17,12 @@ in {
       kubectl
     ];
 
+    home.shellAliases = {
+      k = "kubectl";
+      kg = "kubectl get";
+      kga = "kubectl get -A";
+    };
+
     home.persistence = {
       "/persist/${config.home.homeDirectory}" = {
         directories = [
