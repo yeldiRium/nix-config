@@ -20,11 +20,24 @@ in {
         keyMode = "vi";
         shortcut = "n";
         escapeTime = 0;
-        extraConfig = ''
-          set -g mouse on
-          set -g status-style fg=${c.on_primary_container}
-          set -ag status-style bg=${c.primary_container}
-        '';
+        extraConfig =
+          /*
+          tmux
+          */
+          ''
+            set -g mouse on
+
+            set -g status-style fg=${c.on_primary_container}
+            set -ag status-style bg=${c.primary_container}
+
+            set -g monitor-bell on
+            set -g window-status-bell-style fg=${c.on_tertiary_container}
+            set -ag window-status-bell-style bg=${c.tertiary_container}
+
+            set -g pane-border-lines double
+            set -g pane-border-style fg=${c.outline}
+            set -g pane-active-border-style fg=${c.primary_container}
+          '';
         terminal = "tmux-256color";
       };
     };
