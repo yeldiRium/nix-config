@@ -40,7 +40,23 @@ in {
 
         # development
         devbox
-      ];
+      ]
+        # custom scripts
+      ++ (let
+        script = name:
+          pkgs.writeTextFile {
+            inherit name;
+            executable = true;
+            destination = "/bin/${name}";
+            text = builtins.readFile ./scripts/${name};
+            checkPhase = ''
+              ${pkgs.stdenv.shellDryRun} "$target"
+            '';
+            meta.mainProgram = name;
+          };
+      in [
+        (script "diffex")
+      ]);
 
       shellAliases = {
         ll = "ls -al";
