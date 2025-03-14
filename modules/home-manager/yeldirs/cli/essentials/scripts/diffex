@@ -7,9 +7,12 @@ fi
 
 tmpdir=$(mktemp -d)
 
-sh -c "${1}" > "${tmpdir}/${1}"
-sh -c "${2}" > "${tmpdir}/${2}"
+filePath1="${tmpdir}/file1"
+filePath2="${tmpdir}/file2"
 
-nvim -d -R "${tmpdir}/${1}" "${tmpdir}/${2}"
+sh -c "${1}" > "${filePath1}"
+sh -c "${2}" > "${filePath2}"
+
+nvim -d -R "${filePath1}" "${filePath2}"
 
 rm -rf tmpdir
