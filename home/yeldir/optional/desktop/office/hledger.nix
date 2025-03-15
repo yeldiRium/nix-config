@@ -3,31 +3,21 @@
   lib,
   pkgs,
   ...
-}: {
-  home = let
-    hltool = name:
-      pkgs.writeTextFile {
-        inherit name;
-        executable = true;
-        destination = "/bin/${name}";
-        text = builtins.readFile ./hledger-scripts/${name}.sh;
-        checkPhase = ''
-          ${pkgs.stdenv.shellDryRun} "$target"
-        '';
-        meta.mainProgram = name;
-      };
-  in {
+}: let
+  shellScript = import ../../../../../lib/shellScript.nix pkgs;
+in {
+  home = {
     packages = with pkgs; [
       hledger
-      (hltool "hlc")
-      (hltool "hlb")
-      (hltool "hlbeom")
-      (hltool "hlbudget")
-      (hltool "hlcompare")
-      (hltool "hlevents")
-      (hltool "hlforecast")
-      (hltool "hlmonthend")
-      (hltool "hlprojects")
+      (shellScript ./hledger-scripts/hlc)
+      (shellScript ./hledger-scripts/hlb)
+      (shellScript ./hledger-scripts/hlbeom)
+      (shellScript ./hledger-scripts/hlbudget)
+      (shellScript ./hledger-scripts/hlcompare)
+      (shellScript ./hledger-scripts/hlevents)
+      (shellScript ./hledger-scripts/hlforecast)
+      (shellScript ./hledger-scripts/hlmonthend)
+      (shellScript ./hledger-scripts/hlprojects)
     ];
     shellAliases = {
       "hl" = "hledger";
