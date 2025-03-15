@@ -1,8 +1,11 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
+  shellScript = import ../../../../../../lib/shellScript.nix pkgs;
+
   cfg = config.yeldirs.cli.essentials.tmux;
   c = config.colorscheme.colors // config.colorscheme.harmonized;
 in {
@@ -41,5 +44,9 @@ in {
         terminal = "tmux-256color";
       };
     };
+
+    home.packages = [
+      (shellScript ./scripts/tmhl)
+    ];
   };
 }
