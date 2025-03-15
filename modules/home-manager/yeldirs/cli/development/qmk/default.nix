@@ -24,14 +24,19 @@ in {
             inherit name;
             executable = true;
             destination = "/bin/${name}";
-            text = builtins.readFile ./scripts/${name}.sh;
+            text = builtins.readFile ./scripts/${name};
             checkPhase = ''
               ${pkgs.stdenv.shellDryRun} "$target"
             '';
             meta.mainProgram = name;
           };
       in [
-        (script "qmk-compile-neo2")
+        (script "qmk-compile-ergodox")
+        (script "qmk-compile-crkbd-neo2-de")
+        (script "qmk-compile-crkbd-neo2-de-macos")
+        (script "qmk-flash-ergodox")
+        (script "qmk-flash-crkbd-neo2-de")
+        (script "qmk-flash-crkbd-neo2-de-macos")
       ]);
 
     xdg.configFile = {

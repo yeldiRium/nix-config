@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+if [ "$(basename "$(pwd)")" != "qmk_firmware" ]; then
+  echo "qmk helper scripts must be run in qmk_firmware directory"
+  exit 1
+fi
+
+qmk compile -kb crkbd/rev1 -km neo2-de -e CONVERT_TO=promicro_rp2040
+

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [ "$(basename "$(pwd)")" != "qmk_firmware" ]; then
+  echo "qmk helper scripts must be run in qmk_firmware directory"
+  exit 1
+fi
+
+if [ ! -e /dev/sdc1 ]; then
+  echo "Keyboards needs to be connected and in bootmode!"
+  exit 1
+fi
+
+if [ ! -e ./crkbd_rev1_neo2-de-macos_promicro_rp2040.uf2 ]; then
+  echo "Compile the firmware first!"
+  exit 1
+fi
+
+sudo mkdir -p /mnt/qmk
+sudo mount /dev/sdc1 /mnt/qmk
+sudo cp ./crkbd_rev1_neo2-de-macos_promicro_rp2040.uf2 /mnt/qmk
+sudo umount /mnt/qmk
