@@ -56,13 +56,6 @@
 
     lib = nixpkgs.lib // home-manager.lib;
     forAllSystems = nixpkgs.lib.genAttrs systems;
-    pkgsFor = lib.genAttrs systems (
-      system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-    );
   in {
     inherit lib;
 
@@ -106,38 +99,6 @@
         system = "x86_64-darwin";
         modules = [./hosts/darwin/rekorder];
         specialArgs = {
-          inherit inputs outputs;
-        };
-      };
-    };
-
-    homeConfigurations = {
-      "yeldir@hackstack" = lib.homeManagerConfiguration {
-        modules = [./home/yeldir/hackstack.nix ./home/nixpkgs.nix];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-        };
-      };
-      "yeldir@laboratory" = lib.homeManagerConfiguration {
-        modules = [./home/yeldir/laboratory.nix ./home/nixpkgs.nix];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-        };
-      };
-      "yeldir@recreate" = lib.homeManagerConfiguration {
-        modules = [./home/yeldir/recreate.nix ./home/nixpkgs.nix];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-        };
-      };
-
-      "nixos@wsl" = lib.homeManagerConfiguration {
-        modules = [./home/nixos/wsl.nix ./home/nixpkgs.nix];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {
           inherit inputs outputs;
         };
       };
