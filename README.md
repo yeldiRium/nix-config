@@ -38,3 +38,16 @@ The WSL setup does not use impermanence or sops, so no further setup and no encr
 5. Run `nixos-rebuild switch --flake ~/querbeet/workspace/nix-config#wsl --impure`
 6. Restart WSL to be sure
 7. Optional: If you want to use commit signing, import your private key
+
+## Assumed filesystem
+
+Some parts of this config assume certain paths are present in the system,
+because that is how I structure my systems. These paths are:
+
+- ~/querbeet/nextcloud
+- ~/querbeet/stuff/temp
+- ~/querbeet/workspace/ledger
+- ~/querbeet/workspace/nix-config
+- ~/querbeet/workspace/obsidian
+- ~/querbeet/workspace/private/qmk_firmware
+- ~/querbeet/workspace/vendor
