@@ -72,6 +72,7 @@
           fold-cycle.enable = true;
           git.enable = true;
           harpoon2.enable = true;
+          illuminate.enable = true;
           lsp.enable = true;
           nrvimr.enable = true;
           telescope.enable = true;
