@@ -42,6 +42,13 @@ in {
           ];
         };
 
+        syntaxHighlighting = {
+          enable = true;
+          highlighters = [
+            "brackets"
+          ];
+        };
+
         # Source secrets that are mounted via sops
         envExtra = lib.mkIf cfg.enableSecretEnv "source ~/.secretenv";
       };
