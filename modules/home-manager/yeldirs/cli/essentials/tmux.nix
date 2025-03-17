@@ -19,6 +19,9 @@ in {
         keyMode = "vi";
         shortcut = "n";
         escapeTime = 0;
+        extraConfig = ''
+          set -g mouse on
+        '';
       };
     };
   };
