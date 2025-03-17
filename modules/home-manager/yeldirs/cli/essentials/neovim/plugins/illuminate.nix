@@ -30,7 +30,12 @@ in {
           lua
           */
           ''
-            require("illuminate").configure({})
+            require("illuminate").configure({
+              providers = {
+                "lsp",
+                "treesitter"
+              },
+            })
           '';
       }
     ];
