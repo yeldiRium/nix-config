@@ -5,7 +5,7 @@
 
 - system
   - adjust ricing to my liking
-  - [ ] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
+  - [x] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
   - [x] fix garbage collection. unit is probably wrong. should be 15d instead of +15.
 - darwin
   - [ ] store gpg-agent passphrase in keychain
@@ -40,7 +40,7 @@
         - [x] diff
         - [x] dockerfile
         - [ ] gitignore
-        - [ ] helm?
+        - [-] helm? (conflicts with yamlls. i added a schema for yamlls instead)
         - [ ] html
         - [ ] make
         - [x] poe-filter
@@ -57,17 +57,17 @@
         - bindings
           - [-] go to/list implementations
         - [x] bashls
-        - [ ] helm?
+        - [x] helm (integrated into yamlls)
         - [ ] html
         - [ ] htmx
-        - [ ] hledger (might do this myself)
+        - [x] hledger (i'm implementing this, wip)
         - [ ] terraformls
       - dap
           - [ ] javascript, typescript
   - desktop apps
     - [ ] audacity
-    - [ ] clementine
-    - [ ] gimp
+    - [x] clementine
+    - [x] gimp
     - [ ] transmission gui
     - office
       - mail
@@ -95,19 +95,19 @@
 - modularity
   - [x] add options to disable animations and transparency in hyprland and wayland
   - [x] make impermanence optional
-  - [ ] invert how support for programming languages is structured
-    - instead of having language support distributed across many files (neovim lsp, treesitter, other installations), each programming language or development feature should have one module
-    - this module contains configurations for all other programs (neovim, install additional things, shell integrations) depending on whether they are installed
   - [x] make system target configurable between linux and darwin
     - [x] use it to build the shell aliases for nbuild/nswitch/nrepl
   - [ ] move home manager modules out of home, make user name configurable
     - [x] make optionals/cli into a module
-    - [ ] make keyring into a module
-    - [ ] check what all can be shared within the yeldir user
+    - [x] make keyring into a module
+    - [x] check what all can be shared within the yeldir user
     - [ ] move desktops and autostart into yeldirs.desktop configuration
   - [ ] rethink the "supported languages" support in my module options
     - The list becomes very long and clutters the config
     - I might want to cluster some languages, e.g. json/yaml/xml/csv because they are related, but they might have complicated setups
+    - [ ] invert how support for programming languages is structured
+      - instead of having language support distributed across many files (neovim lsp, treesitter, other installations), each programming language or development feature should have one module
+      - this module contains configurations for all other programs (neovim, install additional things, shell integrations) depending on whether they are installed
 
 ## Restructure development feature
 - feature
