@@ -29,6 +29,7 @@ in {
     ./plugins/testing.nix
     ./plugins/treesitter.nix
     ./plugins/undotree.nix
+    ./plugins/wsl-clipboard.nix
     ./plugins/zoom.nix
   ];
 
