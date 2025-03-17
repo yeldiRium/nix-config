@@ -1,29 +1,39 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: let
-  # Steam usage guide with lutris:
-  #
-  # Lutris somehow can't start steam reliably. Games are
-  # also installed, managed and launched via steam, so it
-  # has to be installed and configured.
-  # In lutris, steam games can be added to the library.
-  # This does not install them, it just registers them with
-  # lutris.
-  #
-  # To install and start a game, steam must be started
-  # manuall, so that it fully open and logs in. Then
-  # launching a game that was registered with lutris will
-  # launch into the running steam instance and start the
-  # game/ask for installation.
-  #
-  # Games can only be registered with lutris after logging
-  # into steam once and setting the games on your user
-  # profile to public.
+  monitor = lib.head (lib.filter (m: m.primary) config.monitors);
+  steam-session = let
+    gamescope = lib.concatStringsSep " " [
+      (lib.getExe pkgs.gamescope)
+      "--output-width ${toString monitor.width}"
+      "--output-height ${toString monitor.height}"
+      "--framerate-limit ${toString monitor.refreshRate}"
+      "--prefer-output ${monitor.name}"
+      "--adaptive-sync"
+      "--expose-wayland"
+      "--hdr-enabled"
+      "--steam"
+    ];
+    steam = lib.concatStringsSep " " [
+      "steam"
+      "steam://open/bigpicture"
+    ];
+  in
+    pkgs.writeTextDir "share/wayland-sessions/steam-session.desktop" # ini
+    
+    ''
+      [Desktop Entry]
+      Name=Steam Session
+      Exec=${gamescope} -- ${steam}
+      Type=Application
+    '';
 in {
   home.packages = with pkgs; [
     protontricks
+    steam-session
   ];
 
   home.persistence = {
