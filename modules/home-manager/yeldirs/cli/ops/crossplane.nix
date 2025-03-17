@@ -5,7 +5,6 @@
   ...
 }: let
   cfg = config.yeldirs.cli.ops.crossplane;
-  yeldirsCfg = config.yeldirs;
 in {
   options = {
     yeldirs.cli.ops.crossplane = {
@@ -15,7 +14,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-        crossplane-cli
+      (pkgs.runCommand "crank" {} ''
+        mkdir -p "$out/bin"
+        ln -s "${pkgs.crossplane-cli}/bin/crossplane" "$out/bin/crank"
+      '')
+      crossplane-cli
     ];
   };
 }
