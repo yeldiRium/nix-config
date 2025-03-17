@@ -32,8 +32,8 @@ in {
             vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
             vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
             for i = 1, 9, 1 do
-              vim.keymap.set("n", "<S-"..i..">", function() harpoon:list():select(i) end)
-              vim.keymap.set("n", "<S-k"..i..">", function() harpoon:list():select(i) end)
+              vim.keymap.set("n", "<M-"..i..">", function() harpoon:list():select(i) end)
+              vim.keymap.set("n", "<M-k"..i..">", function() harpoon:list():select(i) end)
             end
           '';
       }
