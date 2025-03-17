@@ -24,7 +24,7 @@
       - [x] adjust settings to hackstack setup
     - neovim
       - [x] github copilot
-      - [ ] highlight uses of hovered symbol
+      - [x] highlight uses of hovered symbol
       - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
       - [ ] folding does not work correctly for yaml lists, only folds the first entry, if its an object
       - features
