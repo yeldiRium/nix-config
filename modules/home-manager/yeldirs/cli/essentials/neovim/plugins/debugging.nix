@@ -32,6 +32,9 @@ in {
     };
     programs.neovim.plugins = with pkgs.unstable.vimPlugins;
       [
+        # dependencies
+        nvim-nio
+
         {
           plugin = nvim-dap;
           type = "lua";
@@ -65,7 +68,6 @@ in {
             )
           ];
         }
-        nvim-nio
         {
           plugin = nvim-dap-ui;
           type = "lua";
