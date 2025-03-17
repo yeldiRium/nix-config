@@ -1,21 +1,21 @@
 vim.g.mapleader = " "
 
 -- Move between windows
-vim.keymap.set("n", "<S-A-Left>", "<C-w><Left>")
-vim.keymap.set("n", "<S-A-Right>", "<C-w><Right>")
-vim.keymap.set("n", "<S-A-Up>", "<C-w><Up>")
-vim.keymap.set("n", "<S-A-Down>", "<C-w><Down>")
+vim.keymap.set("n", "<S-M-Left>", "<C-w><Left>")
+vim.keymap.set("n", "<S-M-Right>", "<C-w><Right>")
+vim.keymap.set("n", "<S-M-Up>", "<C-w><Up>")
+vim.keymap.set("n", "<S-M-Down>", "<C-w><Down>")
 
 -- Move through navigation history
-vim.keymap.set("n", "<A-Left>", "<C-O>")
-vim.keymap.set("n", "<A-Right>", "<C-I>")
+vim.keymap.set("n", "<M-Left>", "<C-O>")
+vim.keymap.set("n", "<M-Right>", "<C-I>")
 
 -- Clear search highlight
 vim.keymap.set("n", "<leader>/", ":nohlsearch<cr>")
 
 -- Insert line without entering insert mode
-vim.keymap.set("n", "<A-o>", "o<Esc>")
-vim.keymap.set("n", "<A-O>", "O<Esc>")
+vim.keymap.set("n", "<M-o>", "o<Esc>")
+vim.keymap.set("n", "<M-O>", "O<Esc>")
 
 -- Programming
 -- LSP
