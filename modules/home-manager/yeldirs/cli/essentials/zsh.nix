@@ -41,6 +41,10 @@ in {
           ];
         };
 
+        history = {
+          path = "$HOME/.local/share/zsh/.zsh_history";
+        };
+
         syntaxHighlighting = {
           enable = true;
           highlighters = [
@@ -62,7 +66,9 @@ in {
         "/persist/${config.home.homeDirectory}" = {
           files = [
             ".warprc"
-            ".zsh_history"
+          ];
+          directories = [
+            ".local/share/zsh"
           ];
         };
       };
