@@ -9,13 +9,13 @@
 in {
   imports = [
     ./neovim
+    ./tmux
 
     ./git.nix
     ./gpg.nix
     ./isd.nix
     ./ranger.nix
     ./ssh.nix
-    ./tmux.nix
     ./zsh.nix
   ];
 
