@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+set -eu
+
+session="nix"
+attach() {
+  if [ -n "${TMUX:-}" ]; then
+    tmux switch-client -t "=${session}"
+  else
+    tmux attach-session -t "=${session}"
+  fi
+}
+
+if ! tmux has-session -t $session 2>/dev/null; then
+  cd ~/querbeet/workspace/nix-config
+
+  tmux new-session -d -s "${session}" -n "nix" -x "$(tput cols)" -y "$(tput lines)"
+
+  tmux split-window -t "${session}:nix.0" -h
+  tmux resize-pane -t "${session}:nix.0" -x "60%"
+
+  sleep 1
+
+  tmux send-keys -t "${session}:nix.0" "nvim" "C-m"
+  tmux send-keys -t "${session}:nix.0" " gg"
+
+  tmux select-window -t "${session}:nix"
+  tmux select-pane -t "${session}:nix.0"
+fi
+
+attach
