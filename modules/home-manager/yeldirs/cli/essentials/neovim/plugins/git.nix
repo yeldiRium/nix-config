@@ -40,7 +40,7 @@ in {
           '';
       }
       {
-        plugin = pkgs.vimExtraPlugins.neogit;
+        plugin = neogit;
         type = "lua";
         config =
           /*
