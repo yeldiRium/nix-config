@@ -25,7 +25,7 @@ in {
       nvim-web-devicons
       diffview-nvim
       {
-        plugin = neogit;
+        plugin = pkgs.vimExtraPlugins.neogit;
         type = "lua";
         config =
           /*
