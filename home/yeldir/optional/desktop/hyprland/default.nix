@@ -35,6 +35,7 @@ in {
       grimblast
       hyprpicker
       bibata-cursors
+      unstable.hyprland-qtutils
     ];
 
     xdg.portal = {
