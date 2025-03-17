@@ -38,7 +38,7 @@ in {
                 ["https://github.com"] = {
                   priority = 90,
                   takeover = "always",
-                  selector = 'textarea:not([readonly], [aria-readonly]), div[role="textbox"]',
+                  selector = 'textarea:not([readonly], [aria-readonly], [id="copilot-chat-textarea"]), div[role="textbox"]',
                 },
               },
             }
