@@ -12,6 +12,9 @@
             enable = true;
             enableSecretEnv = true;
           };
+          hstr = {
+            enable = true;
+          };
           git = {
             enable = true;
             userEmail = "hannes.leutloff@yeldirium.de";

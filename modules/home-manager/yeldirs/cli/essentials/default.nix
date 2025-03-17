@@ -13,6 +13,7 @@ in {
 
     ./git.nix
     ./gpg.nix
+    ./hstr.nix
     ./isd.nix
     ./ranger.nix
     ./ssh.nix
@@ -67,11 +68,6 @@ in {
       bat = {
         enable = true;
         config.theme = "base16";
-      };
-      hstr = {
-        enable = true;
-
-        enableZshIntegration = yeldirsCfg.cli.essentials.zsh.enable;
       };
       thefuck = {
         enable = true;
