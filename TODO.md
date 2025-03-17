@@ -94,6 +94,7 @@
     - [x] with impermanence it's easy to just backup the entire /persist folder
 - darwin
 - modularity
+  - [ ] refactor creation of scripts - multiple places have function definitions to create script packages
   - [x] add options to disable animations and transparency in hyprland and wayland
   - [x] make impermanence optional
   - [x] make system target configurable between linux and darwin
