@@ -56,10 +56,11 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.override {
-        wrapRuntimeDeps = false;
-        mesa = pkgs.mesa;
+        libgbm = pkgs.mesa;
       };
-      plugins = [inputs.hy3.packages.${pkgs.stdenv.hostPlatform.system}.hy3];
+      plugins = [
+        inputs.hy3.packages.${pkgs.stdenv.hostPlatform.system}.hy3
+      ];
       systemd = {
         enable = true;
       };

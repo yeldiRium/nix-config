@@ -22,10 +22,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.47.0";
+      url = "github:hyprwm/Hyprland?submodules=1&ref=main";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.47.0-1";
+      url = "github:outfoxxed/hy3?ref=master";
       inputs.hyprland.follows = "hyprland";
     };
     isd = {
