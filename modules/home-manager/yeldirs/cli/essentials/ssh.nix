@@ -19,11 +19,11 @@ in {
         matchBlocks =
           {
             "github.com" = {
-              user = "yeldir";
+              user = "git";
               identityFile = "~/.ssh/hleutloff";
             };
             "git.staubwolke.org" = {
-              user = "yeldir";
+              user = "git";
               identityFile = "~/.ssh/hleutloff";
               port = 30022;
             };
