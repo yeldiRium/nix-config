@@ -49,6 +49,7 @@ in {
       (shellScript ./scripts/tm)
       (shellScript ./scripts/tmhl)
       (shellScript ./scripts/tmnix)
+      (shellScript ./scripts/tmqmk)
     ];
   };
 }

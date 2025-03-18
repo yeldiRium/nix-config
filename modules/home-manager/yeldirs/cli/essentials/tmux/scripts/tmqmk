@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+set -eu
+
+session="qmk"
+attach() {
+  if [ -n "${TMUX:-}" ]; then
+    tmux switch-client -t "=${session}"
+  else
+    tmux attach-session -t "=${session}"
+  fi
+}
+
+if ! tmux has-session -t $session 2>/dev/null; then
+  cd ~/querbeet/workspace/private/qmk_firmware
+
+  tmux new-session -d -s "${session}" -n "qmk" -x "$(tput cols)" -y "$(tput lines)"
+
+  tmux split-window -t "${session}:qmk.0" -h
+  tmux resize-pane -t "${session}:qmk.0" -x "60%"
+  tmux split-window -t "${session}:qmk.0" -v
+
+  sleep 1
+
+  tmux send-keys -t "${session}:qmk.0" "cd " ~/querbeet/workspace/private/projects/qmk-crkbd-neo2 "C-m"
+  tmux send-keys -t "${session}:qmk.0" "nvim" "C-m"
+  tmux send-keys -t "${session}:qmk.0" " gg"
+  tmux send-keys -t "${session}:qmk.1" "cd " ~/querbeet/workspace/private/projects/qmk-ergodox-ez-neo2 "C-m"
+  tmux send-keys -t "${session}:qmk.1" "nvim" "C-m"
+  tmux send-keys -t "${session}:qmk.1" " gg"
+
+  tmux select-window -t "${session}:qmk"
+  tmux select-pane -t "${session}:qmk.0"
+fi
+
+attach
