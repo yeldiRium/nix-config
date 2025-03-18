@@ -26,6 +26,7 @@ in {
         setopt histignorespace           # skip cmds w/ leading space from history
         export HSTR_CONFIG=hicolor,prompt-bottom,raw-history-view
         export HSTR_TIOCSTI=y
+        export HISTFILE=${config.programs.zsh.history.path}
 
         bindkey -s  "\C-r" "^[[1~ hstr -- \C-j" # CUSTOM binding for vi mode
       '';
