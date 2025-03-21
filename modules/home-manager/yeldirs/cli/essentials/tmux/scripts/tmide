@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
-sessionSuffix="$(pwd)"
+sessionSuffix="$(basename "$(pwd)")"
 sessionSuffix="${sessionSuffix//./}"
 sessionSuffix="${sessionSuffix//:/}"
 
@@ -21,6 +21,11 @@ if ! tmux has-session -t "${session}" 2>/dev/null; then
   tmux resize-pane -t "${session}:0.0" -y "30%"
 
   sleep 1
+
+  if [ -f "$(pwd)/devbox.json" ]; then
+    tmux send-keys -t "${session}:0.0" "devbox shell" "C-m"
+    tmux send-keys -t "${session}:0.1" "devbox shell" "C-m"
+  fi
 
   tmux send-keys -t "${session}:0.0" "nvim" "C-m"
 
