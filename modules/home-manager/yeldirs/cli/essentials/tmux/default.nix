@@ -48,6 +48,7 @@ in {
     home.packages = [
       (shellScript ./scripts/tm)
       (shellScript ./scripts/tmhl)
+      (shellScript ./scripts/tmide)
       (shellScript ./scripts/tmnix)
       (shellScript ./scripts/tmqmk)
     ];
