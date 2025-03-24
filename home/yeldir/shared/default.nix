@@ -59,6 +59,7 @@
             testing.enable = true;
             treesitter.enable = true;
             undotree.enable = true;
+            vim-tmux-navigator.enable = true;
             zoom.enable = true;
           };
           ranger = {
@@ -66,7 +67,10 @@
             enableGui = true;
           };
           ssh.enable = true;
-          tmux.enable = true;
+          tmux = {
+            enable = true;
+            vim-tmux-navigator.enable = true;
+          };
         };
 
         office = {

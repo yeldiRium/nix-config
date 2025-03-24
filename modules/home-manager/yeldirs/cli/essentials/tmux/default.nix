@@ -9,6 +9,10 @@
   cfg = config.yeldirs.cli.essentials.tmux;
   c = config.colorscheme.colors // config.colorscheme.harmonized;
 in {
+  imports = [
+    ./plugins/vim-tmux-navigator.nix
+  ];
+
   options = {
     yeldirs.cli.essentials.tmux = {
       enable = lib.mkEnableOption "tmux";
@@ -20,6 +24,7 @@ in {
       programs = {
         tmux = {
           enable = true;
+          package = pkgs.unstable.tmux;
           clock24 = true;
           keyMode = "vi";
           shortcut = "n";
