@@ -60,6 +60,7 @@ in {
         ];
         sessionVariables = {
           ZSH_TMUX_AUTOSTART = "true";
+          ZSH_TMUX_AUTOQUIT = "false";
           ZSH_TMUX_DEFAULT_SESSION_NAME = "default";
         };
       };
