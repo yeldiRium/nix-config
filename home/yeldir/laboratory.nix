@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   ...
 }: {
@@ -29,6 +28,27 @@
     hyprland = {
       enableAnimations = false;
       enableTransparency = false;
+
+      autostart = [
+        {
+          command = "gtk-launch org.telegram.desktop.desktop";
+          workspace = "1";
+          selector = "class:org.telegram.desktop";
+        }
+        {
+          command = "gtk-launch google-chrome";
+        }
+        {
+          command = "gtk-launch obsidian";
+          workspace = "5";
+          selector = "class:obsidian";
+        }
+        {
+          command = "gtk-launch thunderbird";
+          workspace = "7";
+          selector = "class:thunderbird";
+        }
+      ];
     };
   };
 
@@ -46,28 +66,6 @@
       height = 1080;
       primary = true;
       position = "0x0";
-    }
-  ];
-  autostart = [
-    {
-      command = "${lib.getExe pkgs.telegram-desktop}";
-      workspace = "1";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.google-chrome}";
-      workspace = "2";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.obsidian}";
-      workspace = "5";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.thunderbird}";
-      workspace = "7";
-      monitor = "DP-3";
     }
   ];
 

@@ -32,6 +32,7 @@ in {
 
   config = {
     home.packages = with pkgs; [
+      gtk3
       grimblast
       hyprpicker
       bibata-cursors
@@ -124,7 +125,7 @@ in {
         };
 
         # Specific window rules for games and applications
-        windowrulev2 = let
+        windowrule = let
           steam = "title:^()$,class:^(steam)$";
           steamGame = "class:^(steam_app_[0-9]*)$";
           unfloatApps = [

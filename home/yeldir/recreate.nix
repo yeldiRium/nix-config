@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ../shared
     ./shared
@@ -77,6 +73,32 @@
     hyprland = {
       enableAnimations = true;
       enableTransparency = true;
+
+      autostart = [
+        {
+          command = "gtk-launch org.telegram.desktop.desktop";
+          workspace = "1";
+          selector = "class:org.telegram.desktop";
+        }
+        {
+          command = "gtk-launch zotero";
+          workspace = "1";
+          selector = "class:Zotero";
+        }
+        {
+          command = "gtk-launch google-chrome";
+        }
+        {
+          command = "gtk-launch obsidian";
+          workspace = "5";
+          selector = "class:obsidian";
+        }
+        {
+          command = "gtk-launch thunderbird";
+          workspace = "7";
+          selector = "class:thunderbird";
+        }
+      ];
     };
   };
 
@@ -95,33 +117,6 @@
       position = "0x0";
       transform = 3;
       workspace = "1";
-    }
-  ];
-  autostart = [
-    {
-      command = "${lib.getExe pkgs.telegram-desktop}";
-      workspace = "1";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.zotero}";
-      workspace = "1";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.google-chrome}";
-      workspace = "2";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.obsidian}";
-      workspace = "5";
-      monitor = "DP-3";
-    }
-    {
-      command = "${lib.getExe pkgs.thunderbird}";
-      workspace = "7";
-      monitor = "DP-3";
     }
   ];
 
