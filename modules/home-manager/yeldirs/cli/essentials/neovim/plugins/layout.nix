@@ -38,6 +38,8 @@ in {
           vim.o.listchars = 'tab:▎»,space:·,lead:·,trail:·,eol:¬'
 
           vim.o.conceallevel = 1
+
+          vim.opt.sidescrolloff = 30
         '';
 
       plugins = with pkgs.unstable.vimPlugins;
