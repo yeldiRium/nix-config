@@ -53,7 +53,7 @@ in
     hi VertSplit     guifg=${c.surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
     hi ColorColumn   guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi CursorColumn  guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
-    hi CursorLine    guifg=NONE guibg=${c.tertiary_container} gui=NONE guisp=NONE
+    hi CursorLine    guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi CursorLineNr  guifg=${c.green} guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi QuickFixLine  guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi PMenu         guifg=${c.on_surface} guibg=${c.surface_variant} gui=NONE guisp=NONE

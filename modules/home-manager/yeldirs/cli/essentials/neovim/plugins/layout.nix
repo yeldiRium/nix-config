@@ -40,6 +40,9 @@ in {
           vim.o.conceallevel = 1
 
           vim.opt.sidescrolloff = 30
+
+          vim.opt.cursorline = true
+          vim.opt.cursorcolumn = true
         '';
 
       plugins = with pkgs.unstable.vimPlugins;
