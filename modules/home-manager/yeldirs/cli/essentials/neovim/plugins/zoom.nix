@@ -26,7 +26,7 @@ in {
           lua
           */
           ''
-            vim.keymap.set("n", "<leader>o", function()
+            vim.keymap.set("n", "<leader>z", function()
               vim.cmd(":ZoomWinTabToggle")
             end)
           '';
