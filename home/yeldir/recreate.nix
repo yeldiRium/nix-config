@@ -86,9 +86,6 @@
           selector = "class:Zotero";
         }
         {
-          command = "gtk-launch google-chrome";
-        }
-        {
           command = "gtk-launch obsidian";
           workspace = "5";
           selector = "class:obsidian";
@@ -98,20 +95,24 @@
           workspace = "7";
           selector = "class:thunderbird";
         }
+        {
+          command = "gtk-launch google-chrome";
+        }
       ];
     };
   };
 
   monitors = [
     {
-      name = "DP-3";
+      name = "desc:Dell Inc. DELL P2717H 4P9HC7A6AHES";
       width = 1920;
       height = 1080;
       position = "1080x200";
       primary = true;
+      workspace = "2";
     }
     {
-      name = "HDMI-A-1";
+      name = "desc:Dell Inc. DELL P2719H 3R855R2";
       width = 1920;
       height = 1080;
       position = "0x0";
