@@ -21,6 +21,7 @@ in {
       extensions = [
         pkgs.gh-copilot
       ];
+      gitCredentialHelper.enable = false;
     };
     home.persistence = {
       "/persist/${config.home.homeDirectory}".files = [".config/gh/hosts.yml"];
