@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.yeldirs.cli.development.gh;
@@ -17,6 +18,9 @@ in {
       settings = {
         git_protocol = "ssh";
       };
+      extensions = [
+        pkgs.gh-copilot
+      ];
     };
     home.persistence = {
       "/persist/${config.home.homeDirectory}".files = [".config/gh/hosts.yml"];
