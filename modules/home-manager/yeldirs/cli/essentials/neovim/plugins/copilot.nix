@@ -19,6 +19,7 @@ in {
     ];
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
+      plenary-nvim
       {
         plugin = copilot-vim;
         type = "lua";
@@ -58,12 +59,18 @@ in {
           */
           ''
             local copilot = require("CopilotChat")
-            copilot.setup({})
+            copilot.setup({
+              model = "gpt-4",
+            })
 
             -- Open quick chat without any reference to code
             vim.keymap.set("n", "<leader>ccc", function()
               copilot.toggle()
             end)
+
+            vim.keymap.set("n", "<leader>ccm", function()
+              vim.cmd(':CopilotChatModel')
+            end, { desc = "Choose copilot model for chat" })
 
             -- Run copilot with current buffer as input
             vim.keymap.set("n", "<leader>ccq", function()
