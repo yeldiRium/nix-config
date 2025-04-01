@@ -48,6 +48,7 @@
             copilot.enable = true;
             debugging.enable = true;
             early-retirement.enable = true;
+            fidget.enable = true;
             firenvim.enable = true;
             fold-cycle.enable = true;
             git.enable = true;

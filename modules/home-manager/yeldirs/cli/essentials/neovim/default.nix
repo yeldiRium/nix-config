@@ -25,6 +25,7 @@ in {
     ./plugins/lsp.nix
     ./plugins/git.nix
     ./plugins/obsidian.nix
+    ./plugins/fidget.nix
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix
