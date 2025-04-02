@@ -119,7 +119,11 @@ in {
             ''
               local function reloadGoDebuggerConfigurations()
                 require("dap").configurations.go = {}
-                require("dap-go").setup({})
+                require("dap-go").setup({
+                  delve = {
+                    initialize_timeout_sec = 60,
+                  },
+                })
 
                 ${if cfg.dynamicGoConfig != "" then "dofile(\"" + cfg.dynamicGoConfig + "\")" else ""}
               end
