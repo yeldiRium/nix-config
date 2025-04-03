@@ -45,6 +45,7 @@
               indentation-guides.enable = true;
             };
 
+            blamer.enable = true;
             copilot.enable = true;
             debugging.enable = true;
             early-retirement.enable = true;

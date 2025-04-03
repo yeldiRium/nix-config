@@ -14,6 +14,7 @@
   optionalAttrs = language: attrs: lib.optionalAttrs (builtins.elem language cfg.supportedLanguages) attrs;
 in {
   imports = [
+    ./plugins/blamer.nix
     ./plugins/copilot.nix
     ./plugins/debugging.nix
     ./plugins/early-retirement.nix

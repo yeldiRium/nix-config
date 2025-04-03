@@ -126,6 +126,8 @@ in
     hi GitGutterDelete        guifg=${c.red} guibg=${c.surface} gui=NONE guisp=NONE
     hi GitGutterChangeDelete  guifg=${c.magenta} guibg=${c.surface} gui=NONE guisp=NONE
 
+    hi Blamer                 guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE
+
     hi SpellBad    guifg=NONE guibg=NONE gui=undercurl guisp=${c.red}
     hi SpellLocal  guifg=NONE guibg=NONE gui=undercurl guisp=${c.cyan}
     hi SpellCap    guifg=NONE guibg=NONE gui=undercurl guisp=${c.blue}
