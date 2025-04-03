@@ -26,7 +26,7 @@ in {
           lua
           */
           ''
-            vim.g.blamer_enabled = true
+            vim.g.blamer_enabled = false
 
             vim.keymap.set("n", "<leader>gb", function()
               vim.cmd(":BlamerToggle")
