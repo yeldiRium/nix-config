@@ -17,6 +17,11 @@ in {
         type = lib.types.str;
         description = "Fingerprint for the key used to sign commits";
       };
+      ignores = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = "Entries for the global .gitignore file";
+        default = [];
+      };
     };
   };
   config = lib.mkIf cfg.enable {
@@ -46,7 +51,7 @@ in {
         ignores = [
           ".fuse_hidden*"
           ".vscode"
-        ];
+        ] ++ cfg.ignores;
       };
     };
   };
