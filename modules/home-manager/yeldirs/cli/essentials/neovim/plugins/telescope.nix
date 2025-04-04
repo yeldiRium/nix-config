@@ -51,7 +51,11 @@ in {
                 additional_args = { "--hidden", "--multiline" },
               })
             end, { desc = "Grep pwd using telescope" })
-            vim.keymap.set("n", "<leader>fr", telescope.registers, { desc = "Show register contents using telescope" })
+
+            vim.keymap.set("n", "<leader>fm", telescope.marks, { desc = "Show marks" })
+            vim.keymap.set("n", "<leader>fr", telescope.registers, { desc = "Show register contents" })
+            vim.keymap.set("n", "<leader>fq", telescope.quickfix, { desc = "Show quickfixes" })
+            vim.keymap.set("n", "<leader>fd", telescope.diagnostics, { desc = "Show diagnosics" })
 
 
             --- Taken from https://github.com/jemag/telescope-diff.nvim/blob/master/lua/telescope/_extensions/diff.lua

@@ -23,14 +23,12 @@ vim.keymap.set("n", "<leader>clr", "<cmd>LspRestart<cr>")
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "Hover documentation" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
-vim.keymap.set("n", "<leader>ci", function()
-  vim.lsp.buf.code_action({ source = { only = { "source.organizeImports" }}, apply = true })
-end, { desc = "Organize imports" })
 vim.keymap.set("i", "<C-Space>", function()
     require("cmp").complete()
 end, { desc = "Trigger completion suggestions request" })
 --   refactoring
 vim.keymap.set("n", "<leader>crr", vim.lsp.buf.rename, { desc = "Rename symbol" })
+
 --   navigation
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
@@ -39,4 +37,3 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
 vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
 --   diagnostics
 vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Floating diagnostic" })
-vim.keymap.set("n", "gq", vim.diagnostic.setqflist, { desc = "Diagnostics on quickfix" })
