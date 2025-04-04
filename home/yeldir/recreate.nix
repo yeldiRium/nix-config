@@ -7,7 +7,6 @@
     ./optional/desktop/development
     ./optional/desktop/hyprland
 
-    ./optional/desktop/communication
     ./optional/desktop/games
     ./optional/desktop/media
     ./optional/desktop/office
@@ -55,6 +54,7 @@
 
     desktop = {
       communication = {
+        discord.enable = true;
         matrix.enable = true;
       };
 

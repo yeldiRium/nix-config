@@ -10,7 +10,6 @@
     ./optional/desktop/development
     ./optional/desktop/hyprland
 
-    ./optional/desktop/communication/telegram.nix
     ./optional/desktop/media
     ./optional/desktop/office
     ./optional/desktop/chrome.nix

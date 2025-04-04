@@ -81,6 +81,10 @@
       };
 
       desktop = {
+        communication = {
+          telegram.enable = true;
+        };
+
         essentials = {
           kitty.enable = true;
         };
