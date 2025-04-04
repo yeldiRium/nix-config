@@ -1,5 +1,16 @@
 vim.g.mapleader = " "
 
+-- keymap groups
+vim.keymap.set("n", "<leader>c", "<Nop>", { desc = "Code" })
+vim.keymap.set("n", "<leader>cd", "<Nop>", { desc = "Debugger" })
+vim.keymap.set("n", "<leader>ch", "<Nop>", { desc = "Hover" })
+vim.keymap.set("n", "<leader>cl", "<Nop>", { desc = "LSP" })
+vim.keymap.set("n", "<leader>cr", "<Nop>", { desc = "Refactoring" })
+vim.keymap.set("n", "<leader>ct", "<Nop>", { desc = "Testing" })
+vim.keymap.set("n", "<leader>f", "<Nop>", { desc = "Pickers/Browsers" })
+vim.keymap.set("n", "<leader>g", "<Nop>", { desc = "Git" })
+vim.keymap.set("n", "<leader>h", "<Nop>", { desc = "Harpoon" })
+
 -- Move between windows
 vim.keymap.set("n", "<C-Left>", "<C-w><Left>", { desc = "Move focus to the window to the left" })
 vim.keymap.set("n", "<C-Right>", "<C-w><Right>", { desc = "Move focus to the window to the right" })
@@ -21,7 +32,7 @@ vim.keymap.set("n", "<M-O>", "O<Esc>", { desc = "Insert line above without enter
 -- LSP
 vim.keymap.set("n", "<leader>clr", "<cmd>LspRestart<cr>", { desc = "Restart current LSP" })
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Ask LSP to format the current buffer" })
-vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "Show short documentation in floating window" })
+vim.keymap.set("n", "<leader>chh", vim.lsp.buf.hover, { desc = "Show short documentation in floating window" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Pick code action" })
 vim.keymap.set("i", "<C-Space>", function()
     require("cmp").complete()
@@ -36,4 +47,4 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementa
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
 vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
 --   diagnostics
-vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Floating diagnostic" })
+vim.keymap.set("n", "<leader>chd", vim.diagnostic.open_float, { desc = "Floating diagnostic" })

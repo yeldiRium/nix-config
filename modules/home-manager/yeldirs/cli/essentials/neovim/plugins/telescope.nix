@@ -44,9 +44,9 @@ in {
             require("telescope").load_extension("ui-select")
 
             local telescope = require("telescope.builtin")
-            vim.keymap.set("n", "<leader>pf", telescope.find_files, { desc = "Search files in pwd" })
+            vim.keymap.set("n", "<leader>ff", telescope.find_files, { desc = "Search files in pwd" })
             vim.keymap.set("n", "<C-o>", telescope.git_files, { desc = "Search files in current git project" })
-            vim.keymap.set("n", "<leader>ps", function()
+            vim.keymap.set("n", "<leader>fs", function()
               telescope.grep_string({
                 search = vim.fn.input("Grep > "),
                 use_regex = true,

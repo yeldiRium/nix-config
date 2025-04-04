@@ -28,7 +28,12 @@ in {
           */
           ''
             require("which-key").setup({
+              preset = "modern",
               delay = 500,
+              keys = {
+                scroll_down = "<C-r>",
+                scroll_up = "<C-t>",
+              },
             })
           '';
       }

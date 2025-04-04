@@ -26,7 +26,7 @@ in {
           lua
           */
           ''
-            vim.keymap.set("n", "<leader>pv", ":RnvimrToggle<cr>", { desc = "Toggle ranger file browser" })
+            vim.keymap.set("n", "<leader>fr", ":RnvimrToggle<cr>", { desc = "Toggle ranger file browser" })
 
             -- Replace netrw
             vim.g["rnvimr_enable_ex"] = 1
