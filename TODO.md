@@ -1,8 +1,5 @@
 # TODO
 
-- bugs
-  - [ ] make regreet show up on main monitor
-
 - system
   - adjust ricing to my liking
   - [x] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
