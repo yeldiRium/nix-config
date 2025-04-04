@@ -308,7 +308,7 @@ in {
                 print("cmp enabled")
               end
               cmpEnabled = not cmpEnabled
-            end, {})
+            end, {}, { desc = "Toggle LSP autocompletion" })
           '';
       }
     ];

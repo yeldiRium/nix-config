@@ -47,7 +47,7 @@ in {
                     print("Copilot enabled")
                 end
                 copilotEnabled = not copilotEnabled
-            end)
+            end, { desc = "Toggle copilot suggestions" })
           '';
       }
       {
@@ -66,7 +66,7 @@ in {
             -- Open quick chat without any reference to code
             vim.keymap.set("n", "<leader>ccc", function()
               copilot.toggle()
-            end)
+            end, { desc = "Toggle copilot chat sidebar" })
 
             vim.keymap.set("n", "<leader>ccm", function()
               vim.cmd(':CopilotChatModel')
@@ -78,7 +78,7 @@ in {
               if input ~= "" then
                 require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
               end
-            end)
+            end, { desc = "Quick copilot chat with current buffer as input" })
 
             -- Run copilot inline in floating window
             vim.keymap.set("n", "<leader>cci", function()
@@ -91,7 +91,7 @@ in {
                   row = 1,
                 },
               })
-            end)
+            end, { desc = "Run copilot in floating inline window" })
           '';
       }
     ];

@@ -29,11 +29,11 @@ in {
             local harpoon = require('harpoon')
             harpoon:setup({})
 
-            vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
-            vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+            vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = "Harpoon: Add current file to shortcuts" })
+            vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon: Show shortcuts" })
             for i = 1, 9, 1 do
-              vim.keymap.set("n", "<M-"..i..">", function() harpoon:list():select(i) end)
-              vim.keymap.set("n", "<M-k"..i..">", function() harpoon:list():select(i) end)
+              vim.keymap.set("n", "<M-"..i..">", function() harpoon:list():select(i) end, { desc = "Harpoon: Switch to shortcut "..i })
+              vim.keymap.set("n", "<M-k"..i..">", function() harpoon:list():select(i) end, { desc = "Harpoon: Switch to shortcut "..i })
             end
           '';
       }

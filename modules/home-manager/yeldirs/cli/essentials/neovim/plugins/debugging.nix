@@ -57,13 +57,13 @@ in {
               vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = ""})
               vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = ""})
 
-              vim.keymap.set("n", "<leader>cdb", dap.toggle_breakpoint)
-              vim.keymap.set("n", "<leader>cdc", dap.continue)
-              vim.keymap.set("n", "<leader>cdC", dap.terminate)
+              vim.keymap.set("n", "<leader>cdb", dap.toggle_breakpoint, { desc = "Set debugger breakpoint" })
+              vim.keymap.set("n", "<leader>cdc", dap.continue, { desc = "Start/continue debugger" })
+              vim.keymap.set("n", "<leader>cdC", dap.terminate, { desc = "Terminate debugger session" })
 
-              vim.keymap.set("n", "<leader>cdo", dap.step_over) -- Step over
-              vim.keymap.set("n", "<leader>cdi", dap.step_into) -- Step into
-              vim.keymap.set("n", "<leader>cdx", dap.step_out) -- Step out
+              vim.keymap.set("n", "<leader>cdo", dap.step_over, { desc = "Step over statement" })
+              vim.keymap.set("n", "<leader>cdi", dap.step_into, { desc = "Step into function" })
+              vim.keymap.set("n", "<leader>cdx", dap.step_out, { desc = "Step out of function" })
 
               local dynamicDebuggerHooks = {}
               vim.keymap.set("n", "<leader>cdl", function()
@@ -90,8 +90,8 @@ in {
               end
               setup()
 
-              vim.keymap.set("n", "<leader>cdd", dapui.toggle)
-              vim.keymap.set("n", "<leader>cdr", setup)
+              vim.keymap.set("n", "<leader>cdd", dapui.toggle, { desc = "Toggle debugger UI" })
+              vim.keymap.set("n", "<leader>cdr", setup, { desc = "Load debugger UI settings (resets layout)" })
 
               dap.listeners.before.attach.dapui_config = function()
                 dapui.open()

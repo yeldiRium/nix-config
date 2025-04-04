@@ -30,7 +30,7 @@ in {
 
             vim.keymap.set("n", "<leader>gb", function()
               vim.cmd(":BlamerToggle")
-            end)
+            end, { desc = "Toggle Blamer plugin for inline git blame" })
           '';
       }
     ];

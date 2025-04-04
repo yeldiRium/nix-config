@@ -55,11 +55,11 @@ in {
                 },
               })
 
-              vim.keymap.set("n", "<leader>ctt", neotest.summary.toggle)
-              vim.keymap.set("n", "<leader>ctn", neotest.run.run)
-              vim.keymap.set("n", "<leader>cta", function () neotest.run.run(vim.fn.expand("%")) end)
-              vim.keymap.set("n", "<leader>cto", neotest.output.open)
-              vim.keymap.set("n", "<leader>cts", neotest.run.stop)
+              vim.keymap.set("n", "<leader>ctt", neotest.summary.toggle, { desc = "Open test sidebar" })
+              vim.keymap.set("n", "<leader>ctn", neotest.run.run, { desc = "Run the closest test" })
+              vim.keymap.set("n", "<leader>cta", function () neotest.run.run(vim.fn.expand("%")) end, { desc = "Run all tests" })
+              vim.keymap.set("n", "<leader>cto", neotest.output.open, { desc = "Open test output" })
+              vim.keymap.set("n", "<leader>cts", neotest.run.stop, { desc = "Stop running tests" })
             '';
         }
       ]

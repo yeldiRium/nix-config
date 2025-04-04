@@ -39,10 +39,10 @@ in {
           ''
             vim.g["tmux_navigator_no_mappings"] = 1
 
-            vim.keymap.set("n", "<C-Left>", ":<C-U>TmuxNavigateLeft<cr>")
-            vim.keymap.set("n", "<C-Down>", ":<C-U>TmuxNavigateDown<cr>")
-            vim.keymap.set("n", "<C-Up>", ":<C-U>TmuxNavigateUp<cr>")
-            vim.keymap.set("n", "<C-Right>", ":<C-U>TmuxNavigateRight<cr>")
+            vim.keymap.set("n", "<C-Left>", ":<C-U>TmuxNavigateLeft<cr>", { desc = "Move focus to the window or tmux pane to the left" })
+            vim.keymap.set("n", "<C-Down>", ":<C-U>TmuxNavigateDown<cr>", { desc = "Move focus to the window or tmux pane to the right" })
+            vim.keymap.set("n", "<C-Up>", ":<C-U>TmuxNavigateUp<cr>", { desc = "Move focus to the window or tmux pane at the top" })
+            vim.keymap.set("n", "<C-Right>", ":<C-U>TmuxNavigateRight<cr>", { desc = "Move focus to the window or tmux pane at the bottom" })
           '';
       }
     ];
