@@ -61,6 +61,7 @@
             treesitter.enable = true;
             undotree.enable = true;
             vim-tmux-navigator.enable = true;
+            which-key.enable = true;
             zoom.enable = true;
           };
           ranger = {

@@ -32,6 +32,7 @@ in {
     ./plugins/treesitter.nix
     ./plugins/undotree.nix
     ./plugins/vim-tmux-navigator.nix
+    ./plugins/which-key.nix
     ./plugins/wsl-clipboard.nix
     ./plugins/zoom.nix
   ];
