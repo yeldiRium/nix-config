@@ -48,7 +48,6 @@
             blamer.enable = true;
             copilot.enable = false;
             debugging.enable = true;
-            early-retirement.enable = true;
             fidget.enable = true;
             firenvim.enable = true;
             fold-cycle.enable = true;
