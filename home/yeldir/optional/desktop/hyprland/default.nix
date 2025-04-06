@@ -114,6 +114,9 @@ in {
             "zsa-technology-labs-inc-ergodox-ez-system-control"
             "zsa-technology-labs-inc-ergodox-ez-consumer-control"
           ];
+        ecosystem = {
+          no_update_news = true;
+        };
         misc = {
           disable_hyprland_logo = true;
 
