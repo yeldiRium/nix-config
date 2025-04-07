@@ -32,7 +32,11 @@ vim.keymap.set("n", "<M-O>", "O<Esc>", { desc = "Insert line above without enter
 -- LSP
 vim.keymap.set("n", "<leader>clr", "<cmd>LspRestart<cr>", { desc = "Restart current LSP" })
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Ask LSP to format the current buffer" })
-vim.keymap.set("n", "<leader>chh", vim.lsp.buf.hover, { desc = "Show short documentation in floating window" })
+vim.keymap.set("n", "<leader>chh", function()
+  vim.lsp.buf.hover({
+    border = "rounded",
+  })
+end, { desc = "Show short documentation in floating window" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Pick code action" })
 vim.keymap.set("i", "<C-Space>", function()
     require("cmp").complete()
