@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ../shared
     ./shared
@@ -13,6 +10,12 @@
   yeldirs = {
     system = {
       hostName = "rekorder";
+
+      sops = {
+        enable = true;
+        sopsFile = ./secrets.yaml;
+        keyFile = "/Users/yeldir/querbeet/keys.txt";
+      };
     };
 
     cli = {
