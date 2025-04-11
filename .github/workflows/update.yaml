@@ -18,6 +18,3 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
-      - name: Run nix-build
-        run: |
-          nix run nixpkgs#nixos-rebuild -- build --flake .#recreate
