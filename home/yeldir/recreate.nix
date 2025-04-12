@@ -59,6 +59,7 @@
       };
 
       games = {
+        input-remapper.enable = true;
         nds.enable = true;
       };
 
