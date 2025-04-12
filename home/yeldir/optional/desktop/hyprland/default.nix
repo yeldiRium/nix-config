@@ -64,6 +64,7 @@ in {
       ];
       systemd = {
         enable = true;
+        enableXdgAutostart = true;
       };
 
       settings = let
