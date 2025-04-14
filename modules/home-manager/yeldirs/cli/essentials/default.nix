@@ -61,6 +61,7 @@ in {
 
       shellAliases = {
         ll = "ls -al";
+        hl = "ag --passthrough";
       };
     };
 
