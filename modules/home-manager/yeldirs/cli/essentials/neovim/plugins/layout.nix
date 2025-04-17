@@ -59,6 +59,22 @@ in {
                 require("ibl").setup()
               '';
           }
+          {
+            plugin = smear-cursor-nvim;
+            type = "lua";
+            config =
+              /*
+              lua
+              */
+              ''
+                require("smear_cursor").setup({
+                  smear_insert_mode = false,
+
+                  stiffness = 0.7,
+                  trailing_stiffness = 0.4,
+                })
+              '';
+          }
         ]);
     };
   };
