@@ -41,13 +41,12 @@
             copilot.enable = false;
             debugging.enable = true;
             fidget.enable = true;
-            firenvim.enable = true;
             fold-cycle.enable = true;
             git.enable = true;
             harpoon2.enable = true;
             illuminate.enable = true;
             lsp.enable = true;
-            nrvimr.enable = true; # TODO: remove this
+            nrvimr.enable = true;
             telescope.enable = true;
             testing.enable = true;
             treesitter.enable = true;
