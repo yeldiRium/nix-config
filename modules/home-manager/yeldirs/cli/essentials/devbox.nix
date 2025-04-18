@@ -13,6 +13,7 @@ in {
       ];
 
       shellAliases = {
+        drb = "devbox run build";
         drt = "devbox run test";
         drl = "devbox run lint";
         drlf = "devbox run lint:fix";
