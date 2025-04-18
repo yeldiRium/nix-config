@@ -11,6 +11,7 @@ in {
     ./neovim
     ./tmux
 
+    ./devbox.nix
     ./git.nix
     ./gpg.nix
     ./hstr.nix
@@ -38,9 +39,6 @@ in {
 
         # nix utils
         alejandra
-
-        # development
-        devbox
       ]
         # custom scripts
       ++ (let
