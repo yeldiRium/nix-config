@@ -19,10 +19,10 @@ in {
           require("diffview").setup({
             keymaps = {
               view = {
-                { "n", "q", function() vim.cmd(":DiffviewClose") end },
+                { "n", "<C-c>", function() vim.cmd(":DiffviewClose") end },
               },
               file_panel = {
-                { "n", "q", function() vim.cmd(":DiffviewClose") end },
+                { "n", "<C-c>", function() vim.cmd(":DiffviewClose") end },
               },
             },
           })
@@ -37,7 +37,13 @@ in {
           */
           ''
             local neogit = require('neogit')
-            neogit.setup({})
+            neogit.setup({
+              mappings = {
+                status = {
+                  ["<C-c>"] = "Close",
+                },
+              },
+            })
 
             vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Open NeoGit" })
           '';
