@@ -30,13 +30,22 @@ in {
           lua
           */
           ''
-            oil = require("oil")
+            local oil = require("oil")
+
+            local oilDetailView = false
             oil.setup({
-              columns = {
-                "icon",
-                "permissions",
-                "size",
-                "mtime",
+              keymaps = {
+                ["gd"] = {
+                  desc = "Toggle file detail view",
+                  callback = function()
+                    oilDetailView = not oilDetailView
+                    if oilDetailView then
+                      require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+                    else
+                      require("oil").set_columns({ "icon" })
+                    end
+                  end,
+                },
               },
               view_options = {
                 show_hidden = true,
