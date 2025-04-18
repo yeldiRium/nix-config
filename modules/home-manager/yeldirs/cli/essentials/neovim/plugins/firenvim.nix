@@ -13,13 +13,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for firenvim to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = firenvim;

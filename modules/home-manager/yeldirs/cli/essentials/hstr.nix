@@ -3,14 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.yeldirs.cli.essentials.hstr;
-  yeldirsCfg = config.yeldirs;
+  essentials = config.yeldirs.cli.essentials;
 in {
-  options = {
-    yeldirs.cli.essentials.hstr.enable = lib.mkEnableOption "hstr";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     programs = {
       hstr = {
         enable = true;
@@ -21,7 +16,7 @@ in {
         enableZshIntegration = false;
       };
 
-      zsh.initExtra = lib.mkIf yeldirsCfg.cli.essentials.zsh.enable ''
+      zsh.initExtra = lib.mkIf config.programs.zsh.enable ''
         # HSTR configuration - add this to ~/.zshrc
         setopt histignorespace           # skip cmds w/ leading space from history
         export HSTR_CONFIG=hicolor,prompt-bottom,raw-history-view

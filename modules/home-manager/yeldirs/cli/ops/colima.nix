@@ -5,7 +5,6 @@
   ...
 }: let
   cfg = config.yeldirs.cli.ops.colima;
-  yeldirsCfg = config.yeldirs;
 in {
   options = {
     yeldirs.cli.ops.colima = {
@@ -20,7 +19,7 @@ in {
     ];
 
     programs = {
-      zsh.initExtra = lib.mkIf yeldirsCfg.cli.essentials.zsh.enable ''
+      zsh.initExtra = lib.mkIf config.programs.zsh.enable ''
         eval "$(${lib.getExe pkgs.colima} completion zsh)"
       '';
     };

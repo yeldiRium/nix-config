@@ -6,20 +6,14 @@
 }: let
   shellScript = import ../../../../../../lib/shellScript.nix pkgs;
 
-  cfg = config.yeldirs.cli.essentials.tmux;
+  essentials = config.yeldirs.cli.essentials;
   c = config.colorscheme.colors // config.colorscheme.harmonized;
 in {
   imports = [
     ./plugins/vim-tmux-navigator.nix
   ];
 
-  options = {
-    yeldirs.cli.essentials.tmux = {
-      enable = lib.mkEnableOption "tmux";
-    };
-  };
-
-  config = lib.mkIf cfg.enable (lib.mkMerge [
+  config = lib.mkIf essentials.enable (lib.mkMerge [
     {
       programs = {
         tmux = {
@@ -62,7 +56,7 @@ in {
         (shellScript ./scripts/tmqmk)
       ];
     }
-    (lib.mkIf (config.yeldirs.cli.essentials.zsh.enable) {
+    (lib.mkIf (config.programs.zsh.enable) {
       programs.zsh = {
         oh-my-zsh.plugins = [
           "tmux"

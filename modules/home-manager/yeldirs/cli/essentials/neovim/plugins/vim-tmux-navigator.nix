@@ -4,30 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.yeldirs.cli.essentials.neovim.vim-tmux-navigator;
+  essentials = config.yeldirs.cli.essentials;
 in {
-  options = {
-    yeldirs.cli.essentials.neovim.vim-tmux-navigator = {
-      enable = lib.mkEnableOption "neovim plugin vim-tmux-navigator";
-    };
-  };
-
-  config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for vim-tmux-navigator to work";
-      }
-      {
-        assertion = config.yeldirs.cli.essentials.tmux.enable;
-        message = "tmux must be enabled for vim-tmux-navigator to work";
-      }
-      {
-        assertion = config.yeldirs.cli.essentials.tmux.vim-tmux-navigator.enable;
-        message = "the tmux plugin vim-tmux-navigator must be enabled for the neovim plugin vim-tmux-navigator to work";
-      }
-    ];
-
+  config = lib.mkIf essentials.enable {
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = vim-tmux-navigator;

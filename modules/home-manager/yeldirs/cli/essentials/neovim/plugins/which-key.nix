@@ -11,13 +11,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the plugin which-key to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = which-key-nvim;

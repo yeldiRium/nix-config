@@ -14,13 +14,6 @@ in {
     yeldirs.cli.essentials.neovim.lsp.enable = lib.mkEnableOption "neovim lsp support";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the lsp support to work";
-      }
-    ];
-
     # LSP servers
     home.packages = with pkgs;
       (optionals "bash" [

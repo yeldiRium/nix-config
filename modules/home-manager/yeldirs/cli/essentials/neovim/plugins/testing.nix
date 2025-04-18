@@ -15,17 +15,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the test runner support to work";
-      }
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.treesitter.enable;
-        message = "neovim plugin treesitter must be enabled for the test runner support to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.unstable.vimPlugins;
       [
         nvim-nio

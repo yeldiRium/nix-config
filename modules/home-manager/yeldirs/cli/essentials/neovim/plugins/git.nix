@@ -10,17 +10,6 @@ in {
     yeldirs.cli.essentials.neovim.git.enable = lib.mkEnableOption "neovim git support";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the git support to work";
-      }
-      {
-        assertion = config.yeldirs.cli.essentials.git.enable;
-        message = "git must be enabled for the neovim git support to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       nvim-web-devicons
       {

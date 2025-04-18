@@ -10,13 +10,6 @@ in {
     yeldirs.cli.essentials.neovim.zoom.enable = lib.mkEnableOption "neovim plugin zoomwintab";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the plugin zoom to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = zoomwintab-vim;

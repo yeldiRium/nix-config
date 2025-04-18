@@ -3,11 +3,11 @@
   lib,
   ...
 }: let
+  essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.git;
 in {
   options = {
     yeldirs.cli.essentials.git = {
-      enable = lib.mkEnableOption "git";
       userEmail = lib.mkOption {
         type = lib.types.str;
         description = "The user email for commits";
@@ -24,7 +24,8 @@ in {
       };
     };
   };
-  config = lib.mkIf cfg.enable {
+
+  config = lib.mkIf essentials.enable {
     assertions = [
       {
         assertion = cfg.signCommits == false || cfg.signingKey != "";

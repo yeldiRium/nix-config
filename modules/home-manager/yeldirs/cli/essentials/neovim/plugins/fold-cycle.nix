@@ -10,13 +10,6 @@ in {
     yeldirs.cli.essentials.neovim.fold-cycle.enable = lib.mkEnableOption "neovim plugin fold-cycle";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the plugin fold-cycle to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.vimExtraPlugins; [
       {
         plugin = fold-cycle-nvim;

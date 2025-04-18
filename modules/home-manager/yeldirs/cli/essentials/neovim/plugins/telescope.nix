@@ -12,13 +12,6 @@ in {
     yeldirs.cli.essentials.neovim.telescope.enable = lib.mkEnableOption "neovim plugin telescope";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the plugin telescope to work";
-      }
-    ];
-
     home.packages = with pkgs; [
       ripgrep
     ];

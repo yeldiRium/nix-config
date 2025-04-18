@@ -10,13 +10,6 @@ in {
     yeldirs.cli.essentials.neovim.nrvimr.enable = lib.mkEnableOption "neovim plugin nrvimr";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the plugin nrvimr to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = rnvimr;

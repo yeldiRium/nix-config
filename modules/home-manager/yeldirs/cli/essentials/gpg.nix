@@ -5,12 +5,11 @@
   ...
 }: let
   platform = config.yeldirs.system.platform;
+  essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.gpg;
 in {
   options = {
     yeldirs.cli.essentials.gpg = {
-      enable = lib.mkEnableOption "gpg";
-
       trustedPgpKeys = lib.mkOption {
         type = lib.types.listOf lib.types.path;
         default = [];
@@ -19,7 +18,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     services.gpg-agent = {
       enable = true;
       pinentryPackage =

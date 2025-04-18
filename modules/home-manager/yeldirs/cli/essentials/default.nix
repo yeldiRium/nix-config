@@ -5,7 +5,6 @@
   ...
 }: let
   cfg = config.yeldirs.cli.essentials;
-  yeldirsCfg = config.yeldirs;
 in {
   imports = [
     ./neovim
@@ -70,7 +69,7 @@ in {
       };
       thefuck = {
         enable = true;
-        enableZshIntegration = yeldirsCfg.cli.essentials.zsh.enable;
+        enableZshIntegration = config.programs.zsh.enable;
       };
     };
   };

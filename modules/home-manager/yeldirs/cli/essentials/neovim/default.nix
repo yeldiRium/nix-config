@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: let
+  essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.neovim;
   reloadNvim = ''
     for server in ''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/nvim.*; do
@@ -39,8 +40,6 @@ in {
 
   options = {
     yeldirs.cli.essentials.neovim = {
-      enable = lib.mkEnableOption "neovim";
-
       supportedLanguages = lib.mkOption {
         type = lib.types.listOf (lib.types.enum [
           "bash"
@@ -61,7 +60,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     home.sessionVariables.EDITOR = "nvim";
 
     programs.neovim = {

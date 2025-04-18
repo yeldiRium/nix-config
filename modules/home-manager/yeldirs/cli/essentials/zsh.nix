@@ -4,11 +4,11 @@
   pkgs,
   ...
 }: let
+  essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.zsh;
 in {
   options = {
     yeldirs.cli.essentials.zsh = {
-      enable = lib.mkEnableOption "zsh";
       enableSecretEnv = lib.mkOption {
         type = lib.types.bool;
         description = "Requires sops to be enabled. Mounts ~/.secretenv from the sops secrets.";
@@ -17,7 +17,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     home.file.".p10k.zsh".text = builtins.readFile ./.p10k.zsh;
 
     programs = {

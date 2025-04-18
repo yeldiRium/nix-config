@@ -10,13 +10,6 @@ in {
     yeldirs.cli.essentials.neovim.harpoon2.enable = lib.mkEnableOption "neovim plugin harpoon2";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the plugin harpoon2 to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = harpoon2;

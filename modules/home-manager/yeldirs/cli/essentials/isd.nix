@@ -5,23 +5,11 @@
   pkgs,
   ...
 }: let
-  cfg = config.yeldirs.cli.essentials.isd;
-  yeldirsCfg = config.yeldirs;
+  essentials = config.yeldirs.cli.essentials;
+  platform = config.yeldirs.system.platform;
 in {
-  options = {
-    yeldirs.cli.essentials.isd = {
-      enable = lib.mkEnableOption "isd";
-    };
-  };
 
-  config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = yeldirsCfg.system.platform == "linux";
-        message = "isd can only be installed on linux";
-      }
-    ];
-
+  config = lib.mkIf (essentials.enable && platform == "linux") {
     home.packages = with pkgs; [
       inputs.isd.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];

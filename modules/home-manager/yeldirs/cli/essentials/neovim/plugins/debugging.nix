@@ -19,17 +19,6 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the debugging support to work";
-      }
-      {
-        assertion = cfg.dynamicGoConfig == "" || languageActive "go";
-        message = "dynamic go debugging configurations can only be used if the language support for go is enabled";
-      }
-    ];
-
     # DAP servers
     home.packages = with pkgs; (optionals "go" [
       unstable.delve

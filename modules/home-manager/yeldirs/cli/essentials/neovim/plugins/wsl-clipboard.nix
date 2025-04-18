@@ -10,13 +10,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the plugin wsl-clipboard to work";
-      }
-    ];
-
     programs.neovim.extraLuaConfig =
       /*
       lua

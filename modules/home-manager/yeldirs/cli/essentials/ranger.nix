@@ -4,16 +4,16 @@
   pkgs,
   ...
 }: let
+  essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.ranger;
 in {
   options = {
     yeldirs.cli.essentials.ranger = {
-      enable = lib.mkEnableOption "ranger";
       enableGui = lib.mkEnableOption "ranger with graphical ui";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     # Various dependencies.
     home.packages = with pkgs;
       [

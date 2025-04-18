@@ -14,11 +14,5 @@
       };
       keyring.enable = true;
     };
-
-    cli = {
-      essentials = {
-        isd.enable = true;
-      };
-    };
   };
 }
