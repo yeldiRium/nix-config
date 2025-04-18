@@ -46,7 +46,8 @@
             harpoon2.enable = true;
             illuminate.enable = true;
             lsp.enable = true;
-            nrvimr.enable = true;
+            nrvimr.enable = false;
+            oil.enable = true;
             telescope.enable = true;
             testing.enable = true;
             treesitter.enable = true;

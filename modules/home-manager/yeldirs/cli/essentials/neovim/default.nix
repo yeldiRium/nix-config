@@ -18,14 +18,15 @@ in {
     ./plugins/blamer.nix
     ./plugins/copilot.nix
     ./plugins/debugging.nix
+    ./plugins/fidget.nix
     ./plugins/fold-cycle.nix
+    ./plugins/git.nix
     ./plugins/harpoon2.nix
     ./plugins/illuminate.nix
     ./plugins/layout.nix
     ./plugins/lsp.nix
-    ./plugins/git.nix
     ./plugins/obsidian.nix
-    ./plugins/fidget.nix
+    ./plugins/oil.nix
     ./plugins/rnvimr.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix
