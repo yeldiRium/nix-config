@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -eu
 
+# TODO: if a devbox.json file exists and it includes a "dev" command,
+# run that command instead of all this.
+
 sessionSuffix="$(basename "$(pwd)")"
 sessionSuffix="${sessionSuffix//./}"
 sessionSuffix="${sessionSuffix//:/}"
