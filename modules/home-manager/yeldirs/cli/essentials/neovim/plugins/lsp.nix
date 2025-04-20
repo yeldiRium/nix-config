@@ -25,6 +25,7 @@ in {
       ])
       ++ (optionals "go" [
         gopls
+        golangci-lint-langserver
       ])
       ++ (optionals "javascript" [
         nodePackages.typescript-language-server
@@ -109,6 +110,7 @@ in {
               */
               ''
                 add_lsp(lspconfig.gopls, {})
+                add_lsp(lspconfig.golangci_lint_ls, {})
               ''
             else ""
           )
