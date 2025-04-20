@@ -44,10 +44,6 @@ in {
           ];
         };
 
-        history = {
-          path = "$HOME/.local/share/zsh/.zsh_history";
-        };
-
         syntaxHighlighting = {
           enable = true;
           highlighters = [

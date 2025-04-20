@@ -77,7 +77,6 @@
 - fixes
   - [x] investigate startup script. deleting btrfs subvolumes seems to be broken
     - yep, it is, because my ssd seems to have corrupted sectors that btrfs can't handle. should not be a problem for other hosts
-  - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
   - [x] still "too many open files" errors when starting games (e.g. kingdoms of amalur)
 - security
   - [ ] look into full disk encryption (might require re-setup)

@@ -10,10 +10,10 @@ in {
     ./neovim
     ./tmux
 
+    ./atuin.nix
     ./devbox.nix
     ./git.nix
     ./gpg.nix
-    ./hstr.nix
     ./isd.nix
     ./ranger.nix
     ./ssh.nix
