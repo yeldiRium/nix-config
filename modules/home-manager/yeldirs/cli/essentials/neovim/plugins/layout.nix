@@ -37,7 +37,7 @@ in {
           vim.o.list = true
           vim.o.listchars = 'tab:▎»,space:·,lead:·,trail:·,eol:¬'
 
-          vim.o.conceallevel = 1
+          vim.o.conceallevel = 0
 
           vim.opt.sidescrolloff = 10
 
