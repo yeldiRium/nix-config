@@ -42,6 +42,7 @@ in {
     yeldirs.cli.essentials.neovim = {
       supportedLanguages = lib.mkOption {
         type = lib.types.listOf (lib.types.enum [
+          "asciidoc"
           "bash"
           "docker"
           "go"
@@ -94,10 +95,13 @@ in {
         "nvim/color.vim".onChange = reloadNvim;
         "nvim/color.vim".source = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
       }
+      // optionalAttrs "asciidoc" {
+        "nvim/ftplugin/asciidoc.lua".source = pkgs.writeText "asciidoc.lua" (builtins.readFile ./ftplugin/asciidoc.lua);
+      }
       // optionalAttrs "bash" {
         "nvim/ftplugin/bash.lua".source = pkgs.writeText "bash.lua" (builtins.readFile ./ftplugin/bash.lua);
       }
-      // lib.optionalAttrs cfg.git.enable {
+      // optionalAttrs cfg.git.enable {
         "nvim/ftplugin/NeogitCommitMessage.lua".source = pkgs.writeText "NeogitCommitMessage.lua" (builtins.readFile ./ftplugin/NeogitCommitMessage.lua);
       }
       // optionalAttrs "go" {
