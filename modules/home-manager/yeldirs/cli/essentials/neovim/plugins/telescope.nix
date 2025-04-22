@@ -51,6 +51,7 @@ in {
             vim.keymap.set("n", "<leader>fr", telescope.registers, { desc = "Show register contents" })
             vim.keymap.set("n", "<leader>fq", telescope.quickfix, { desc = "Show quickfixes" })
             vim.keymap.set("n", "<leader>fd", telescope.diagnostics, { desc = "Show diagnosics" })
+            vim.keymap.set("n", "<leader>fh", telescope.jumplist, { desc = "Show jumplist" })
 
             -- replaces the bindings for lsp related actions from ../bindings.lua
             ${
