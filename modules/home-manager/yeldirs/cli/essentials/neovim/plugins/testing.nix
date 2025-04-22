@@ -18,6 +18,7 @@ in {
     programs.neovim.plugins = with pkgs.unstable.vimPlugins;
       [
         nvim-nio
+        plenary-nvim
         {
           plugin = neotest;
           type = "lua";
@@ -37,7 +38,7 @@ in {
                   lua
                   */
                   ''
-                    require("neotest-go"),
+                    require("neotest-golang"),
                   ''
                 else ""
               }
@@ -53,7 +54,7 @@ in {
         }
       ]
       ++ (optionals "go" [
-        neotest-go
+        neotest-golang
       ]);
   };
 }
