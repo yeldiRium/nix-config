@@ -48,7 +48,7 @@ in {
 
               vim.keymap.set("n", "<leader>cdb", dap.toggle_breakpoint, { desc = "Set debugger breakpoint" })
               vim.keymap.set("n", "<leader>cdc", dap.continue, { desc = "Start/continue debugger" })
-              vim.keymap.set("n", "<leader>cdC", dap.terminate, { desc = "Terminate debugger session" })
+              vim.keymap.set("n", "<leader>cds", dap.terminate, { desc = "Stop the debugger" })
 
               vim.keymap.set("n", "<leader>cdo", dap.step_over, { desc = "Step over statement" })
               vim.keymap.set("n", "<leader>cdi", dap.step_into, { desc = "Step into function" })
