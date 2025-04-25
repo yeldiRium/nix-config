@@ -92,7 +92,6 @@
       };
 
       ops = {
-        colima.enable = true;
         crossplane.enable = true;
         k9s.enable = true;
         kubectl.enable = true;
