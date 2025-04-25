@@ -16,6 +16,14 @@ in {
     home.packages = with pkgs; [
       colima
       docker-client
+
+      # Only install the pkill binary from toybox
+      (pkgs.linkFarm "pkill" [
+        {
+          name = "bin/pkill";
+          path = pkgs.toybox;
+        }
+      ])
     ];
 
     programs = {
