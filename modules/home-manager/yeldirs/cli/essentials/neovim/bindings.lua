@@ -24,6 +24,11 @@ vim.keymap.set("n", "<M-Right>", "<C-I>", { desc = "History forward" })
 -- Misc
 vim.keymap.set("n", "<leader>/", ":nohlsearch<cr>", { desc = "Clear search highlight" })
 
+-- Layout
+vim.keymap.set("n", "<leader>lw", function()
+  vim.opt.wrap = not vim.opt.wrap:get()
+end, { desc = "Toggle linewrap" })
+
 -- Insert line without entering insert mode
 vim.keymap.set("n", "<M-o>", "o<Esc>", { desc = "Insert line below without entering insert mode" })
 vim.keymap.set("n", "<M-O>", "O<Esc>", { desc = "Insert line above without entering insert mode" })
@@ -39,7 +44,7 @@ vim.keymap.set("n", "<leader>chh", function()
 end, { desc = "Show short documentation in floating window" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Pick code action" })
 vim.keymap.set("i", "<C-Space>", function()
-    require("cmp").complete()
+  require("cmp").complete()
 end, { desc = "Trigger completion suggestions request" })
 --   refactoring
 vim.keymap.set("n", "<leader>crr", vim.lsp.buf.rename, { desc = "Ask LSP to rename symbol under cursor" })
