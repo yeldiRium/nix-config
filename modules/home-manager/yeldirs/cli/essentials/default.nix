@@ -26,36 +26,36 @@ in {
 
   config = lib.mkIf cfg.enable {
     home = {
-      packages = with pkgs; [
-        # poweruser
-        jq
-        ijq
-        yq
-        silver-searcher
-        btop
-        zip
-        unzip
-        fzf
+      packages = with pkgs;
+        [
+          # poweruser
+          jq
+          ijq
+          yq
+          silver-searcher
+          btop
+          zip
+          unzip
 
-        # nix utils
-        alejandra
-      ]
+          # nix utils
+          alejandra
+        ]
         # custom scripts
-      ++ (let
-        script = name:
-          pkgs.writeTextFile {
-            inherit name;
-            executable = true;
-            destination = "/bin/${name}";
-            text = builtins.readFile ./scripts/${name};
-            checkPhase = ''
-              ${pkgs.stdenv.shellDryRun} "$target"
-            '';
-            meta.mainProgram = name;
-          };
-      in [
-        (script "diffex")
-      ]);
+        ++ (let
+          script = name:
+            pkgs.writeTextFile {
+              inherit name;
+              executable = true;
+              destination = "/bin/${name}";
+              text = builtins.readFile ./scripts/${name};
+              checkPhase = ''
+                ${pkgs.stdenv.shellDryRun} "$target"
+              '';
+              meta.mainProgram = name;
+            };
+        in [
+          (script "diffex")
+        ]);
 
       shellAliases = {
         ll = "ls -al";
@@ -67,6 +67,12 @@ in {
       bat = {
         enable = true;
         config.theme = "base16";
+      };
+      fzf = {
+        enable = true;
+        defaultOptions = [
+          "--tmux"
+        ];
       };
       thefuck = {
         enable = true;
