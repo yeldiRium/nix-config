@@ -35,6 +35,7 @@ in {
         btop
         zip
         unzip
+        fzf
 
         # nix utils
         alejandra
