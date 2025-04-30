@@ -87,6 +87,42 @@ in {
             end, { desc = "Run copilot in floating inline window" })
           '';
       }
+      {
+        plugin = codecompanion-nvim;
+        type = "lua";
+        config =
+          /*
+          lua
+          */
+          ''
+            require("codecompanion").setup({
+              strategies = {
+                chat = {
+                  adapter = "copilot",
+                },
+                inline = {
+                  adapter = "copilot",
+                },
+                cmd = {
+                  adapter = "copilot",
+                }
+              },
+              display = {
+                action_palette = {
+                  provider = "telescope",
+                },
+              },
+            })
+
+            vim.keymap.set("n", "<leader>ccd", function()
+              local cursorLine = vim.fn.getpos(".")[2]
+              vim.cmd("CodeCompanion #buffer Implement the todo on line " .. cursorLine)
+            end, { desc = "CodeComanion implement todo on cursor line" })
+            vim.keymap.set("n", "<leader>cc<Space>", function()
+              vim.cmd("CodeCompanionActions")
+            end, { desc = "Toggle linewrap" })
+          '';
+      }
     ];
 
     home.persistence = {
