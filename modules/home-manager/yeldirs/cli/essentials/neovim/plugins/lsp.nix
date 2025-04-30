@@ -109,8 +109,18 @@ in {
               lua
               */
               ''
-                add_lsp(lspconfig.gopls, {})
-                add_lsp(lspconfig.golangci_lint_ls, {})
+                if vim.fn.executable("go") == 1 then
+                  add_lsp(lspconfig.gopls, {})
+                else
+                  -- TODO: inform the user that go language support is degraded
+                  --       but only do so if go language support is actually required, e.g. when a .go file is opened
+                end
+                if vim.fn.executable("golangci-lint") == 1 then
+                  add_lsp(lspconfig.golangci_lint_ls, {})
+                else
+                  -- TODO: inform the user that go linter support is degraded
+                  --       but only do so if go linter support is actually required, e.g. when a .go file is opened
+                end
               ''
             else ""
           )
