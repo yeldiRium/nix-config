@@ -36,6 +36,7 @@
       };
 
       development = {
+        gh.enable = true;
         qmk.enable = true;
       };
 
