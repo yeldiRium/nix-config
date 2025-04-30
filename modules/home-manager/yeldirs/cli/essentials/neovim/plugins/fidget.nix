@@ -4,12 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.yeldirs.cli.essentials.neovim.fidget;
+  essentials = config.yeldirs.cli.essentials;
 in {
-  options = {
-    yeldirs.cli.essentials.neovim.fidget.enable = lib.mkEnableOption "neovim plugin fidget";
-  };
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = fidget-nvim;
@@ -19,7 +16,11 @@ in {
           lua
           */
           ''
-            require("fidget").setup()
+            require("fidget").setup({
+              notification = {
+                override_vim_notify = true,
+              },
+            })
           '';
       }
     ];

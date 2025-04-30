@@ -40,7 +40,6 @@
             blamer.enable = true;
             copilot.enable = false;
             debugging.enable = true;
-            fidget.enable = true;
             fold-cycle.enable = true;
             git.enable = true;
             harpoon2.enable = true;
