@@ -22,7 +22,7 @@ in {
             vim.g.blamer_enabled = false
 
             vim.keymap.set("n", "<leader>gb", function()
-              vim.cmd(":BlamerToggle")
+              vim.cmd("BlamerToggle")
             end, { desc = "Toggle Blamer plugin for inline git blame" })
           '';
       }

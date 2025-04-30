@@ -19,10 +19,10 @@ in {
           require("diffview").setup({
             keymaps = {
               view = {
-                { "n", "<C-c>", function() vim.cmd(":DiffviewClose") end },
+                { "n", "<C-c>", function() vim.cmd("DiffviewClose") end },
               },
               file_panel = {
-                { "n", "<C-c>", function() vim.cmd(":DiffviewClose") end },
+                { "n", "<C-c>", function() vim.cmd("DiffviewClose") end },
               },
             },
           })

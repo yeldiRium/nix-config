@@ -20,7 +20,7 @@ in {
           */
           ''
             vim.keymap.set("n", "<leader>z", function()
-              vim.cmd(":ZoomWinTabToggle")
+              vim.cmd("ZoomWinTabToggle")
             end, { desc = "Toggle fullscreen for window" })
           '';
       }
