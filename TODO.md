@@ -110,29 +110,40 @@
 ## Restructure development feature
 - feature
   - editor integration
-    - lsp software
     - neovim config
       - ftplugin (filetype specific settings)
       - treesitter plugin (syntax highlighting)
-      - dap plugin (debugging)
       - lsp binding
       - neotest plugin (testing)
+      - dap plugin (debugging)
+      - linter plugin
+      - custom keybinds
+      - custom plugins
   - specific software
     - eg docker, kubectl
+    - language server
+    - debugger
+    - linter
     - no interpreters or compilers, those should be installed via devbox with the project-specific version
     - scripts and aliases
   - shell integration
+  - system daemons
 - what features are there?
-  - go (highlighting, lsp, dap, test plugin)
-  - lua (highlighting, lsp)
+  - essential (nix, isd)
+  - go (treesitter, lsp, dap, test plugin)
+  - lua (treesitter, lsp)
   - git (gitignore, gitconfig, gh)
-  - shell (sh, bash, zsh)
+  - shell (sh, bash, zsh, treesitter, lsp)
+  - markdown (treesitter, lsp?)
   - web (typescript, javascript, html, css, scss)
   - docker (docker, lazydocker)
-  - kubernetes (kubectl, k9s, helm)
+  - kubernetes (kubectl, kubectx & kubens, k9s, helm)
   - minikube
   - config/data files (json, csv, xml, yaml, toml)
-  - terraform (highlighting, lsp?, cli)
-  - make (makefile highlighting & lsp?, make cli)
   - linux (desktop files)
   - regex
+  - poe (treesitter)
+  - hledger (hledger, my scripts, treesitter, lsp)
+  - rego (treesitter, lsp)
+  - ? terraform (highlighting, lsp?, cli)
+  - ? make (makefile highlighting & lsp?, make cli)
