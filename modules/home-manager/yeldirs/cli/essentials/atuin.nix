@@ -10,6 +10,9 @@ in {
       atuin = {
         enable = true;
         enableZshIntegration = true;
+        settings = {
+          filter_mode = "host";
+        };
       };
     };
 
