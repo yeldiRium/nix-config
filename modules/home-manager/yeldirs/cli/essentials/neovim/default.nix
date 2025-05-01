@@ -21,7 +21,7 @@ in {
     ./plugins/fidget.nix
     ./plugins/fold-cycle.nix
     ./plugins/git.nix
-    ./plugins/harpoon2.nix
+    ./plugins/quickfilepicker.nix
     ./plugins/illuminate.nix
     ./plugins/layout.nix
     ./plugins/lsp.nix

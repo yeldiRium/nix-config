@@ -42,11 +42,13 @@
             debugging.enable = true;
             fold-cycle.enable = true;
             git.enable = true;
-            harpoon2.enable = true;
             illuminate.enable = true;
             lsp.enable = true;
             nrvimr.enable = false;
             oil.enable = true;
+            quickfilepicker = {
+              grapple.enable = true;
+            };
             telescope.enable = true;
             testing.enable = true;
             treesitter.enable = true;
