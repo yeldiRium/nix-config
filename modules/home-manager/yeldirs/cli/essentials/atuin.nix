@@ -12,6 +12,10 @@ in {
         enableZshIntegration = true;
         settings = {
           filter_mode = "host";
+          cwd_filter = [
+            "/temp$"
+            "/temp/"
+          ];
         };
       };
     };
