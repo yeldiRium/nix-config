@@ -15,8 +15,8 @@ in {
     ./git.nix
     ./gpg.nix
     ./isd.nix
-    ./ranger.nix
     ./ssh.nix
+    ./yazi.nix
     ./zsh.nix
   ];
 

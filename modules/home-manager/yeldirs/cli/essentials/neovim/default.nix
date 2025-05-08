@@ -27,7 +27,6 @@ in {
     ./plugins/lsp.nix
     ./plugins/obsidian.nix
     ./plugins/oil.nix
-    ./plugins/rnvimr.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix
     ./plugins/treesitter.nix
@@ -35,6 +34,7 @@ in {
     ./plugins/vim-tmux-navigator.nix
     ./plugins/which-key.nix
     ./plugins/wsl-clipboard.nix
+    ./plugins/yazi.nix
     ./plugins/zoom.nix
   ];
 

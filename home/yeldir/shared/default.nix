@@ -44,7 +44,6 @@
             git.enable = true;
             illuminate.enable = true;
             lsp.enable = true;
-            nrvimr.enable = false;
             oil.enable = true;
             quickfilepicker = {
               grapple.enable = true;
@@ -54,9 +53,10 @@
             treesitter.enable = true;
             undotree.enable = true;
             which-key.enable = true;
+            yazi.enable = true;
             zoom.enable = true;
           };
-          ranger = {
+          yazi = {
             enableGui = true;
           };
         };
