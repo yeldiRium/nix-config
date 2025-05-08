@@ -52,7 +52,7 @@ in {
               },
             })
 
-            vim.keymap.set("n", "<leader>fo", function()
+            vim.keymap.set("n", "-", function()
               oil.open(
                 nil,
                 {
