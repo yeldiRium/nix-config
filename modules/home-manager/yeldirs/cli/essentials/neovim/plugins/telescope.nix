@@ -98,7 +98,7 @@ in {
               opts = vim.tbl_extend("force", opts, local_opts)
               telescope.find_files(opts)
             end
-            vim.keymap.set("n", "<C-d>", diff_current, { desc = "Show register contents using telescope" })
+            vim.keymap.set("n", "<leader>fD", diff_current, { desc = "Show register contents using telescope" })
           '';
       }
     ];
