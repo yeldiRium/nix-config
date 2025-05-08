@@ -17,6 +17,7 @@ in {
     ./isd.nix
     ./ssh.nix
     ./yazi.nix
+    ./zoxide.nix
     ./zsh.nix
   ];
 

@@ -35,12 +35,8 @@ in {
         '';
         oh-my-zsh = {
           enable = true;
-          extraConfig = ''
-            ZSHZ_DATA="$HOME/.local/share/zsh/.z"
-          '';
           plugins = [
             "wd"
-            "z"
           ];
         };
 
