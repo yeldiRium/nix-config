@@ -24,34 +24,16 @@
     cli = {
       essentials = {
         enable = true;
-
-        zsh = {
-          enable = true;
-        };
-
         git = {
-          enable = true;
           userEmail = "tbd";
           signCommits = true;
           signingKey = "tbd";
         };
-        gpg = {
-          enable = true;
-        };
-        ranger = {
-          enable = true;
-        };
         ssh = {
-          enable = true;
           excludePrivate = true;
-        };
-        tmux = {
-          enable = true;
         };
 
         neovim = {
-          enable = true;
-
           supportedLanguages = [
             "bash"
             "docker"
@@ -76,7 +58,6 @@
           git.enable = true;
           illuminate.enable = true;
           lsp.enable = true;
-          nrvimr.enable = true;
           quickfilepicker.grapple.enable = true;
           telescope.enable = true;
           testing.enable = true;
