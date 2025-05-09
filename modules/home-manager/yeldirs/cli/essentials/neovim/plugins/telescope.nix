@@ -43,7 +43,7 @@ in {
               telescope.grep_string({
                 search = vim.fn.input("Grep > "),
                 use_regex = true,
-                additional_args = { "--hidden", "--multiline" },
+                additional_args = { "--hidden", "--multiline", "--iglob", "!.git" },
               })
             end, { desc = "Grep pwd using telescope" })
 
