@@ -18,6 +18,7 @@ in {
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       telescope-ui-select-nvim
+      telescope-fzf-native-nvim
       {
         plugin = telescope-nvim;
         type = "lua";
@@ -35,6 +36,7 @@ in {
             })
 
             require("telescope").load_extension("ui-select")
+            require("telescope").load_extension("fzf")
 
             local telescope = require("telescope.builtin")
             vim.keymap.set("n", "<leader>ff", telescope.find_files, { desc = "Search files in pwd" })
