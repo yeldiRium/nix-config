@@ -51,7 +51,7 @@ in {
     assertions = [
       {
         assertion = cfg.username != "";
-        message = "HostName must be set!";
+        message = "Username must be set!";
       }
       {
         assertion = cfg.hostName != "";
