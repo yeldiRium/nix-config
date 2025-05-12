@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.yeldirs.cli.ops.k9s;
@@ -22,6 +23,7 @@ in {
 
     programs.k9s = {
       enable = true;
+      package = pkgs.unstable.k9s;
     };
   };
 }
