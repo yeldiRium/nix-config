@@ -34,6 +34,7 @@ in {
           dysk
           ijq
           jq
+          pv
           silver-searcher
           unzip
           yq
