@@ -23,6 +23,7 @@ in {
           keyMode = "vi";
           shortcut = "n";
           escapeTime = 0;
+          historyLimit = 10000;
           extraConfig =
             /*
             tmux
