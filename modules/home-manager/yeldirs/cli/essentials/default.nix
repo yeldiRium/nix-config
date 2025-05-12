@@ -30,13 +30,14 @@ in {
       packages = with pkgs;
         [
           # poweruser
-          jq
-          ijq
-          yq
-          silver-searcher
           btop
-          zip
+          dysk
+          ijq
+          jq
+          silver-searcher
           unzip
+          yq
+          zip
 
           # nix utils
           alejandra
