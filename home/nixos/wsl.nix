@@ -31,9 +31,9 @@
 
         git = {
           enable = true;
-          userEmail = "tbd";
-          signCommits = true;
-          signingKey = "tbd";
+          userEmail = "hannes.leutloff@yeldirium.de";
+          signCommits = false;
+          signingKey = "";
         };
         gpg = {
           enable = true;
