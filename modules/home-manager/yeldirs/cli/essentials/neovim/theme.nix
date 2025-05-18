@@ -53,7 +53,7 @@ in
     hi VertSplit     guifg=${c.surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
     hi ColorColumn   guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi CursorColumn  guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
-    hi CursorLine    guifg=NONE guibg=${c.tertiary_container} gui=NONE guisp=NONE
+    hi CursorLine    guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi CursorLineNr  guifg=${c.green} guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi QuickFixLine  guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi PMenu         guifg=${c.on_surface} guibg=${c.surface_variant} gui=NONE guisp=NONE
@@ -125,6 +125,8 @@ in
     hi GitGutterChange        guifg=${c.blue} guibg=${c.surface} gui=NONE guisp=NONE
     hi GitGutterDelete        guifg=${c.red} guibg=${c.surface} gui=NONE guisp=NONE
     hi GitGutterChangeDelete  guifg=${c.magenta} guibg=${c.surface} gui=NONE guisp=NONE
+
+    hi Blamer                 guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE
 
     hi SpellBad    guifg=NONE guibg=NONE gui=undercurl guisp=${c.red}
     hi SpellLocal  guifg=NONE guibg=NONE gui=undercurl guisp=${c.cyan}
@@ -312,6 +314,8 @@ in
     hi User9  guifg=${c.surface} guibg=${c.tertiary_container} gui=NONE guisp=NONE
 
     hi TreesitterContext  guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE "was italic
+
+    hi def IlluminatedWordText gui=underline cterm=underline
 
     let g:terminal_color_background = "${c.surface}"
     let g:terminal_color_foreground = "${c.on_surface}"

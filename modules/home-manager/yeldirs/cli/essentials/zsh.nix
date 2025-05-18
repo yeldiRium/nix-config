@@ -4,11 +4,11 @@
   pkgs,
   ...
 }: let
+  essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.zsh;
 in {
   options = {
     yeldirs.cli.essentials.zsh = {
-      enable = lib.mkEnableOption "zsh";
       enableSecretEnv = lib.mkOption {
         type = lib.types.bool;
         description = "Requires sops to be enabled. Mounts ~/.secretenv from the sops secrets.";
@@ -17,7 +17,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     home.file.".p10k.zsh".text = builtins.readFile ./.p10k.zsh;
 
     programs = {
@@ -27,12 +27,23 @@ in {
         initExtra = ''
           source "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
           source ~/.p10k.zsh;
+
+          # Set viins as default keymap. The home manager option zsh.defaultKeyMap
+          # seems to be overwritten by oh-my-zsh, which is why this has to be
+          # set manually.
+          bindkey -v
         '';
         oh-my-zsh = {
           enable = true;
           plugins = [
-            "git"
             "wd"
+          ];
+        };
+
+        syntaxHighlighting = {
+          enable = true;
+          highlighters = [
+            "brackets"
           ];
         };
 
@@ -50,7 +61,9 @@ in {
         "/persist/${config.home.homeDirectory}" = {
           files = [
             ".warprc"
-            ".zsh_history"
+          ];
+          directories = [
+            ".local/share/zsh"
           ];
         };
       };

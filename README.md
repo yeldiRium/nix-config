@@ -1,10 +1,10 @@
 # yeldiR's nix config
-## Setting up a new system
+## Setting up a new linux system
 Using the nixos installer image...
 
 1. Clone this repo and cd into the quickstart folder
 2. Follow the [quickstart instructions](./quickstart/README.md)
-3. Clone this repo again to your favorite location **within the persist folder** (my default is /persist/home/yeldir/querbeet/workspace/nix-config)
+3. Clone this repo again to /persist/home/yeldir/querbeet/workspace/nix-config (this is later mounted into your home directory and this config assumes that's where it's installed)
 4. Add new host configuration and configure it according to your needs
     - **include the generated hardware-configuration.nix file**
     - don't forget to set the disko device
@@ -24,3 +24,30 @@ Using the nixos installer image...
   4. `qmk setup yeldiRium/qmk_firmware`
 
 This was written without testing. It might fail and after doing everything something might be missing in the persisted folders. Needs to be evaluated!
+
+## Setting up a WSL system
+
+I don't know if the hardware-configuration.nix changes depending on the host system. So far I assume that WSL is identical everywhere. YMMV.
+
+The WSL setup does not use impermanence or sops, so no further setup and no encryption keys are required.
+
+1. Prepare your system for WSL (install WSL latest version, enable optional features, whatever weird microsoft domain stuff your workstation requires)
+2. Add a NixOS WSL instance according to [this guide](https://github.com/nix-community/NixOS-WSL) and start it
+3. Clone this repo to ~/querbeet/workspace/nix-config, because it assumes that's where it's installed
+4. Set your git username/email and gpg signing key in the [wsl home config](./home/nixos/wsl.nix)
+5. Run `nixos-rebuild switch --flake ~/querbeet/workspace/nix-config#wsl --impure`
+6. Restart WSL to be sure
+7. Optional: If you want to use commit signing, import your private key
+
+## Assumed filesystem
+
+Some parts of this config assume certain paths are present in the system,
+because that is how I structure my systems. These paths are:
+
+- ~/querbeet/nextcloud
+- ~/querbeet/stuff/temp
+- ~/querbeet/workspace/ledger
+- ~/querbeet/workspace/nix-config
+- ~/querbeet/workspace/obsidian
+- ~/querbeet/workspace/private/qmk_firmware
+- ~/querbeet/workspace/vendor

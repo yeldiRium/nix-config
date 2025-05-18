@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   config,
   pkgs,
@@ -31,13 +32,15 @@ in {
 
   config = {
     home.packages = with pkgs; [
+      gtk3
       grimblast
       hyprpicker
       bibata-cursors
+      unstable.hyprland-qtutils
     ];
 
     xdg.portal = {
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+      extraPortals = [inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland];
       config.hyprland = {
         default = ["hyprland" "gtk"];
       };
@@ -53,26 +56,31 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = pkgs.unstable.hyprland.override {
-        wrapRuntimeDeps = false;
-        mesa = pkgs.mesa;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.override {
+        libgbm = pkgs.mesa;
       };
-      plugins = [pkgs.unstable.hyprlandPlugins.hy3];
+      plugins = [
+        inputs.hy3.packages.${pkgs.stdenv.hostPlatform.system}.hy3
+      ];
       systemd = {
         enable = true;
-        # Same as default, but stop graphical-session too
-        extraCommands = lib.mkBefore [
-          "systemctl --user stop graphical-session.target"
-          "systemctl --user start hyprland-session.target"
-        ];
+        enableXdgAutostart = true;
       };
 
-      settings = {
+      settings = let
+        borderRadius = 0;
+        borderSize = 2;
+        gapSizeIn = 8;
+        gapSizeOut = 12;
+      in {
+        debug = {
+          disable_logs = false;
+        };
         general = {
           layout = "hy3";
-          gaps_in = 8;
-          gaps_out = 12;
-          border_size = 2;
+          gaps_in = gapSizeIn;
+          gaps_out = gapSizeOut;
+          border_size = borderSize;
           "col.active_border" = rgba config.colorscheme.colors.primary "aa";
           "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
 
@@ -107,6 +115,9 @@ in {
             "zsa-technology-labs-inc-ergodox-ez-system-control"
             "zsa-technology-labs-inc-ergodox-ez-consumer-control"
           ];
+        ecosystem = {
+          no_update_news = true;
+        };
         misc = {
           disable_hyprland_logo = true;
 
@@ -118,7 +129,7 @@ in {
         };
 
         # Specific window rules for games and applications
-        windowrulev2 = let
+        windowrule = let
           steam = "title:^()$,class:^(steam)$";
           steamGame = "class:^(steam_app_[0-9]*)$";
           unfloatApps = [
@@ -167,7 +178,7 @@ in {
           active_opacity = 1.0;
           inactive_opacity = 1.0;
           fullscreen_opacity = 1.0;
-          rounding = 7;
+          rounding = borderRadius;
           blur = {
             enabled = cfg.enableTransparency;
             size = 4;
@@ -176,30 +187,51 @@ in {
             ignore_opacity = true;
             popups = true;
           };
-          drop_shadow = true;
-          shadow_range = 12;
-          shadow_offset = "3 3";
-          "col.shadow" = "0x44000000";
-          "col.shadow_inactive" = "0x66000000";
+          shadow = {
+            enabled = true;
+            color = "0x44000000";
+            color_inactive = "0x66000000";
+            range = 12;
+            offset = "3 3";
+          };
         };
+
         plugin = {
           hy3 = {
             tabs = let
               activeAlpha = "ff";
-              nonActiveAlpha =
+              inactiveAlpha =
                 if cfg.enableTransparency
                 then "aa"
                 else "ff";
             in {
+              blur = cfg.enableTransparency;
+
+              height = 20;
+              padding = gapSizeIn;
+              border_width = borderSize;
+              radius = borderRadius;
+
+              text_font = config.fontProfiles.regular.name;
+              text_padding = 6;
+              text_center = false;
+              text_height = 10;
+
               "col.active" = rgba config.colorscheme.colors.primary_container activeAlpha;
-              "col.urgent" = rgba config.colorscheme.colors.tertiary_container nonActiveAlpha;
-              "col.inactive" = rgba config.colorscheme.colors.surface nonActiveAlpha;
-              "col.text.active" = rgba config.colorscheme.colors.on_primary_container activeAlpha;
-              "col.text.urgent" = rgba config.colorscheme.colors.on_tertiary_container nonActiveAlpha;
-              "col.text.inactive" = rgba config.colorscheme.colors.on_surface nonActiveAlpha;
+              "col.active.text" = rgba config.colorscheme.colors.on_primary_container activeAlpha;
+              "col.active.border" = rgba config.colorscheme.colors.primary "aa";
+
+              "col.urgent" = rgba config.colorscheme.colors.tertiary_container inactiveAlpha;
+              "col.urgent.text" = rgba config.colorscheme.colors.on_tertiary_container inactiveAlpha;
+              "col.urgent.border" = rgba config.colorscheme.colors.tertiary "aa";
+
+              "col.inactive" = rgba config.colorscheme.colors.surface inactiveAlpha;
+              "col.inactive.text" = rgba config.colorscheme.colors.on_surface inactiveAlpha;
+              "col.inactive.border" = rgba config.colorscheme.colors.surface "aa";
             };
           };
         };
+
         animations = {
           enabled = cfg.enableAnimations;
           bezier = [

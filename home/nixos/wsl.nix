@@ -24,31 +24,16 @@
     cli = {
       essentials = {
         enable = true;
-
-        zsh = {
-          enable = true;
-        };
-
         git = {
-          enable = true;
           userEmail = "hannes.leutloff@yeldirium.de";
           signCommits = false;
           signingKey = "";
         };
-        gpg = {
-          enable = true;
-        };
-        ranger = {
-          enable = true;
-        };
         ssh = {
-          enable = true;
           excludePrivate = true;
         };
 
         neovim = {
-          enable = true;
-
           supportedLanguages = [
             "bash"
             "docker"
@@ -71,18 +56,24 @@
           early-retirement.enable = true;
           fold-cycle.enable = true;
           git.enable = true;
-          harpoon2.enable = true;
+          illuminate.enable = true;
           lsp.enable = true;
-          nrvimr.enable = true;
+          quickfilepicker.grapple.enable = true;
           telescope.enable = true;
           testing.enable = true;
           treesitter.enable = true;
           undotree.enable = true;
+          wsl-clipboard.enable = true;
+          zoom.enable = true;
         };
       };
 
+      development = {
+        go-task.enable = true;
+      };
+
       ops = {
-        colima.enable = true;
+        crossplane.enable = true;
         k9s.enable = true;
         kubectl.enable = true;
         lazydocker.enable = true;

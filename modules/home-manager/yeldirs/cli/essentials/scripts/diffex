@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+if [ -z "${1}" ] || [ -z "${2}" ]; then
+  echo "Please provide two commands whose output you want to diff"
+  exit 1
+fi
+
+tmpdir=$(mktemp -d)
+
+filePath1="${tmpdir}/file1"
+filePath2="${tmpdir}/file2"
+
+sh -c "${1}" > "${filePath1}"
+sh -c "${2}" > "${filePath2}"
+
+nvim -d -R "${filePath1}" "${filePath2}"
+
+rm -rf tmpdir

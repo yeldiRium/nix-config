@@ -13,6 +13,7 @@ in {
 
       ./mounts
 
+      ./keyring.nix
       ./disable-impermanence.nix
       ./sops.nix
     ];
@@ -50,7 +51,7 @@ in {
     assertions = [
       {
         assertion = cfg.username != "";
-        message = "HostName must be set!";
+        message = "Username must be set!";
       }
       {
         assertion = cfg.hostName != "";
@@ -87,7 +88,7 @@ in {
 
       shellAliases =
         {
-          ndiff = "nbuild && nix-shell -p nix-diff --run \"nix-diff result /nix/var/nix/profiles/system\"";
+          ndiff = "nbuild && nix-shell -p nix-diff --run \"nix-diff /nix/var/nix/profiles/system result\"";
         }
         // (
           if cfg.platform == "linux"

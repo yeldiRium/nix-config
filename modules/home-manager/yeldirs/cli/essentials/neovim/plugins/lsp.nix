@@ -14,13 +14,6 @@ in {
     yeldirs.cli.essentials.neovim.lsp.enable = lib.mkEnableOption "neovim lsp support";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the lsp support to work";
-      }
-    ];
-
     # LSP servers
     home.packages = with pkgs;
       (optionals "bash" [
@@ -32,6 +25,7 @@ in {
       ])
       ++ (optionals "go" [
         gopls
+        golangci-lint-langserver
       ])
       ++ (optionals "javascript" [
         nodePackages.typescript-language-server
@@ -47,6 +41,9 @@ in {
       ])
       ++ (optionals "nix" [
         unstable.nixd
+      ])
+      ++ (optionals "rego" [
+        regols
       ])
       ++ (optionals "typescript" [
         nodePackages.typescript-language-server
@@ -112,7 +109,18 @@ in {
               lua
               */
               ''
-                add_lsp(lspconfig.gopls, {})
+                if vim.fn.executable("go") == 1 then
+                  add_lsp(lspconfig.gopls, {})
+                else
+                  -- TODO: inform the user that go language support is degraded
+                  --       but only do so if go language support is actually required, e.g. when a .go file is opened
+                end
+                if vim.fn.executable("golangci-lint") == 1 then
+                  add_lsp(lspconfig.golangci_lint_ls, {})
+                else
+                  -- TODO: inform the user that go linter support is degraded
+                  --       but only do so if go linter support is actually required, e.g. when a .go file is opened
+                end
               ''
             else ""
           )
@@ -215,6 +223,17 @@ in {
             else ""
           )
           (
+            if languageActive "rego"
+            then
+              /*
+              lua
+              */
+              ''
+                add_lsp(lspconfig.regols, {})
+              ''
+            else ""
+          )
+          (
             if languageActive "yaml"
             then
               /*
@@ -226,6 +245,7 @@ in {
                     yaml = {
                       schemas = {
                         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                        ["https://taskfile.dev/schema.json"] = "/Taskfile.yaml",
                       }
                     }
                   },
@@ -293,7 +313,7 @@ in {
                 print("cmp enabled")
               end
               cmpEnabled = not cmpEnabled
-            end, {})
+            end, { desc = "Toggle LSP autocompletion" })
           '';
       }
     ];

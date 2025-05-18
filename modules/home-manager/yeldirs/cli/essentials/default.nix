@@ -5,15 +5,19 @@
   ...
 }: let
   cfg = config.yeldirs.cli.essentials;
-  yeldirsCfg = config.yeldirs;
 in {
   imports = [
     ./neovim
+    ./tmux
 
+    ./atuin.nix
+    ./devbox.nix
     ./git.nix
     ./gpg.nix
-    ./ranger.nix
+    ./isd.nix
     ./ssh.nix
+    ./yazi.nix
+    ./zoxide.nix
     ./zsh.nix
   ];
 
@@ -23,23 +27,42 @@ in {
 
   config = lib.mkIf cfg.enable {
     home = {
-      packages = with pkgs; [
-        # poweruser
-        jq
-        silver-searcher
-        btop
-        zip
-        unzip
+      packages = with pkgs;
+        [
+          # poweruser
+          btop
+          dysk
+          ijq
+          jq
+          pv
+          silver-searcher
+          unzip
+          yq
+          zip
 
-        # nix utils
-        alejandra
-
-        # development
-        devbox
-      ];
+          # nix utils
+          alejandra
+        ]
+        # custom scripts
+        ++ (let
+          script = name:
+            pkgs.writeTextFile {
+              inherit name;
+              executable = true;
+              destination = "/bin/${name}";
+              text = builtins.readFile ./scripts/${name};
+              checkPhase = ''
+                ${pkgs.stdenv.shellDryRun} "$target"
+              '';
+              meta.mainProgram = name;
+            };
+        in [
+          (script "diffex")
+        ]);
 
       shellAliases = {
         ll = "ls -al";
+        hi = "ag --passthrough";
       };
     };
 
@@ -48,14 +71,15 @@ in {
         enable = true;
         config.theme = "base16";
       };
-      hstr = {
+      fzf = {
         enable = true;
-
-        enableZshIntegration = yeldirsCfg.cli.essentials.zsh.enable;
+        defaultOptions = [
+          "--tmux"
+        ];
       };
       thefuck = {
         enable = true;
-        enableZshIntegration = yeldirsCfg.cli.essentials.zsh.enable;
+        enableZshIntegration = config.programs.zsh.enable;
       };
     };
   };

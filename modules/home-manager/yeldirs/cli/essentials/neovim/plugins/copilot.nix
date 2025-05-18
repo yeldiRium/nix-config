@@ -11,14 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the github copilot integration to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
+      plenary-nvim
       {
         plugin = copilot-vim;
         type = "lua";
@@ -46,7 +40,7 @@ in {
                     print("Copilot enabled")
                 end
                 copilotEnabled = not copilotEnabled
-            end)
+            end, { desc = "Toggle copilot suggestions" })
           '';
       }
       {
@@ -58,12 +52,18 @@ in {
           */
           ''
             local copilot = require("CopilotChat")
-            copilot.setup({})
+            copilot.setup({
+              model = "gpt-4",
+            })
 
             -- Open quick chat without any reference to code
             vim.keymap.set("n", "<leader>ccc", function()
               copilot.toggle()
-            end)
+            end, { desc = "Toggle copilot chat sidebar" })
+
+            vim.keymap.set("n", "<leader>ccm", function()
+              vim.cmd(':CopilotChatModel')
+            end, { desc = "Choose copilot model for chat" })
 
             -- Run copilot with current buffer as input
             vim.keymap.set("n", "<leader>ccq", function()
@@ -71,7 +71,7 @@ in {
               if input ~= "" then
                 require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
               end
-            end)
+            end, { desc = "Quick copilot chat with current buffer as input" })
 
             -- Run copilot inline in floating window
             vim.keymap.set("n", "<leader>cci", function()
@@ -84,7 +84,43 @@ in {
                   row = 1,
                 },
               })
-            end)
+            end, { desc = "Run copilot in floating inline window" })
+          '';
+      }
+      {
+        plugin = codecompanion-nvim;
+        type = "lua";
+        config =
+          /*
+          lua
+          */
+          ''
+            require("codecompanion").setup({
+              strategies = {
+                chat = {
+                  adapter = "copilot",
+                },
+                inline = {
+                  adapter = "copilot",
+                },
+                cmd = {
+                  adapter = "copilot",
+                }
+              },
+              display = {
+                action_palette = {
+                  provider = "telescope",
+                },
+              },
+            })
+
+            vim.keymap.set("n", "<leader>ccd", function()
+              local cursorLine = vim.fn.getpos(".")[2]
+              vim.cmd("CodeCompanion #buffer Implement the todo on line " .. cursorLine)
+            end, { desc = "CodeComanion implement todo on cursor line" })
+            vim.keymap.set("n", "<leader>cc<Space>", function()
+              vim.cmd("CodeCompanionActions")
+            end, { desc = "Toggle linewrap" })
           '';
       }
     ];

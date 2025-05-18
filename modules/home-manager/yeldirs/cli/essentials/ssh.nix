@@ -3,27 +3,27 @@
   lib,
   ...
 }: let
+  essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.ssh;
 in {
   options = {
     yeldirs.cli.essentials.ssh = {
-      enable = lib.mkEnableOption "ssh";
       excludePrivate = lib.mkEnableOption "exclude private configs";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     programs = {
       ssh = {
         enable = true;
         matchBlocks =
           {
             "github.com" = {
-              user = "yeldir";
+              user = "git";
               identityFile = "~/.ssh/hleutloff";
             };
             "git.staubwolke.org" = {
-              user = "yeldir";
+              user = "git";
               identityFile = "~/.ssh/hleutloff";
               port = 30022;
             };

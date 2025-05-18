@@ -5,8 +5,6 @@
 }: {
   imports = [
     ./bottles.nix
-    ./heroic.nix
-    ./lutris.nix
     ./minecraft.nix
     ./osu.nix
     ./protonup.nix

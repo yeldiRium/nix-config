@@ -4,8 +4,8 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    pkgs.obsidian
+  home.packages = with pkgs.unstable; [
+    obsidian
   ];
 
   home.persistence."/persist/${config.home.homeDirectory}" = {

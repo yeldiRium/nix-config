@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+path="/dev/disk/by-label/RPI-RP2"
+
+# Run with sudo to let the user enter the password before setting
+# the keyboard in flash mode and thus not being able to enter the
+# password anymore.
+sudo echo "Trying to flash your crkbd :)"
+
+if [ "$(basename "$(pwd)")" != "qmk_firmware" ]; then
+  echo "qmk helper scripts must be run in qmk_firmware directory"
+  exit 1
+fi
+
+if [ ! -e ./crkbd_rev1_neo2-de-macos_promicro_rp2040.uf2 ]; then
+  echo "Compile the firmware first!"
+  exit 1
+fi
+
+echo "Waiting for keyboard to appear. Please put it in flash mode."
+echo -n "..."
+while [ ! -e "${path}" ]; do
+    echo -n "."
+    sleep 1
+done
+echo -e "\nFound. Flashing..."
+
+sudo mkdir -p /mnt/qmk
+sudo mount "${path}" /mnt/qmk
+sudo cp ./crkbd_rev1_neo2-de-macos_promicro_rp2040.uf2 /mnt/qmk
+sudo umount /mnt/qmk

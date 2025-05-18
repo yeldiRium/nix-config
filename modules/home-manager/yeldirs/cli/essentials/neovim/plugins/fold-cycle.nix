@@ -10,13 +10,6 @@ in {
     yeldirs.cli.essentials.neovim.fold-cycle.enable = lib.mkEnableOption "neovim plugin fold-cycle";
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the plugin fold-cycle to work";
-      }
-    ];
-
     programs.neovim.plugins = with pkgs.vimExtraPlugins; [
       {
         plugin = fold-cycle-nvim;
@@ -29,14 +22,12 @@ in {
             local foldCycle = require("fold-cycle")
             foldCycle.setup({})
 
-            vim.keymap.set("n", "<M-Up>", function()
-              foldCycle.close()
-            end,
-            { desc = "Close fold under cursor." })
-            vim.keymap.set("n", "<M-Down>", function()
-              foldCycle.open()
-            end,
-            { desc = "Open fold under cursor." })
+            vim.keymap.set("n", "<M-Up>", "zc", { desc = "Close fold under cursor." })
+            vim.keymap.set("n", "<M-S-Up>", foldCycle.close_all, { desc = "Close folds under cursor recursively." })
+            vim.keymap.set("n", "<M-C-Up>", "zM", { desc = "Close all folds." })
+            vim.keymap.set("n", "<M-Down>", "zo", { desc = "Open fold under cursor." })
+            vim.keymap.set("n", "<M-S-Down>", foldCycle.open_all, { desc = "Open folds under cursor recursively." })
+            vim.keymap.set("n", "<M-C-Down>", "zR", { desc = "Open all folds." })
           '';
       }
     ];

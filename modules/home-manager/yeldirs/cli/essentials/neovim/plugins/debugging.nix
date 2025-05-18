@@ -12,15 +12,13 @@
 in {
   options = {
     yeldirs.cli.essentials.neovim.debugging.enable = lib.mkEnableOption "neovim debugging support";
+    yeldirs.cli.essentials.neovim.debugging.dynamicGoConfig = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "absolute path to a lua file that is executed when <leader>cdl is run to reload debugger configs. make sure that it's idempotent.";
+    };
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.yeldirs.cli.essentials.neovim.enable;
-        message = "neovim must be enabled for the debugging support to work";
-      }
-    ];
-
     # DAP servers
     home.packages = with pkgs; (optionals "go" [
       unstable.delve
@@ -32,6 +30,9 @@ in {
     };
     programs.neovim.plugins = with pkgs.unstable.vimPlugins;
       [
+        # dependencies
+        nvim-nio
+
         {
           plugin = nvim-dap;
           type = "lua";
@@ -43,29 +44,25 @@ in {
               local dap = require("dap")
 
               vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = ""})
-              vim.fn.sign_define("DapStopped",{ text = "▶", texthl = "", linehl = "", numhl = ""})
+              vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = ""})
 
-              vim.keymap.set("n", "<leader>cdb", dap.toggle_breakpoint)
-              vim.keymap.set("n", "<leader>cdc", dap.continue)
-              vim.keymap.set("n", "<leader>cdC", dap.terminate)
+              vim.keymap.set("n", "<leader>cdb", dap.toggle_breakpoint, { desc = "Set debugger breakpoint" })
+              vim.keymap.set("n", "<leader>cdc", dap.continue, { desc = "Start/continue debugger" })
+              vim.keymap.set("n", "<leader>cds", dap.terminate, { desc = "Stop the debugger" })
 
-              vim.keymap.set("n", "<leader>cdo", dap.step_over) -- Step over
-              vim.keymap.set("n", "<leader>cdi", dap.step_into) -- Step into
-              vim.keymap.set("n", "<leader>cdx", dap.step_out) -- Step out
+              vim.keymap.set("n", "<leader>cdo", dap.step_over, { desc = "Step over statement" })
+              vim.keymap.set("n", "<leader>cdi", dap.step_into, { desc = "Step into function" })
+              vim.keymap.set("n", "<leader>cdx", dap.step_out, { desc = "Step out of function" })
+
+              local dynamicDebuggerHooks = {}
+              vim.keymap.set("n", "<leader>cdl", function()
+                for i = 1, #dynamicDebuggerHooks, 1 do
+                  dynamicDebuggerHooks[i]()
+                end
+              end, { desc = "Reload debugger configurations." })
             ''
-            (
-              if languageActive "go"
-              then
-                /*
-                lua
-                */
-                ''
-                ''
-              else ""
-            )
           ];
         }
-        nvim-nio
         {
           plugin = nvim-dap-ui;
           type = "lua";
@@ -82,8 +79,8 @@ in {
               end
               setup()
 
-              vim.keymap.set("n", "<leader>cdd", dapui.toggle)
-              vim.keymap.set("n", "<leader>cdr", setup)
+              vim.keymap.set("n", "<leader>cdd", dapui.toggle, { desc = "Toggle debugger UI" })
+              vim.keymap.set("n", "<leader>cdr", setup, { desc = "Load debugger UI settings (resets layout)" })
 
               dap.listeners.before.attach.dapui_config = function()
                 dapui.open()
@@ -109,7 +106,18 @@ in {
             lua
             */
             ''
-              require('dap-go').setup({})
+              local function reloadGoDebuggerConfigurations()
+                require("dap").configurations.go = {}
+                require("dap-go").setup({
+                  delve = {
+                    initialize_timeout_sec = 60,
+                  },
+                })
+
+                ${if cfg.dynamicGoConfig != "" then "dofile(\"" + cfg.dynamicGoConfig + "\")" else ""}
+              end
+              dynamicDebuggerHooks[#dynamicDebuggerHooks + 1] = reloadGoDebuggerConfigurations
+              reloadGoDebuggerConfigurations()
             '';
         }
       ]);

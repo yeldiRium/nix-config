@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+
+if [ "$(basename "$(pwd)")" != "qmk_firmware" ]; then
+  echo "qmk helper scripts must be run in qmk_firmware directory"
+  exit 1
+fi
+
+qmk compile -kb ergodox_ez -km neo2

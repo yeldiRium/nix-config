@@ -1,11 +1,8 @@
 # TODO
 
-- bugs
-  - [ ] make regreet show up on main monitor
-
 - system
   - adjust ricing to my liking
-  - [ ] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
+  - [x] convert keyring into module that 1.) installs and configures gnome keyring and 2.) adds it to the pam services
   - [x] fix garbage collection. unit is probably wrong. should be 15d instead of +15.
 - darwin
   - [ ] store gpg-agent passphrase in keychain
@@ -24,8 +21,9 @@
       - [x] adjust settings to hackstack setup
     - neovim
       - [x] github copilot
-      - [ ] highlight uses of hovered symbol
+      - [x] highlight uses of hovered symbol
       - [ ] maybe indent entire editor based on screen size? I'd like to have my code more centered
+      - [ ] folding does not work correctly for yaml lists, only folds the first entry, if its an object
       - features
         - git
           - [x] add guides to git commit buffer at 50 and 72 characters
@@ -40,7 +38,7 @@
         - [x] diff
         - [x] dockerfile
         - [ ] gitignore
-        - [ ] helm?
+        - [-] helm? (conflicts with yamlls. i added a schema for yamlls instead)
         - [ ] html
         - [ ] make
         - [x] poe-filter
@@ -57,17 +55,17 @@
         - bindings
           - [-] go to/list implementations
         - [x] bashls
-        - [ ] helm?
+        - [x] helm (integrated into yamlls)
         - [ ] html
         - [ ] htmx
-        - [ ] hledger (might do this myself)
+        - [x] hledger (i'm implementing this, wip)
         - [ ] terraformls
       - dap
           - [ ] javascript, typescript
   - desktop apps
     - [ ] audacity
-    - [ ] clementine
-    - [ ] gimp
+    - [x] clementine
+    - [x] gimp
     - [ ] transmission gui
     - office
       - mail
@@ -79,7 +77,6 @@
 - fixes
   - [x] investigate startup script. deleting btrfs subvolumes seems to be broken
     - yep, it is, because my ssd seems to have corrupted sectors that btrfs can't handle. should not be a problem for other hosts
-  - [ ] home manager switch: delete zsh_history file before starting service home-manager-yeldir
   - [x] still "too many open files" errors when starting games (e.g. kingdoms of amalur)
 - security
   - [ ] look into full disk encryption (might require re-setup)
@@ -93,48 +90,60 @@
     - [x] with impermanence it's easy to just backup the entire /persist folder
 - darwin
 - modularity
+  - [ ] refactor creation of scripts - multiple places have function definitions to create script packages
   - [x] add options to disable animations and transparency in hyprland and wayland
   - [x] make impermanence optional
-  - [ ] invert how support for programming languages is structured
-    - instead of having language support distributed across many files (neovim lsp, treesitter, other installations), each programming language or development feature should have one module
-    - this module contains configurations for all other programs (neovim, install additional things, shell integrations) depending on whether they are installed
   - [x] make system target configurable between linux and darwin
     - [x] use it to build the shell aliases for nbuild/nswitch/nrepl
   - [ ] move home manager modules out of home, make user name configurable
     - [x] make optionals/cli into a module
-    - [ ] make keyring into a module
-    - [ ] check what all can be shared within the yeldir user
+    - [x] make keyring into a module
+    - [x] check what all can be shared within the yeldir user
     - [ ] move desktops and autostart into yeldirs.desktop configuration
   - [ ] rethink the "supported languages" support in my module options
     - The list becomes very long and clutters the config
     - I might want to cluster some languages, e.g. json/yaml/xml/csv because they are related, but they might have complicated setups
+    - [ ] invert how support for programming languages is structured
+      - instead of having language support distributed across many files (neovim lsp, treesitter, other installations), each programming language or development feature should have one module
+      - this module contains configurations for all other programs (neovim, install additional things, shell integrations) depending on whether they are installed
 
 ## Restructure development feature
 - feature
   - editor integration
-    - lsp software
     - neovim config
       - ftplugin (filetype specific settings)
       - treesitter plugin (syntax highlighting)
-      - dap plugin (debugging)
       - lsp binding
       - neotest plugin (testing)
+      - dap plugin (debugging)
+      - linter plugin
+      - custom keybinds
+      - custom plugins
   - specific software
     - eg docker, kubectl
+    - language server
+    - debugger
+    - linter
     - no interpreters or compilers, those should be installed via devbox with the project-specific version
     - scripts and aliases
   - shell integration
+  - system daemons
 - what features are there?
-  - go (highlighting, lsp, dap, test plugin)
-  - lua (highlighting, lsp)
+  - essential (nix, isd)
+  - go (treesitter, lsp, dap, test plugin)
+  - lua (treesitter, lsp)
   - git (gitignore, gitconfig, gh)
-  - shell (sh, bash, zsh)
+  - shell (sh, bash, zsh, treesitter, lsp)
+  - markdown (treesitter, lsp?)
   - web (typescript, javascript, html, css, scss)
   - docker (docker, lazydocker)
-  - kubernetes (kubectl, k9s, helm)
+  - kubernetes (kubectl, kubectx & kubens, k9s, helm)
   - minikube
   - config/data files (json, csv, xml, yaml, toml)
-  - terraform (highlighting, lsp?, cli)
-  - make (makefile highlighting & lsp?, make cli)
   - linux (desktop files)
   - regex
+  - poe (treesitter)
+  - hledger (hledger, my scripts, treesitter, lsp)
+  - rego (treesitter, lsp)
+  - ? terraform (highlighting, lsp?, cli)
+  - ? make (makefile highlighting & lsp?, make cli)

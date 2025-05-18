@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: let
+  essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.neovim;
   reloadNvim = ''
     for server in ''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/nvim.*; do
@@ -14,29 +15,34 @@
   optionalAttrs = language: attrs: lib.optionalAttrs (builtins.elem language cfg.supportedLanguages) attrs;
 in {
   imports = [
+    ./plugins/blamer.nix
     ./plugins/copilot.nix
     ./plugins/debugging.nix
-    ./plugins/early-retirement.nix
-    ./plugins/firenvim.nix
+    ./plugins/fidget.nix
     ./plugins/fold-cycle.nix
-    ./plugins/harpoon2.nix
+    ./plugins/git.nix
+    ./plugins/quickfilepicker.nix
+    ./plugins/illuminate.nix
     ./plugins/layout.nix
     ./plugins/lsp.nix
-    ./plugins/git.nix
     ./plugins/obsidian.nix
-    ./plugins/rnvimr.nix
+    ./plugins/oil.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix
     ./plugins/treesitter.nix
     ./plugins/undotree.nix
+    ./plugins/vim-tmux-navigator.nix
+    ./plugins/which-key.nix
+    ./plugins/wsl-clipboard.nix
+    ./plugins/yazi.nix
+    ./plugins/zoom.nix
   ];
 
   options = {
     yeldirs.cli.essentials.neovim = {
-      enable = lib.mkEnableOption "neovim";
-
       supportedLanguages = lib.mkOption {
         type = lib.types.listOf (lib.types.enum [
+          "asciidoc"
           "bash"
           "docker"
           "go"
@@ -47,6 +53,7 @@ in {
           "markdown"
           "nix"
           "poefilter"
+          "rego"
           "typescript"
           "yaml"
         ]);
@@ -54,7 +61,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf essentials.enable {
     home.sessionVariables.EDITOR = "nvim";
 
     programs.neovim = {
@@ -77,6 +84,7 @@ in {
       extraLuaConfig = ''
         ${builtins.readFile ./options.lua}
         ${builtins.readFile ./bindings.lua}
+        ${builtins.readFile ./autocommands/restore-cursor-position.lua}
       '';
     };
 
@@ -87,10 +95,13 @@ in {
         "nvim/color.vim".onChange = reloadNvim;
         "nvim/color.vim".source = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
       }
+      // optionalAttrs "asciidoc" {
+        "nvim/ftplugin/asciidoc.lua".source = pkgs.writeText "asciidoc.lua" (builtins.readFile ./ftplugin/asciidoc.lua);
+      }
       // optionalAttrs "bash" {
         "nvim/ftplugin/bash.lua".source = pkgs.writeText "bash.lua" (builtins.readFile ./ftplugin/bash.lua);
       }
-      // lib.optionalAttrs cfg.git.enable {
+      // optionalAttrs cfg.git.enable {
         "nvim/ftplugin/NeogitCommitMessage.lua".source = pkgs.writeText "NeogitCommitMessage.lua" (builtins.readFile ./ftplugin/NeogitCommitMessage.lua);
       }
       // optionalAttrs "go" {
