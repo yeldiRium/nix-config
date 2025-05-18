@@ -14,11 +14,13 @@
       disable-impermanence = true;
 
       username = "nixos";
-      hostName = "wsl";
+      hostName = "recreate-wsl";
       platform = "linux";
 
       keyboardLayout = "de";
       keyboardVariant = "";
+
+      keyring.enable = true;
     };
 
     cli = {
@@ -30,7 +32,7 @@
           signingKey = "";
         };
         ssh = {
-          excludePrivate = true;
+          excludePrivate = false;
         };
 
         neovim = {
@@ -38,12 +40,11 @@
             "bash"
             "docker"
             "go"
-            "javascript"
             "json"
+            "ledger"
             "lua"
             "markdown"
             "nix"
-            "typescript"
             "yaml"
           ];
 
@@ -51,31 +52,35 @@
             indentation-guides.enable = true;
           };
 
-          copilot.enable = true;
+          blamer.enable = true;
+          copilot.enable = false;
           debugging.enable = true;
-          early-retirement.enable = true;
           fold-cycle.enable = true;
           git.enable = true;
           illuminate.enable = true;
           lsp.enable = true;
-          quickfilepicker.grapple.enable = true;
+          oil.enable = true;
+          quickfilepicker = {
+            grapple.enable = true;
+          };
           telescope.enable = true;
           testing.enable = true;
           treesitter.enable = true;
           undotree.enable = true;
-          wsl-clipboard.enable = true;
+          which-key.enable = true;
+          yazi.enable = true;
           zoom.enable = true;
         };
+        yazi = {
+          enableGui = true;
+        };
       };
-
+      
       development = {
-        go-task.enable = true;
+        gh.enable = true;
       };
 
       ops = {
-        crossplane.enable = true;
-        k9s.enable = true;
-        kubectl.enable = true;
         lazydocker.enable = true;
       };
     };
