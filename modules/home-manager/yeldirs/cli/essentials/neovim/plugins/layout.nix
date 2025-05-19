@@ -75,6 +75,17 @@ in {
                 })
               '';
           }
+          {
+            plugin = lualine-nvim;
+            type = "lua";
+            config =
+              /*
+              lua
+              */
+              ''
+                require("lualine").setup()
+              '';
+          }
         ]);
     };
   };
