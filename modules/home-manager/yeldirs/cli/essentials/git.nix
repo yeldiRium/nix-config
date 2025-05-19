@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   essentials = config.yeldirs.cli.essentials;
@@ -49,11 +50,23 @@ in {
           rerere.enabled = true;
         };
 
-        ignores = [
-          ".fuse_hidden*"
-          ".vscode"
-        ] ++ cfg.ignores;
+        ignores =
+          [
+            ".fuse_hidden*"
+            ".vscode"
+          ]
+          ++ cfg.ignores;
+      };
+
+      zsh = {
+        initExtra = ''
+          eval "$(${lib.getExe pkgs.git-bug} completion zsh)"
+        '';
       };
     };
+
+    home.packages = with pkgs; [
+      git-bug
+    ];
   };
 }
