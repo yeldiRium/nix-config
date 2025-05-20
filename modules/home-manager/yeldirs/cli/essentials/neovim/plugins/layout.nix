@@ -83,7 +83,17 @@ in {
               lua
               */
               ''
-                require("lualine").setup()
+                local function lualineCwd()
+                  return vim.fs.basename(vim.uv.cwd())
+                end
+                require("lualine").setup({
+                  sections = {
+                    lualine_z = {
+                      "location",
+                      lualineCwd
+                    },
+                  },
+                })
               '';
           }
         ]);
