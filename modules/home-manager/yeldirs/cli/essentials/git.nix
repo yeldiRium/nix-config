@@ -65,8 +65,15 @@ in {
       };
     };
 
-    home.packages = with pkgs; [
-      git-bug
-    ];
+    home = {
+      packages = with pkgs; [
+        git-bug
+      ];
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".config/git-bug"
+        ];
+      };
+    };
   };
 }
