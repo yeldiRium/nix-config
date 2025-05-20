@@ -20,14 +20,14 @@ if ! tmux has-session -t $session 2>/dev/null; then
 
   sleep 1
 
-  tmux send-keys -t "${session}:nix.0" "nvim" "C-m"
+  tmux send-keys -t "${session}:nix.0" " nvim" "C-m"
   tmux send-keys -t "${session}:nix.0" " gg"
 
   if git bug 1>/dev/null 2>&1; then
     tmux send-keys -t "${session}:nix.1" "C-l"
-    tmux send-keys -t "${session}:nix.1" "git bug pull" "C-m"
-    tmux send-keys -t "${session}:nix.1" "git bug bridge pull" "C-m"
-    tmux send-keys -t "${session}:nix.1" "git bug ls" "C-m"
+    tmux send-keys -t "${session}:nix.1" " git bug pull" "C-m"
+    tmux send-keys -t "${session}:nix.1" " git bug bridge pull" "C-m"
+    tmux send-keys -t "${session}:nix.1" " git bug ls" "C-m"
   fi
 
   tmux select-window -t "${session}:nix"

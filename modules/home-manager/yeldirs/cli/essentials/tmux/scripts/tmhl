@@ -21,7 +21,7 @@ if ! tmux has-session -t $session 2>/dev/null; then
 
   sleep 1
 
-  tmux send-keys -t "${session}:ledger.0" "nvim" "C-m"
+  tmux send-keys -t "${session}:ledger.0" " nvim" "C-m"
   tmux send-keys -t "${session}:ledger.0" "M-1"
 
   tmux select-window -t "${session}:ledger"
