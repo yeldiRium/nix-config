@@ -1,0 +1,1 @@
+{"author":{"id":"25c9d92405766f5374f83c8ecfd9d72873f45423dbac49e3d61b8fae35e19b87"},"ops":[{"type":1,"timestamp":1747767675,"nonce":"Qf4H1jdPSPdzrMd5r/3ohBEcx90=","title":"Enable screenkey.nvim once it's integration with which-key is fixed","message":"See the [issue in screenkey.nvim](https://github.com/NStefan002/screenkey.nvim/issues/47).","files":null}]}
