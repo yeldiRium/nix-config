@@ -55,6 +55,7 @@ in {
           "nix"
           "poefilter"
           "rego"
+          "rust"
           "typescript"
           "yaml"
         ]);
@@ -125,6 +126,9 @@ in {
       }
       // optionalAttrs "nix" {
         "nvim/ftplugin/nix.lua".source = pkgs.writeText "nix.lua" (builtins.readFile ./ftplugin/nix.lua);
+      }
+      // optionalAttrs "rust" {
+        "nvim/ftplugin/rust.lua".source = pkgs.writeText "rust.lua" (builtins.readFile ./ftplugin/rust.lua);
       }
       // optionalAttrs "typescript" {
         "nvim/ftplugin/typescript.lua".source = pkgs.writeText "typescript.lua" (builtins.readFile ./ftplugin/typescript.lua);

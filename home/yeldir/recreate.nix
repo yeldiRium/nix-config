@@ -30,6 +30,7 @@
             "go"
             "javascript"
             "poefilter"
+            "rust"
             "typescript"
           ];
         };

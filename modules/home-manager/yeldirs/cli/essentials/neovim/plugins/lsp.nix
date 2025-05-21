@@ -45,6 +45,10 @@ in {
       ++ (optionals "rego" [
         regols
       ])
+      ++ (optionals "rust" [
+        rust-analyzer
+        rustfmt
+      ])
       ++ (optionals "typescript" [
         nodePackages.typescript-language-server
       ])
@@ -220,7 +224,7 @@ in {
               ''
                 add_lsp(lspconfig.ts_ls, {})
               ''
-            else ""
+           else ""
           )
           (
             if languageActive "rego"
@@ -230,6 +234,29 @@ in {
               */
               ''
                 add_lsp(lspconfig.regols, {})
+              ''
+            else ""
+          )
+          (
+            if languageActive "rust"
+            then
+              /*
+              lua
+              */
+              ''
+                local rustConfig = {}
+                if vim.fn.executable("cargo-clippy") == 1 then
+                  rustConfig = {
+                    settings = {
+                      ['rust-analyzer'] = {
+                        check = {
+                          command = "clippy",
+                        },
+                      },
+                    },
+                  }
+                end
+                add_lsp(lspconfig.rust_analyzer, rustConfig)
               ''
             else ""
           )
