@@ -60,7 +60,7 @@ in {
 
       zsh = {
         initExtra = ''
-          eval "$(${lib.getExe pkgs.git-bug} completion zsh)"
+          eval "$(${lib.getExe pkgs.unstable.git-bug} completion zsh)"
         '';
       };
     };
