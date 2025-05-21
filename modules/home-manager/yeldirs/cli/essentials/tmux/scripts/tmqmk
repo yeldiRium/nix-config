@@ -21,12 +21,17 @@ if ! tmux has-session -t $session 2>/dev/null; then
 
   sleep 1
 
-  tmux send-keys -t "${session}:qmk.0" "cd " ~/querbeet/workspace/private/projects/qmk-crkbd-neo2 "C-m"
-  tmux send-keys -t "${session}:qmk.0" "nvim" "C-m"
+  tmux send-keys -t "${session}:qmk.0" " cd " ~/querbeet/workspace/private/projects/qmk-crkbd-neo2 "C-m"
+  tmux send-keys -t "${session}:qmk.0" " nvim" "C-m"
   tmux send-keys -t "${session}:qmk.0" " gg"
-  tmux send-keys -t "${session}:qmk.1" "cd " ~/querbeet/workspace/private/projects/qmk-ergodox-ez-neo2 "C-m"
-  tmux send-keys -t "${session}:qmk.1" "nvim" "C-m"
+  tmux send-keys -t "${session}:qmk.1" " cd " ~/querbeet/workspace/private/projects/qmk-ergodox-ez-neo2 "C-m"
+  tmux send-keys -t "${session}:qmk.1" " nvim" "C-m"
   tmux send-keys -t "${session}:qmk.1" " gg"
+
+  tmux split-window -t "${session}:qmk.0" -h
+  tmux send-keys -t "${session}:qmk.1" " cd " ~/querbeet/workspace/private/projects/qmk-crkbd-neo2 "C-m" "C-l"
+  tmux split-window -t "${session}:qmk.2" -h
+  tmux send-keys -t "${session}:qmk.3" " cd " ~/querbeet/workspace/private/projects/qmk-ergodox-ez-neo2 "C-m" "C-l"
 
   tmux select-window -t "${session}:qmk"
   tmux select-pane -t "${session}:qmk.0"

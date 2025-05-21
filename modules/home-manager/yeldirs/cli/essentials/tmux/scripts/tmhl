@@ -15,13 +15,13 @@ if ! tmux has-session -t $session 2>/dev/null; then
 
   tmux new-session -d -s "${session}" -n "ledger" -x "$(tput cols)" -y "$(tput lines)"
 
-  tmux split-window -t "${session}:ledger.0" -v
-  tmux resize-pane -t "${session}:ledger.0" -y "30%"
+  tmux split-window -t "${session}:ledger.0" -h
+  tmux resize-pane -t "${session}:ledger.0" -x "50%"
   tmux resize-pane -t "${session}:ledger.0" -Z
 
   sleep 1
 
-  tmux send-keys -t "${session}:ledger.0" "nvim" "C-m"
+  tmux send-keys -t "${session}:ledger.0" " nvim" "C-m"
   tmux send-keys -t "${session}:ledger.0" "M-1"
 
   tmux select-window -t "${session}:ledger"

@@ -27,6 +27,7 @@ in {
     ./plugins/lsp.nix
     ./plugins/obsidian.nix
     ./plugins/oil.nix
+    ./plugins/screenkey.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix
     ./plugins/treesitter.nix

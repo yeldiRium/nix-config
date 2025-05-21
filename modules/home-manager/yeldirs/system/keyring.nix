@@ -17,11 +17,16 @@ in {
     ];
     services.gnome-keyring.enable = true;
 
-    home.persistence = {
-      "/persist/${config.home.homeDirectory}" = {
-        directories = [
-          ".local/share/keyrings"
-        ];
+    home = {
+      sessionVariables = {
+        SSH_AUTH_SOCK = "\${XDG_RUNTIME_DIR}/keyring/ssh";
+      };
+      persistence = {
+        "/persist/${config.home.homeDirectory}" = {
+          directories = [
+            ".local/share/keyrings"
+          ];
+        };
       };
     };
   };

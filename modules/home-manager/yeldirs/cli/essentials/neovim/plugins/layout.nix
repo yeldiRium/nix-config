@@ -75,6 +75,31 @@ in {
                 })
               '';
           }
+          {
+            plugin = lualine-nvim;
+            type = "lua";
+            config =
+              /*
+              lua
+              */
+              ''
+                local function lualineCwd()
+                  return vim.fs.basename(vim.uv.cwd())
+                end
+                require("lualine").setup({
+                  sections = {
+                    lualine_c = {
+                      { "filename",
+                        path = 1 }
+                    },
+                    lualine_z = {
+                      "location",
+                      lualineCwd
+                    },
+                  },
+                })
+              '';
+          }
         ]);
     };
   };
