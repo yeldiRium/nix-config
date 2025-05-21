@@ -45,6 +45,7 @@
             "lua"
             "markdown"
             "nix"
+            "rust"
             "yaml"
           ];
 
