@@ -42,6 +42,17 @@ in {
                   ''
                 else ""
               }
+                  ${
+                if languageActive "rust"
+                then
+                  /*
+                  lua
+                  */
+                  ''
+                    require("neotest-rust"),
+                  ''
+                else ""
+              }
                 },
               })
 
@@ -55,6 +66,9 @@ in {
       ]
       ++ (optionals "go" [
         neotest-golang
+      ])
+      ++ (optionals "rust" [
+        neotest-rust
       ]);
   };
 }
