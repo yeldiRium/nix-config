@@ -67,7 +67,7 @@ in {
 
     home = {
       packages = with pkgs; [
-        git-bug
+        unstable.git-bug
       ];
       persistence."/persist/${config.home.homeDirectory}" = {
         directories = [
