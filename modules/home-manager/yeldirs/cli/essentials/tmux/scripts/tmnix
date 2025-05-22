@@ -23,10 +23,12 @@ if ! tmux has-session -t $session 2>/dev/null; then
   tmux send-keys -t "${session}:nix.0" " nvim" "C-m"
   tmux send-keys -t "${session}:nix.0" " gg"
 
-  if git bug 1>/dev/null 2>&1; then
-    tmux send-keys -t "${session}:nix.1" "C-l"
+  if is-git-bug-initialized; then
+    tmux split-window -t "${session}:nix.1" -v
+    tmux resize-pane -t "${session}:nix.1" -y "20%"
+
     tmux send-keys -t "${session}:nix.1" " git bug pull" "C-m"
-    tmux send-keys -t "${session}:nix.1" " git bug bug" "C-m"
+    tmux send-keys -t "${session}:nix.1" " git bug termui" "C-m"
   fi
 
   tmux select-window -t "${session}:nix"

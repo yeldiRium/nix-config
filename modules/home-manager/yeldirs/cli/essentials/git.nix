@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: let
+  shellScript = import ../../../../../lib/shellScript.nix pkgs;
+
   essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.git;
 in {
@@ -68,6 +70,7 @@ in {
     home = {
       packages = with pkgs; [
         unstable.git-bug
+        (shellScript ./scripts/is-git-bug-initialized)
       ];
       persistence."/persist/${config.home.homeDirectory}" = {
         directories = [
