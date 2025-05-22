@@ -18,10 +18,10 @@ vim.keymap.set("n", "<C-Up>", "<C-w><Up>", { desc = "Move focus to the window at
 vim.keymap.set("n", "<C-Down>", "<C-w><Down>", { desc = "Move focus to the window at the bottom" })
 
 -- Move between tabs
-vim.keymap.set("n", "[", "gT", { desc = "Previous tab" })
-vim.keymap.set("n", "]", "gt", { desc = "Next tab" })
-vim.keymap.set("n", "{", function() vim.cmd("-tabmove") end, { desc = "Move tab left" })
-vim.keymap.set("n", "}", function() vim.cmd("+tabmove") end, { desc = "Move tab right" })
+vim.keymap.set("n", "{", "gT", { desc = "Previous tab" })
+vim.keymap.set("n", "}", "gt", { desc = "Next tab" })
+vim.keymap.set("n", "(", function() vim.cmd("-tabmove") end, { desc = "Move tab left" })
+vim.keymap.set("n", ")", function() vim.cmd("+tabmove") end, { desc = "Move tab right" })
 
 -- Move through navigation history
 vim.keymap.set("n", "<M-Left>", "<C-O>", { desc = "History back" })
