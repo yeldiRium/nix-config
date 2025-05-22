@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: let
+  shellScript = import ../../../../../lib/shellScript.nix pkgs;
+
   cfg = config.yeldirs.cli.essentials;
 in {
   imports = [
@@ -44,21 +46,9 @@ in {
           alejandra
         ]
         # custom scripts
-        ++ (let
-          script = name:
-            pkgs.writeTextFile {
-              inherit name;
-              executable = true;
-              destination = "/bin/${name}";
-              text = builtins.readFile ./scripts/${name};
-              checkPhase = ''
-                ${pkgs.stdenv.shellDryRun} "$target"
-              '';
-              meta.mainProgram = name;
-            };
-        in [
-          (script "diffex")
-        ]);
+        ++ [
+          (shellScript ./scripts/diffex)
+        ];
 
       shellAliases = {
         ll = "ls -al";
