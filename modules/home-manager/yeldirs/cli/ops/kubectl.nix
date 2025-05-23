@@ -21,6 +21,8 @@ in {
       k = "kubectl";
       kg = "kubectl get";
       kga = "kubectl get -A";
+
+      kdf = "kubectl diff -f";
     };
 
     home.persistence = {
