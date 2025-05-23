@@ -15,8 +15,7 @@ if ! tmux has-session -t $session 2>/dev/null; then
 
   tmux new-session -d -s "${session}" -n "nix" -x "$(tput cols)" -y "$(tput lines)"
 
-  tmux split-window -t "${session}:nix.0" -h
-  tmux resize-pane -t "${session}:nix.0" -x "60%"
+ tmux split-window -t "${session}:nix.0" -h -l "40%"
 
   sleep 1
 
@@ -24,8 +23,7 @@ if ! tmux has-session -t $session 2>/dev/null; then
   tmux send-keys -t "${session}:nix.0" " gg"
 
   if is-git-bug-initialized; then
-    tmux split-window -t "${session}:nix.1" -v
-    tmux resize-pane -t "${session}:nix.1" -y "20%"
+    tmux split-window -t "${session}:nix.1" -v -l "80%"
 
     tmux send-keys -t "${session}:nix.1" " git bug pull" "C-m"
     tmux send-keys -t "${session}:nix.1" " git bug termui" "C-m"
