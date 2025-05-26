@@ -1,1 +1,1 @@
-{"author":{"id":"25c9d92405766f5374f83c8ecfd9d72873f45423dbac49e3d61b8fae35e19b87"},"ops":[{"type":4,"timestamp":1748266543,"nonce":"qbnP0q/mhQI0djg+Q7edLiI/vZo=","status":2}]}
+{"author":{"id":"25c9d92405766f5374f83c8ecfd9d72873f45423dbac49e3d61b8fae35e19b87"},"ops":[{"type":3,"timestamp":1748266613,"nonce":"732yNPFv9g8tIFNpAuvXppH5hEs=","message":"Update:\n\nInstead of hot-reloading I've decided to add a notification that tells the user that the config has changed.\nOtherwise I might forget to restart one of my dozens of running neovim instances.","files":null}]}
