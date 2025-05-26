@@ -35,7 +35,7 @@ in {
           vim.opt.signcolumn = "yes:3"
 
           vim.o.list = true
-          vim.o.listchars = 'tab:▎»,space:·,lead:·,trail:·,eol:¬'
+          vim.o.listchars = "tab:│->,space:·,lead:·,trail:·,eol:¬"
 
           vim.o.conceallevel = 0
 
@@ -46,19 +46,7 @@ in {
         '';
 
       plugins = with pkgs.unstable.vimPlugins;
-        []
-        ++ (lib.optionals cfg.indentation-guides.enable [
-          {
-            plugin = indent-blankline-nvim;
-            type = "lua";
-            config =
-              /*
-              lua
-              */
-              ''
-                require("ibl").setup()
-              '';
-          }
+        [
           {
             plugin = smear-cursor-nvim;
             type = "lua";
@@ -98,6 +86,19 @@ in {
                     },
                   },
                 })
+              '';
+          }
+        ]
+        ++ (lib.optionals cfg.indentation-guides.enable [
+          {
+            plugin = indent-blankline-nvim;
+            type = "lua";
+            config =
+              /*
+              lua
+              */
+              ''
+                require("ibl").setup()
               '';
           }
         ]);
