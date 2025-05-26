@@ -6,9 +6,9 @@
 }: let
   essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.neovim;
-  reloadNvim = ''
+  notifyOfConfigChange = ''
     for server in ''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/nvim.*; do
-      ${lib.getExe config.programs.neovim.finalPackage} --server $server --remote-send '<Esc>:source $MYVIMRC<CR>' &
+      ${lib.getExe config.programs.neovim.finalPackage} --server $server --remote-send '<Esc>:lua vim.notify("Your configuration has changed. You might consider restarting neovim.", vim.log.levels.WARN)<CR>' &
     done
   '';
 
@@ -92,9 +92,9 @@ in {
 
     xdg.configFile =
       {
-        "nvim/init.lua".onChange = reloadNvim;
+        "nvim/init.lua".onChange = notifyOfConfigChange;
 
-        "nvim/color.vim".onChange = reloadNvim;
+        "nvim/color.vim".onChange = notifyOfConfigChange;
         "nvim/color.vim".source = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
       }
       // optionalAttrs "asciidoc" {
