@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.6/.schema/devbox.schema.json",
+  "packages": [
+    "argbash@2.10.0",
+    "ag@latest"
+  ],
+  "shell": {
+    "scripts": {
+      "dev":      "tmnix",
+      "build":    "./build/build",
+      "lint":     "alejandra --check .",
+      "lint:fix": "alejandra .",
+      "test":     "echo \"No tests implemented\" && exit 1"
+    }
+  }
+}

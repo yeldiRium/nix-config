@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+while read -r template; do
+	if [[ "${template}" = "build/build" ]]; then
+		continue
+	fi
+
+	echo "building ${template}..."
+	argbash --in-place "${template}"
+done < <(ag --files-with-matches --literal "# [ <-- needed because of Argbash")

@@ -1,0 +1,59 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "ag@latest": {
+      "last_modified": "2022-02-15T04:21:50Z",
+      "resolved": "github:NixOS/nixpkgs/3a641defd170a4ef25ce8c7c64cb13f91f867fca#ag",
+      "source": "devbox-search",
+      "version": "2.2.0"
+    },
+    "argbash@2.10.0": {
+      "last_modified": "2025-05-16T20:19:48Z",
+      "resolved": "github:NixOS/nixpkgs/12a55407652e04dcf2309436eb06fef0d3713ef3#argbash",
+      "source": "devbox-search",
+      "version": "2.10.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2512fww94k2g92vbkis3srb2vs15disf-argbash-2.10.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/2512fww94k2g92vbkis3srb2vs15disf-argbash-2.10.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6da38k8rwlacvmhjkqnabdljlwdyzwm8-argbash-2.10.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6da38k8rwlacvmhjkqnabdljlwdyzwm8-argbash-2.10.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5gv9jylkb53fq1i92rlwqjni10i7l9sr-argbash-2.10.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/5gv9jylkb53fq1i92rlwqjni10i7l9sr-argbash-2.10.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/3z4wnawijfrz6wwlq1fcj7miblzimwp0-argbash-2.10.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/3z4wnawijfrz6wwlq1fcj7miblzimwp0-argbash-2.10.0"
+        }
+      }
+    }
+  }
+}
