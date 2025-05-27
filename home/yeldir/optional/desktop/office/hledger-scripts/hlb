@@ -2,14 +2,26 @@
 
 TREE_FLAGS='--tree'
 
+help() {
+  echo "Usage: hlb [-t|--no-tree]"
+  echo ""
+  echo "  -t|--no-tree  Show account as a flat list instead of a tree"
+  echo "  -h|--help     Show this help text"
+}
+
 while [[ $# -gt 0 ]]; do
   case $1 in
     -t|--no-tree)
       TREE_FLAGS=''
       shift;
       ;;
+    -h|--help)
+      help
+      exit 0
+      ;;
     *)
       echo "Unknown option ${1}"
+      help
       exit 1
       ;;
   esac
