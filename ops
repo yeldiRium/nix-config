@@ -1,0 +1,1 @@
+{"author":{"id":"25c9d92405766f5374f83c8ecfd9d72873f45423dbac49e3d61b8fae35e19b87"},"ops":[{"type":1,"timestamp":1748377242,"nonce":"uKHvxfuG2nTpNM3IdIMyMgTH/SU=","title":"Use argbash in all scripts that take parameters","message":"This is in some way a test of argbash.\nDoes it actually feel good to use?\nIf it doesn't, I will revert the changes.","files":null}]}
