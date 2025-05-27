@@ -224,7 +224,7 @@ in {
               ''
                 add_lsp(lspconfig.ts_ls, {})
               ''
-           else ""
+            else ""
           )
           (
             if languageActive "rego"

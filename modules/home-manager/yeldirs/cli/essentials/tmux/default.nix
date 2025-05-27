@@ -44,7 +44,7 @@ in {
 
               bind '"' split-window -v -c "#{pane_current_path}"
               bind % split-window -h -c "#{pane_current_path}"
-              
+
             '';
           terminal = "tmux-256color";
         };

@@ -18,8 +18,8 @@ in {
         type = lib.types.lines;
         default = "";
         example = ''
-- "R /persist"
-- "- home/yeldir/.local/share/Steam"
+          - "R /persist"
+          - "- home/yeldir/.local/share/Steam"
         '';
         description = "A list of borg patterns. See borg help patterns for more information.";
       };
@@ -49,11 +49,11 @@ in {
     environment.etc = {
       "borgmatic.d/${hostName}.yaml" = {
         text = ''
-repositories:
-- label: ${hostName}
-  path: ssh://yeldir@backup/mnt/raid/borg/${hostName}
-patterns:
-${cfg.patterns}
+          repositories:
+          - label: ${hostName}
+            path: ssh://yeldir@backup/mnt/raid/borg/${hostName}
+          patterns:
+          ${cfg.patterns}
         '';
       };
     };

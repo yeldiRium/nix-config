@@ -64,10 +64,10 @@ in {
                 lua
                 */
                 ''
-            vim.keymap.set("n", "gd", telescope.lsp_definitions, { desc = "Go to definition" })
-            vim.keymap.set("n", "gi", telescope.lsp_implementations, { desc = "Go to implementation" })
-            vim.keymap.set("n", "gr", telescope.lsp_references, { desc = "Show references" })
-            vim.keymap.set("n", "gt", telescope.lsp_type_definitions, { desc = "Go to type definition" })
+                  vim.keymap.set("n", "gd", telescope.lsp_definitions, { desc = "Go to definition" })
+                  vim.keymap.set("n", "gi", telescope.lsp_implementations, { desc = "Go to implementation" })
+                  vim.keymap.set("n", "gr", telescope.lsp_references, { desc = "Show references" })
+                  vim.keymap.set("n", "gt", telescope.lsp_type_definitions, { desc = "Go to type definition" })
                 ''
               else ""
             }

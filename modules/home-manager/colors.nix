@@ -14,7 +14,6 @@
       name = lib.removePrefix prefix n;
       value = v;
     }) (lib.filterAttrs (n: _: lib.hasPrefix prefix n) attrs);
-
 in {
   options.colorscheme = {
     source = mkOption {

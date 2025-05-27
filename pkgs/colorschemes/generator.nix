@@ -49,4 +49,5 @@
       } --config ${config} -j hex -t "scheme-$type" "${source}" > "$out/$type.json"
       done
     '';
-in generateColorscheme
+in
+  generateColorscheme

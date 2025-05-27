@@ -44,7 +44,8 @@ in {
       windowrule = builtins.concatMap (rule:
         if rule.workspace != null && rule.selector != null
         then ["workspace ${rule.workspace} silent, ${rule.selector}"]
-        else []) cfg;
+        else [])
+      cfg;
       exec-once = map (rule: rule.command) cfg;
     };
   };

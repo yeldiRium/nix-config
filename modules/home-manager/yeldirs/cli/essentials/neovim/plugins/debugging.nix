@@ -114,7 +114,11 @@ in {
                   },
                 })
 
-                ${if cfg.dynamicGoConfig != "" then "dofile(\"" + cfg.dynamicGoConfig + "\")" else ""}
+                ${
+                if cfg.dynamicGoConfig != ""
+                then "dofile(\"" + cfg.dynamicGoConfig + "\")"
+                else ""
+              }
               end
               dynamicDebuggerHooks[#dynamicDebuggerHooks + 1] = reloadGoDebuggerConfigurations
               reloadGoDebuggerConfigurations()

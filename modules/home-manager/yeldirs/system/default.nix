@@ -7,16 +7,15 @@
 }: let
   cfg = config.yeldirs.system;
 in {
-  imports =
-    [
-      inputs.impermanence.nixosModules.home-manager.impermanence
+  imports = [
+    inputs.impermanence.nixosModules.home-manager.impermanence
 
-      ./mounts
+    ./mounts
 
-      ./keyring.nix
-      ./disable-impermanence.nix
-      ./sops.nix
-    ];
+    ./keyring.nix
+    ./disable-impermanence.nix
+    ./sops.nix
+  ];
 
   options = {
     yeldirs.system.username = lib.mkOption {
