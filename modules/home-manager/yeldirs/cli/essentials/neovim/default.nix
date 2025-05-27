@@ -87,6 +87,7 @@ in {
         ${builtins.readFile ./options.lua}
         ${builtins.readFile ./bindings.lua}
         ${builtins.readFile ./autocommands/restore-cursor-position.lua}
+        ${builtins.readFile ./lua/filetype-shebang.lua}
       '';
     };
 
