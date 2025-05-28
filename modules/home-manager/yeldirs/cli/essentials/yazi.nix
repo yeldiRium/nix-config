@@ -36,10 +36,21 @@ in {
     programs = {
       yazi = {
         enable = true;
+        package = pkgs.unstable.yazi;
 
         settings = {
           manager = {
             show_hidden = true;
+          };
+        };
+        keymap = {
+          manager = {
+            prepend_keymap = [
+              { on = "{"; run = "tab_switch -1 --relative"; desc = "Switch to previous tab"; }
+              { on = "}"; run = "tab_switch 1 --relative"; desc = "Switch to next tab"; }
+              { on = "("; run = "tab_swap -1"; desc = "Swap current tab with previous tab"; }
+              { on = ")"; run = "tab_swap 1"; desc = "Swap current tab with next tab"; }
+            ];
           };
         };
       };
