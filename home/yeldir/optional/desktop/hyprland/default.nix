@@ -40,7 +40,6 @@ in {
     ];
 
     xdg.portal = {
-      extraPortals = [inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland];
       config.hyprland = {
         default = ["hyprland" "gtk"];
       };
@@ -56,9 +55,8 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.override {
-        libgbm = pkgs.mesa;
-      };
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       plugins = [
         inputs.hy3.packages.${pkgs.stdenv.hostPlatform.system}.hy3
       ];

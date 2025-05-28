@@ -27,7 +27,7 @@ in {
     ];
 
     programs = {
-      zsh.initExtra = lib.mkIf config.programs.zsh.enable ''
+      zsh.initContent = lib.mkIf config.programs.zsh.enable ''
         eval "$(${lib.getExe pkgs.colima} completion zsh)"
       '';
     };

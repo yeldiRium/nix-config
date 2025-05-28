@@ -21,7 +21,7 @@ in {
   config = lib.mkIf essentials.enable {
     services.gpg-agent = {
       enable = true;
-      pinentryPackage =
+      pinentry.package =
         if platform == "darwin"
         then pkgs.pinentry_mac
         else if config.gtk.enable

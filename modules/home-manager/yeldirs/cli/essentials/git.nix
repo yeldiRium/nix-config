@@ -61,7 +61,7 @@ in {
       };
 
       zsh = {
-        initExtra = ''
+        initContent = ''
           eval "$(${lib.getExe pkgs.unstable.git-bug} completion zsh)"
         '';
       };
