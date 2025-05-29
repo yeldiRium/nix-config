@@ -7,8 +7,8 @@
   cfg = config.yeldirs.cli.essentials.neovim.lsp;
   supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
-  languageActive = language: lib.elem language supportedLanguages;
-  optionals = language: list: lib.optionals (languageActive language) list;
+  isLanguageSupported = language: lib.elem language supportedLanguages;
+  forLanguage = language: list: lib.optionals (isLanguageSupported language) list;
 in {
   options = {
     yeldirs.cli.essentials.neovim.lsp.enable = lib.mkEnableOption "neovim lsp support";
@@ -16,43 +16,43 @@ in {
   config = lib.mkIf cfg.enable {
     # LSP servers
     home.packages = with pkgs;
-      (optionals "bash" [
+      (forLanguage "bash" [
         nodePackages.bash-language-server
       ])
-      ++ (optionals "docker" [
+      ++ (forLanguage "docker" [
         docker-compose-language-service
         dockerfile-language-server-nodejs
       ])
-      ++ (optionals "go" [
+      ++ (forLanguage "go" [
         gopls
         golangci-lint-langserver
       ])
-      ++ (optionals "javascript" [
+      ++ (forLanguage "javascript" [
         nodePackages.typescript-language-server
       ])
-      ++ (optionals "json" [
+      ++ (forLanguage "json" [
         vscode-langservers-extracted
       ])
-      ++ (optionals "ledger" [
+      ++ (forLanguage "ledger" [
         hledger-language-server
       ])
-      ++ (optionals "lua" [
+      ++ (forLanguage "lua" [
         lua-language-server
       ])
-      ++ (optionals "nix" [
+      ++ (forLanguage "nix" [
         unstable.nixd
       ])
-      ++ (optionals "rego" [
+      ++ (forLanguage "rego" [
         regols
       ])
-      ++ (optionals "rust" [
+      ++ (forLanguage "rust" [
         rust-analyzer
         rustfmt
       ])
-      ++ (optionals "typescript" [
+      ++ (forLanguage "typescript" [
         nodePackages.typescript-language-server
       ])
-      ++ (optionals "yaml" [
+      ++ (forLanguage "yaml" [
         yaml-language-server
       ]);
 
@@ -84,7 +84,7 @@ in {
             end
           ''
           (
-            if languageActive "bash"
+            if isLanguageSupported "bash"
             then
               /*
               lua
@@ -95,7 +95,7 @@ in {
             else ""
           )
           (
-            if languageActive "docker"
+            if isLanguageSupported "docker"
             then
               /*
               lua
@@ -107,7 +107,7 @@ in {
             else ""
           )
           (
-            if languageActive "go"
+            if isLanguageSupported "go"
             then
               /*
               lua
@@ -129,7 +129,7 @@ in {
             else ""
           )
           (
-            if languageActive "ledger"
+            if isLanguageSupported "ledger"
             then
               /*
               lua
@@ -154,7 +154,7 @@ in {
             else ""
           )
           (
-            if languageActive "json"
+            if isLanguageSupported "json"
             then
               /*
               lua
@@ -175,7 +175,7 @@ in {
             else ""
           )
           (
-            if languageActive "lua"
+            if isLanguageSupported "lua"
             then
               /*
               lua
@@ -196,7 +196,7 @@ in {
             else ""
           )
           (
-            if languageActive "nix"
+            if isLanguageSupported "nix"
             then
               /*
               lua
@@ -216,7 +216,7 @@ in {
             else ""
           )
           (
-            if languageActive "javascript" || languageActive "typescript"
+            if isLanguageSupported "javascript" || isLanguageSupported "typescript"
             then
               /*
               lua
@@ -227,7 +227,7 @@ in {
             else ""
           )
           (
-            if languageActive "rego"
+            if isLanguageSupported "rego"
             then
               /*
               lua
@@ -238,7 +238,7 @@ in {
             else ""
           )
           (
-            if languageActive "rust"
+            if isLanguageSupported "rust"
             then
               /*
               lua
@@ -261,7 +261,7 @@ in {
             else ""
           )
           (
-            if languageActive "yaml"
+            if isLanguageSupported "yaml"
             then
               /*
               lua

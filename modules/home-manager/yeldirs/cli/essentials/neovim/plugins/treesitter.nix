@@ -7,7 +7,7 @@
   cfg = config.yeldirs.cli.essentials.neovim.treesitter;
   supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
-  optionals = language: list: lib.optionals (lib.elem language supportedLanguages) list;
+  forLanguage = language: list: lib.optionals (lib.elem language supportedLanguages) list;
 in {
   options = {
     yeldirs.cli.essentials.neovim.treesitter.enable = lib.mkEnableOption "neovim plugin treesitter";
@@ -43,24 +43,24 @@ in {
             '';
         }
       ]
-      ++ (optionals "poefilter" [
+      ++ (forLanguage "poefilter" [
         nvim-treesitter-parsers.poe_filter
       ])
-      ++ (optionals "bash" [
+      ++ (forLanguage "bash" [
         nvim-treesitter-parsers.bash
       ])
-      ++ (optionals "go" [
+      ++ (forLanguage "go" [
         nvim-treesitter-parsers.go
         nvim-treesitter-parsers.gomod
         nvim-treesitter-parsers.gosum
       ])
-      ++ (optionals "javascript" [
+      ++ (forLanguage "javascript" [
         nvim-treesitter-parsers.javascript
       ])
-      ++ (optionals "typescript" [
+      ++ (forLanguage "typescript" [
         nvim-treesitter-parsers.typescript
       ])
-      ++ (optionals "ledger" [
+      ++ (forLanguage "ledger" [
         {
           plugin = nvim-treesitter-parsers.ledger;
           type = "lua";
@@ -77,19 +77,19 @@ in {
             '';
         }
       ])
-      ++ (optionals "lua" [
+      ++ (forLanguage "lua" [
         nvim-treesitter-parsers.lua
       ])
-      ++ (optionals "markdown" [
+      ++ (forLanguage "markdown" [
         nvim-treesitter-parsers.markdown
       ])
-      ++ (optionals "nix" [
+      ++ (forLanguage "nix" [
         nvim-treesitter-parsers.nix
       ])
-      ++ (optionals "rego" [
+      ++ (forLanguage "rego" [
         nvim-treesitter-parsers.rego
       ])
-      ++ (optionals "yaml" [
+      ++ (forLanguage "yaml" [
         nvim-treesitter-parsers.yaml
       ]);
   };

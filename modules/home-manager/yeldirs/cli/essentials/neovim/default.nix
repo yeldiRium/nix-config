@@ -12,7 +12,7 @@
     done
   '';
 
-  optionalAttrs = language: attrs: lib.optionalAttrs (builtins.elem language cfg.supportedLanguages) attrs;
+  forLanguage = language: attrs: lib.optionalAttrs (builtins.elem language cfg.supportedLanguages) attrs;
 in {
   imports = [
     ./plugins/blamer.nix
@@ -98,40 +98,40 @@ in {
         "nvim/color.vim".onChange = notifyOfConfigChange;
         "nvim/color.vim".source = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
       }
-      // optionalAttrs "asciidoc" {
+      // forLanguage "asciidoc" {
         "nvim/ftplugin/asciidoc.lua".source = pkgs.writeText "asciidoc.lua" (builtins.readFile ./ftplugin/asciidoc.lua);
       }
-      // optionalAttrs "bash" {
+      // forLanguage "bash" {
         "nvim/ftplugin/bash.lua".source = pkgs.writeText "bash.lua" (builtins.readFile ./ftplugin/bash.lua);
       }
       // lib.optionalAttrs cfg.git.enable {
         "nvim/ftplugin/NeogitCommitMessage.lua".source = pkgs.writeText "NeogitCommitMessage.lua" (builtins.readFile ./ftplugin/NeogitCommitMessage.lua);
       }
-      // optionalAttrs "go" {
+      // forLanguage "go" {
         "nvim/ftplugin/go.lua".source = pkgs.writeText "go.lua" (builtins.readFile ./ftplugin/go.lua);
       }
-      // optionalAttrs "javascript" {
+      // forLanguage "javascript" {
         "nvim/ftplugin/javascript.lua".source = pkgs.writeText "javascript.lua" (builtins.readFile ./ftplugin/javascript.lua);
       }
-      // optionalAttrs "json" {
+      // forLanguage "json" {
         "nvim/ftplugin/json.lua".source = pkgs.writeText "json.lua" (builtins.readFile ./ftplugin/json.lua);
       }
-      // optionalAttrs "ledger" {
+      // forLanguage "ledger" {
         "nvim/ftplugin/ledger.lua".source = pkgs.writeText "ledger.lua" (builtins.readFile ./ftplugin/ledger.lua);
       }
-      // optionalAttrs "lua" {
+      // forLanguage "lua" {
         "nvim/ftplugin/lua.lua".source = pkgs.writeText "lua.lua" (builtins.readFile ./ftplugin/lua.lua);
       }
-      // optionalAttrs "markdown" {
+      // forLanguage "markdown" {
         "nvim/ftplugin/markdown.lua".source = pkgs.writeText "markdown.lua" (builtins.readFile ./ftplugin/markdown.lua);
       }
-      // optionalAttrs "nix" {
+      // forLanguage "nix" {
         "nvim/ftplugin/nix.lua".source = pkgs.writeText "nix.lua" (builtins.readFile ./ftplugin/nix.lua);
       }
-      // optionalAttrs "rust" {
+      // forLanguage "rust" {
         "nvim/ftplugin/rust.lua".source = pkgs.writeText "rust.lua" (builtins.readFile ./ftplugin/rust.lua);
       }
-      // optionalAttrs "typescript" {
+      // forLanguage "typescript" {
         "nvim/ftplugin/typescript.lua".source = pkgs.writeText "typescript.lua" (builtins.readFile ./ftplugin/typescript.lua);
       };
   };

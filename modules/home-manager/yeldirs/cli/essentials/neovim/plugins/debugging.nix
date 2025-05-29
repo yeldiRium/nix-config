@@ -7,8 +7,8 @@
   cfg = config.yeldirs.cli.essentials.neovim.debugging;
   supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
-  languageActive = language: lib.elem language supportedLanguages;
-  optionals = language: list: lib.optionals (languageActive language) list;
+  isLanguageSupported = language: lib.elem language supportedLanguages;
+  forLanguage = language: list: lib.optionals (isLanguageSupported language) list;
 in {
   options = {
     yeldirs.cli.essentials.neovim.debugging.enable = lib.mkEnableOption "neovim debugging support";
@@ -20,11 +20,11 @@ in {
   };
   config = lib.mkIf cfg.enable {
     # DAP servers
-    home.packages = with pkgs; (optionals "go" [
+    home.packages = with pkgs; (forLanguage "go" [
       unstable.delve
     ]);
 
-    home.sessionVariables = lib.mkIf (languageActive "go") {
+    home.sessionVariables = lib.mkIf (isLanguageSupported "go") {
       # This is necessary to make delve work. Some weird CGO/gcc bullshit.
       NIX_HARDENING_ENABLE = "";
     };
@@ -97,7 +97,7 @@ in {
             '';
         }
       ]
-      ++ (optionals "go" [
+      ++ (forLanguage "go" [
         {
           plugin = nvim-dap-go;
           type = "lua";

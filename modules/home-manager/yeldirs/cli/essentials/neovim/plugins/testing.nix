@@ -7,8 +7,8 @@
   cfg = config.yeldirs.cli.essentials.neovim.testing;
   supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
-  languageActive = language: lib.elem language supportedLanguages;
-  optionals = language: list: lib.optionals (languageActive language) list;
+  isLanguageSupported = language: lib.elem language supportedLanguages;
+  forLanguage = language: list: lib.optionals (isLanguageSupported language) list;
 in {
   options = {
     yeldirs.cli.essentials.neovim.testing.enable = lib.mkEnableOption "neovim test runner support";
@@ -32,7 +32,7 @@ in {
               neotest.setup({
                 adapters = {
                   ${
-                if languageActive "go"
+                if isLanguageSupported "go"
                 then
                   /*
                   lua
@@ -43,7 +43,7 @@ in {
                 else ""
               }
                   ${
-                if languageActive "rust"
+                if isLanguageSupported "rust"
                 then
                   /*
                   lua
@@ -64,10 +64,10 @@ in {
             '';
         }
       ]
-      ++ (optionals "go" [
+      ++ (forLanguage "go" [
         neotest-golang
       ])
-      ++ (optionals "rust" [
+      ++ (forLanguage "rust" [
         neotest-rust
       ]);
   };
