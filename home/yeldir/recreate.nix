@@ -59,11 +59,6 @@
         matrix.enable = true;
       };
 
-      games = {
-        input-remapper.enable = true;
-        nds.enable = true;
-      };
-
       media = {
         clementine.enable = true;
         gimp.enable = true;

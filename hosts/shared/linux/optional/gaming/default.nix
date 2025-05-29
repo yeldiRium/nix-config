@@ -1,6 +1,5 @@
 {
   imports = [
-    ./input-remapper.nix
     ./gamemode.nix
     ./steam.nix
   ];

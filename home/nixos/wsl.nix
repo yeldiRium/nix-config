@@ -69,7 +69,6 @@
       };
 
       development = {
-        go-task.enable = true;
       };
 
       ops = {
