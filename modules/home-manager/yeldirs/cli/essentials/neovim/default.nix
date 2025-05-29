@@ -104,7 +104,7 @@ in {
       // optionalAttrs "bash" {
         "nvim/ftplugin/bash.lua".source = pkgs.writeText "bash.lua" (builtins.readFile ./ftplugin/bash.lua);
       }
-      // optionalAttrs cfg.git.enable {
+      // lib.optionalAttrs cfg.git.enable {
         "nvim/ftplugin/NeogitCommitMessage.lua".source = pkgs.writeText "NeogitCommitMessage.lua" (builtins.readFile ./ftplugin/NeogitCommitMessage.lua);
       }
       // optionalAttrs "go" {
