@@ -22,6 +22,11 @@ in {
       kg = "kubectl get";
       kga = "kubectl get -A";
 
+      ke = "kubectl edit";
+      kes = "kubectl edit --subresource status";
+
+      kd = "kubectl describe";
+
       kdf = "kubectl diff -f";
     };
 
