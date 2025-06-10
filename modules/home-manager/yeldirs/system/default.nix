@@ -99,10 +99,10 @@ in {
             nrollback = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} --rollback";
           }
           else {
-            nbuild = "nix run nix-darwin -- build --flake $FLAKE#${cfg.hostName}";
-            nboot = "nix run nix-darwin -- boot --flake $FLAKE#${cfg.hostName}";
-            nswitch = "nix run nix-darwin -- switch --flake $FLAKE#${cfg.hostName}";
-            nrollback = "nix run nix-darwin switch --flake $FLAKE#${cfg.hostName} --rollback";
+            nbuild = "sudo nix run nix-darwin -- build --flake $FLAKE#${cfg.hostName}";
+            nboot = "sudo nix run nix-darwin -- boot --flake $FLAKE#${cfg.hostName}";
+            nswitch = "sudo nix run nix-darwin -- switch --flake $FLAKE#${cfg.hostName}";
+            nrollback = "sudo nix run nix-darwin switch --flake $FLAKE#${cfg.hostName} --rollback";
           }
         );
 
