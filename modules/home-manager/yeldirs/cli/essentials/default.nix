@@ -5,6 +5,7 @@
   ...
 }: let
   shellScript = import ../../../../../lib/shellScript.nix pkgs;
+  platform = config.yeldirs.system.platform;
 
   cfg = config.yeldirs.cli.essentials;
 in {
@@ -33,7 +34,6 @@ in {
         [
           # poweruser
           btop
-          dysk
           ijq
           jq
           pv
@@ -44,6 +44,9 @@ in {
 
           # nix utils
           alejandra
+        ]
+        ++ lib.optionals (platform == "linux") [
+          dysk
         ]
         # custom scripts
         ++ [
