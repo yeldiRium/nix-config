@@ -27,6 +27,7 @@ in {
 
       kd = "kubectl describe";
 
+      kaf = "kubectl apply -f";
       kdf = "kubectl diff -f";
     };
 
