@@ -15,10 +15,6 @@
     zsh.enable = true;
   };
 
-  services = {
-    nix-daemon.enable = true;
-  };
-
   networking = {
     computerName = "rekorder";
     hostName = "rekorder";
