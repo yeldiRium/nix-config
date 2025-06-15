@@ -11,12 +11,9 @@ in {
       hledger
       (shellScript ./hledger-scripts/hlc)
       (shellScript ./hledger-scripts/hlb)
-      (shellScript ./hledger-scripts/hlbeom)
       (shellScript ./hledger-scripts/hlbudget)
       (shellScript ./hledger-scripts/hlcompare)
       (shellScript ./hledger-scripts/hlevents)
-      (shellScript ./hledger-scripts/hlforecast)
-      (shellScript ./hledger-scripts/hlmonthend)
       (shellScript ./hledger-scripts/hlprojects)
     ];
     shellAliases = {
