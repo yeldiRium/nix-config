@@ -53,7 +53,7 @@ in {
   environment.persistence = {
     "/persist/system" = {
       directories = [
-        "/var/cache/regreet"
+        "/var/lib/regreet"
       ];
     };
   };
