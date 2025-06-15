@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Created by argbash-init v2.10.0
 # ARG_OPTIONAL_SINGLE([day-of-month],[d],[Day of the month on which to compare the previous months])
 # ARG_OPTIONAL_SINGLE([months],[m],[Amount of months to display],[6])
 # ARG_HELP([Compare account balances across the last six months])
