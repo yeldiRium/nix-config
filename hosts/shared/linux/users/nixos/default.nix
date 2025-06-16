@@ -1,10 +1,15 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
+  imports = [
+    inputs.home-manager.nixosModules.default
+    ../../../common/optional/home-manager.nix
+  ];
   # This user is exclusively intended for use in WSL.
 
   users.mutableUsers = true;
