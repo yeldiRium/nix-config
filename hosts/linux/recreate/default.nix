@@ -66,12 +66,7 @@
           - "+ persist/system/**"
         '';
       };
-    };
-
-    common = {
-      global = {
-        sops.enable = true;
-      };
+      sops.enable = true;
     };
 
     mounts = {

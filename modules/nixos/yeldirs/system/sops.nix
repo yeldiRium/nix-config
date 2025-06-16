@@ -5,14 +5,14 @@
   pkgs,
   ...
 }: let
-  cfg = config.yeldirs.common.global.sops;
+  cfg = config.yeldirs.system.sops;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
   options = {
-    yeldirs.common.global.sops = {
+    yeldirs.system.sops = {
       enable = lib.mkEnableOption "sops";
     };
   };
@@ -25,7 +25,7 @@ in {
       SOPS_AGE_KEY_FILE = "/persist/sops/age/keys.txt";
     };
     sops = {
-      defaultSopsFile = ../secrets.yaml;
+      defaultSopsFile = ../../../../hosts/shared/secrets.yaml;
       defaultSopsFormat = "yaml";
 
       age.keyFile = "/persist/sops/age/keys.txt";

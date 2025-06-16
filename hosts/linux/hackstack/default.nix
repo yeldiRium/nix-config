@@ -40,7 +40,9 @@
   };
 
   yeldirs = {
-    common.global.sops.enable = true;
+    system = {
+      sops.enable = true;
+    };
     mounts = {
       datengrab.enable = true;
     };
