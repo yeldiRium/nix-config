@@ -86,6 +86,13 @@
         };
       };
 
+      worker = lib.nixosSystem {
+        modules = [./hosts/linux/worker];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
+
       wsl = lib.nixosSystem {
         modules = [./hosts/linux/wsl];
         specialArgs = {
