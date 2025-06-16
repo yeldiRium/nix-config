@@ -44,27 +44,30 @@
   ];
 
   yeldirs = {
+    system = {
+      backup = {
+        enable = true;
+        sshKeyPath = "/home/yeldir/.ssh/hleutloff";
+        patterns = ''
+          - "R /persist"
+          - "! persist/system/var/lib/docker"
+          - "! persist/system/var/lib/systemd/coredump"
+          - "! persist/home/yeldir/.local/share/bottles"
+          - "! persist/home/yeldir/.local/share/Steam"
+          - "! persist/home/yeldir/Games"
+          - "! persist/home/yeldir/querbeet/stuff/temp"
+          - "! persist/home/yeldir/querbeet/workspace/private/qmk_firmware"
+          - "! persist/home/yeldir/querbeet/workspace/vendor"
+          - "- **/node_modules/**"
+          - "+ persist/home/**"
+          - "+ persist/system/**"
+        '';
+      };
+    };
+
     common = {
       global = {
         sops.enable = true;
-        backup = {
-          enable = true;
-          sshKeyPath = "/home/yeldir/.ssh/hleutloff";
-          patterns = ''
-            - "R /persist"
-            - "! persist/system/var/lib/docker"
-            - "! persist/system/var/lib/systemd/coredump"
-            - "! persist/home/yeldir/.local/share/bottles"
-            - "! persist/home/yeldir/.local/share/Steam"
-            - "! persist/home/yeldir/Games"
-            - "! persist/home/yeldir/querbeet/stuff/temp"
-            - "! persist/home/yeldir/querbeet/workspace/private/qmk_firmware"
-            - "! persist/home/yeldir/querbeet/workspace/vendor"
-            - "- **/node_modules/**"
-            - "+ persist/home/**"
-            - "+ persist/system/**"
-          '';
-        };
       };
     };
 

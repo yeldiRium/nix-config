@@ -1,6 +1,5 @@
 {
   imports = [
-    ./backup.nix
     ./filesystems.nix
     ./locale.nix
     ./nix.nix

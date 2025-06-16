@@ -3,12 +3,12 @@
   lib,
   ...
 }: let
-  cfg = config.yeldirs.common.global.backup;
+  cfg = config.yeldirs.system.backup;
 
   hostName = config.networking.hostName;
 in {
   options = {
-    yeldirs.common.global.backup = {
+    yeldirs.system.backup = {
       enable = lib.mkEnableOption "backups";
       sshKeyPath = lib.mkOption {
         type = lib.types.path;
@@ -28,6 +28,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     assertions = [
+      {
+        assertion = config.nixpkgs.hostPlatform.isLinux == true;
+        message = "Backups are only available on linux";
+      }
       {
         assertion = cfg.sshKeyPath != null;
         message = "The ssh key to access the backup server must be configured for borg backups to work.";
@@ -69,8 +73,8 @@ in {
         IdentityFile ${cfg.sshKeyPath}
     '';
 
-    sops.secrets.borg-encryption-recreate = {
-      sopsFile = ../../secrets.yaml;
+    sops.secrets."borg-encryption-${hostName}" = {
+      sopsFile = ../../../../hosts/shared/secrets.yaml;
     };
   };
 }
