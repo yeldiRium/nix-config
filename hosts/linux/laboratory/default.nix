@@ -1,6 +1,11 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
+    inputs.disko.nixosModules.default
     (import ./disko.nix {device = "/dev/sda";})
 
     ../../shared/common/global

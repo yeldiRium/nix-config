@@ -9,7 +9,6 @@
 
   imports = [
     inputs.impermanence.nixosModules.impermanence
-    inputs.disko.nixosModules.default
   ];
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
