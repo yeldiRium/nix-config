@@ -39,12 +39,12 @@ in {
         package = pkgs.unstable.yazi;
 
         settings = {
-          manager = {
+          mgr = {
             show_hidden = true;
           };
         };
         keymap = {
-          manager = {
+          mgr = {
             prepend_keymap = [
               { on = "{"; run = "tab_switch -1 --relative"; desc = "Switch to previous tab"; }
               { on = "}"; run = "tab_switch 1 --relative"; desc = "Switch to next tab"; }
