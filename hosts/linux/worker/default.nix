@@ -1,30 +1,55 @@
 {
   inputs,
+  modulesPath,
   lib,
   pkgs,
   ...
 }: {
   imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
     ./hardware-configuration.nix
     inputs.disko.nixosModules.default
     ./disko.nix
 
     ../../shared/common/global
     ../../shared/linux/global
+
+    ../../shared/linux/users/worker
   ];
 
   boot.loader.grub = {
-    # no need to set devices, disko will add all devices that have a EF02 partition to the list already
-    # devices = [ ];
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
 
   networking = {
-    hostName = "nixos-1";
-    hostId = "00000001";
+    hostName = "nixos-50fe2";
+    hostId = "00050fe2";
+    useDHCP = false;
   };
-  services.openssh.enable = true;
+  systemd.network = {
+    enable = true;
+    networks."30-wan" = {
+      matchConfig.MACAddress = "96:00:04:62:bc:6f";
+      address = [
+        "2a01:4f8:c17:a080::1/64"
+      ];
+      routes = [
+        {Gateway = "fe80::1";}
+      ];
+    };
+  };
+  services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+    };
+    fail2ban.enable = true;
+  };
 
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
@@ -35,6 +60,8 @@
     # change this to your ssh key
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCf4PuMuh6umz5hvl3u0sT20TP6+EKnOHKjy3uUjYCMjXMtjC83u5TKEl//oZ70g96Kn5w3KEN169ektClvHFJx8nOiZXAI617xVjTkYHtbpDaZOyaPNER23TQ+BNDarhAjtY9RAjgsO0M0wqfg69ElP6+UFl/MM+txjGnf3NasaDto5/bRNIBssBg++FI9xUHW/urD6hddRZ8iBIHxud8qezM9/a6+Q2/5AhBOmJy4MysWea1PP8jA2kbSDjUCNGA4w24pJzyVU8qB8WMWfIkkvUFCSQ/o0UZ133eoEZBGdTMW/oxI/wsUOqyBvbAkpJWPJH4LQqfopLfPjguI5QXj hannes.leutloff@yeldirium.de"
   ];
+
+  security.sudo.wheelNeedsPassword = false;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
