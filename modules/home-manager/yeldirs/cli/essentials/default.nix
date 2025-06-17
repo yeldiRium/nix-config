@@ -51,6 +51,7 @@ in {
         # custom scripts
         ++ [
           (shellScript ./scripts/diffex)
+          (shellScript ./scripts/rand5)
         ];
 
       shellAliases = {
