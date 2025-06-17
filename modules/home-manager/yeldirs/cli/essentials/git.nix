@@ -19,6 +19,7 @@ in {
       signingKey = lib.mkOption {
         type = lib.types.str;
         description = "Fingerprint for the key used to sign commits";
+        default = "";
       };
       ignores = lib.mkOption {
         type = lib.types.listOf lib.types.str;
