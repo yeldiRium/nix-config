@@ -80,6 +80,6 @@ parse_commandline "$@"
 
 set -e
 
-tr --delete --complement 'a-z0-9' < /dev/urandom | head -c "${_arg_number}"
+tr --delete --complement 'a-f0-9' < /dev/urandom | head -c "${_arg_number}"
 
 # ] <-- needed because of Argbash
