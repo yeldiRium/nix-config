@@ -6,6 +6,10 @@
 }: let
   shellScript = import ../../../../../../lib/shellScript.nix pkgs;
 
+  sourceTmuxConfig = ''
+    ${lib.getExe config.programs.tmux.package} -S "''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tmux-1000/default" source-file "${config.home.homeDirectory}/.config/tmux/tmux.conf" || true
+  '';
+
   essentials = config.yeldirs.cli.essentials;
   c = config.colorscheme.colors // config.colorscheme.harmonized;
 in {
@@ -56,6 +60,10 @@ in {
         (shellScript ./scripts/tmnix)
         (shellScript ./scripts/tmqmk)
       ];
+
+      xdg.configFile = {
+        "tmux/tmux.conf".onChange = sourceTmuxConfig;
+      };
     }
     (lib.mkIf (config.programs.zsh.enable) {
       programs.zsh = {
