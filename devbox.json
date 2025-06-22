@@ -7,7 +7,7 @@
   "shell": {
     "scripts": {
       "dev":      "tmnix",
-      "build":    "./build/build",
+      "build":    "./scripts/build",
       "lint":     "alejandra --check .",
       "lint:fix": "alejandra .",
       "test":     "echo \"No tests implemented\" && exit 1"
