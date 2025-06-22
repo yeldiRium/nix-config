@@ -2,7 +2,7 @@
 
 ag --files-with-matches --literal "# [ <-- needed because of Argbash" |
 while read -r template; do
-	if [[ "${template}" = "build/build" ]]; then
+	if [[ "${template}" = "scripts/build" ]]; then
 		continue
 	fi
 
