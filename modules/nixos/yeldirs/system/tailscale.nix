@@ -21,7 +21,7 @@ in {
 
     services.tailscale = {
       enable = true;
-      authKeyFile = "/run/secrets/tailscale-authkey";
+      authKeyFile = config.sops.secrets.tailscale-authkey.path;
     };
 
     sops.secrets.tailscale-authkey = {};
