@@ -63,7 +63,7 @@ in {
     };
 
     environment.sessionVariables = {
-      BORG_PASSCOMMAND = "cat /run/secrets/borg-encryption-${hostName}";
+      BORG_PASSCOMMAND = "cat /run/secrets/borg-encryption";
     };
 
     programs.ssh.extraConfig = ''
@@ -73,8 +73,8 @@ in {
         IdentityFile ${cfg.sshKeyPath}
     '';
 
-    sops.secrets."borg-encryption-${hostName}" = {
-      sopsFile = ../../../../hosts/shared/secrets.yaml;
+    sops.secrets."borg-encryption" = {
+      sopsFile = ../../../../hosts/linux/${hostName}/secrets.yaml;
     };
   };
 }
