@@ -14,6 +14,10 @@ in {
   options = {
     yeldirs.system.sops = {
       enable = lib.mkEnableOption "sops";
+      keyFile = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+      };
     };
   };
 
@@ -22,7 +26,7 @@ in {
       sops
     ];
     environment.sessionVariables = {
-      SOPS_AGE_KEY_FILE = "/persist/sops/age/keys.txt";
+      SOPS_AGE_KEY_FILE = if builtins.isNull cfg.keyFile then "/persist/sops/age/keys.txt" else cfg.keyFile;
     };
     sops = {
       defaultSopsFile = ../../../../hosts/shared/secrets.yaml;
