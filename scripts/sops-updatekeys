@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+shopt -s globstar
+
+sops updatekeys ./**/secrets.yaml
