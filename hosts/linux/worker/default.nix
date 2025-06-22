@@ -51,10 +51,12 @@
     fail2ban.enable = true;
   };
 
-  environment.systemPackages = map lib.lowPrio [
-    pkgs.curl
-    pkgs.gitMinimal
-  ];
+  yeldirs = {
+    system = {
+      sops.enable = true;
+      tailscale.enable = true;
+    };
+  };
 
   users.users.root.openssh.authorizedKeys.keys = [
     # change this to your ssh key
