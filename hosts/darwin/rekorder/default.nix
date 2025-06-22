@@ -1,9 +1,9 @@
 {
   imports = [
-    ../../shared/common/global
-    ../../shared/darwin/global
+    ../../shared/global
+    ../shared/global
 
-    ../../shared/darwin/users/yeldir
+    ../shared/users/yeldir
   ];
 
   nix.extraOptions = ''

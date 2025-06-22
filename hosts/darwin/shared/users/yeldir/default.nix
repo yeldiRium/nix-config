@@ -6,7 +6,7 @@
 }: {
   imports = [
     inputs.home-manager.darwinModules.default
-    ../../../common/optional/home-manager.nix
+    ../../../../shared/optional/home-manager.nix
   ];
 
   users.users.yeldir = {

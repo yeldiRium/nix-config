@@ -8,7 +8,7 @@
 in {
   imports = [
     inputs.home-manager.nixosModules.default
-    ../../../common/optional/home-manager.nix
+    ../../../../shared/optional/home-manager.nix
   ];
 
   users.mutableUsers = false;
@@ -27,7 +27,7 @@ in {
     home = "/home/yeldir";
     createHome = true;
 
-    hashedPasswordFile = config.sops.secrets.yeldir-password.path;
+    hashedPasswordFile = config.sops.secrets.password.path;
 
     openssh.authorizedKeys.keys = [
       # change this to your ssh key
@@ -35,8 +35,8 @@ in {
     ];
   };
 
-  sops.secrets.yeldir-password = {
-    sopsFile = ../../../secrets.yaml;
+  sops.secrets.password = {
+    sopsFile = ../../../../../home/yeldir/secrets.yaml;
     neededForUsers = true;
   };
 

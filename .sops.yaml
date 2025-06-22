@@ -1,12 +1,21 @@
 keys:
+  - &main age1vl5e32vpsdfevc5k9zgz3p524dlt85pkw6u3wuufdrm54ewp0u6q24g8ve
   - hosts:
-      - &main age1vl5e32vpsdfevc5k9zgz3p524dlt85pkw6u3wuufdrm54ewp0u6q24g8ve
+      - &host-recreate age12yf69pp0f9pj47fzlhfwp0zcg34v6kdhew2n3f5sf2czpjnen9uqs8q5lf
+  - users:
+      - &user-yeldir age1lk02y47avhuawmsrg9ear7znpcnn6s035kg54nfzmzr8eevhqcgs0f63j4
 creation_rules:
-  - path_regex: hosts/shared/secrets.yaml$
+  - path_regex: hosts/shared/secrets\.yaml$
     key_groups:
       - age:
           - *main
-  - path_regex: home/yeldir/secrets.yaml$
+  - path_regex: hosts/linux/recreate/secrets\.yaml$
     key_groups:
       - age:
           - *main
+          - *host-recreate
+  - path_regex: home/yeldir/secrets\.yaml$
+    key_groups:
+      - age:
+          - *main
+          - *user-yeldir
