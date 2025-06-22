@@ -2,13 +2,16 @@
   config,
   lib,
   ...
-}: let
+} @ args: let
+  workers = import ../../../../../lib/workers.nix args;
+
   essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.ssh;
 in {
   options = {
     yeldirs.cli.essentials.ssh = {
       excludePrivate = lib.mkEnableOption "exclude private configs";
+      includeWorkers = lib.mkEnableOption "include worker configs";
     };
   };
 
@@ -28,6 +31,19 @@ in {
               port = 30022;
             };
           }
+          // (
+            if cfg.includeWorkers
+            then
+              lib.listToAttrs (lib.map (w: {
+                name = "nixos-${w.shortName} worker-${w.shortName} ${w.ipv6}";
+                value = {
+                  hostname = w.ipv6;
+                  user = "worker";
+                  identityFile = "~/.ssh/worker";
+                };
+              }) workers.workers)
+            else {}
+          )
           // (
             if cfg.excludePrivate
             then {}

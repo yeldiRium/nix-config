@@ -49,6 +49,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+
     systems = [
       "x86_64-linux"
       #"x86_64-darwin"
@@ -56,6 +57,8 @@
 
     lib = nixpkgs.lib // home-manager.lib;
     forAllSystems = nixpkgs.lib.genAttrs systems;
+
+    workers = import ./lib/workers.nix {inherit lib;};
   in {
     inherit lib;
 
@@ -66,40 +69,47 @@
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
 
-    nixosConfigurations = {
-      hackstack = lib.nixosSystem {
-        modules = [./hosts/linux/hackstack];
-        specialArgs = {
-          inherit inputs outputs;
+    nixosConfigurations =
+      {
+        hackstack = lib.nixosSystem {
+          modules = [./hosts/linux/hackstack];
+          specialArgs = {
+            inherit inputs outputs;
+          };
         };
-      };
-      laboratory = lib.nixosSystem {
-        modules = [./hosts/linux/laboratory];
-        specialArgs = {
-          inherit inputs outputs;
+        laboratory = lib.nixosSystem {
+          modules = [./hosts/linux/laboratory];
+          specialArgs = {
+            inherit inputs outputs;
+          };
         };
-      };
-      recreate = lib.nixosSystem {
-        modules = [./hosts/linux/recreate];
-        specialArgs = {
-          inherit inputs outputs;
+        recreate = lib.nixosSystem {
+          modules = [./hosts/linux/recreate];
+          specialArgs = {
+            inherit inputs outputs;
+          };
         };
-      };
 
-      worker = lib.nixosSystem {
-        modules = [./hosts/linux/worker];
-        specialArgs = {
-          inherit inputs outputs;
+        wsl = lib.nixosSystem {
+          modules = [./hosts/linux/wsl];
+          specialArgs = {
+            inherit inputs outputs;
+          };
         };
-      };
-
-      wsl = lib.nixosSystem {
-        modules = [./hosts/linux/wsl];
-        specialArgs = {
-          inherit inputs outputs;
-        };
-      };
-    };
+      }
+      // (
+        lib.listToAttrs (lib.map (w: {
+            name = "worker-${w.shortName}";
+            value = lib.nixosSystem {
+              modules = [./hosts/linux/worker];
+              specialArgs = {
+                inherit inputs outputs;
+                worker = w;
+              };
+            };
+          })
+          workers.workers)
+      );
 
     darwinConfigurations = {
       rekorder = nix-darwin.lib.darwinSystem {

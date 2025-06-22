@@ -1,8 +1,7 @@
 {
   inputs,
   modulesPath,
-  lib,
-  pkgs,
+  worker,
   ...
 }: {
   imports = [
@@ -11,10 +10,10 @@
     inputs.disko.nixosModules.default
     ./disko.nix
 
-    ../../shared/common/global
-    ../../shared/linux/global
+    ../../shared/global
+    ../shared/global
 
-    ../../shared/linux/users/worker
+    ../shared/users/worker
   ];
 
   boot.loader.grub = {
@@ -23,16 +22,17 @@
   };
 
   networking = {
-    hostName = "nixos-50fe2";
-    hostId = "00050fe2";
+    hostName = "nixos-${worker.shortName}";
+    hostId = "000${worker.shortName}";
     useDHCP = false;
   };
   systemd.network = {
     enable = true;
     networks."30-wan" = {
-      matchConfig.MACAddress = "96:00:04:62:bc:6f";
+      matchConfig.Name = "enp1s0";
+      # matchConfig.MACAddress = "96:00:04:66:2c:12";
       address = [
-        "2a01:4f8:c17:a080::1/64"
+        "${worker.ipv6}/64"
       ];
       routes = [
         {Gateway = "fe80::1";}
@@ -53,7 +53,10 @@
 
   yeldirs = {
     system = {
-      sops.enable = true;
+      sops = {
+        enable = true;
+        keyFile = "/root/keys.txt";
+      };
       tailscale.enable = true;
     };
   };
