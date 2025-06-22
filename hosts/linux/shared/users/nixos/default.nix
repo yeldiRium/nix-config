@@ -8,7 +8,7 @@
 in {
   imports = [
     inputs.home-manager.nixosModules.default
-    ../../../common/optional/home-manager.nix
+    ../../../../shared/optional/home-manager.nix
   ];
   # This user is exclusively intended for use in WSL.
 

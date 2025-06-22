@@ -8,7 +8,7 @@
 in {
   imports = [
     inputs.home-manager.nixosModules.default
-    ../../../common/optional/home-manager.nix
+    ../../../../shared/optional/home-manager.nix
   ];
 
   users.mutableUsers = false;
@@ -36,7 +36,7 @@ in {
   };
 
   sops.secrets.yeldir-password = {
-    sopsFile = ../../../secrets.yaml;
+    sopsFile = ../../../../shared/secrets.yaml;
     neededForUsers = true;
   };
 

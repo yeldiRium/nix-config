@@ -8,21 +8,21 @@
     inputs.disko.nixosModules.default
     (import ./disko.nix {device = "/dev/sda";})
 
-    ../../shared/common/global
-    ../../shared/linux/global
+    ../../shared/global
+    ../shared/global
 
-    ../../shared/linux/optional/bluetooth.nix
-    ../../shared/linux/optional/docker.nix
-    ../../shared/linux/optional/greetd.nix
-    ../../shared/linux/optional/networkmanager.nix
-    ../../shared/linux/optional/persistence.nix
-    ../../shared/linux/optional/pipewire.nix
-    ../../shared/linux/optional/printing.nix
-    ../../shared/linux/optional/upower.nix
+    ../shared/optional/bluetooth.nix
+    ../shared/optional/docker.nix
+    ../shared/optional/greetd.nix
+    ../shared/optional/networkmanager.nix
+    ../shared/optional/persistence.nix
+    ../shared/optional/pipewire.nix
+    ../shared/optional/printing.nix
+    ../shared/optional/upower.nix
 
-    ../../shared/linux/optional/mounts/datengrab.nix
+    ../shared/optional/mounts/datengrab.nix
 
-    ../../shared/linux/users/yeldir
+    ../shared/users/yeldir
   ];
 
   # Use the systemd-boot EFI boot loader.

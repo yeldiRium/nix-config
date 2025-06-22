@@ -4,10 +4,10 @@
 
     ./hardware-configuration.nix
 
-    ../../shared/common/global
-    ../../shared/linux/global
+    ../../shared/global
+    ../shared/global
 
-    ../../shared/linux/users/nixos
+    ../shared/users/nixos
   ];
 
   wsl.enable = true;
