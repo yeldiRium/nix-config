@@ -67,6 +67,7 @@
         '';
       };
       sops.enable = true;
+      tailscale.enable = true;
     };
 
     mounts = {
