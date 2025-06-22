@@ -44,6 +44,9 @@ in {
 
           # nix utils
           alejandra
+
+          # encryption
+          age
         ]
         ++ lib.optionals (platform == "linux") [
           dysk
