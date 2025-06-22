@@ -1,4 +1,12 @@
 # yeldiR's nix config
+## SOPS
+I use sops to encrypt some data in git.
+Not all hosts and users need this, but my primary user yeldir and my primary hosts do.
+
+Each user and each host has its own age key.
+So when adding a new host, it is necessary to put a list of age keys into /persist/sops/age/keys.txt or wherever configured, so that each required key is present.
+For example to provision yeldir@recreate, which is my main host/user combo, the age keys for user-yeldir and for host-recreate are required.
+
 ## Setting up a new linux system
 Using the nixos installer image...
 
