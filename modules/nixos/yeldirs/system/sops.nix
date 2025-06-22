@@ -32,7 +32,7 @@ in {
       defaultSopsFile = ../../../../hosts/shared/secrets.yaml;
       defaultSopsFormat = "yaml";
 
-      age.keyFile = "/persist/sops/age/keys.txt";
+      age.keyFile = if builtins.isNull cfg.keyFile then "/persist/sops/age/keys.txt" else cfg.keyFile;
     };
   };
 }
