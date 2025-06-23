@@ -98,13 +98,13 @@
         };
       }
       // (
-        lib.listToAttrs (lib.map (w: {
-            name = "worker-${w.shortName}";
+        lib.listToAttrs (lib.mapAttrsToList (workerName: workerCfg: {
+            name = "worker-${workerName}";
             value = lib.nixosSystem {
               modules = [./hosts/linux/worker];
               specialArgs = {
                 inherit inputs outputs;
-                worker = w;
+                worker = workerCfg;
               };
             };
           })

@@ -105,15 +105,17 @@ assign_positional_args 1 "${_positionals[@]}"
 # [ <-- needed because of Argbash
 set -eu
 
-entry=$(ag "${_arg_shortname}" < "${FLAKE}/workers.txt" )
+entry=$(jq "getpath([\"${_arg_shortname}\"])" "${FLAKE}/workers.json")
 
-if [[ -z $entry ]]; then
-	echo "worker with shortname ${_arg_shortname} not found"
+if [[ $entry == 'null' ]]; then
+	echo "worker with name ${_arg_shortname} could not be not found."
 	exit 1
 fi
 
-ipv6=${entry/[^ ]* /}
+ipv6=$(echo "${entry}" | jq --raw-output '.ipv6')
 
 nixos-rebuild switch --flake "${FLAKE}#worker-${_arg_shortname}" --target-host "worker@${ipv6}" --use-remote-sudo
+
+echo "worker with name \"${_arg_shortname}\" was updated."
 
 # ] <-- needed because of Argbash

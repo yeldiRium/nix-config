@@ -22,8 +22,8 @@
   };
 
   networking = {
-    hostName = "nixos-${worker.shortName}";
-    hostId = "000${worker.shortName}";
+    hostName = "nixos-${worker.shortname}";
+    hostId = "000${worker.shortname}";
     useDHCP = false;
   };
   systemd.network = {

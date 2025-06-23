@@ -105,8 +105,9 @@ assign_positional_args 1 "${_positionals[@]}"
 # [ <-- needed because of Argbash
 set -u
 
-ag --invert-match "${_arg_shortname}" < "${FLAKE}/workers.txt" > "${FLAKE}/workers-new.txt"
-rm "${FLAKE}/workers.txt"
-mv "${FLAKE}/workers-new.txt" "${FLAKE}/workers.txt"
+newWorkers=$(jq "delpaths([[\"${_arg_shortname}\"]])" "${FLAKE}/workers.json")
+echo "${newWorkers}" > "${FLAKE}/workers.json"
+
+echo "worker with name \"${_arg_shortname}\" was removed."
 
 # ] <-- needed because of Argbash

@@ -113,10 +113,23 @@ mkdir -p "${temp}/root/"
 
 sops decrypt --extract '["worker-key"]' "${FLAKE}/secrets.yaml" > "${temp}/root/keys.txt"
 
-echo "${_arg_shortname} ${_arg_ipv6}" >> "${FLAKE}/workers.txt"
+newWorker=$(cat <<EOF
+{
+	"shortname": "${_arg_shortname}",
+	"ipv6": "${_arg_ipv6}"
+}
+EOF
+)
+
+newWorkers=$(jq "setpath([\"${_arg_shortname}\"]; ${newWorker})" "${FLAKE}/workers.json")
+echo "${newWorkers}" > "${FLAKE}/workers.json"
 
 nixos-anywhere --extra-files "${temp}" --flake "${FLAKE}#worker-${_arg_shortname}" --target-host "root@${_arg_ipv6}"
 
 rm -rf "${temp}"
+
+echo "new worker with name \"${_arg_shortname}\" has been set up."
+echo "ssh to it using:"
+echo "ssh worker-${_arg_shortname}"
 
 # ] <-- needed because of Argbash

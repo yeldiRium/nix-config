@@ -34,8 +34,8 @@ in {
           // (
             if cfg.includeWorkers
             then
-              lib.listToAttrs (lib.map (w: {
-                name = "nixos-${w.shortName} worker-${w.shortName} ${w.ipv6}";
+              lib.listToAttrs (lib.mapAttrsToList (_: w: {
+                name = "nixos-${w.shortname} worker-${w.shortname} ${w.ipv6}";
                 value = {
                   hostname = w.ipv6;
                   user = "worker";

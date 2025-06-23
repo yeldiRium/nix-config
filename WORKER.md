@@ -13,7 +13,7 @@ The configuration is taken from the [nixos-anywhere-examples](https://github.com
 3. Run the [worker-add script](./scripts/worker-add) and pass it the shortname and the server's ipv6 address
     - Example: `./scripts/worker-add 12345 2a01:4f8:5521:e1bd::1`
 4. Build a new config for your work computer, since adding a new worker automatically creates a new ssh config
-5. Commit the change to workers.txt
+5. Commit the change to workers.json
 
 ## Removing a worker
 
