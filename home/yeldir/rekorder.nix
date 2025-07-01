@@ -30,6 +30,7 @@
       ops = {
         colima.enable = true;
         lazydocker.enable = true;
+        nix.enable = true;
       };
     };
   };
