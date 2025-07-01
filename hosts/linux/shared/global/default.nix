@@ -1,4 +1,4 @@
-{
+{outputs, ...}: {
   imports = builtins.attrValues outputs.nixosModules ++ [
     ./filesystems.nix
     ./locale.nix
