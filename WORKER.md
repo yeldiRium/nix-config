@@ -8,8 +8,8 @@ The configuration is taken from the [nixos-anywhere-examples](https://github.com
 
 ## Adding a new worker
 
-1. Create a new server in Hetzner Cloud
-2. Generate a 5-char string (using [rand5](./modules/home-manager/yeldirs/cli/essentials/scripts/rand5) (we'll call this the server's shortname) and set the server's hostname to "nixos-$(rand5)"
+1. Generate a 5-char string (using [rand5](./modules/home-manager/yeldirs/cli/essentials/scripts/rand5) (we'll call this the server's shortname)
+2. Create a new server in Hetzner Cloud and set its hostname to "nixos-${shortname}"
 3. Run the [worker-add script](./scripts/worker-add) and pass it the shortname and the server's ipv6 address
     - Example: `./scripts/worker-add 12345 2a01:4f8:5521:e1bd::1`
 4. Build a new config for your work computer, since adding a new worker automatically creates a new ssh config
