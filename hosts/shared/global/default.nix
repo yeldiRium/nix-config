@@ -2,7 +2,7 @@
   outputs,
   ...
 }: {
-  imports = builtins.attrValues outputs.nixosModules ++ [
+  imports = [
     ./nix.nix
     ./zsh.nix
   ];

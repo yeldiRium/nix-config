@@ -46,8 +46,8 @@ in {
               set -g pane-border-style fg=${c.outline}
               set -g pane-active-border-style fg=${c.primary_container}
 
-              bind '"' split-window -v -c "#{pane_current_path}"
-              bind % split-window -h -c "#{pane_current_path}"
+              bind-key -T prefix '"' split-window -v -c "#{pane_current_path}"
+              bind-key -T prefix % split-window -h -c "#{pane_current_path}"
 
             '';
           terminal = "tmux-256color";

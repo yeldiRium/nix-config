@@ -1,5 +1,5 @@
 {
-  imports = [
+  imports = builtins.attrValues outputs.nixosModules ++ [
     ./filesystems.nix
     ./locale.nix
     ./nix.nix
