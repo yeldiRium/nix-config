@@ -67,6 +67,7 @@
 
     overlays = import ./overlays {inherit inputs lib outputs;};
     nixosModules = import ./modules/nixos;
+    darwinModules = import ./modules/darwin;
     homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations =

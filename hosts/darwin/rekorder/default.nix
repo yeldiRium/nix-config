@@ -20,5 +20,14 @@
     hostName = "rekorder";
   };
 
+  yeldirs = {
+    system = {
+      sops = {
+        enable = true;
+        keyFile = "/Users/yeldir/querbeet/keys.txt";
+      };
+    };
+  };
+
   system.stateVersion = 5;
 }
