@@ -8,7 +8,7 @@
 
   nix.extraOptions = ''
     auto-optimise-store = false
-    experimental-features = nix-command flakes
+    experimental-features = nix-command flakes pipe-operators
   '';
 
   programs = {
