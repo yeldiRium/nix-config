@@ -124,7 +124,7 @@ EOF
 newWorkers=$(jq "setpath([\"${_arg_shortname}\"]; ${newWorker})" "${FLAKE}/workers.json")
 echo "${newWorkers}" > "${FLAKE}/workers.json"
 
-nixos-anywhere --extra-files "${temp}" --flake "${FLAKE}#worker-${_arg_shortname}" --target-host "root@${_arg_ipv6}"
+nixos-anywhere --extra-files "${temp}" --flake "${FLAKE}#worker-${_arg_shortname}" --target-host "root@${_arg_ipv6}" -i ~/.ssh/hleutloff
 
 rm -rf "${temp}"
 
