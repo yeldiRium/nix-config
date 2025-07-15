@@ -49,6 +49,24 @@ in {
               bind-key -T prefix '"' split-window -v -c "#{pane_current_path}"
               bind-key -T prefix % split-window -h -c "#{pane_current_path}"
 
+              # =============================================
+              # ===   Nesting local and remote sessions   ===
+              # =============================================
+              # Inspired by and party taken from https://github.com/samoshkin/tmux-config/blob/master/tmux/tmux.conf
+            
+              bind -T root F12  \
+                set prefix None \;\
+                set key-table off \;\
+                if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+                set status-style fg=${c.on_surface} \;\
+                set -a status-style bg=${c.surface_bright} \;\
+                refresh-client -S \;\
+
+              bind -T off F12 \
+                set -u prefix \;\
+                set -u key-table \;\
+                set -u status-style \;\
+                refresh-client -S
             '';
           terminal = "tmux-256color";
         };
