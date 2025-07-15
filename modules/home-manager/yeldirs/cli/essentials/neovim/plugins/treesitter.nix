@@ -21,7 +21,7 @@ in {
     programs.neovim.plugins = with pkgs.unstable.vimPlugins;
       [
         {
-          plugin = nvim-treesitter.withAllGrammars;
+          plugin = nvim-treesitter;
           type = "lua";
           config =
             /*
