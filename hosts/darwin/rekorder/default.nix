@@ -29,5 +29,8 @@
     };
   };
 
-  system.stateVersion = 5;
+  system = {
+    startup.chime = false;
+    stateVersion = 5;
+  };
 }
