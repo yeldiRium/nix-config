@@ -15,6 +15,10 @@ The configuration is taken from the [nixos-anywhere-examples](https://github.com
 4. Build a new config for your work computer, since adding a new worker automatically creates a new ssh config
 5. Commit the change to workers.json
 
+## Updating a worker
+
+1. Run the [worker-update script](./scripts/worker-update) and pass it the worker's shortname
+
 ## Removing a worker
 
 1. Run the [worker-rm script](./scripts/worker-rm) and pass it the worker's shortname
