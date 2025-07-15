@@ -27,6 +27,9 @@
         git = {
           userEmail = "hannes.leutloff@yeldirium.de";
         };
+        tmux = {
+          autoQuit = true;
+        };
         neovim = {
           supportedLanguages = [
             "bash"

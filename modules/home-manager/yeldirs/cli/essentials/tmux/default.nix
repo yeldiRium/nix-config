@@ -17,6 +17,13 @@ in {
     ./plugins/vim-tmux-navigator.nix
   ];
 
+  options = {
+    yeldirs.cli.essentials.tmux.autoQuit = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+  };
+
   config = lib.mkIf essentials.enable (lib.mkMerge [
     {
       programs = {
@@ -53,7 +60,7 @@ in {
               # ===   Nesting local and remote sessions   ===
               # =============================================
               # Inspired by and party taken from https://github.com/samoshkin/tmux-config/blob/master/tmux/tmux.conf
-            
+
               bind -T root F12  \
                 set prefix None \;\
                 set key-table off \;\
@@ -90,7 +97,7 @@ in {
         ];
         sessionVariables = {
           ZSH_TMUX_AUTOSTART = "true";
-          ZSH_TMUX_AUTOQUIT = "false";
+          ZSH_TMUX_AUTOQUIT = if essentials.tmux.autoQuit then "true" else "false";
           ZSH_TMUX_DEFAULT_SESSION_NAME = "default";
         };
       };
