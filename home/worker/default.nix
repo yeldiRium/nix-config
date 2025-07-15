@@ -3,7 +3,7 @@
     ../shared
   ];
 
-  wallpaper = pkgs.wallpapers.space-cloud-orange;
+  wallpaper = pkgs.wallpapers.kitty-minimal-green;
 
   yeldirs = {
     system = {

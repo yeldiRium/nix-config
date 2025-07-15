@@ -28,5 +28,11 @@
     "id" :"hxox7ZS",
     "name": "cyberpunk-living-quarter",
     "sha256": "sha256-KyAa7sZHH/ru6YseRYH9fopkH29Ei3tgR514l1qo8jc="
+  },
+  {
+    "ext": "png",
+    "id": "eUuKJrb",
+    "name": "kitty-minimal-green",
+    "sha256": "sha256-QgyiXuTMXbMKPb4RNT/D8x7rIzjS+RemaHR0UdnP9Bo="
   }
 ]
