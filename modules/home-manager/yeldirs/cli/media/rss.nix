@@ -29,7 +29,7 @@ in {
         {
           title = "xkcd";
           url = "https://xkcd.com/atom.xml";
-          tags = ["comics" "fun" "science"];
+          tags = ["comic" "fun" "science"];
         }
         {
           title = "Poorly Drawn Lines";
@@ -47,6 +47,14 @@ in {
           tags = ["comic" "fun" "nsfw"];
         }
       ];
+    };
+
+    home.persistence = {
+      "/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".local/share/newsboat"
+        ];
+      };
     };
   };
 }
