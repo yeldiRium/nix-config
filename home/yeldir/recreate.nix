@@ -41,6 +41,10 @@
         qmk.enable = true;
       };
 
+      media = {
+        rss.enable = true;
+      };
+
       office = {
         yt-dlp.enable = true;
       };
