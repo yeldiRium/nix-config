@@ -4,3 +4,10 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.colorcolumn = "80,120"
+
+vim.keymap.set(
+  "v",
+  "<leader>crt",
+  ":! tr -s ' ' | column -t -s '|' -o '|'<cr><Esc>",
+  { desc = "Reformat selected table" }
+)
