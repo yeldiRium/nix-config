@@ -1,0 +1,1 @@
+{"author":{"id":"25c9d92405766f5374f83c8ecfd9d72873f45423dbac49e3d61b8fae35e19b87"},"ops":[{"type":1,"timestamp":1752681763,"nonce":"ykgfPfNIds+Nq6kSU5MhEaSjGiE=","title":"Add function to convert color to 256 color","message":"This is necessary to convert the colorscheme to newsboat compatible colors.","files":null}]}
