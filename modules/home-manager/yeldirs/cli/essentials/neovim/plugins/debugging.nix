@@ -107,8 +107,19 @@ in {
             */
             ''
               local function reloadGoDebuggerConfigurations()
-                require("dap").configurations.go = {}
-                require("dap-go").setup({
+                local dapGo = require("dap-go")
+                require("dap").configurations.go = {
+                  {
+                    type = "go",
+                    name = "Debug Package (Arguments)",
+                    request = "launch",
+                    program = "''${fileDirname}",
+                    args = dapGo.get_arguments,
+                    buildFlags = "",
+                    outputMode = "remote",
+                  },
+                }
+                dapGo.setup({
                   delve = {
                     initialize_timeout_sec = 60,
                   },
