@@ -13,4 +13,6 @@
     pkgs.linkFarmFromDrvs "colorschemes" (pkgs.lib.attrValues colorschemes ++ [combined]);
 
   hledger-language-server = pkgs.callPackage ./hledger-language-server.nix {};
+
+  y = import ./y {inherit pkgs;};
 }

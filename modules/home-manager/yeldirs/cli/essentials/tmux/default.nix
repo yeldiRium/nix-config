@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: let
-  shellScript = import ../../../../../../lib/shellScript.nix pkgs;
-
   sourceTmuxConfig = ''
     ${lib.getExe config.programs.tmux.package} -S "''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tmux-1000/default" source-file "${config.home.homeDirectory}/.config/tmux/tmux.conf" || true
   '';
@@ -79,11 +77,11 @@ in {
         };
       };
 
-      home.packages = [
-        (shellScript ./scripts/tmhl)
-        (shellScript ./scripts/tmide)
-        (shellScript ./scripts/tmnix)
-        (shellScript ./scripts/tmqmk)
+      home.packages = with pkgs; [
+        (y.shellScript ./scripts/tmhl)
+        (y.shellScript ./scripts/tmide)
+        (y.shellScript ./scripts/tmnix)
+        (y.shellScript ./scripts/tmqmk)
       ];
 
       xdg.configFile = {

@@ -1,4 +1,4 @@
-pkgs: path: let
+{pkgs, ...}: path: let
   name = builtins.baseNameOf path;
 in
   pkgs.writeTextFile {

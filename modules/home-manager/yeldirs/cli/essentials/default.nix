@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: let
-  shellScript = import ../../../../../lib/shellScript.nix pkgs;
   platform = config.yeldirs.system.platform;
 
   cfg = config.yeldirs.cli.essentials;
@@ -53,8 +52,8 @@ in {
         ]
         # custom scripts
         ++ [
-          (shellScript ./scripts/diffex)
-          (shellScript ./scripts/rand5)
+          (y.shellScript ./scripts/diffex)
+          (y.shellScript ./scripts/rand5)
         ];
 
       shellAliases = {

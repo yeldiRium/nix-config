@@ -3,18 +3,16 @@
   lib,
   pkgs,
   ...
-}: let
-  shellScript = import ../../../../../lib/shellScript.nix pkgs;
-in {
+}: {
   home = {
     packages = with pkgs; [
       hledger
-      (shellScript ./hledger-scripts/hlc)
-      (shellScript ./hledger-scripts/hlb)
-      (shellScript ./hledger-scripts/hlbudget)
-      (shellScript ./hledger-scripts/hlcompare)
-      (shellScript ./hledger-scripts/hlevents)
-      (shellScript ./hledger-scripts/hlprojects)
+      (y.shellScript ./hledger-scripts/hlc)
+      (y.shellScript ./hledger-scripts/hlb)
+      (y.shellScript ./hledger-scripts/hlbudget)
+      (y.shellScript ./hledger-scripts/hlcompare)
+      (y.shellScript ./hledger-scripts/hlevents)
+      (y.shellScript ./hledger-scripts/hlprojects)
     ];
     shellAliases = {
       "hl" = "hledger";
