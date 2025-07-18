@@ -2,9 +2,7 @@
   config,
   lib,
   ...
-} @ args: let
-  workers = import ../../../../../lib/workers.nix args;
-
+}: let
   essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.ssh;
 in {
@@ -41,7 +39,7 @@ in {
                   user = "worker";
                   identityFile = "~/.ssh/worker";
                 };
-              }) workers.workers)
+              }) lib.y.workers.workers)
             else {}
           )
           // (

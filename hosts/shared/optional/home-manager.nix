@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   outputs,
   ...
 }: {
@@ -7,7 +8,7 @@
     home-manager = {
       backupFileExtension = "backup";
       useGlobalPkgs = true;
-      extraSpecialArgs = {inherit inputs outputs;};
+      extraSpecialArgs = {inherit inputs lib outputs;};
     };
   };
 }

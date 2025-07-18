@@ -55,10 +55,8 @@
       #"x86_64-darwin"
     ];
 
-    lib = nixpkgs.lib // home-manager.lib;
+    lib = nixpkgs.lib.extend (final: prev: import ./lib {lib = final;} // home-manager.lib);
     forAllSystems = nixpkgs.lib.genAttrs systems;
-
-    workers = import ./lib/workers.nix {inherit lib;};
   in {
     inherit lib;
 
@@ -75,26 +73,26 @@
         hackstack = lib.nixosSystem {
           modules = [./hosts/linux/hackstack];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs lib outputs;
           };
         };
         laboratory = lib.nixosSystem {
           modules = [./hosts/linux/laboratory];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs lib outputs;
           };
         };
         recreate = lib.nixosSystem {
           modules = [./hosts/linux/recreate];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs lib outputs;
           };
         };
 
         wsl = lib.nixosSystem {
           modules = [./hosts/linux/wsl];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs lib outputs;
           };
         };
       }
@@ -104,12 +102,12 @@
             value = lib.nixosSystem {
               modules = [./hosts/linux/worker];
               specialArgs = {
-                inherit inputs outputs;
+                inherit inputs lib outputs;
                 worker = workerCfg;
               };
             };
           })
-          workers.workers)
+          lib.y.workers.workers)
       );
 
     darwinConfigurations = {
@@ -117,7 +115,7 @@
         system = "x86_64-darwin";
         modules = [./hosts/darwin/rekorder];
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs lib outputs;
         };
       };
     };
