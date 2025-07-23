@@ -34,6 +34,7 @@ in {
           bindkey -v
 
           zstyle ':completion:*:descriptions' format '[%d]'
+          zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
         '';
         oh-my-zsh = {
           enable = true;
