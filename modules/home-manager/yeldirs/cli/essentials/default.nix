@@ -33,6 +33,7 @@ in {
         [
           # poweruser
           btop
+          eza
           ijq
           jq
           pv
@@ -57,7 +58,7 @@ in {
         ];
 
       shellAliases = {
-        ll = "ls -al";
+        ll = "eza --all --long --group-directories-first --binary --group --header --mounts --git";
         hi = "ag --passthrough";
       };
     };
