@@ -1,5 +1,6 @@
 {
   imports = [
+    ./aws.nix
     ./colima.nix
     ./crossplane.nix
     ./helm.nix
