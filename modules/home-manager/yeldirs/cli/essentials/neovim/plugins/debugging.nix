@@ -15,7 +15,23 @@ in {
     yeldirs.cli.essentials.neovim.debugging.dynamicGoConfig = lib.mkOption {
       type = lib.types.str;
       default = "";
-      description = "absolute path to a lua file that is executed when <leader>cdl is run to reload debugger configs. make sure that it's idempotent.";
+      description = ''
+absolute path to a lua file that is executed when <leader>cdl is run to reload debugger configs. make sure that it's idempotent.
+example:
+```
+local dap = require("dap")
+
+dap.configurations.go[#dap.configurations.go + 1] = {
+  type = "go",
+  name = "e2e: Debug DocDB",
+  request = "launch",
+  program = "''${fileDirname}",
+  args = { "-v", "-timeout", "36000s", "-run", "TestDocumentDB" },
+  buildFlags = "",
+  outputMode = "remote",
+}
+```
+'';
     };
   };
   config = lib.mkIf cfg.enable {
@@ -119,17 +135,18 @@ in {
                     outputMode = "remote",
                   },
                 }
-                dapGo.setup({
-                  delve = {
-                    initialize_timeout_sec = 60,
-                  },
-                })
 
                 ${
                 if cfg.dynamicGoConfig != ""
                 then "dofile(\"" + cfg.dynamicGoConfig + "\")"
                 else ""
               }
+
+                dapGo.setup({
+                  delve = {
+                    initialize_timeout_sec = 60,
+                  },
+                })
               end
               dynamicDebuggerHooks[#dynamicDebuggerHooks + 1] = reloadGoDebuggerConfigurations
               reloadGoDebuggerConfigurations()
