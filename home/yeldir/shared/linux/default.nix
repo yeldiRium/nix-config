@@ -14,5 +14,11 @@
       };
       keyring.enable = true;
     };
+
+    desktop = {
+      essentials = {
+        chrome.enable = true;
+      };
+    };
   };
 }

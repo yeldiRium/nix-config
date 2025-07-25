@@ -10,7 +10,6 @@
     ./optional/desktop/games
     ./optional/desktop/media
     ./optional/desktop/office
-    ./optional/desktop/chrome.nix
     ./optional/desktop/spotify.nix
   ];
 
