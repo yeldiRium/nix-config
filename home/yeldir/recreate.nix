@@ -58,6 +58,10 @@
     };
 
     desktop = {
+      essentials = {
+        firefox.enable = true;
+      };
+
       communication = {
         discord.enable = true;
         matrix.enable = true;
