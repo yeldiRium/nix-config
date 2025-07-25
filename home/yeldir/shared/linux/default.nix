@@ -17,7 +17,10 @@
 
     desktop = {
       essentials = {
-        chrome.enable = true;
+        chrome = {
+          enable = true;
+          default = true;
+        };
       };
     };
   };

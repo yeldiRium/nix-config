@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   imports = [
     ../shared
     ./shared
@@ -59,7 +59,13 @@
 
     desktop = {
       essentials = {
-        firefox.enable = true;
+        firefox = {
+          enable = true;
+          default = true;
+        };
+        chrome = {
+          default = lib.mkForce false;
+        };
       };
 
       communication = {
@@ -100,7 +106,7 @@
           selector = "class:thunderbird";
         }
         {
-          command = "gtk-launch google-chrome";
+          command = "gtk-launch firefox";
         }
       ];
     };

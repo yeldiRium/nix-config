@@ -9,6 +9,11 @@ in {
   options = {
     yeldirs.desktop.essentials.chrome = {
       enable = lib.mkEnableOption "chrome";
+      default = lib.mkOption {
+        description = "default browser";
+        type = lib.types.bool;
+        default = false;
+      };
     };
   };
 
@@ -23,7 +28,7 @@ in {
       ];
     };
 
-    xdg.mimeApps.defaultApplications = {
+    xdg.mimeApps.defaultApplications = lib.mkIf cfg.default {
       "application/pdf" = "google-chrome.desktop";
       "application/xhtml+xml" = "google-chrome.desktop";
       "application/xhtml_xml" = "google-chrome.desktop";
