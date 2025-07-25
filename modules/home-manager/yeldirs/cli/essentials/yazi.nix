@@ -27,6 +27,7 @@ in {
         ]
         ++ (lib.optionals cfg.enableGui [
           ffmpeg
+          mediainfo
           imagemagick
           poppler_utils
           resvg
