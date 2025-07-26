@@ -29,12 +29,10 @@ in {
       };
     };
 
-    xdg.mimeApps.defaultApplications = lib.mkIf cfg.default {
-      "application/pdf" = "firefox.desktop";
-      "application/xhtml+xml" = "firefox.desktop";
-      "application/xhtml_xml" = "firefox.desktop";
-      "text/html" = "firefox.desktop";
-    };
+    xdg.mimeApps =
+      lib.mkIf
+      cfg.default
+      (lib.y.webbrowser.xdgMimeApps "firefox.desktop");
 
     xdg.desktopEntries = {
       firefox = {

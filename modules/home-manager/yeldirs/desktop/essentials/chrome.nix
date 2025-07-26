@@ -28,12 +28,10 @@ in {
       ];
     };
 
-    xdg.mimeApps.defaultApplications = lib.mkIf cfg.default {
-      "application/pdf" = "google-chrome.desktop";
-      "application/xhtml+xml" = "google-chrome.desktop";
-      "application/xhtml_xml" = "google-chrome.desktop";
-      "text/html" = "google-chrome.desktop";
-    };
+    xdg.mimeApps =
+      lib.mkIf
+      cfg.default
+      (lib.y.webbrowser.xdgMimeApps "google-chrome.desktop");
 
     xdg.desktopEntries = {
       google-chrome = {
