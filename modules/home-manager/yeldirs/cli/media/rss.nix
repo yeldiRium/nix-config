@@ -4,7 +4,7 @@
   ...
 }: let
   cfg = config.yeldirs.cli.media.rss;
-  # c = config.colorscheme.colors // config.colorscheme.harmonized;
+  c = config.colorscheme.colors // config.colorscheme.harmonized;
 in {
   options = {
     yeldirs.cli.media.rss.enable = lib.mkEnableOption "rss";
@@ -15,7 +15,8 @@ in {
       enable = true;
       autoReload = true;
 
-      # extraConfig = ''
+      extraConfig = ''
+        datetime-format "%F"
       #   color background          ${c.on_background}         ${c.background}
       #   color listnormal          ${c.on_background}         ${c.background}
       #   color listfocus           ${c.on_primary_container}  ${c.primary_container}   bold
@@ -28,7 +29,7 @@ in {
       #   color hint-separator      ${c.on_primary_container}  ${c.primary_container}   bold
       #   color hint-description    ${c.on_primary_container}  ${c.primary_container}
       #   color article             ${c.on_background}         ${c.background}
-      # '';
+      '';
 
       urls = [
         {
