@@ -11,6 +11,8 @@ vim.keymap.set("n", "gm", function()
     bufnr = bufferNumber,
   })
 
+  local bufferDirectory = vim.fn.expand("%:p:h")
+
   if node == nil then
     return
   end
@@ -28,6 +30,9 @@ vim.keymap.set("n", "gm", function()
   telescope.grep_string({
     search = "func \\((.*[* ])?" .. typeName .. "\\)",
     use_regex = true,
+    search_dirs = {
+      bufferDirectory,
+    },
   })
 end, {
   desc = "Go to methods on type (for the language Go)",
