@@ -32,6 +32,8 @@ in {
           # seems to be overwritten by oh-my-zsh, which is why this has to be
           # set manually.
           bindkey -v
+
+          zstyle ':completion:*:descriptions' format '[%d]'
         '';
         oh-my-zsh = {
           enable = true;
