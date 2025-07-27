@@ -39,6 +39,12 @@ in {
             "wd"
           ];
         };
+        plugins = [
+          {
+            name = "fzf-tab";
+            src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+          }
+        ];
 
         syntaxHighlighting = {
           enable = true;
@@ -55,6 +61,7 @@ in {
     home = {
       packages = with pkgs; [
         zsh-powerlevel10k
+        zsh-fzf-tab
       ];
 
       persistence = {
