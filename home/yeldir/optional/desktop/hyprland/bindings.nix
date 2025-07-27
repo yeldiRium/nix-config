@@ -72,7 +72,7 @@
         in
           lib.optionals config.programs.rofi.enable [
             "$mod, Tab, exec, ${rofi} -show window"
-            "$mod, D, exec, ${rofi} -show drun"
+            "$mod, D, exec, ${rofi} -show drun -drun-show-actions"
           ]
           ++ (
             let
