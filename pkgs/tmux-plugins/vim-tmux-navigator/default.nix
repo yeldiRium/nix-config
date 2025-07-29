@@ -9,7 +9,7 @@ pkgs.unstable.tmuxPlugins.mkTmuxPlugin {
   src = fetchFromGitHub {
     owner = "christoomey";
     repo = "vim-tmux-navigator";
-    rev = "791dacfcfc8ccb7f6eb1c853050883b03e5a22fe";
-    hash = "sha256-8KAKHK5pOB9yguhpt0WdtIPezHwl0yMUK205JkpbPOg=";
+    rev = "c45243dc1f32ac6bcf6068e5300f3b2b237e576a";
+    hash = "sha256-IEPnr/GdsAnHzdTjFnXCuMyoNLm3/Jz4cBAM0AJBrj8=";
   };
 }
