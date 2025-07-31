@@ -34,7 +34,7 @@ in {
           # poweruser
           btop
           eza
-          ijq
+          pkgs.y.ijq
           jq
           pv
           silver-searcher
@@ -60,6 +60,7 @@ in {
       shellAliases = {
         ll = "eza --all --long --group-directories-first --binary --group --header --mounts --git";
         hi = "ag --passthrough";
+        ijq = "ijq -hide-input-pane";
       };
     };
 
