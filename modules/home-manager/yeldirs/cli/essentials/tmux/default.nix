@@ -74,6 +74,11 @@ in {
                 refresh-client -S
             '';
           terminal = "tmux-256color";
+          plugins = [
+            {
+              plugin = pkgs.tmuxPlugins.fingers;
+            }
+          ];
         };
       };
 
@@ -95,7 +100,10 @@ in {
         ];
         sessionVariables = {
           ZSH_TMUX_AUTOSTART = "true";
-          ZSH_TMUX_AUTOQUIT = if essentials.tmux.autoQuit then "true" else "false";
+          ZSH_TMUX_AUTOQUIT =
+            if essentials.tmux.autoQuit
+            then "true"
+            else "false";
           ZSH_TMUX_DEFAULT_SESSION_NAME = "default";
         };
       };
