@@ -20,7 +20,10 @@ in {
         nvim-nio
         plenary-nvim
         {
-          plugin = neotest;
+          # Upgrade to pkgs.unstable.vimPlugins.neotest once they have a working
+          # release again
+          # https://github.com/nvim-neotest/neotest/issues/530
+          plugin = pkgs.vimPlugins.neotest;
           type = "lua";
           config =
             /*
