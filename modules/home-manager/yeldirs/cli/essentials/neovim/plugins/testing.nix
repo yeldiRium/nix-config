@@ -68,10 +68,10 @@ in {
         }
       ]
       ++ (forLanguage "go" [
-        neotest-golang
+        pkgs.vimPlugins.neotest-golang
       ])
       ++ (forLanguage "rust" [
-        neotest-rust
+        pkgs.vimPlugins.neotest-rust
       ]);
   };
 }
