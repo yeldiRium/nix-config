@@ -16,9 +16,16 @@ in {
   ];
 
   options = {
-    yeldirs.cli.essentials.tmux.autoQuit = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
+    yeldirs.cli.essentials.tmux = {
+      autoQuit = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+      };
+
+      copyPatterns = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+      };
     };
   };
 
@@ -77,6 +84,11 @@ in {
           plugins = [
             {
               plugin = pkgs.tmuxPlugins.fingers;
+              extraConfig =
+                lib.imap0
+                (index: pattern: "set -g @fingers-pattern-${toString index} '${pattern}'")
+                essentials.tmux.copyPatterns
+                |> lib.strings.concatLines;
             }
           ];
         };
