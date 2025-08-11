@@ -21,6 +21,7 @@ in {
       k = "kubectl";
       kg = "kubectl get";
       kga = "kubectl get -A";
+      kgall = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
 
       ke = "kubectl edit";
       kes = "kubectl edit --subresource status";
