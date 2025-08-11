@@ -104,6 +104,8 @@
         }
         {
           command = "gtk-launch firefox";
+          workspace = "3";
+          selector = "class:firefox";
         }
       ];
     };
@@ -116,7 +118,7 @@
       height = 1080;
       position = "1080x200";
       primary = true;
-      workspace = "2";
+      workspace = "3";
     }
     {
       name = "desc:Dell Inc. DELL P2719H 3R855R2";
