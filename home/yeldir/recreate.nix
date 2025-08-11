@@ -49,9 +49,6 @@
       };
 
       ops = {
-        helm.enable = true;
-        k9s.enable = true;
-        kubectl.enable = true;
         lazydocker.enable = true;
         nix.enable = true;
       };
