@@ -70,6 +70,7 @@ in {
       packages = with pkgs; [
         unstable.git-bug
         (y.shellScript ./scripts/is-git-bug-initialized)
+        (y.shellScript ./scripts/open-git-file)
       ];
       persistence."/persist/${config.home.homeDirectory}" = {
         directories = [

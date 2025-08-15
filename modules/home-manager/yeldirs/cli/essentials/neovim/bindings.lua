@@ -63,3 +63,9 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
 vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
 --   diagnostics
 vim.keymap.set("n", "<leader>chd", vim.diagnostic.open_float, { desc = "Floating diagnostic" })
+
+-- Git
+vim.keymap.set("n", "<leader>go", function()
+  local filePath = vim.fn.expand("%:p")
+  vim.cmd("!open-git-file " .. filePath)
+end, { desc = "If the open file belongs to a git repository with a remote, open the file in the remote's GUI" })
