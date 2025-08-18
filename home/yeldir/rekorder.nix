@@ -40,8 +40,8 @@
       "com.apple.dock" = {
         autohide = true;
       };
-      "com.apple.menuextra.battery" = {
-        ShowPercent = "YES";
+      "com.apple.controlcenter" = {
+        BatteryShowPercentage = "YES";
       };
       "com.apple.menuextra.clock" = {
         IsAnalog = false;
