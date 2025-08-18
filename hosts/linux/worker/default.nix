@@ -13,6 +13,9 @@
     ../../shared/global
     ../shared/global
 
+    ../shared/optional/docker.nix
+    ../shared/optional/persistence.nix
+
     ../shared/users/worker
   ];
 

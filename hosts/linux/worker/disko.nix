@@ -39,12 +39,24 @@
           root = {
             size = "100%FREE";
             content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-              mountOptions = [
-                "defaults"
-              ];
+              type = "btrfs";
+              extraArgs = ["-f"];
+
+              subvolumes = {
+                "/root" = {
+                  mountpoint = "/";
+                };
+
+                "/persist" = {
+                  mountOptions = ["subvol=persist" "noatime"];
+                  mountpoint = "/persist";
+                };
+
+                "/nix" = {
+                  mountOptions = ["subvol=nix" "noatime"];
+                  mountpoint = "/nix";
+                };
+              };
             };
           };
         };
