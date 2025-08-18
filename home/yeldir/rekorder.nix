@@ -3,6 +3,8 @@
     ../shared
     ./shared
     ./shared/darwin
+
+    ../yeldir/optional/desktop/office/hledger.nix
   ];
 
   wallpaper = pkgs.wallpapers.cyberpunk-rainy-alley;
