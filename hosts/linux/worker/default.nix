@@ -30,11 +30,11 @@
     enable = true;
     networks."30-wan" = {
       matchConfig.Name = "enp1s0";
-      # matchConfig.MACAddress = "96:00:04:66:2c:12";
       address = [
         "${worker.ipv6}/64"
       ];
       routes = [
+        # Hetzner uses this ipv6 as gateway by default.
         {Gateway = "fe80::1";}
       ];
     };
