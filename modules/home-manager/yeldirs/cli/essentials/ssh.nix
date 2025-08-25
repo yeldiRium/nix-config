@@ -9,7 +9,6 @@ in {
   options = {
     yeldirs.cli.essentials.ssh = {
       excludePrivate = lib.mkEnableOption "exclude private configs";
-      includeWorkers = lib.mkEnableOption "include worker configs";
     };
   };
 
@@ -30,7 +29,7 @@ in {
             };
           }
           // (
-            if cfg.includeWorkers
+            if config.yeldirs.workerSupport
             then
               lib.listToAttrs (lib.mapAttrsToList (_: w: {
                 name = "nixos-${w.shortname} worker-${w.shortname} ${w.ipv6}";

@@ -5,14 +5,13 @@
         username = "yeldir";
       };
 
+      workerSupport = true;
+
       cli = {
         essentials = {
           enable = true;
           zsh = {
             enableSecretEnv = true;
-          };
-          ssh = {
-            includeWorkers = true;
           };
           git = {
             userEmail = "hannes.leutloff@yeldirium.de";
