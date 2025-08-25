@@ -67,6 +67,10 @@
         office = {
           taskwarrior.enable = true;
         };
+
+        ops = {
+          fs-tools.enable = true;
+        };
       };
 
       desktop = {
