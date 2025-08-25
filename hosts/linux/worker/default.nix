@@ -50,6 +50,7 @@
     };
     fail2ban.enable = true;
   };
+  virtualisation.docker.enable = true;
 
   yeldirs = {
     system = {
