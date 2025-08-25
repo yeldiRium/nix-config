@@ -10,6 +10,12 @@
 
   essentials = config.yeldirs.cli.essentials;
   c = config.colorscheme.colors // config.colorscheme.harmonized;
+
+  defaultTmuxCopyPatterns =
+    []
+    ++ (lib.optionals config.yeldirs.workerSupport [
+      "worker-(?<match>[0-9a-f]{5})"
+    ]);
 in {
   imports = [
     ./plugins/vim-tmux-navigator.nix
@@ -87,7 +93,7 @@ in {
               extraConfig =
                 lib.imap0
                 (index: pattern: "set -g @fingers-pattern-${toString index} '${pattern}'")
-                essentials.tmux.copyPatterns
+                (defaultTmuxCopyPatterns ++ essentials.tmux.copyPatterns)
                 |> lib.strings.concatLines;
             }
           ];
