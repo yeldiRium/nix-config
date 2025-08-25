@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# ARG_POSITIONAL_SINGLE([shortname],[The server's shortname. Should be a five-char url-compatible string, that will be used as the hostname-suffix and machineid-suffix],[])
-# ARG_HELP([Update a server])
-# ARG_USE_ENV([FLAKE],[],[Absolute path to the nix-config flake directory])
+# ARG_HELP([Update a server.])
+# ARG_POSITIONAL_SINGLE([shortname],[The server's shortname. Should be a five-char url-compatible string, that will be used as the hostname-suffix and machineid-suffix.],[])
+# ARG_USE_ENV([FLAKE],[],[Absolute path to the nix-config flake directory.])
 # ARG_DEFAULTS_POS([])
 # ARGBASH_GO()
 # needed because of Argbash --> m4_ignore([
@@ -37,12 +37,12 @@ _arg_shortname=
 
 print_help()
 {
-	printf '%s\n' "Update a server"
+	printf '%s\n' "Update a server."
 	printf 'Usage: %s [-h|--help] <shortname>\n' "$0"
-	printf '\t%s\n' "<shortname>: The server's shortname. Should be a five-char url-compatible string, that will be used as the hostname-suffix and machineid-suffix"
+	printf '\t%s\n' "<shortname>: The server's shortname. Should be a five-char url-compatible string, that will be used as the hostname-suffix and machineid-suffix."
 	printf '\t%s\n' "-h, --help: Prints help"
 	printf '\nEnvironment variables that are supported:\n'
-	printf '\t%s\n' "FLAKE: Absolute path to the nix-config flake directory."
+	printf '\t%s\n' "FLAKE: Absolute path to the nix-config flake directory.."
 
 }
 

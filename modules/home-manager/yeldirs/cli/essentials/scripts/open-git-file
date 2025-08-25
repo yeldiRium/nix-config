@@ -158,7 +158,7 @@ function getRelativeFilePath() {
 	filePath="${2}"
 
 	repoRoot="$(git -C "${basePath}" rev-parse --show-toplevel)"
-	
+
 	relativePath="$(realpath "${filePath}" --relative-to "${repoRoot}")"
 
 	echo "${relativePath}"
