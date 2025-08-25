@@ -302,33 +302,33 @@ in {
             local cmpEnabled = false
 
             cmp.setup({
-                enabled = cmpEnabled,
-                -- Put icons into completion suggestions
-                formatting = {
-                  format = require('lspkind').cmp_format({
-                    before = function (entry, vim_item)
-                      return vim_item
-                    end,
-                  }),
-                },
-                snippet = {
-                  expand = function(args)
-                    require("luasnip").lsp_expand(args.body)
+              enabled = cmpEnabled,
+              -- Put icons into completion suggestions
+              formatting = {
+                format = require('lspkind').cmp_format({
+                  before = function (entry, vim_item)
+                    return vim_item
                   end,
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ["<C-Up>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-Down>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<C-Esc>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true })
                 }),
-                sources = {
-                    { name = "otter" },
-                    { name = "nvim_lsp" },
-                    { name = "luasnip" },
-                    { name = "path" },
-                },
+              },
+              snippet = {
+                expand = function(args)
+                  require("luasnip").lsp_expand(args.body)
+                end,
+              },
+              mapping = cmp.mapping.preset.insert({
+                ["<C-Up>"] = cmp.mapping.scroll_docs(-4),
+                ["<C-Down>"] = cmp.mapping.scroll_docs(4),
+                ["<C-Space>"] = cmp.mapping.complete(),
+                ["<C-Esc>"] = cmp.mapping.abort(),
+                ["<CR>"] = cmp.mapping.confirm({ select = true })
+              }),
+              sources = {
+                { name = "otter" },
+                { name = "nvim_lsp" },
+                { name = "luasnip" },
+                { name = "path" },
+              },
             })
 
             vim.keymap.set("n", "<leader>clt", function()
