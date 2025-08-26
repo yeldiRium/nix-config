@@ -15,6 +15,7 @@
     []
     ++ (lib.optionals config.yeldirs.workerSupport [
       "worker-(?<match>[0-9a-f]{5})"
+      "nixos-(?<match>[0-9a-f]{5})"
     ]);
 in {
   imports = [
