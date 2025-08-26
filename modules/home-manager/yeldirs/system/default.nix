@@ -129,6 +129,8 @@ in {
       };
     };
 
+    xdg.enable = true;
+
     colorscheme.mode = lib.mkOverride 1499 "dark";
   };
 }
