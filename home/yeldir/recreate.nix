@@ -74,6 +74,10 @@
         clementine.enable = true;
         gimp.enable = true;
       };
+
+      games = {
+        openttd.enable = true;
+      };
     };
 
     # Deprecated non-module options.
