@@ -107,6 +107,10 @@ in {
           }
         );
 
+      file = {
+        ".colorscheme.json".text = builtins.toJSON config.colorscheme;
+      };
+
       persistence = {
         "/persist/${config.home.homeDirectory}" = {
           directories = [
@@ -126,8 +130,5 @@ in {
     };
 
     colorscheme.mode = lib.mkOverride 1499 "dark";
-    home.file = {
-      ".colorscheme.json".text = builtins.toJSON config.colorscheme;
-    };
   };
 }
