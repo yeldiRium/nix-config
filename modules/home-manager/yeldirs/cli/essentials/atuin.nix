@@ -22,11 +22,22 @@ in {
       };
     };
 
-    home.persistence = {
-      "/persist/${config.home.homeDirectory}" = {
-        directories = [
-          ".local/share/atuin"
-        ];
+    sops.secrets = {
+      atuinKey = {
+        path = "${config.home.homeDirectory}/.local/share/atuin/key";
+      };
+      atuinSession = {
+        path = "${config.home.homeDirectory}/.local/share/atuin/session";
+      };
+    };
+
+    home = {
+      persistence = {
+        "/persist/${config.home.homeDirectory}" = {
+          directories = [
+            ".local/share/atuin"
+          ];
+        };
       };
     };
   };
