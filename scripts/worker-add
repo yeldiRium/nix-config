@@ -110,8 +110,10 @@ set -eu
 
 temp=$(mktemp -d)
 mkdir -p "${temp}/root/"
+mkdir -p "${temp}/home/worker/"
 
-sops decrypt --extract '["worker-key"]' "${FLAKE}/secrets.yaml" > "${temp}/root/keys.txt"
+sops decrypt --extract '["sops-host-worker"]' "${FLAKE}/secrets.yaml" > "${temp}/root/keys.txt"
+sops decrypt --extract '["sops-user-worker"]' "${FLAKE}/secrets.yaml" > "${temp}/home/worker/keys.txt"
 
 newWorker=$(cat <<EOF
 {

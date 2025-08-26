@@ -1,4 +1,8 @@
-{hostName}: {pkgs, ...}: {
+{hostName}: {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../shared
   ];
@@ -20,7 +24,7 @@
       sops = {
         enable = true;
         sopsFile = ./secrets.yaml;
-        keyFile = "/root/keys";
+        keyFile = "${config.home.homeDirectory}/keys.txt";
       };
     };
 
