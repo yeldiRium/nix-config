@@ -16,6 +16,12 @@
       keyboardLayout = "de";
       keyboardVariant = "";
       keyring.enable = true;
+
+      sops = {
+        enable = true;
+        sopsFile = ./secrets.yaml;
+        keyFile = "/root/keys";
+      };
     };
 
     cli = {
