@@ -28,6 +28,8 @@
       };
     };
 
+    workerSupport = true;
+
     cli = {
       ops = {
         lazydocker.enable = true;
