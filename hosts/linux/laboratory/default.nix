@@ -40,6 +40,7 @@
   yeldirs = {
     system = {
       sops.enable = true;
+      tailscale.enable = true;
     };
     mounts = {
       datengrab.enable = true;
@@ -50,9 +51,16 @@
     dconf.enable = true;
   };
 
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
+  services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+    };
+    fail2ban.enable = true;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
