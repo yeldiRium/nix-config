@@ -39,7 +39,7 @@ in {
           pv
           silver-searcher
           unzip
-          yq
+          yq-go
           zip
 
           # nix utils
