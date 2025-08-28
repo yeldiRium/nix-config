@@ -101,6 +101,10 @@
       };
       tailscale.enable = true;
     };
+
+    server = {
+      ceph.enable = true;
+    };
   };
   sops.secrets.k3sToken = {
     sopsFile = ./secrets.yaml;
