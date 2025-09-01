@@ -47,6 +47,14 @@ The WSL setup does not use impermanence or sops, so no further setup and no encr
 6. Restart WSL to be sure
 7. Optional: If you want to use commit signing, import your private key
 
+### User Systemd
+
+If after starting the WSL VM your user's systemd bus does not work, which sometimes happens, you can start it by restarting your user unit:
+
+```bash
+sudo systemctl restart user@1000
+```
+
 ## Setting up a worker
 
 I've built some scripts to easily manage worker servers using my nix config and to differentiate them from my work computers.
