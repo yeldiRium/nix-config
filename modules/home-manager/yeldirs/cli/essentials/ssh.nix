@@ -32,7 +32,7 @@ in {
             if config.yeldirs.workerSupport
             then
               lib.y.workers.eachToAttrs (w: {
-                name = "nixos-${w.shortname} worker-${w.shortname} ${w.ipv6}";
+                name = "worker-${w.shortname} ${w.ipv6}";
                 value = {
                   hostname = w.ipv6;
                   user = "worker";
