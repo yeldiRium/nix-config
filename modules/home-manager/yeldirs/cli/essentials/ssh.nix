@@ -31,14 +31,14 @@ in {
           // (
             if config.yeldirs.workerSupport
             then
-              lib.listToAttrs (lib.mapAttrsToList (_: w: {
+              lib.y.workers.eachToAttrs (w: {
                 name = "nixos-${w.shortname} worker-${w.shortname} ${w.ipv6}";
                 value = {
                   hostname = w.ipv6;
                   user = "worker";
                   identityFile = "~/.ssh/worker";
                 };
-              }) lib.y.workers.workers)
+              })
             else {}
           )
           // (

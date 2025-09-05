@@ -97,17 +97,16 @@
         };
       }
       // (
-        lib.listToAttrs (lib.mapAttrsToList (workerName: workerCfg: {
-            name = "worker-${workerName}";
-            value = lib.nixosSystem {
-              modules = [./hosts/linux/worker];
-              specialArgs = {
-                inherit inputs lib outputs;
-                worker = workerCfg;
-              };
+        lib.y.workers.eachToAttrs (workerCfg: {
+          name = "worker-${workerCfg.shortname}";
+          value = lib.nixosSystem {
+            modules = [./hosts/linux/worker];
+            specialArgs = {
+              inherit inputs lib outputs;
+              worker = workerCfg;
             };
-          })
-          lib.y.workers.workers)
+          };
+        })
       );
 
     darwinConfigurations = {
