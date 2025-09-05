@@ -16,34 +16,32 @@ in {
     };
   };
 
-  config =
-    lib.mkIf (cfg.enable && !cfg.aliasOnly) {
-      home.packages = with pkgs; [
-        kubectl
-      ];
+  config = lib.mkIf cfg.enable {
+    home.packages = lib.mkIf (!cfg.aliasOnly) (with pkgs; [
+      kubectl
+    ]);
 
-      home.persistence = {
-        "/persist/${config.home.homeDirectory}" = {
-          directories = [
-            ".kube"
-          ];
-        };
-      };
-    }
-    // lib.mkIf cfg.enable {
-      home.shellAliases = {
-        k = "kubectl";
-        kg = "kubectl get";
-        kga = "kubectl get -A";
-        kgall = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
-
-        ke = "kubectl edit";
-        kes = "kubectl edit --subresource status";
-
-        kd = "kubectl describe";
-
-        kaf = "kubectl apply -f";
-        kdf = "kubectl diff -f";
+    home.persistence = lib.mkIf (!cfg.aliasOnly) {
+      "/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".kube"
+        ];
       };
     };
+
+    home.shellAliases = {
+      k = "kubectl";
+      kg = "kubectl get";
+      kga = "kubectl get -A";
+      kgall = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
+
+      ke = "kubectl edit";
+      kes = "kubectl edit --subresource status";
+
+      kd = "kubectl describe";
+
+      kaf = "kubectl apply -f";
+      kdf = "kubectl diff -f";
+    };
+  };
 }
