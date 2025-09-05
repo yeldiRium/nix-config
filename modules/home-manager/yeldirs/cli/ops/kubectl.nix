@@ -19,7 +19,14 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = lib.mkIf (!cfg.aliasOnly) (with pkgs; [
       kubectl
+      kubectx
     ]);
+
+    programs = lib.mkIf (!cfg.aliasOnly) {
+      zsh.initContent = lib.mkIf config.programs.zsh.enable ''
+        source <(${lib.getExe pkgs.kubectl} completion zsh)
+      '';
+    };
 
     home.persistence = lib.mkIf (!cfg.aliasOnly) {
       "/persist/${config.home.homeDirectory}" = {
