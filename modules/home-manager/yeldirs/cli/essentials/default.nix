@@ -59,6 +59,7 @@ in {
 
       shellAliases = {
         ll = "eza --all --long --group-directories-first --binary --group --header --mounts --git";
+        cat = "bat";
         hi = "ag --passthrough";
         ijq = "ijq -hide-input-pane";
       };
