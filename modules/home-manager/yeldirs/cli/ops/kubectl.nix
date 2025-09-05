@@ -20,6 +20,7 @@ in {
     home.packages = lib.mkIf (!cfg.aliasOnly) (with pkgs; [
       kubectl
       kubectx
+      konfig
     ]);
 
     programs = lib.mkIf (!cfg.aliasOnly) {
