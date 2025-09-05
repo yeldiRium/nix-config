@@ -9,7 +9,6 @@
       // {
         inherit hostName;
         hostId = "000${cfg.shortname}";
-        tailnetName = "${hostName}.tail3a1cd4.ts.net";
       });
   workersList = lib.attrValues workers;
   serverList = lib.filter (w: w.k3s.server) workersList;
@@ -30,6 +29,6 @@ in {
   ips = lib.map (workerCfg: workerCfg.ipv6) workersList;
 
   k3s = {
-    primaryName = lib.filter (w: w.k3s.clusterInit) workersList |> lib.head |> lib.getAttr "tailnetName";
+    primaryName = lib.filter (w: w.k3s.clusterInit) workersList |> lib.head |> lib.getAttr "hostName";
   };
 }
