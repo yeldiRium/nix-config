@@ -3,6 +3,9 @@
 # ARG_HELP([Bootstrap a new server with the nixos config "worker". Includes setting up an age key for sops.])
 # ARG_POSITIONAL_SINGLE([shortname],[The server's shortname. Should be a five-char url-compatible string, that will be used as the hostname-suffix and machineid-suffix.],[])
 # ARG_POSITIONAL_SINGLE([ipv6],[The server's ipv6 address. SSH to it must be possible with root@<ipv6>.],[])
+# ARG_OPTIONAL_BOOLEAN([server],[],[Wether the worker is a k3s server. If not, it's an agent],[on])
+# ARG_OPTIONAL_BOOLEAN([cluster-init],[],[Wether the worker initializes a cluster. Can only be used with servers],[off])
+# ARG_OPTIONAL_BOOLEAN([dry-run],[],[If dry-run is on, the workers.json file is still updated, but the worker is not provisioned],[on])
 # ARG_USE_ENV([FLAKE],[],[Absolute path to the nix-config flake directory])
 # ARG_DEFAULTS_POS([])
 # ARGBASH_GO()
@@ -35,15 +38,21 @@ _positionals=()
 _arg_shortname=
 _arg_ipv6=
 # THE DEFAULTS INITIALIZATION - OPTIONALS
+_arg_server="on"
+_arg_cluster_init="off"
+_arg_dry_run="on"
 
 
 print_help()
 {
 	printf '%s\n' "Bootstrap a new server with the nixos config \"worker\". Includes setting up an age key for sops."
-	printf 'Usage: %s [-h|--help] <shortname> <ipv6>\n' "$0"
+	printf 'Usage: %s [-h|--help] [--(no-)server] [--(no-)cluster-init] [--(no-)dry-run] <shortname> <ipv6>\n' "$0"
 	printf '\t%s\n' "<shortname>: The server's shortname. Should be a five-char url-compatible string, that will be used as the hostname-suffix and machineid-suffix."
 	printf '\t%s\n' "<ipv6>: The server's ipv6 address. SSH to it must be possible with root@<ipv6>."
 	printf '\t%s\n' "-h, --help: Prints help"
+	printf '\t%s\n' "--server, --no-server: Wether the worker is a k3s server. If not, it's an agent (on by default)"
+	printf '\t%s\n' "--cluster-init, --no-cluster-init: Wether the worker initializes a cluster. Can only be used with servers (off by default)"
+	printf '\t%s\n' "--dry-run, --no-dry-run: If dry-run is on, the workers.json file is still updated, but the worker is not provisioned (on by default)"
 	printf '\nEnvironment variables that are supported:\n'
 	printf '\t%s\n' "FLAKE: Absolute path to the nix-config flake directory."
 
@@ -64,6 +73,18 @@ parse_commandline()
 			-h*)
 				print_help
 				exit 0
+				;;
+			--no-server|--server)
+				_arg_server="on"
+				test "${1:0:5}" = "--no-" && _arg_server="off"
+				;;
+			--no-cluster-init|--cluster-init)
+				_arg_cluster_init="on"
+				test "${1:0:5}" = "--no-" && _arg_cluster_init="off"
+				;;
+			--no-dry-run|--dry-run)
+				_arg_dry_run="on"
+				test "${1:0:5}" = "--no-" && _arg_dry_run="off"
 				;;
 			*)
 				_last_positional="$1"
@@ -118,7 +139,11 @@ sops decrypt --extract '["sops-user-worker"]' "${FLAKE}/secrets.yaml" > "${temp}
 newWorker=$(cat <<EOF
 {
 	"shortname": "${_arg_shortname}",
-	"ipv6": "${_arg_ipv6}"
+	"ipv6": "${_arg_ipv6}",
+	"k3s": {
+		"server": $(if [[ $_arg_server = "on" ]]; then echo "true"; else echo "false"; fi),
+		"clusterInit": $(if [[ $_arg_cluster_init = "on" ]]; then echo "true"; else echo "false"; fi)
+	}
 }
 EOF
 )
@@ -126,7 +151,11 @@ EOF
 newWorkers=$(jq "setpath([\"${_arg_shortname}\"]; ${newWorker})" "${FLAKE}/workers.json")
 echo "${newWorkers}" > "${FLAKE}/workers.json"
 
-nixos-anywhere --extra-files "${temp}" --flake "${FLAKE}#worker-${_arg_shortname}" --target-host "root@${_arg_ipv6}" -i ~/.ssh/hleutloff
+if [[ "${_arg_dry_run}" = "on" ]]; then
+	echo "Dry run. Not provisioning the server."
+else
+	nixos-anywhere --extra-files "${temp}" --flake "${FLAKE}#worker-${_arg_shortname}" --target-host "root@${_arg_ipv6}" -i ~/.ssh/hleutloff
+fi
 
 rm -rf "${temp}"
 
