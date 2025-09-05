@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.yeldirs.system.tailscale;
@@ -21,6 +22,7 @@ in {
 
     services.tailscale = {
       enable = true;
+      package = pkgs.unstable.tailscale;
       authKeyFile = config.sops.secrets.tailscale-authkey.path;
     };
 
