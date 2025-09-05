@@ -32,10 +32,13 @@
 
     cli = {
       ops = {
-        lazydocker.enable = true;
+        helm.enable = true;
+        k9s.enable = true;
+        kubectl.enable = true;
       };
       essentials = {
         enable = true;
+        ssh.enable = false;
         git = {
           userEmail = "hannes.leutloff@yeldirium.de";
         };
@@ -50,6 +53,7 @@
             "json"
             "lua"
             "nix"
+            "yaml"
           ];
 
           layout = {
