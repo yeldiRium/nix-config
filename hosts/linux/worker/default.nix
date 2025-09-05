@@ -38,6 +38,17 @@
     hostName = worker.hostName;
     hostId = worker.hostId;
     useDHCP = false;
+
+    firewall = {
+      allowedTCPPorts = [
+        6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
+        2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
+        2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
+      ];
+      allowedUDPPorts = [
+        8472 # k3s, flannel: required if using multi-node for inter-node networking
+      ];
+    };
   };
   systemd.network = {
     enable = true;
@@ -55,7 +66,7 @@
   services = {
     openssh = {
       enable = true;
-      ports = [ 58008 ];
+      ports = [58008];
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
@@ -75,7 +86,7 @@
       serverAddr =
         if worker.k3s.clusterInit
         then ""
-        else lib.y.workers.k3s.primaryName;
+        else "https://${lib.y.workers.k3s.primaryName}:6443";
       tokenFile = config.sops.secrets.k3sToken.path;
 
       extraFlags = [
