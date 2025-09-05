@@ -1,9 +1,22 @@
 {
+  config,
   inputs,
+  lib,
   modulesPath,
   worker,
   ...
 }: {
+  assertions = [
+    {
+      assertion = lib.y.workers.count == 0 || (lib.filter (w: w.k3s.clusterInit) lib.y.workers.workersList |> lib.length) == 1;
+      message = "To create a cluster, exactly one cluster init must exist";
+    }
+    {
+      assertion = lib.y.workers.count == 0 || lib.y.workers.serverCount > 0;
+      message = "To create a cluster, at least one server must exist";
+    }
+  ];
+
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./hardware-configuration.nix
@@ -22,8 +35,8 @@
   };
 
   networking = {
-    hostName = "nixos-${worker.shortname}";
-    hostId = "000${worker.shortname}";
+    hostName = worker.hostName;
+    hostId = worker.hostId;
     useDHCP = false;
   };
   systemd.network = {
@@ -49,6 +62,23 @@
       };
     };
     fail2ban.enable = true;
+
+    k3s = {
+      enable = true;
+
+      role =
+        if worker.k3s.server
+        then "server"
+        else "agent";
+      clusterInit = worker.k3s.clusterInit;
+      serverAddr =
+        if worker.k3s.clusterInit
+        then ""
+        else lib.y.k3s.primaryName;
+      tokenFile = config.sops.secrets.k3sToken.path;
+
+      gracefulNodeShutdown.enable = true;
+    };
   };
   virtualisation.docker.enable = true;
 
@@ -60,6 +90,9 @@
       };
       tailscale.enable = true;
     };
+  };
+  sops.secrets.k3sToken = {
+    sopsFile = ./secrets.yaml;
   };
 
   users.users.root.openssh.authorizedKeys.keys = [

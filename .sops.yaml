@@ -24,6 +24,11 @@ creation_rules:
       - age:
           - *admin
           - *host-recreate
+  - path_regex: hosts/linux/worker/secrets\.yaml$
+    key_groups:
+      - age:
+          - *admin
+          - *host-worker
   - path_regex: home/worker/secrets\.yaml$
     key_groups:
       - age:
