@@ -8,11 +8,15 @@
 in {
   options = {
     yeldirs.cli.essentials.ssh = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = essentials.enable;
+      };
       excludePrivate = lib.mkEnableOption "exclude private configs";
     };
   };
 
-  config = lib.mkIf essentials.enable {
+  config = lib.mkIf cfg.enable {
     programs = {
       ssh = {
         enable = true;
