@@ -50,6 +50,7 @@
 
       ops = {
         lazydocker.enable = true;
+        hetzner.enable = true;
         nix.enable = true;
       };
     };
