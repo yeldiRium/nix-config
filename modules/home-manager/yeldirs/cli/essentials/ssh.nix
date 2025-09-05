@@ -38,9 +38,10 @@ in {
               lib.y.workers.eachToAttrs (w: {
                 name = "worker-${w.shortname} ${w.ipv6}";
                 value = {
-                  hostname = w.ipv6;
+                  hostname = w.tailnetName;
                   user = "worker";
                   identityFile = "~/.ssh/worker";
+                  port = 58008;
                 };
               })
             else {}

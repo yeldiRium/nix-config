@@ -55,6 +55,7 @@
   services = {
     openssh = {
       enable = true;
+      ports = [ 58008 ];
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
