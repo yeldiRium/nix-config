@@ -74,9 +74,12 @@
       serverAddr =
         if worker.k3s.clusterInit
         then ""
-        else lib.y.k3s.primaryName;
+        else lib.y.workers.k3s.primaryName;
       tokenFile = config.sops.secrets.k3sToken.path;
 
+      extraFlags = [
+        "--write-kubeconfig-mode 644"
+      ];
       gracefulNodeShutdown.enable = true;
     };
   };

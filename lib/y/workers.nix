@@ -30,6 +30,6 @@ in {
   ips = lib.map (workerCfg: workerCfg.ipv6) workersList;
 
   k3s = {
-    primaryName = lib.filter (w: w.k3s.clusterInit) |> lib.head |> lib.getAttr "tailnetName";
+    primaryName = lib.filter (w: w.k3s.clusterInit) workersList |> lib.head |> lib.getAttr "tailnetName";
   };
 }
