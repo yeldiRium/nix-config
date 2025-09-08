@@ -43,7 +43,7 @@ in {
           zip
 
           # nix utils
-          alejandra
+          nixfmt-rfc-style
 
           # encryption
           age

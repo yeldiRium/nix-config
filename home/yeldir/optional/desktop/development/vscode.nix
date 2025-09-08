@@ -49,7 +49,6 @@
         extensions = with pkgs;
           [
             vscode-extensions.bbenoist.nix
-            vscode-extensions.kamadorueda.alejandra
             vscode-extensions.vscodevim.vim
             unstable.vscode-extensions.github.copilot
             unstable.vscode-extensions.github.copilot-chat

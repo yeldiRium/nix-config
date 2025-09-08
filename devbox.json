@@ -8,8 +8,7 @@
     "scripts": {
       "dev":      "tmnix",
       "build":    "./scripts/build",
-      "lint":     "alejandra --check .",
-      "lint:fix": "alejandra .",
+      "lint:fix": "nix fmt",
       "test":     "echo \"No tests implemented\" && exit 1"
     }
   }

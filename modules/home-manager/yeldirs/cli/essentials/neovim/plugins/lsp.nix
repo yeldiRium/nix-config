@@ -204,7 +204,7 @@ in {
               ''
                 add_lsp(lspconfig.nixd, {
                   settings = { nixd = {
-                    formatting = { command = { "alejandra" }},
+                    formatting = { command = { "nixfmt" }},
                     diagnostic = {
                       suppress = {
                         "sema-extra-with",
