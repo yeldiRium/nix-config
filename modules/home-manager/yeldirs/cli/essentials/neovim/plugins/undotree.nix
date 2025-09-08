@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.undotree;
 
   undodir = ".local/share/nvim/undodir";
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.undotree.enable = lib.mkEnableOption "neovim plugin undotree";
   };
@@ -18,9 +20,7 @@ in {
         plugin = undotree;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle undo-tree sidebar" })
 

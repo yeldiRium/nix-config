@@ -1,14 +1,17 @@
-{config, ...}: let
+{ config, ... }:
+let
   inherit (config.colorscheme) colors mode;
-in {
+in
+{
   services = {
     mako = {
       enable = true;
       settings = {
         icon-path =
-          if mode == "dark"
-          then "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark"
-          else "${config.gtk.iconTheme.package}/share/icons/Papirus-Light";
+          if mode == "dark" then
+            "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark"
+          else
+            "${config.gtk.iconTheme.package}/share/icons/Papirus-Light";
         font = "${config.fontProfiles.regular.name} ${toString config.fontProfiles.regular.size}";
         padding = "10,20";
         anchor = "top-center";

@@ -1,8 +1,10 @@
-{hostName}: {
+{ hostName }:
+{
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ../shared
   ];

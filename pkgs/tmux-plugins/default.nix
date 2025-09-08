@@ -1,3 +1,4 @@
-{pkgs}: {
-  vim-tmux-navigator = pkgs.callPackage ./vim-tmux-navigator {};
+{ pkgs }:
+{
+  vim-tmux-navigator = pkgs.callPackage ./vim-tmux-navigator { };
 }

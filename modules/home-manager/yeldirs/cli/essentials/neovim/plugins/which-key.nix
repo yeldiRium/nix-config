@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.which-key;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.which-key.enable = lib.mkEnableOption "neovim plugin which-key";
   };
@@ -16,9 +18,7 @@ in {
         plugin = which-key-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             require("which-key").setup({
               preset = "modern",

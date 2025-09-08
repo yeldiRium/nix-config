@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.k9s;
   yeldirsCfg = config.yeldirs;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.k9s = {
       enable = lib.mkEnableOption "k9s";

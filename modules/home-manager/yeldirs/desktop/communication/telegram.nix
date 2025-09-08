@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.communication.telegram;
-in {
+in
+{
   options = {
     yeldirs.desktop.communication.telegram = {
       enable = lib.mkEnableOption "telegram";

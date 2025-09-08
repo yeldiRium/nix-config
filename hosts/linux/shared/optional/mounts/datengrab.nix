@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.mounts.datengrab;
-in {
+in
+{
   options = {
     yeldirs.mounts.datengrab.enable = lib.mkEnableOption "Enable mount datengrab";
   };
@@ -25,7 +27,7 @@ in {
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBHHAQQrrZtf+iL/QySaxfg29Y2hZx/6ySy4SbMOxdO9";
         };
         "datengrab/ecdsa" = {
-          hostNames = ["datengrab"];
+          hostNames = [ "datengrab" ];
           publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPs4cbixkaqvjU5qJBVh2poCYDdOF1Q0pat0QL1vfBHXwG6AMCYJiqnshkKdBLAM9TbKOdDA/tsK70qFgtHVavM=";
         };
       };
@@ -44,7 +46,7 @@ in {
 
     systemd.automounts = [
       {
-        wantedBy = ["multi-user.target"];
+        wantedBy = [ "multi-user.target" ];
         automountConfig = {
           TimeoutIdleSec = "600";
         };

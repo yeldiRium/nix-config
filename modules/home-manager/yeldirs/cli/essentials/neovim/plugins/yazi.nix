@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.yazi;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.yazi.enable = lib.mkEnableOption "neovim plugin yazi";
   };
@@ -15,9 +17,7 @@ in {
         plugin = yazi-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local yazi = require("yazi")
             yazi.setup({

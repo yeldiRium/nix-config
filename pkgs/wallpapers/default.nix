@@ -1,4 +1,4 @@
-{pkgs}:
+{ pkgs }:
 pkgs.lib.listToAttrs (
   map (wallpaper: {
     inherit (wallpaper) name;

@@ -3,18 +3,18 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   essentials = config.yeldirs.cli.essentials;
-in {
+in
+{
   config = lib.mkIf essentials.enable {
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
         plugin = vim-tmux-navigator;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             vim.g["tmux_navigator_no_mappings"] = 1
 

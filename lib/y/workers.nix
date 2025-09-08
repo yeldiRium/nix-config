@@ -1,19 +1,24 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   workers =
     lib.readFile ../../workers.json
     |> lib.strings.fromJSON
-    |> lib.mapAttrs (name: cfg: let
-      hostName = "worker-${cfg.shortname}";
-    in
+    |> lib.mapAttrs (
+      name: cfg:
+      let
+        hostName = "worker-${cfg.shortname}";
+      in
       cfg
       // {
         inherit hostName;
         hostId = "000${cfg.shortname}";
-      });
+      }
+    );
   workersList = lib.attrValues workers;
   serverList = lib.filter (w: w.k3s.server) workersList;
   each = f: lib.map (workerCfg: f workerCfg) workersList;
-in {
+in
+{
   inherit
     workers
     workersList

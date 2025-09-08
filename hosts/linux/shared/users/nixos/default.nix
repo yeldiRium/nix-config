@@ -3,9 +3,11 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in {
+in
+{
   imports = [
     inputs.home-manager.nixosModules.default
     ../../../../shared/optional/home-manager.nix

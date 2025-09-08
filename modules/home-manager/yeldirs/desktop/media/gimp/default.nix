@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.media.gimp;
-in {
+in
+{
   options = {
     yeldirs.desktop.media.gimp = {
       enable = lib.mkEnableOption "gimp";

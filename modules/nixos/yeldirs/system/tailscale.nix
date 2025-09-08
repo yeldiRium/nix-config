@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.system.tailscale;
-in {
+in
+{
   options = {
     yeldirs.system.tailscale = {
       enable = lib.mkEnableOption "tailscale";
@@ -26,6 +28,6 @@ in {
       authKeyFile = config.sops.secrets.tailscale-authkey.path;
     };
 
-    sops.secrets.tailscale-authkey = {};
+    sops.secrets.tailscale-authkey = { };
   };
 }

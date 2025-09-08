@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.nix;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.nix = {
       enable = lib.mkEnableOption "nix ops tools";

@@ -2,10 +2,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.media.rss;
   c = config.colorscheme.colors // config.colorscheme.harmonized;
-in {
+in
+{
   options = {
     yeldirs.cli.media.rss.enable = lib.mkEnableOption "rss";
   };

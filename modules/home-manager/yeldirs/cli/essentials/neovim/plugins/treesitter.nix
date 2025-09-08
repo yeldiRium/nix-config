@@ -3,12 +3,14 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.treesitter;
   supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
   forLanguage = language: list: lib.optionals (lib.elem language supportedLanguages) list;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.treesitter.enable = lib.mkEnableOption "neovim plugin treesitter";
   };
@@ -18,15 +20,14 @@ in {
       gcc
     ];
 
-    programs.neovim.plugins = with pkgs.unstable.vimPlugins;
+    programs.neovim.plugins =
+      with pkgs.unstable.vimPlugins;
       [
         {
           plugin = nvim-treesitter;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("nvim-treesitter.configs").setup({
                   indent = {
@@ -65,9 +66,7 @@ in {
           plugin = nvim-treesitter-parsers.ledger;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               vim.filetype.add({
                   extension = {

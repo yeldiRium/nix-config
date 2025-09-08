@@ -3,9 +3,11 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in {
+in
+{
   imports = [
     inputs.home-manager.nixosModules.default
     ../../../../shared/optional/home-manager.nix
@@ -30,5 +32,7 @@ in {
     ];
   };
 
-  home-manager.users.worker = (import ../../../../../home/worker { hostName = config.networking.hostName; });
+  home-manager.users.worker = (
+    import ../../../../../home/worker { hostName = config.networking.hostName; }
+  );
 }

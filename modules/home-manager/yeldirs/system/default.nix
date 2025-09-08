@@ -4,9 +4,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.system;
-in {
+in
+{
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
 
@@ -30,7 +32,10 @@ in {
       description = "The hostname of the system.";
     };
     yeldirs.system.platform = lib.mkOption {
-      type = lib.types.enum ["linux" "darwin"];
+      type = lib.types.enum [
+        "linux"
+        "darwin"
+      ];
       description = "The system platform";
     };
 
@@ -86,26 +91,26 @@ in {
         FLAKE = "$HOME/querbeet/workspace/nix-config";
       };
 
-      shellAliases =
-        {
-          ndiff = "nbuild && nix-shell -p nix-diff --run \"nix-diff /nix/var/nix/profiles/system result\"";
-        }
-        // (
-          if cfg.platform == "linux"
-          then {
+      shellAliases = {
+        ndiff = "nbuild && nix-shell -p nix-diff --run \"nix-diff /nix/var/nix/profiles/system result\"";
+      }
+      // (
+        if cfg.platform == "linux" then
+          {
             nbuild = "sudo nixos-rebuild build --flake $FLAKE#${cfg.hostName}";
             nboot = "sudo nixos-rebuild boot --flake $FLAKE#${cfg.hostName}";
             nswitch = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName}";
             nrepl = "sudo nixos-rebuild repl --flake $FLAKE#${cfg.hostName}";
             nrollback = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} --rollback";
           }
-          else {
+        else
+          {
             nbuild = "sudo nix run nix-darwin -- build --flake $FLAKE#${cfg.hostName}";
             nboot = "sudo nix run nix-darwin -- boot --flake $FLAKE#${cfg.hostName}";
             nswitch = "sudo nix run nix-darwin -- switch --flake $FLAKE#${cfg.hostName}";
             nrollback = "sudo nix run nix-darwin switch --flake $FLAKE#${cfg.hostName} --rollback";
           }
-        );
+      );
 
       file = {
         ".colorscheme.json".text = builtins.toJSON config.colorscheme;

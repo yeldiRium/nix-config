@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   home = {
     persistence = {
       "/persist/${config.home.homeDirectory}" = {
@@ -14,24 +15,35 @@
     };
   };
 
-  xdg.desktopEntries = let
-    command = "${lib.getExe pkgs.vscode} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto --password-store=\"gnome-libsecret\"";
-  in {
-    code = {
-      name = "Visual Studio Code";
-      type = "Application";
-      exec = "${command} %F";
-      icon = "vscode";
-      categories = ["Utility" "TextEditor" "Development" "IDE"];
-      mimeType = ["text/plain" "inode/directory" "x-scheme-handler/vscode"];
-      startupNotify = true;
-      genericName = "Text Editor";
-      settings = {
-        Keywords = "vscode";
-        StartupWMClass = "Code";
+  xdg.desktopEntries =
+    let
+      command = "${lib.getExe pkgs.vscode} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto --password-store=\"gnome-libsecret\"";
+    in
+    {
+      code = {
+        name = "Visual Studio Code";
+        type = "Application";
+        exec = "${command} %F";
+        icon = "vscode";
+        categories = [
+          "Utility"
+          "TextEditor"
+          "Development"
+          "IDE"
+        ];
+        mimeType = [
+          "text/plain"
+          "inode/directory"
+          "x-scheme-handler/vscode"
+        ];
+        startupNotify = true;
+        genericName = "Text Editor";
+        settings = {
+          Keywords = "vscode";
+          StartupWMClass = "Code";
+        };
       };
     };
-  };
 
   programs = {
     vscode = {
@@ -46,7 +58,8 @@
       # Nix will then complain about the sha256 mismatch and print the actual sha256. You can then use
       # this sha256 in the extensions list below.
       profiles.default = {
-        extensions = with pkgs;
+        extensions =
+          with pkgs;
           [
             vscode-extensions.bbenoist.nix
             vscode-extensions.vscodevim.vim

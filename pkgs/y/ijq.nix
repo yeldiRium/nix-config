@@ -1,4 +1,5 @@
-{pkgs, ...}: (pkgs.buildGoModule {
+{ pkgs, ... }:
+(pkgs.buildGoModule {
   pname = "ijq";
   version = "0.4.0-yel.1";
   src = pkgs.fetchFromGitHub {

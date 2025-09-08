@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.helm;
   yeldirsCfg = config.yeldirs;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.helm = {
       enable = lib.mkEnableOption "helm";

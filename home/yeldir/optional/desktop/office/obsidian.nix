@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   home.packages = with pkgs.unstable; [
     obsidian
   ];
@@ -20,8 +21,8 @@
       type = "Application";
       exec = "${lib.getExe pkgs.obsidian} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %u";
       icon = "obsidian";
-      categories = ["Office"];
-      mimeType = ["x-scheme-handler/obsidian"];
+      categories = [ "Office" ];
+      mimeType = [ "x-scheme-handler/obsidian" ];
     };
   };
 }

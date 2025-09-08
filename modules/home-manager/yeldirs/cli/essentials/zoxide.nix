@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   essentials = config.yeldirs.cli.essentials;
-in {
+in
+{
   config = lib.mkIf essentials.enable {
     programs = {
       zoxide = {

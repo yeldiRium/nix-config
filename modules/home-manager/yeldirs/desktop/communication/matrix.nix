@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.communication.matrix;
-in {
+in
+{
   options = {
     yeldirs.desktop.communication.matrix = {
       enable = lib.mkEnableOption "matrix";

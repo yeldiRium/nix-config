@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
@@ -10,7 +11,7 @@
 
     ./hardware-configuration.nix
     inputs.disko.nixosModules.default
-    (import ./disko.nix {device = "/dev/nvme0n1";})
+    (import ./disko.nix { device = "/dev/nvme0n1"; })
 
     ../../shared/global
     ../shared/global

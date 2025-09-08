@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.obsidian;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.obsidian = {
       enable = lib.mkEnableOption "obsidian";
@@ -18,9 +20,7 @@ in {
         plugin = obsidian-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             require('obsidian').setup({
               workspaces = {

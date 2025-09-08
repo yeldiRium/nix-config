@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.office.zotero;
-in {
+in
+{
   options = {
     yeldirs.desktop.office.zotero.enable = lib.mkEnableOption "zotero";
   };

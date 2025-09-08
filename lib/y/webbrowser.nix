@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   xdgMimeApps = desktopEntry: {
     defaultApplications = {
       "application/pdf" = "${desktopEntry}";

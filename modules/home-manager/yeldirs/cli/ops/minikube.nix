@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.minikube;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.minikube = {
       enable = lib.mkEnableOption "minikube";

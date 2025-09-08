@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.zoom;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.zoom.enable = lib.mkEnableOption "neovim plugin zoomwintab";
   };
@@ -15,9 +17,7 @@ in {
         plugin = zoomwintab-vim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             vim.keymap.set("n", "<leader>z", function()
               vim.cmd("ZoomWinTabToggle")

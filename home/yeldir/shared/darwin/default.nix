@@ -1,4 +1,5 @@
-{inputs, lib, ...}: {
+{ inputs, lib, ... }:
+{
   imports = [
     inputs.mac-app-util.homeManagerModules.default
   ];

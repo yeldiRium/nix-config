@@ -4,13 +4,15 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
   inherit (config.colorscheme) colors;
   toRGBA = color: opacity: "rgba ( ${hexToRGBString ", " (lib.removePrefix "#" color)}, ${opacity} )";
 
   inherit (config.lib.formats.rasi) mkLiteral;
-in {
+in
+{
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
@@ -38,7 +40,10 @@ in {
         "transparency" = "real";
       };
       "element" = {
-        "children" = [(mkLiteral "element-icon") (mkLiteral "element-text")];
+        "children" = [
+          (mkLiteral "element-icon")
+          (mkLiteral "element-text")
+        ];
       };
     };
   };

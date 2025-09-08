@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.oil;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.oil.enable = lib.mkEnableOption "neovim plugin oil";
   };
@@ -15,9 +17,7 @@ in {
         plugin = mini-icons;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             require("mini.icons").setup()
           '';
@@ -26,9 +26,7 @@ in {
         plugin = oil-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local oil = require("oil")
 

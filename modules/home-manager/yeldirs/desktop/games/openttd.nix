@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.games.openttd;
-in {
+in
+{
   options = {
     yeldirs.desktop.games.openttd = {
       enable = lib.mkEnableOption "openttd";

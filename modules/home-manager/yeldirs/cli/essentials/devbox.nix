@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials;
-in {
+in
+{
   config = lib.mkIf cfg.enable {
     home = {
       packages = with pkgs; [

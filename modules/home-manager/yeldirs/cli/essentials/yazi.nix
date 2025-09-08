@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.yazi;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.yazi = {
       enableGui = lib.mkEnableOption "yazi with graphical ui";
@@ -16,7 +18,8 @@ in {
   config = lib.mkIf essentials.enable {
     home = {
       # yazi dependencies
-      packages = with pkgs;
+      packages =
+        with pkgs;
         [
           file
 
@@ -47,10 +50,26 @@ in {
         keymap = {
           mgr = {
             prepend_keymap = [
-              { on = "{"; run = "tab_switch -1 --relative"; desc = "Switch to previous tab"; }
-              { on = "}"; run = "tab_switch 1 --relative"; desc = "Switch to next tab"; }
-              { on = "("; run = "tab_swap -1"; desc = "Swap current tab with previous tab"; }
-              { on = ")"; run = "tab_swap 1"; desc = "Swap current tab with next tab"; }
+              {
+                on = "{";
+                run = "tab_switch -1 --relative";
+                desc = "Switch to previous tab";
+              }
+              {
+                on = "}";
+                run = "tab_switch 1 --relative";
+                desc = "Switch to next tab";
+              }
+              {
+                on = "(";
+                run = "tab_swap -1";
+                desc = "Swap current tab with previous tab";
+              }
+              {
+                on = ")";
+                run = "tab_swap 1";
+                desc = "Swap current tab with next tab";
+              }
             ];
           };
         };

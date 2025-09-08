@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.colima;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.colima = {
       enable = lib.mkEnableOption "colima";

@@ -3,16 +3,18 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   platform = config.yeldirs.system.platform;
   essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.gpg;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.gpg = {
       trustedPgpKeys = lib.mkOption {
         type = lib.types.listOf lib.types.path;
-        default = [];
+        default = [ ];
         description = "a list of pgp keys that are imported with ultimat trust";
       };
     };
@@ -22,11 +24,12 @@ in {
     services.gpg-agent = {
       enable = true;
       pinentry.package =
-        if platform == "darwin"
-        then pkgs.pinentry_mac
-        else if config.gtk.enable
-        then pkgs.pinentry-gnome3
-        else pkgs.pinentry-tty;
+        if platform == "darwin" then
+          pkgs.pinentry_mac
+        else if config.gtk.enable then
+          pkgs.pinentry-gnome3
+        else
+          pkgs.pinentry-tty;
       extraConfig = ''
         allow-loopback-pinentry
       '';
@@ -51,14 +54,10 @@ in {
           trust-model = "tofu+pgp";
           pinentry-mode = "loopback";
         };
-        publicKeys =
-          map (
-            trustedPgpPath: {
-              source = trustedPgpPath;
-              trust = 5;
-            }
-          )
-          cfg.trustedPgpKeys;
+        publicKeys = map (trustedPgpPath: {
+          source = trustedPgpPath;
+          trust = 5;
+        }) cfg.trustedPgpKeys;
       };
     };
 

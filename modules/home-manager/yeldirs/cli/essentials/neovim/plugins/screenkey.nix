@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.screenkey;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.screenkey.enable = lib.mkEnableOption "neovim plugin screenkey";
   };
@@ -15,9 +17,7 @@ in {
         plugin = screenkey-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local screenkey = require("screenkey")
             screenkey.setup({})

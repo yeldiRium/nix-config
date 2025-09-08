@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.git;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.git = {
       userEmail = lib.mkOption {
@@ -22,7 +24,7 @@ in {
       ignores = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         description = "Entries for the global .gitignore file";
-        default = [];
+        default = [ ];
       };
     };
   };
@@ -51,12 +53,11 @@ in {
           rerere.enabled = true;
         };
 
-        ignores =
-          [
-            ".fuse_hidden*"
-            ".vscode"
-          ]
-          ++ cfg.ignores;
+        ignores = [
+          ".fuse_hidden*"
+          ".vscode"
+        ]
+        ++ cfg.ignores;
       };
 
       zsh = {

@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   console = {
     useXkbConfig = true;
     earlySetup = false;
@@ -13,7 +14,7 @@
       enable = true;
       theme = "spinner-monochrome";
       themePackages = [
-        (pkgs.plymouth-spinner-monochrome.override {inherit (config.boot.plymouth) logo;})
+        (pkgs.plymouth-spinner-monochrome.override { inherit (config.boot.plymouth) logo; })
       ];
     };
     loader.timeout = 0;

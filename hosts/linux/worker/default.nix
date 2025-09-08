@@ -5,10 +5,13 @@
   modulesPath,
   worker,
   ...
-}: {
+}:
+{
   assertions = [
     {
-      assertion = lib.y.workers.count == 0 || (lib.filter (w: w.k3s.clusterInit) lib.y.workers.workersList |> lib.length) == 1;
+      assertion =
+        lib.y.workers.count == 0
+        || (lib.filter (w: w.k3s.clusterInit) lib.y.workers.workersList |> lib.length) == 1;
       message = "To create a cluster, exactly one cluster init must exist";
     }
     {
@@ -59,14 +62,14 @@
       ];
       routes = [
         # Hetzner uses this ipv6 as gateway by default.
-        {Gateway = "fe80::1";}
+        { Gateway = "fe80::1"; }
       ];
     };
   };
   services = {
     openssh = {
       enable = true;
-      ports = [58008];
+      ports = [ 58008 ];
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
@@ -78,15 +81,9 @@
     k3s = {
       enable = true;
 
-      role =
-        if worker.k3s.server
-        then "server"
-        else "agent";
+      role = if worker.k3s.server then "server" else "agent";
       clusterInit = worker.k3s.clusterInit;
-      serverAddr =
-        if worker.k3s.clusterInit
-        then ""
-        else "https://${lib.y.workers.k3s.primaryName}:6443";
+      serverAddr = if worker.k3s.clusterInit then "" else "https://${lib.y.workers.k3s.primaryName}:6443";
       tokenFile = config.sops.secrets.k3sToken.path;
 
       extraFlags = [

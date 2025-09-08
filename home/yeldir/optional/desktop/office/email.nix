@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   accounts.email.accounts = {
     "hannes.leutloff@yeldirium.de" = {
       primary = true;
@@ -7,7 +8,7 @@
 
       thunderbird = {
         enable = true;
-        profiles = ["hannes.leutloff@yeldirium.de"];
+        profiles = [ "hannes.leutloff@yeldirium.de" ];
         settings = _: {
           "mail.openpgp.allow_external_gnupg" = true;
         };

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.media.clementine;
-in {
+in
+{
   options = {
     yeldirs.desktop.media.clementine = {
       enable = lib.mkEnableOption "clementine";

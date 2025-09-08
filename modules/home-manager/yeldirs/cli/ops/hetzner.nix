@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.hetzner;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.hetzner = {
       enable = lib.mkEnableOption "hetzner";

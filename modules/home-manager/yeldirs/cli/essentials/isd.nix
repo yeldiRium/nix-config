@@ -4,10 +4,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   essentials = config.yeldirs.cli.essentials;
   platform = config.yeldirs.system.platform;
-in {
+in
+{
   config = lib.mkIf (essentials.enable && platform == "linux") {
     home.packages = with pkgs; [
       inputs.isd.packages.${pkgs.stdenv.hostPlatform.system}.default

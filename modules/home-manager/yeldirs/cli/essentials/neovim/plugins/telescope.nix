@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.telescope;
 
   neovimCfg = config.yeldirs.cli.essentials.neovim;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.telescope.enable = lib.mkEnableOption "neovim plugin telescope";
   };
@@ -23,9 +25,7 @@ in {
         plugin = telescope-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             require("telescope").setup({
               extensions = {
@@ -58,18 +58,16 @@ in {
 
             -- replaces the bindings for lsp related actions from ../bindings.lua
             ${
-              if neovimCfg.lsp.enable
-              then
-                /*
-                lua
-                */
+              if neovimCfg.lsp.enable then
+                # lua
                 ''
                   vim.keymap.set("n", "gd", telescope.lsp_definitions, { desc = "Go to definition" })
                   vim.keymap.set("n", "gi", telescope.lsp_implementations, { desc = "Go to implementation" })
                   vim.keymap.set("n", "gr", telescope.lsp_references, { desc = "Show references" })
                   vim.keymap.set("n", "gt", telescope.lsp_type_definitions, { desc = "Go to type definition" })
                 ''
-              else ""
+              else
+                ""
             }
 
 

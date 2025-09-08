@@ -3,9 +3,11 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.development.gh;
-in {
+in
+{
   options = {
     yeldirs.cli.development.gh = {
       enable = lib.mkEnableOption "gh";
@@ -31,7 +33,7 @@ in {
     };
 
     home.persistence = {
-      "/persist/${config.home.homeDirectory}".files = [".config/gh/hosts.yml"];
+      "/persist/${config.home.homeDirectory}".files = [ ".config/gh/hosts.yml" ];
     };
   };
 }

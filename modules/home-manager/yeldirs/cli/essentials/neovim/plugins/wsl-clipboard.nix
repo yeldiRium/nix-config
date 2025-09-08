@@ -2,18 +2,19 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.wsl-clipboard;
-in {
+in
+{
   options = {
-    yeldirs.cli.essentials.neovim.wsl-clipboard.enable = lib.mkEnableOption "neovim plugin wsl-clipboard";
+    yeldirs.cli.essentials.neovim.wsl-clipboard.enable =
+      lib.mkEnableOption "neovim plugin wsl-clipboard";
   };
 
   config = lib.mkIf cfg.enable {
     programs.neovim.extraLuaConfig =
-      /*
-      lua
-      */
+      # lua
       ''
         vim.g.clipboard = {
           name = "wsl-clipboard",

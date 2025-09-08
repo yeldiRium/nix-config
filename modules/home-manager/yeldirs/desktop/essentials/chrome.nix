@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.essentials.chrome;
-in {
+in
+{
   options = {
     yeldirs.desktop.essentials.chrome = {
       enable = lib.mkEnableOption "chrome";
@@ -28,10 +30,7 @@ in {
       ];
     };
 
-    xdg.mimeApps =
-      lib.mkIf
-      cfg.default
-      (lib.y.webbrowser.xdgMimeApps "google-chrome.desktop");
+    xdg.mimeApps = lib.mkIf cfg.default (lib.y.webbrowser.xdgMimeApps "google-chrome.desktop");
 
     xdg.desktopEntries = {
       google-chrome = {
@@ -40,8 +39,26 @@ in {
         type = "Application";
         exec = "${lib.getExe pkgs.google-chrome} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U";
         icon = "google-chrome";
-        categories = ["Network" "WebBrowser"];
-        mimeType = ["application/pdf" "application/rdf+xml" "application/rss+xml" "application/xhtml+xml" "application/xhtml_xml" "application/xml" "image/gif" "image/jpeg" "image/png" "image/webp" "text/html" "text/xml" "x-scheme-handler/http" "x-scheme-handler/https"];
+        categories = [
+          "Network"
+          "WebBrowser"
+        ];
+        mimeType = [
+          "application/pdf"
+          "application/rdf+xml"
+          "application/rss+xml"
+          "application/xhtml+xml"
+          "application/xhtml_xml"
+          "application/xml"
+          "image/gif"
+          "image/jpeg"
+          "image/png"
+          "image/webp"
+          "text/html"
+          "text/xml"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ];
         terminal = false;
         startupNotify = true;
       };

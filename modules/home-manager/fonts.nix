@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   mkFontOption = kind: {
     name = lib.mkOption {
       type = lib.types.str;
@@ -24,7 +25,8 @@
     };
   };
   cfg = config.fontProfiles;
-in {
+in
+{
   options.fontProfiles = {
     enable = lib.mkEnableOption "Whether to enable font profiles";
     monospace = mkFontOption "monospace";

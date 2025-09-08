@@ -4,9 +4,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.system.sops;
-in {
+in
+{
   imports = [
     inputs.sops-nix.darwinModules.sops
   ];
@@ -26,7 +28,8 @@ in {
       sops
     ];
     environment.variables = {
-      SOPS_AGE_KEY_FILE = if builtins.isNull cfg.keyFile then "/persist/sops/age/keys.txt" else cfg.keyFile;
+      SOPS_AGE_KEY_FILE =
+        if builtins.isNull cfg.keyFile then "/persist/sops/age/keys.txt" else cfg.keyFile;
     };
     sops = {
       defaultSopsFile = ../../../../hosts/shared/secrets.yaml;

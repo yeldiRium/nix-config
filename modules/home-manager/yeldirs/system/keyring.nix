@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.system.keyring;
-in {
+in
+{
   options = {
     yeldirs.system.keyring.enable = lib.mkEnableOption "keyring";
   };

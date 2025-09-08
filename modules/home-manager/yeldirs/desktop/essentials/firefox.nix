@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.essentials.firefox;
-in {
+in
+{
   options = {
     yeldirs.desktop.essentials.firefox = {
       enable = lib.mkEnableOption "firefox";
@@ -29,10 +31,7 @@ in {
       };
     };
 
-    xdg.mimeApps =
-      lib.mkIf
-      cfg.default
-      (lib.y.webbrowser.xdgMimeApps "firefox.desktop");
+    xdg.mimeApps = lib.mkIf cfg.default (lib.y.webbrowser.xdgMimeApps "firefox.desktop");
 
     xdg.desktopEntries = {
       firefox = {
@@ -52,7 +51,10 @@ in {
           };
         };
         icon = "firefox";
-        categories = ["Network" "WebBrowser"];
+        categories = [
+          "Network"
+          "WebBrowser"
+        ];
         mimeType = [
           "application/pdf"
           "application/rdf+xml"

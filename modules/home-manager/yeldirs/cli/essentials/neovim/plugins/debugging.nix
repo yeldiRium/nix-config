@@ -3,48 +3,53 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.debugging;
   supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
   isLanguageSupported = language: lib.elem language supportedLanguages;
   forLanguage = language: list: lib.optionals (isLanguageSupported language) list;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.debugging.enable = lib.mkEnableOption "neovim debugging support";
     yeldirs.cli.essentials.neovim.debugging.dynamicGoConfig = lib.mkOption {
       type = lib.types.str;
       default = "";
       description = ''
-absolute path to a lua file that is executed when <leader>cdl is run to reload debugger configs. make sure that it's idempotent.
-example:
-```
-local dap = require("dap")
+        absolute path to a lua file that is executed when <leader>cdl is run to reload debugger configs. make sure that it's idempotent.
+        example:
+        ```
+        local dap = require("dap")
 
-dap.configurations.go[#dap.configurations.go + 1] = {
-  type = "go",
-  name = "e2e: Debug DocDB",
-  request = "launch",
-  program = "''${fileDirname}",
-  args = { "-v", "-timeout", "36000s", "-run", "TestDocumentDB" },
-  buildFlags = "",
-  outputMode = "remote",
-}
-```
-'';
+        dap.configurations.go[#dap.configurations.go + 1] = {
+          type = "go",
+          name = "e2e: Debug DocDB",
+          request = "launch",
+          program = "''${fileDirname}",
+          args = { "-v", "-timeout", "36000s", "-run", "TestDocumentDB" },
+          buildFlags = "",
+          outputMode = "remote",
+        }
+        ```
+      '';
     };
   };
   config = lib.mkIf cfg.enable {
     # DAP servers
-    home.packages = with pkgs; (forLanguage "go" [
-      unstable.delve
-    ]);
+    home.packages =
+      with pkgs;
+      (forLanguage "go" [
+        unstable.delve
+      ]);
 
     home.sessionVariables = lib.mkIf (isLanguageSupported "go") {
       # This is necessary to make delve work. Some weird CGO/gcc bullshit.
       NIX_HARDENING_ENABLE = "";
     };
-    programs.neovim.plugins = with pkgs.unstable.vimPlugins;
+    programs.neovim.plugins =
+      with pkgs.unstable.vimPlugins;
       [
         # dependencies
         nvim-nio
@@ -53,9 +58,7 @@ dap.configurations.go[#dap.configurations.go + 1] = {
           plugin = nvim-dap;
           type = "lua";
           config = lib.concatLines [
-            /*
-            lua
-            */
+            # lua
             ''
               local dap = require("dap")
 
@@ -83,9 +86,7 @@ dap.configurations.go[#dap.configurations.go + 1] = {
           plugin = nvim-dap-ui;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               local dap = require("dap")
               local dapui = require("dapui")
@@ -118,9 +119,7 @@ dap.configurations.go[#dap.configurations.go + 1] = {
           plugin = nvim-dap-go;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               local function reloadGoDebuggerConfigurations()
                 local dapGo = require("dap-go")
@@ -136,11 +135,7 @@ dap.configurations.go[#dap.configurations.go + 1] = {
                   },
                 }
 
-                ${
-                if cfg.dynamicGoConfig != ""
-                then "dofile(\"" + cfg.dynamicGoConfig + "\")"
-                else ""
-              }
+                ${if cfg.dynamicGoConfig != "" then "dofile(\"" + cfg.dynamicGoConfig + "\")" else ""}
 
                 dapGo.setup({
                   delve = {

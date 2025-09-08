@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.fs-tools;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.fs-tools = {
       enable = lib.mkEnableOption "fs-tools";

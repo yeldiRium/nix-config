@@ -2,11 +2,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkOption types;
 
   cfg = config.yeldirs.hyprland.autostart;
-in {
+in
+{
   options = {
     yeldirs.hyprland.autostart = mkOption {
       type = types.listOf (
@@ -29,23 +31,25 @@ in {
           };
         }
       );
-      default = [];
+      default = [ ];
     };
   };
   config = {
-    assertions =
-      map (rule: {
-        assertion = (rule.workspace == null && rule.selector == null) || (rule.workspace != null && rule.selector != null);
-        message = "Autostart rule for ${rule.command} is invalid: The options workspace and selector must either both be set or both be null.";
-      })
-      cfg;
+    assertions = map (rule: {
+      assertion =
+        (rule.workspace == null && rule.selector == null)
+        || (rule.workspace != null && rule.selector != null);
+      message = "Autostart rule for ${rule.command} is invalid: The options workspace and selector must either both be set or both be null.";
+    }) cfg;
 
     wayland.windowManager.hyprland.settings = {
-      windowrule = builtins.concatMap (rule:
-        if rule.workspace != null && rule.selector != null
-        then ["workspace ${rule.workspace} silent, ${rule.selector}"]
-        else [])
-      cfg;
+      windowrule = builtins.concatMap (
+        rule:
+        if rule.workspace != null && rule.selector != null then
+          [ "workspace ${rule.workspace} silent, ${rule.selector}" ]
+        else
+          [ ]
+      ) cfg;
       exec-once = map (rule: rule.command) cfg;
     };
   };

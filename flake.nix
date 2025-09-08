@@ -41,82 +41,82 @@
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nix-darwin,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
 
-    systems = [
-      "x86_64-linux"
-      #"x86_64-darwin"
-    ];
+      systems = [
+        "x86_64-linux"
+        #"x86_64-darwin"
+      ];
 
-    lib = nixpkgs.lib.extend (final: prev: import ./lib {lib = final;} // home-manager.lib);
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    inherit lib;
+      lib = nixpkgs.lib.extend (final: prev: import ./lib { lib = final; } // home-manager.lib);
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      inherit lib;
 
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
 
-    overlays = import ./overlays {inherit inputs lib outputs;};
-    nixosModules = import ./modules/nixos;
-    darwinModules = import ./modules/darwin;
-    homeManagerModules = import ./modules/home-manager;
+      overlays = import ./overlays { inherit inputs lib outputs; };
+      nixosModules = import ./modules/nixos;
+      darwinModules = import ./modules/darwin;
+      homeManagerModules = import ./modules/home-manager;
 
-    nixosConfigurations =
-      {
+      nixosConfigurations = {
         hackstack = lib.nixosSystem {
-          modules = [./hosts/linux/hackstack];
+          modules = [ ./hosts/linux/hackstack ];
           specialArgs = {
             inherit inputs lib outputs;
           };
         };
         laboratory = lib.nixosSystem {
-          modules = [./hosts/linux/laboratory];
+          modules = [ ./hosts/linux/laboratory ];
           specialArgs = {
             inherit inputs lib outputs;
           };
         };
         recreate = lib.nixosSystem {
-          modules = [./hosts/linux/recreate];
+          modules = [ ./hosts/linux/recreate ];
           specialArgs = {
             inherit inputs lib outputs;
           };
         };
 
         wsl = lib.nixosSystem {
-          modules = [./hosts/linux/wsl];
+          modules = [ ./hosts/linux/wsl ];
           specialArgs = {
             inherit inputs lib outputs;
           };
         };
       }
-      // (
-        lib.y.workers.eachToAttrs (workerCfg: {
-          name = "worker-${workerCfg.shortname}";
-          value = lib.nixosSystem {
-            modules = [./hosts/linux/worker];
-            specialArgs = {
-              inherit inputs lib outputs;
-              worker = workerCfg;
-            };
+      // (lib.y.workers.eachToAttrs (workerCfg: {
+        name = "worker-${workerCfg.shortname}";
+        value = lib.nixosSystem {
+          modules = [ ./hosts/linux/worker ];
+          specialArgs = {
+            inherit inputs lib outputs;
+            worker = workerCfg;
           };
-        })
-      );
+        };
+      }));
 
-    darwinConfigurations = {
-      rekorder = nix-darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        modules = [./hosts/darwin/rekorder];
-        specialArgs = {
-          inherit inputs lib outputs;
+      darwinConfigurations = {
+        rekorder = nix-darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
+          modules = [ ./hosts/darwin/rekorder ];
+          specialArgs = {
+            inherit inputs lib outputs;
+          };
         };
       };
     };
-  };
 }

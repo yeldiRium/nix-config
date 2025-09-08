@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.kubectl;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.kubectl = {
       enable = lib.mkEnableOption "kubectl";
@@ -17,11 +19,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = lib.mkIf (!cfg.aliasOnly) (with pkgs; [
-      kubectl
-      kubectx
-      y.konfig
-    ]);
+    home.packages = lib.mkIf (!cfg.aliasOnly) (
+      with pkgs;
+      [
+        kubectl
+        kubectx
+        y.konfig
+      ]
+    );
 
     programs = lib.mkIf (!cfg.aliasOnly) {
       zsh.initContent = lib.mkIf config.programs.zsh.enable ''

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.aws;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.aws = {
       enable = lib.mkEnableOption "aws";
@@ -21,7 +23,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     home = {
-      packages = with pkgs;
+      packages =
+        with pkgs;
         [
           awscli2
         ]
@@ -30,7 +33,8 @@ in {
         ]
         ++ lib.optionals cfg.ssmTools [
           ssm-session-manager-plugin
-          (with python312Packages;
+          (
+            with python312Packages;
             buildPythonPackage {
               name = "aws-ssm-tools";
               version = "1.6.0";
@@ -46,7 +50,8 @@ in {
                 botocore
                 boto3
               ];
-            })
+            }
+          )
         ];
 
       sessionVariables = {

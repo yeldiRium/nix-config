@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   platform = config.yeldirs.system.platform;
 
   cfg = config.yeldirs.cli.essentials;
-in {
+in
+{
   imports = [
     ./neovim
     ./tmux
@@ -29,7 +31,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     home = {
-      packages = with pkgs;
+      packages =
+        with pkgs;
         [
           # poweruser
           btop

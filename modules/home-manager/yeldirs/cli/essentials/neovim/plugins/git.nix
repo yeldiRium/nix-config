@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.git;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.git.enable = lib.mkEnableOption "neovim git support";
   };
@@ -16,9 +18,7 @@ in {
         plugin = diffview-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             require("diffview").setup({
               keymaps = {
@@ -36,9 +36,7 @@ in {
         plugin = neogit;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local neogit = require('neogit')
             neogit.setup({
@@ -56,9 +54,7 @@ in {
         plugin = gitsigns-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local gitsigns = require("gitsigns")
             gitsigns.setup({})

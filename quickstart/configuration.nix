@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
   ];
@@ -25,7 +26,7 @@
   users.users."yeldir" = {
     isNormalUser = true;
     initialPassword = "12345";
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''

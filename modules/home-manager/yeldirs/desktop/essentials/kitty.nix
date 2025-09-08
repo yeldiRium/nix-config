@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.essentials.kitty;
-in {
+in
+{
   options = {
     yeldirs.desktop.essentials.kitty.enable = lib.mkEnableOption "kitty";
   };

@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   essentials = config.yeldirs.cli.essentials;
   cfg = config.yeldirs.cli.essentials.zsh;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.zsh = {
       enableSecretEnv = lib.mkOption {

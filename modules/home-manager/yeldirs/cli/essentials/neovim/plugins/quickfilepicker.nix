@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.quickfilepicker;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.quickfilepicker = {
       harpoon2.enable = lib.mkEnableOption "neovim plugin harpoon2";
@@ -24,9 +26,7 @@ in {
         plugin = harpoon2;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local harpoon = require('harpoon')
             harpoon:setup({})
@@ -43,9 +43,7 @@ in {
         plugin = grapple-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local grapple = require('grapple')
             grapple.setup({})

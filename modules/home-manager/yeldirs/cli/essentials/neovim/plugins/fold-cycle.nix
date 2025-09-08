@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.fold-cycle;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.fold-cycle.enable = lib.mkEnableOption "neovim plugin fold-cycle";
   };
@@ -15,9 +17,7 @@ in {
         plugin = fold-cycle-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local foldCycle = require("fold-cycle")
             foldCycle.setup({})

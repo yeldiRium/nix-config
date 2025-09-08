@@ -3,19 +3,22 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.testing;
   supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
   isLanguageSupported = language: lib.elem language supportedLanguages;
   forLanguage = language: list: lib.optionals (isLanguageSupported language) list;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.testing.enable = lib.mkEnableOption "neovim test runner support";
   };
 
   config = lib.mkIf cfg.enable {
-    programs.neovim.plugins = with pkgs.unstable.vimPlugins;
+    programs.neovim.plugins =
+      with pkgs.unstable.vimPlugins;
       [
         nvim-nio
         plenary-nvim
@@ -26,36 +29,30 @@ in {
           plugin = pkgs.vimPlugins.neotest;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               local neotest = require("neotest")
 
               neotest.setup({
                 adapters = {
                   ${
-                if isLanguageSupported "go"
-                then
-                  /*
-                  lua
-                  */
-                  ''
-                    require("neotest-golang"),
-                  ''
-                else ""
-              }
+                    if isLanguageSupported "go" then
+                      # lua
+                      ''
+                        require("neotest-golang"),
+                      ''
+                    else
+                      ""
+                  }
                   ${
-                if isLanguageSupported "rust"
-                then
-                  /*
-                  lua
-                  */
-                  ''
-                    require("neotest-rust"),
-                  ''
-                else ""
-              }
+                    if isLanguageSupported "rust" then
+                      # lua
+                      ''
+                        require("neotest-rust"),
+                      ''
+                    else
+                      ""
+                  }
                 },
               })
 

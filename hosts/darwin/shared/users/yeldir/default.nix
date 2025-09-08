@@ -3,7 +3,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.home-manager.darwinModules.default
     ../../../../shared/optional/home-manager.nix

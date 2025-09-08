@@ -3,11 +3,14 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.copilot;
-in {
+in
+{
   options = {
-    yeldirs.cli.essentials.neovim.copilot.enable = lib.mkEnableOption "neovim plugin for github copilot";
+    yeldirs.cli.essentials.neovim.copilot.enable =
+      lib.mkEnableOption "neovim plugin for github copilot";
   };
 
   config = lib.mkIf cfg.enable {
@@ -17,9 +20,7 @@ in {
         plugin = copilot-vim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             vim.g.copilot_filetypes = {
               ledger = false,
@@ -47,9 +48,7 @@ in {
         plugin = CopilotChat-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local copilot = require("CopilotChat")
             copilot.setup({
@@ -91,9 +90,7 @@ in {
         plugin = codecompanion-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             require("codecompanion").setup({
               strategies = {

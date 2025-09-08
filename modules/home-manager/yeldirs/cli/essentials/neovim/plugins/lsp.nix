@@ -3,19 +3,22 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.lsp;
   supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
   isLanguageSupported = language: lib.elem language supportedLanguages;
   forLanguage = language: list: lib.optionals (isLanguageSupported language) list;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.lsp.enable = lib.mkEnableOption "neovim lsp support";
   };
   config = lib.mkIf cfg.enable {
     # LSP servers
-    home.packages = with pkgs;
+    home.packages =
+      with pkgs;
       (forLanguage "bash" [
         nodePackages.bash-language-server
       ])
@@ -64,9 +67,7 @@ in {
         plugin = nvim-lspconfig;
         type = "lua";
         config = lib.concatLines [
-          /*
-          lua
-          */
+          # lua
           ''
             local lspconfig = require("lspconfig")
             local lspConfigurations = require("lspconfig.configs")
@@ -84,34 +85,27 @@ in {
             end
           ''
           (
-            if isLanguageSupported "bash"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "bash" then
+              # lua
               ''
                 add_lsp(lspconfig.bashls, {})
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "docker"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "docker" then
+              # lua
               ''
                 add_lsp(lspconfig.docker_compose_language_service, {})
                 add_lsp(lspconfig.dockerls, {})
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "go"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "go" then
+              # lua
               ''
                 if vim.fn.executable("go") == 1 then
                   add_lsp(lspconfig.gopls, {})
@@ -126,14 +120,12 @@ in {
                   --       but only do so if go linter support is actually required, e.g. when a .go file is opened
                 end
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "ledger"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "ledger" then
+              # lua
               ''
                 if not lspConfigurations.hledger_ls then
                   lspConfigurations.hledger_ls = {
@@ -151,14 +143,12 @@ in {
 
                 add_lsp(lspconfig.hledger_ls, {})
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "json"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "json" then
+              # lua
               ''
                 add_lsp(lspconfig.jsonls, {
                   capabilities = {
@@ -172,14 +162,12 @@ in {
                   },
                 })
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "lua"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "lua" then
+              # lua
               ''
                 add_lsp(lspconfig.lua_ls, {
                   settings = {
@@ -193,14 +181,12 @@ in {
                   },
                 })
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "nix"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "nix" then
+              # lua
               ''
                 add_lsp(lspconfig.nixd, {
                   settings = { nixd = {
@@ -213,36 +199,30 @@ in {
                   }},
                 })
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "javascript" || isLanguageSupported "typescript"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "javascript" || isLanguageSupported "typescript" then
+              # lua
               ''
                 add_lsp(lspconfig.ts_ls, {})
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "rego"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "rego" then
+              # lua
               ''
                 add_lsp(lspconfig.regols, {})
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "rust"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "rust" then
+              # lua
               ''
                 local rustConfig = {}
                 if vim.fn.executable("cargo-clippy") == 1 then
@@ -258,14 +238,12 @@ in {
                 end
                 add_lsp(lspconfig.rust_analyzer, rustConfig)
               ''
-            else ""
+            else
+              ""
           )
           (
-            if isLanguageSupported "yaml"
-            then
-              /*
-              lua
-              */
+            if isLanguageSupported "yaml" then
+              # lua
               ''
                 add_lsp(lspconfig.yamlls, {
                   settings = {
@@ -278,7 +256,8 @@ in {
                   },
                 })
               ''
-            else ""
+            else
+              ""
           )
         ];
       }
@@ -294,9 +273,7 @@ in {
         plugin = nvim-cmp;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             local cmp = require('cmp')
             local cmpEnabled = false

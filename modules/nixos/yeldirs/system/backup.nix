@@ -2,11 +2,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.system.backup;
 
   hostName = config.networking.hostName;
-in {
+in
+{
   options = {
     yeldirs.system.backup = {
       enable = lib.mkEnableOption "backups";

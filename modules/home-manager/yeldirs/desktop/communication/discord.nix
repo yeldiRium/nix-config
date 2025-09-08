@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.desktop.communication.discord;
-in {
+in
+{
   options = {
     yeldirs.desktop.communication.discord = {
       enable = lib.mkEnableOption "discord";

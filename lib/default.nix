@@ -1,3 +1,4 @@
-{lib}: {
-  y = import ./y {inherit lib;};
+{ lib }:
+{
+  y = import ./y { inherit lib; };
 }

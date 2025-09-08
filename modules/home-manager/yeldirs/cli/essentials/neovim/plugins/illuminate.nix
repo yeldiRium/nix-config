@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.illuminate;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.illuminate.enable = lib.mkEnableOption "neovim plugin illuminate";
   };
@@ -19,9 +21,7 @@ in {
         plugin = vim-illuminate;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             require("illuminate").configure({
               providers = {

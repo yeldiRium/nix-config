@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.layout;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.layout = {
       indentation-guides.enable = lib.mkEnableOption "neovim indentation guides";
@@ -15,9 +17,7 @@ in {
   config = {
     programs.neovim = {
       extraLuaConfig =
-        /*
-        lua
-        */
+        # lua
         ''
           vim.opt.number = true
           vim.opt.relativenumber = true
@@ -45,15 +45,14 @@ in {
           vim.opt.cursorcolumn = true
         '';
 
-      plugins = with pkgs.unstable.vimPlugins;
+      plugins =
+        with pkgs.unstable.vimPlugins;
         [
           {
             plugin = lualine-nvim;
             type = "lua";
             config =
-              /*
-              lua
-              */
+              # lua
               ''
                 local function lualineCwd()
                   return vim.fs.basename(vim.uv.cwd())
@@ -78,9 +77,7 @@ in {
             plugin = indent-blankline-nvim;
             type = "lua";
             config =
-              /*
-              lua
-              */
+              # lua
               ''
                 require("ibl").setup()
               '';

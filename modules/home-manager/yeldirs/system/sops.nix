@@ -3,9 +3,11 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.system.sops;
-in {
+in
+{
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];

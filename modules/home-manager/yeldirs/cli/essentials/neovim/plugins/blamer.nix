@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.essentials.neovim.blamer;
-in {
+in
+{
   options = {
     yeldirs.cli.essentials.neovim.blamer.enable = lib.mkEnableOption "neovim plugin blamer";
   };
@@ -15,9 +17,7 @@ in {
         plugin = blamer-nvim;
         type = "lua";
         config =
-          /*
-          lua
-          */
+          # lua
           ''
             vim.g.blamer_enabled = false
 

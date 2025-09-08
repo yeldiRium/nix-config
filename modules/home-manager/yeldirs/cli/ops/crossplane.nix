@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.crossplane;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.crossplane = {
       enable = lib.mkEnableOption "crossplane";

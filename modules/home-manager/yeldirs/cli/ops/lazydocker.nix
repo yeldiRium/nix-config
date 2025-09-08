@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.yeldirs.cli.ops.lazydocker;
-in {
+in
+{
   options = {
     yeldirs.cli.ops.lazydocker = {
       enable = lib.mkEnableOption "lazydocker";

@@ -3,25 +3,37 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     "$terminal" = "kitty";
 
-    bind = let
-      workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9"];
+    bind =
+      let
+        workspaces = [
+          "1"
+          "2"
+          "3"
+          "4"
+          "5"
+          "6"
+          "7"
+          "8"
+          "9"
+        ];
 
-      directions = rec {
-        left = "l";
-        right = "r";
-        up = "u";
-        down = "d";
-        I = left;
-        E = right;
-        L = up;
-        A = down;
-      };
-    in
+        directions = rec {
+          left = "l";
+          right = "r";
+          up = "u";
+          down = "d";
+          I = left;
+          E = right;
+          L = up;
+          A = down;
+        };
+      in
       (
         # Go to workspace
         map (n: "$mod, ${n}, workspace, ${n}") workspaces
@@ -31,11 +43,11 @@
         map (n: "$mod SHIFT, ${n}, hy3:movetoworkspace, ${n}") workspaces
       )
       ++
-      # Move focus
-      (lib.mapAttrsToList (key: direction: "$mod, ${key}, hy3:movefocus, ${direction}") directions)
+        # Move focus
+        (lib.mapAttrsToList (key: direction: "$mod, ${key}, hy3:movefocus, ${direction}") directions)
       ++
-      # Move windows
-      (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, hy3:movewindow, ${direction}") directions)
+        # Move windows
+        (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, hy3:movewindow, ${direction}") directions)
       ++ [
         # Move workspace to other monitor
         "$mod SHIFT, U, movecurrentworkspacetomonitor, l"
@@ -60,16 +72,16 @@
         "$mod SHIFT, S, hy3:changefocus, lower"
       ]
       ++
-      # Important applications with shortcuts
-      [
-        "$mod, Return, exec, $terminal" # Launches a terminal
-      ]
+        # Important applications with shortcuts
+        [
+          "$mod, Return, exec, $terminal" # Launches a terminal
+        ]
       ++
-      # Launch programs with rofi
-      (
-        let
-          rofi = lib.getExe config.programs.rofi.package;
-        in
+        # Launch programs with rofi
+        (
+          let
+            rofi = lib.getExe config.programs.rofi.package;
+          in
           lib.optionals config.programs.rofi.enable [
             "$mod, Tab, exec, ${rofi} -show window"
             "$mod, D, exec, ${rofi} -show drun -drun-show-actions"
@@ -78,54 +90,57 @@
             let
               cliphist = lib.getExe config.services.cliphist.package;
             in
-              lib.optionals config.services.cliphist.enable [
-                ''$mod, C, exec, selected=$(${cliphist} list | ${rofi} -dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
-              ]
+            lib.optionals config.services.cliphist.enable [
+              ''$mod, C, exec, selected=$(${cliphist} list | ${rofi} -dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
+            ]
           )
-      )
+        )
       ++
-      # Lock screen with swaylock
-      (
-        let
-          swaylock = lib.getExe config.programs.swaylock.package;
-          swaylockCmd = "${swaylock} --screenshots --grace 2 --grace-no-mouse";
-        in
+        # Lock screen with swaylock
+        (
+          let
+            swaylock = lib.getExe config.programs.swaylock.package;
+            swaylockCmd = "${swaylock} --screenshots --grace 2 --grace-no-mouse";
+          in
           lib.optionals config.programs.swaylock.enable [
             "$mod, G, exec, ${swaylockCmd}"
             "$mod, XF86ScreenSaver, exec, ${swaylockCmd}"
           ]
-      )
+        )
       ++
-      # Notification manager
-      (
-        let
-          makoctl = lib.getExe' config.services.mako.package "makoctl";
-        in
+        # Notification manager
+        (
+          let
+            makoctl = lib.getExe' config.services.mako.package "makoctl";
+          in
           lib.optionals config.services.mako.enable [
             "$mod, W, exec, ${makoctl} dismiss"
             "$mod SHIFT, W, exec, ${makoctl} restore"
           ]
-      )
+        )
       ++
-      # Volume control
-      (let
-        pactl = lib.getExe' pkgs.pulseaudio "pactl";
-      in [
-        "    , XF86AudioRaiseVolume, exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-        "    , XF86AudioLowerVolume, exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-        "    , XF86AudioMute, exec, ${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
-        "SHIFT, XF86AudioRaiseVolume, exec, ${pactl} set-source-volume @DEFAULT_SOURCE@ +5%"
-        "SHIFT, XF86AudioLowerVolume, exec, ${pactl} set-source-volume @DEFAULT_SOURCE@ -5%"
-        "SHIFT, XF86AudioMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-        "    , XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-      ])
+        # Volume control
+        (
+          let
+            pactl = lib.getExe' pkgs.pulseaudio "pactl";
+          in
+          [
+            "    , XF86AudioRaiseVolume, exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+            "    , XF86AudioLowerVolume, exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+            "    , XF86AudioMute, exec, ${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+            "SHIFT, XF86AudioRaiseVolume, exec, ${pactl} set-source-volume @DEFAULT_SOURCE@ +5%"
+            "SHIFT, XF86AudioLowerVolume, exec, ${pactl} set-source-volume @DEFAULT_SOURCE@ -5%"
+            "SHIFT, XF86AudioMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+            "    , XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+          ]
+        )
       ++
-      # Playerctl
-      (
-        let
-          playerctl = lib.getExe' config.services.playerctld.package "playerctl";
-          playerctld = lib.getExe' config.services.playerctld.package "playerctld";
-        in
+        # Playerctl
+        (
+          let
+            playerctl = lib.getExe' config.services.playerctld.package "playerctl";
+            playerctld = lib.getExe' config.services.playerctld.package "playerctld";
+          in
           lib.optionals config.services.playerctld.enable [
             # Media control
             ",XF86AudioNext,exec,${playerctl} next"
@@ -136,21 +151,24 @@
             "SHIFT,XF86AudioPrev,exec,${playerctld} unshift"
             "SHIFT,XF86AudioPlay,exec,systemctl --user restart playerctld"
           ]
-      )
+        )
       ++
-      # Screenshotting
-      (let
-        grimblast = lib.getExe pkgs.grimblast;
-      in [
-        "$mod      , M, exec, ${grimblast} --notify --freeze copy area"
-        "$mod SHIFT, M, exec, ${grimblast} --notify --freeze copy output"
-      ])
+        # Screenshotting
+        (
+          let
+            grimblast = lib.getExe pkgs.grimblast;
+          in
+          [
+            "$mod      , M, exec, ${grimblast} --notify --freeze copy area"
+            "$mod SHIFT, M, exec, ${grimblast} --notify --freeze copy output"
+          ]
+        )
       ++
-      # Brightness control (only works if the system has lightd)
-      [
-        "    , XF86MonBrightnessUp, exec, light -A 10"
-        "    , XF86MonBrightnessDown, exec, light -U 10"
-      ];
+        # Brightness control (only works if the system has lightd)
+        [
+          "    , XF86MonBrightnessUp, exec, light -A 10"
+          "    , XF86MonBrightnessDown, exec, light -U 10"
+        ];
 
     bindn = [
       ", mouse:272, hy3:focustab, mouse"
