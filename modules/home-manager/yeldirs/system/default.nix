@@ -91,17 +91,22 @@ in
         FLAKE = "$HOME/querbeet/workspace/nix-config";
       };
 
+      packages = with pkgs; [
+        nix-diff
+        nix-output-monitor
+      ];
+
       shellAliases = {
-        ndiff = "nbuild && nix-shell -p nix-diff --run \"nix-diff /nix/var/nix/profiles/system result\"";
+        ndiff = "nbuild && nix-diff /nix/var/nix/profiles/system result";
       }
       // (
         if cfg.platform == "linux" then
           {
-            nbuild = "sudo nixos-rebuild build --flake $FLAKE#${cfg.hostName}";
-            nboot = "sudo nixos-rebuild boot --flake $FLAKE#${cfg.hostName}";
-            nswitch = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName}";
-            nrepl = "sudo nixos-rebuild repl --flake $FLAKE#${cfg.hostName}";
-            nrollback = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} --rollback";
+            nbuild = "sudo nixos-rebuild build --flake $FLAKE#${cfg.hostName} |& nom";
+            nboot = "sudo nixos-rebuild boot --flake $FLAKE#${cfg.hostName} |& nom";
+            nswitch = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} |& nom";
+            nrepl = "sudo nixos-rebuild repl --flake $FLAKE#${cfg.hostName} |& nom";
+            nrollback = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} --rollback |& nom";
           }
         else
           {
