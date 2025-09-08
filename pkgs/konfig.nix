@@ -2,18 +2,14 @@
   stdenv,
   bash,
   fetchFromGitHub,
-}: let
-  version = "v0.2.6";
-in
-  stdenv.mkDerivation {
+}: stdenv.mkDerivation {
     name = "konfig";
-    version = version;
 
     src = fetchFromGitHub {
-      owner = "corneliusweig";
+      owner = "yeldirium";
       repo = "konfig";
-      rev = version;
-      hash = "sha256-qcYDiQJqXEWrGEwVdiB7922M8xT9mcbMdMBst5STOJk=";
+      rev =  "2bb3950cbaa266162119b30b3b3a1a8a85dc97af";
+      hash = "sha256-WT9bVTzuFuS6EOREKXEkyIbmhrqKlm5M6J3KRU1fUko=";
     };
     system = stdenv.hostPlatform.system;
 
