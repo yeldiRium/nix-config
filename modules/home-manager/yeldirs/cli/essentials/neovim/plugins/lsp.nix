@@ -34,7 +34,7 @@ in {
         vscode-langservers-extracted
       ])
       ++ (forLanguage "ledger" [
-        hledger-language-server
+        y.hledger-language-server
       ])
       ++ (forLanguage "lua" [
         lua-language-server
@@ -139,7 +139,7 @@ in {
                   lspConfigurations.hledger_ls = {
                     default_config = {
                       -- production:
-                      -- cmd = { "${lib.getExe pkgs.hledger-language-server}" },
+                      -- cmd = { "${lib.getExe pkgs.y.hledger-language-server}" },
                       -- development:
                       cmd = { "/home/yeldir/querbeet/workspace/private/projects/hledger-language-server/hledger-language-server" },
                       filetypes = { "ledger" },
