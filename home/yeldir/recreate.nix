@@ -91,7 +91,7 @@
     # Deprecated non-module options.
     hyprland = {
       enableAnimations = true;
-      enableTransparency = true;
+      enableTransparency = false;
 
       autostart = [
         {
