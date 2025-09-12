@@ -102,11 +102,11 @@ in
       // (
         if cfg.platform == "linux" then
           {
-            nbuild = "sudo nixos-rebuild build --flake $FLAKE#${cfg.hostName} |& nom";
-            nboot = "sudo nixos-rebuild boot --flake $FLAKE#${cfg.hostName} |& nom";
-            nswitch = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} |& nom";
-            nrepl = "sudo nixos-rebuild repl --flake $FLAKE#${cfg.hostName} |& nom";
-            nrollback = "sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} --rollback |& nom";
+            nbuild = "sudo echo && sudo nixos-rebuild build --flake $FLAKE#${cfg.hostName} |& nom";
+            nboot = "sudo echo && sudo nixos-rebuild boot --flake $FLAKE#${cfg.hostName} |& nom";
+            nswitch = "sudo echo && sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} |& nom";
+            nrepl = "sudo echo && sudo nixos-rebuild repl --flake $FLAKE#${cfg.hostName} |& nom";
+            nrollback = "sudo echo && sudo nixos-rebuild switch --flake $FLAKE#${cfg.hostName} --rollback |& nom";
           }
         else
           {
