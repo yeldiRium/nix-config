@@ -5,7 +5,7 @@
 let
   revision = "70f93977b7c2baa5c8eb281c4eb75ac744f9cb0a";
 in
-pkgs.unstable.buildGo123Module {
+pkgs.buildGo124Module {
   name = "hledger-language-server";
   pname = "hledger-language-server";
   version = revision;
