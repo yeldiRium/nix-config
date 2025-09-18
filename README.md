@@ -28,8 +28,7 @@ Using the nixos installer image...
   1. Chrome - Log in, enable sync for extensions and settings
     - Log into 1password
   2. Thunderbird - import public gpg key (this somehow can't be avoided)
-  3. VSCode - log into GitHub account, Copilot
-  4. `qmk setup yeldiRium/qmk_firmware`
+  3. `qmk setup yeldiRium/qmk_firmware`
 
 This was written without testing. It might fail and after doing everything something might be missing in the persisted folders. Needs to be evaluated!
 

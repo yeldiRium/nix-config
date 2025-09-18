@@ -5,7 +5,6 @@
     ./shared
     ./shared/linux
 
-    ./optional/desktop/development
     ./optional/desktop/hyprland
 
     ./optional/desktop/media
