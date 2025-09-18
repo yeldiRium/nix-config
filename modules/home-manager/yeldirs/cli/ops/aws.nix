@@ -33,7 +33,7 @@ in
               registrationScopes = "sso:account:access";
             };
           };
-          default = {};
+          default = { };
           type = attrsOf (submodule {
             options = {
               accountId = lib.mkOption { type = str; };
@@ -59,19 +59,25 @@ in
         ++ lib.optionals cfg.ssmTools [
           ssm-session-manager-plugin
           (
-            with python312Packages;
-            buildPythonPackage {
+            with python3Packages;
+            buildPythonPackage rec {
               name = "aws-ssm-tools";
-              version = "1.6.0";
+              version = "2.0.1";
+              pyproject = true;
               src = fetchFromGitHub {
                 owner = "mludvig";
                 repo = "aws-ssm-tools";
-                rev = "800657551361bf5e191513d1409d0f6155add091";
-                hash = "sha256-rCW+ebgHN4THHVZAMkozNkYlcqUdD3xn/mqPaQBIPOg=";
+                rev = "v${version}";
+                hash = "sha256-Pv4s0wnjrRKxdJxtQSIL+uTpkup2Civ2e9m6Dv/t2eM=";
               };
-              propagatedBuildInputs = [
+              build-system = [
+                hatchling
+              ];
+              dependencies = [
                 pexpect
                 packaging
+                tabulate
+                simple-term-menu
                 botocore
                 boto3
               ];
@@ -103,8 +109,7 @@ in
                 sso_start_url = ${profileConfig.startUrl}
                 sso_region = ${cfg.region}
                 sso_registration_scopes = ${profileConfig.registrationScopes}
-              ''
-            ) cfg.ssoConfigs;
+              '') cfg.ssoConfigs;
             ssoConfigLines = lib.concatLines ssoConfigSections;
           in
           {
