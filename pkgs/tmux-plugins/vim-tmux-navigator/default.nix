@@ -5,7 +5,7 @@
 pkgs.unstable.tmuxPlugins.mkTmuxPlugin {
   pluginName = "vim-tmux-navigator";
   rtpFilePath = "vim-tmux-navigator.tmux";
-  version = "unstable-2025-02-25";
+  version = "unstable-2025-07-15";
   src = fetchFromGitHub {
     owner = "christoomey";
     repo = "vim-tmux-navigator";
