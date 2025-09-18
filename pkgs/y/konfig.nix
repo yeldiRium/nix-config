@@ -5,12 +5,13 @@
 }:
 stdenv.mkDerivation {
   name = "konfig";
+  version = "unstable-2025-09-18";
 
   src = fetchFromGitHub {
     owner = "yeldirium";
     repo = "konfig";
-    rev = "2bb3950cbaa266162119b30b3b3a1a8a85dc97af";
-    hash = "sha256-WT9bVTzuFuS6EOREKXEkyIbmhrqKlm5M6J3KRU1fUko=";
+    rev = "df45417893b8d54fc02c7c8821cb3b5024b28bbf";
+    hash = "sha256-rUWnyrEJChjc3G5d3UwETgS2Qo2wUAfsWFQsfQ5xA4U=";
   };
   system = stdenv.hostPlatform.system;
 
