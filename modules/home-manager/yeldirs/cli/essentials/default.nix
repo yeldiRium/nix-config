@@ -37,7 +37,7 @@ in
           # poweruser
           btop
           eza
-          pkgs.y.ijq
+          unstable.ijq
           jq
           pv
           silver-searcher
