@@ -3,6 +3,7 @@
     ./aws.nix
     ./colima.nix
     ./crossplane.nix
+    ./flux.nix
     ./fs-tools.nix
     ./helm.nix
     ./hetzner.nix

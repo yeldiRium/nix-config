@@ -53,6 +53,7 @@
       };
 
       ops = {
+        fluxcd.enable = true;
         hetzner.enable = true;
         k9s.enable = true;
         kubectl.enable = true;
