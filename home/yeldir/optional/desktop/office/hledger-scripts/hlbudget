@@ -134,7 +134,6 @@ START_DATE="${START_YEAR}-${START_MONTH}"
 
 hledger balance \
   --value=end \
-  --empty \
   "--${PERIOD}" \
   --begin="${START_DATE}" \
   --budget \
