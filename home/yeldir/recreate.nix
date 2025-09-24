@@ -54,6 +54,7 @@
 
       ops = {
         fluxcd.enable = true;
+        gonzo.enable = true;
         hetzner.enable = true;
         k9s.enable = true;
         kubectl.enable = true;
