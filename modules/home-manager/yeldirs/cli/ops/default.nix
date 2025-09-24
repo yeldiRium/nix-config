@@ -5,6 +5,7 @@
     ./crossplane.nix
     ./flux.nix
     ./fs-tools.nix
+    ./gonzo.nix
     ./helm.nix
     ./hetzner.nix
     ./k9s.nix
