@@ -1,1 +1,1 @@
-{"author":{"id":"25c9d92405766f5374f83c8ecfd9d72873f45423dbac49e3d61b8fae35e19b87"},"ops":[{"type":1,"timestamp":1756058996,"nonce":"UNfzI847s4/3y9URGIPjOlMnPP0=","title":"Allow n* commands with sudo without password","message":"Add `security.sudo.extraRules` that allow yeldir or a group to run the n* commands without a password.","files":null}]}
+{"author":{"id":"25c9d92405766f5374f83c8ecfd9d72873f45423dbac49e3d61b8fae35e19b87"},"ops":[{"type":4,"timestamp":1758832740,"nonce":"fIK8VcVUkKxaWkES43vfs742Mrc=","status":2}]}
