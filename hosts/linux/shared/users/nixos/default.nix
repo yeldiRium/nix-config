@@ -22,6 +22,7 @@ in
       "docker"
       "git"
       "wheel"
+      "nix-ops"
     ];
 
     home = "/home/nixos";

@@ -24,6 +24,7 @@ in
       "networkmanager"
       "video"
       "wheel"
+      "nix-ops"
     ];
 
     home = "/home/yeldir";
