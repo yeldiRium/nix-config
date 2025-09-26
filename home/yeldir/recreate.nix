@@ -86,6 +86,7 @@
 
       games = {
         openttd.enable = true;
+        retroarch.enable = true;
       };
     };
 
