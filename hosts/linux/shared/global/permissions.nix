@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
@@ -13,7 +13,7 @@ in
         groups = ifTheyExist [ "nix-ops" ];
         commands = [
           {
-            command = lib.getExe pkgs.nixos-rebuild;
+            command = "/run/current-system/sw/bin/nixos-rebuild";
             options = [
               "SETENV"
               "NOPASSWD"
