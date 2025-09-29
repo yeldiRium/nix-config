@@ -94,6 +94,7 @@ in
               [default]
               region=${cfg.region}
               output=${defaultOutput}
+              cli_pager=bat --paging=never
             ''
             + ssoConfigLines;
           };
