@@ -52,6 +52,7 @@ in
         with pkgs;
         [
           awscli2
+          (y.shellScript ./aws-scripts/aws-sg-why)
         ]
         ++ lib.optionals cfg.ecrIntegration [
           amazon-ecr-credential-helper
