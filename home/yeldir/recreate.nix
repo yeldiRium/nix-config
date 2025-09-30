@@ -88,6 +88,10 @@
         openttd.enable = true;
         retroarch.enable = true;
       };
+
+      office = {
+        citrix.enable = true;
+      };
     };
 
     # Deprecated non-module options.
