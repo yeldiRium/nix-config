@@ -25,6 +25,8 @@ in
         kubectl
         kubectx
         y.konfig
+
+        colordiff
       ]
     );
 
@@ -42,19 +44,24 @@ in
       };
     };
 
-    home.shellAliases = {
-      k = "kubectl";
-      kg = "kubectl get";
-      kga = "kubectl get -A";
-      kgall = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
+    home = {
+      sessionVariables = {
+        KUBECTL_EXTERNAL_DIFF = "${lib.getExe pkgs.colordiff} -N -u";
+      };
+      shellAliases = {
+        k = "kubectl";
+        kg = "kubectl get";
+        kga = "kubectl get -A";
+        kgall = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
 
-      ke = "kubectl edit";
-      kes = "kubectl edit --subresource status";
+        ke = "kubectl edit";
+        kes = "kubectl edit --subresource status";
 
-      kd = "kubectl describe";
+        kd = "kubectl describe";
 
-      kaf = "kubectl apply -f";
-      kdf = "kubectl diff -f";
+        kaf = "kubectl apply -f";
+        kdf = "kubectl diff -f";
+      };
     };
   };
 }
