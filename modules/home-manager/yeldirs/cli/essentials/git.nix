@@ -70,6 +70,7 @@ in
     home = {
       shellAliases = {
         gladog = "git log --all --decorate --oneline --graph";
+        gldog = "git log --decorate --oneline --graph";
       };
 
       packages = with pkgs; [
