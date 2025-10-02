@@ -68,6 +68,10 @@ in
     };
 
     home = {
+      shellAliases = {
+        gladog = "git log --all --decorate --oneline --graph";
+      };
+
       packages = with pkgs; [
         unstable.git-bug
         (y.shellScript ./scripts/is-git-bug-initialized)
