@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -eu
 
-# TODO: if a devbox.json file exists and it includes a "dev" command,
-# run that command instead of all this.
+if [[ -x "$(pwd)/tmux.sh" ]]; then
+	echo "Found a tmux.sh script. Using that instead of default ide setup."
+	"$(pwd)/tmux.sh"
+	exit 0
+fi
 
 sessionSuffix="$(basename "$(pwd)")"
 sessionSuffix="${sessionSuffix//./}"
