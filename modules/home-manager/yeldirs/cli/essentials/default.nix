@@ -16,6 +16,7 @@ in
 
     ./atuin.nix
     ./devbox.nix
+    ./devenv.nix
     ./git.nix
     ./gpg.nix
     ./isd.nix
