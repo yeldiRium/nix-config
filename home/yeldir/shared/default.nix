@@ -3,6 +3,7 @@
     yeldirs = {
       system = {
         username = "yeldir";
+        accessTokens.enable = true;
       };
 
       workerSupport = true;

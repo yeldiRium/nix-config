@@ -49,6 +49,12 @@ in
       default = "";
       description = "The keyboard variant to use.";
     };
+
+    yeldirs.system.accessTokens.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Whether to include access tokens. Needs sops to be enabled and a sops secret named \"nixAccessTokens\" to exist.";
+    };
   };
 
   config = {
@@ -65,6 +71,10 @@ in
         assertion = cfg.platform != "";
         message = "Platform must be set to either 'linux' or 'darwin'.";
       }
+      {
+        assertion = cfg.accessTokens.enable == false || (cfg.sops.enable && config.sops.secrets.nixAccessTokens != null);
+        message = "To enable access tokens, sops has to be enabled and a sops secret named \"nixAccessTokens\" needs to exist.";
+      }
     ];
 
     nix = {
@@ -77,6 +87,12 @@ in
         ];
         warn-dirty = false;
       };
+      extraOptions = lib.mkIf cfg.accessTokens.enable ''
+        !include ${config.sops.secrets.nixAccessTokens.path}
+      '';
+    };
+    sops.secrets.nixAccessTokens = {
+      mode = "0440";
     };
 
     systemd.user.startServices = "sd-switch";
