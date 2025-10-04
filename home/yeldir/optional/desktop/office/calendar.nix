@@ -8,70 +8,85 @@ let
     {
       name = "Personal";
       primary = true;
+      type = "caldav";
       path = "personal";
+      suppressAlarms = false;
     }
     {
       name = "Work";
       primary = false;
+      type = "caldav";
       path = "work";
+      suppressAlarms = false;
     }
     {
       name = "Lea";
       primary = false;
+      type = "caldav";
       path = "lea";
+      suppressAlarms = false;
     }
     {
       name = "Festivals & Events";
       primary = false;
+      type = "caldav";
       path = "festivals-events";
+      suppressAlarms = false;
     }
     {
       name = "Birthdays";
       primary = false;
+      type = "caldav";
       path = "contact_birthdays";
+      suppressAlarms = true;
     }
   ];
+
+  getCalendarUsername = _: "yeldir";
+  getCalendarUrl =
+    calendar: "https://nextcloud.yeldirium.de/remote.php/dav/calendars/yeldir/${calendar.path}/";
 in
 {
   accounts.calendar.accounts =
     let
-      makeNextcloudCalendar = path: primary: {
-        primary = primary;
+      makeNextcloudCalendar = calendar: {
+        primary = calendar.primary;
         remote = {
-          type = "caldav";
-          userName = "yeldir";
-          url = "https://nextcloud.yeldirium.de/remote.php/dav/calendars/yeldir/${path}/";
+          type = calendar.type;
+          userName = getCalendarUsername calendar;
+          url = getCalendarUrl calendar;
         };
       };
     in
     lib.attrsets.mergeAttrsList (
-      map (cal: {
-        "${cal.name}" = makeNextcloudCalendar cal.path cal.primary;
+      map (calendar: {
+        "${calendar.name}" = makeNextcloudCalendar calendar;
       }) calendars
     );
 
-  # TODO: Replace this once https://github.com/nix-community/home-manager/pull/5484 is merged.
+  # TODO: Replace this once HomeManager 25.11 is released and
+  # config.accounts.calendar.accounts.<name>.thunderbird.enable is available.
   # Make sure it works, though, including the order of calendars.
   programs.thunderbird.settings =
     let
       safeName = builtins.replaceStrings [ "." ] [ "-" ];
       makeThunderbirdCalendar =
-        name:
+        calendar:
         let
-          calendarAccount = config.accounts.calendar.accounts.${name};
-          calendarAccountSafeName = safeName calendarAccount.name;
+          calendarAccountSafeName = safeName calendar.name;
         in
         {
           "calendar.registry.${calendarAccountSafeName}.cache.enabled" = true;
-          "calendar.registry.${calendarAccountSafeName}.calendar-main-default" = calendarAccount.primary;
+          "calendar.registry.${calendarAccountSafeName}.calendar-main-default" = calendar.primary;
           "calendar.registry.${calendarAccountSafeName}.calendar-main-in-composite" = true;
-          "calendar.registry.${calendarAccountSafeName}.name" = calendarAccount.name;
-          "calendar.registry.${calendarAccountSafeName}.type" = "caldav";
-          "calendar.registry.${calendarAccountSafeName}.uri" = calendarAccount.remote.url;
-          "calendar.registry.${calendarAccountSafeName}.username" = calendarAccount.remote.userName;
+          "calendar.registry.${calendarAccountSafeName}.name" = calendar.name;
+          "calendar.registry.${calendarAccountSafeName}.type" = calendar.type;
+          "calendar.registry.${calendarAccountSafeName}.uri" = getCalendarUrl calendar;
+          "calendar.registry.${calendarAccountSafeName}.username" = getCalendarUsername calendar;
+          "calendar.registry.${calendarAccountSafeName}.suppressAlarms" = calendar.suppressAlarms;
         };
     in
-    lib.attrsets.mergeAttrsList (map (cal: makeThunderbirdCalendar cal.name) calendars)
+    lib.attrsets.mergeAttrsList (map (calendar: makeThunderbirdCalendar calendar) calendars)
     // {
       "calendar.list.sortOrder" = lib.fold (cal: acc: cal.name + " " + acc) "" calendars;
 
