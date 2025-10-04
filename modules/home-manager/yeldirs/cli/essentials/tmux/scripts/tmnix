@@ -30,6 +30,8 @@ if ! tmux has-session -t $session 2>/dev/null; then
 
     tmux send-keys -t "${session}:nix.1" " git bug pull" "C-m"
     tmux send-keys -t "${session}:nix.1" " git bug termui" "C-m"
+
+    tmux send-keys -t "${session}:nix.2" " devbox shell" "C-m"
   fi
 
   tmux select-window -t "${session}:nix"
