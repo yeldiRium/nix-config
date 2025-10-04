@@ -27,7 +27,10 @@ if ! tmux has-session -t "${session}" 2>/dev/null; then
 
   sleep 1
 
-  if [ -f "$(pwd)/devbox.json" ]; then
+  if [ -f "$(pwd)/devenv.nix" ]; then
+    tmux send-keys -t "${session}:0.0" " devenv shell zsh" "C-m"
+    tmux send-keys -t "${session}:0.1" " devenv shell zsh" "C-m"
+  elif [ -f "$(pwd)/devbox.json" ]; then
     tmux send-keys -t "${session}:0.0" " devbox shell" "C-m"
     tmux send-keys -t "${session}:0.1" " devbox shell" "C-m"
   fi
