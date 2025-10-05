@@ -33,6 +33,7 @@
       entry = "${lib.getExe pkgs.gitleaks} git --pre-commit --redact --staged --verbose";
       pass_filenames = false;
     };
+    nixfmt-rfc-style.enable = true;
     pre-commit-hook-ensure-sops.enable = true;
     shellcheck.enable = true;
     trim-trailing-whitespace.enable = true;
