@@ -4,7 +4,7 @@ let
     lib.readFile ../../workers.json
     |> lib.strings.fromJSON
     |> lib.mapAttrs (
-      name: cfg:
+      _: cfg:
       let
         hostName = "worker-${cfg.shortname}";
       in

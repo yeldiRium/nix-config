@@ -62,7 +62,7 @@
         #"x86_64-darwin"
       ];
 
-      lib = nixpkgs.lib.extend (final: prev: import ./lib { lib = final; } // home-manager.lib);
+      lib = nixpkgs.lib.extend (final: _: import ./lib { lib = final; } // home-manager.lib);
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {

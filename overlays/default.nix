@@ -26,7 +26,7 @@ in
     };
   };
 
-  zz-modifications = final: prev: {
+  zz-modifications = _: prev: {
     unstable = lib.updateManyAttrsByPath [
       {
         path = [

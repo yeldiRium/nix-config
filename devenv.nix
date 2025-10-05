@@ -22,6 +22,10 @@
   git-hooks.hooks = {
     check-merge-conflicts.enable = true;
     check-shebang-scripts-are-executable.enable = true;
+    deadnix = {
+      enable = true;
+      excludes = [ "hardware-configuration\.nix$" ];
+    };
     end-of-file-fixer.enable = true;
     gitleaks = {
       enable = true;
