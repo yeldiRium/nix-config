@@ -72,7 +72,9 @@ in
         message = "Platform must be set to either 'linux' or 'darwin'.";
       }
       {
-        assertion = cfg.accessTokens.enable == false || (cfg.sops.enable && config.sops.secrets.nixAccessTokens != null);
+        assertion =
+          cfg.accessTokens.enable == false
+          || (cfg.sops.enable && config.sops.secrets.nixAccessTokens != null);
         message = "To enable access tokens, sops has to be enabled and a sops secret named \"nixAccessTokens\" needs to exist.";
       }
     ];

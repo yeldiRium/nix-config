@@ -17,9 +17,11 @@ in
   config = lib.mkIf cfg.enable {
     home = {
       packages = with pkgs; [
-        (retroarch.withCores (cores: with cores; [
-          desmume
-        ]))
+        (retroarch.withCores (
+          cores: with cores; [
+            desmume
+          ]
+        ))
       ];
 
       persistence = {
