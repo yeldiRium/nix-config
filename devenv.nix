@@ -7,6 +7,8 @@
 {
   packages = with pkgs; [
     argbash
+    git
+    git-bug
     silver-searcher
   ];
 
