@@ -19,8 +19,8 @@ if ! tmux has-session -t $session 2>/dev/null; then
 
   sleep 1
 
-  tmux send-keys -t "${session}:nix.0" " devbox shell" "C-m"
-  tmux send-keys -t "${session}:nix.1" " devbox shell" "C-m"
+  tmux send-keys -t "${session}:nix.0" " devenv shell zsh" "C-m"
+  tmux send-keys -t "${session}:nix.1" " devenv shell zsh" "C-m"
 
   tmux send-keys -t "${session}:nix.0" " nvim" "C-m"
   tmux send-keys -t "${session}:nix.0" " gg"
@@ -31,7 +31,7 @@ if ! tmux has-session -t $session 2>/dev/null; then
     tmux send-keys -t "${session}:nix.1" " git bug pull" "C-m"
     tmux send-keys -t "${session}:nix.1" " git bug termui" "C-m"
 
-    tmux send-keys -t "${session}:nix.2" " devbox shell" "C-m"
+    tmux send-keys -t "${session}:nix.2" " devenv shell zsh" "C-m"
   fi
 
   tmux select-window -t "${session}:nix"
