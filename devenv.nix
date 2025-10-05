@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -30,6 +31,13 @@
       ];
     in
     {
+      build = {
+        enable = true;
+        entry = config.tasks."app:build".exec;
+        types = [ "bash" ];
+        pass_filenames = false;
+      };
+
       check-merge-conflicts.enable = true;
       check-shebang-scripts-are-executable.enable = true;
       deadnix = {
