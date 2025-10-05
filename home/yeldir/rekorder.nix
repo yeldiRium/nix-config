@@ -24,30 +24,16 @@
         };
       };
 
-      ops = {
-        colima.enable = true;
-        lazydocker.enable = true;
-        nix.enable = true;
+      development = {
+        pre-commit.enable = true;
       };
-    };
-  };
 
-  targets.darwin = {
-    defaults = {
-      "com.apple.dock" = {
-        autohide = true;
+      media = {
+        rss.enable = true;
       };
-      "com.apple.controlcenter" = {
-        BatteryShowPercentage = "YES";
-      };
-      "com.apple.menuextra.clock" = {
-        IsAnalog = false;
-        Show24Hour = true;
-        ShowAMPM = false;
-        ShowDate = 1;
-        ShowDayOfMonth = true;
-        ShowDayOfWeek = true;
-        ShowSeconds = true;
+
+      ops = {
+        nix.enable = true;
       };
     };
   };

@@ -19,4 +19,24 @@
       };
     };
   };
+
+  targets.darwin = {
+    defaults = {
+      "com.apple.dock" = {
+        autohide = true;
+      };
+      "com.apple.controlcenter" = {
+        BatteryShowPercentage = "YES";
+      };
+      "com.apple.menuextra.clock" = {
+        IsAnalog = false;
+        Show24Hour = true;
+        ShowAMPM = false;
+        ShowDate = 1;
+        ShowDayOfMonth = true;
+        ShowDayOfWeek = true;
+        ShowSeconds = true;
+      };
+    };
+  };
 }
