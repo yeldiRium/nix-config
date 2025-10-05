@@ -9,7 +9,7 @@ let
     ${lib.getExe config.programs.tmux.package} -S "''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tmux-1000/default" source-file "${config.home.homeDirectory}/.config/tmux/tmux.conf" || true
   '';
 
-  essentials = config.yeldirs.cli.essentials;
+  inherit (config.yeldirs.cli) essentials;
   c = config.colorscheme.colors // config.colorscheme.harmonized;
 
   defaultTmuxCopyPatterns = [
@@ -93,11 +93,11 @@ in
             plugins = [
               {
                 plugin = pkgs.tmuxPlugins.fingers;
-                extraConfig =
+                extraConfig = lib.strings.concatLines (
                   lib.imap0 (index: pattern: "set -g @fingers-pattern-${toString index} '${pattern}'") (
                     defaultTmuxCopyPatterns ++ essentials.tmux.copyPatterns
                   )
-                  |> lib.strings.concatLines;
+                );
               }
             ];
           };
@@ -114,7 +114,7 @@ in
           "tmux/tmux.conf".onChange = sourceTmuxConfig;
         };
       }
-      (lib.mkIf (config.programs.zsh.enable) {
+      (lib.mkIf config.programs.zsh.enable {
         programs.zsh = {
           oh-my-zsh.plugins = [
             "tmux"

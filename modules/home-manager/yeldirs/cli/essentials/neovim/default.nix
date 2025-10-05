@@ -5,7 +5,7 @@
   ...
 }:
 let
-  essentials = config.yeldirs.cli.essentials;
+  inherit (config.yeldirs.cli) essentials;
   cfg = config.yeldirs.cli.essentials.neovim;
   notifyOfConfigChange = ''
     for server in ''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/nvim.*; do

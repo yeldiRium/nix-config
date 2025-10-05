@@ -4,7 +4,7 @@
   ...
 }:
 let
-  essentials = config.yeldirs.cli.essentials;
+  inherit (config.yeldirs.cli) essentials;
 in
 {
   config = lib.mkIf essentials.enable {

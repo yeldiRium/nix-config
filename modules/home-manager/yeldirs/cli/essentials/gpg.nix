@@ -5,8 +5,8 @@
   ...
 }:
 let
-  platform = config.yeldirs.system.platform;
-  essentials = config.yeldirs.cli.essentials;
+  inherit (config.yeldirs.system) platform;
+  inherit (config.yeldirs.cli) essentials;
   cfg = config.yeldirs.cli.essentials.gpg;
 in
 {

@@ -19,35 +19,30 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = lib.mkIf (!cfg.aliasOnly) (
-      with pkgs;
-      [
-        kubectl
-        kubectx
-        y.konfig
-
-        colordiff
-      ]
-    );
-
-    programs = lib.mkIf (!cfg.aliasOnly) {
-      zsh.initContent = lib.mkIf config.programs.zsh.enable ''
-        source <(${lib.getExe pkgs.kubectl} completion zsh)
-      '';
-    };
-
-    home.persistence = lib.mkIf (!cfg.aliasOnly) {
-      "/persist/${config.home.homeDirectory}" = {
-        directories = [
-          ".kube"
-        ];
-      };
-    };
-
     home = {
+      packages = lib.mkIf (!cfg.aliasOnly) (
+        with pkgs;
+        [
+          kubectl
+          kubectx
+          y.konfig
+
+          colordiff
+        ]
+      );
+
+      persistence = lib.mkIf (!cfg.aliasOnly) {
+        "/persist/${config.home.homeDirectory}" = {
+          directories = [
+            ".kube"
+          ];
+        };
+      };
+
       sessionVariables = {
         KUBECTL_EXTERNAL_DIFF = "${lib.getExe pkgs.colordiff} -N -u";
       };
+
       shellAliases = {
         k = "kubectl";
         kg = "kubectl get";
@@ -62,6 +57,12 @@ in
         kaf = "kubectl apply -f";
         kdf = "kubectl diff -f";
       };
+    };
+
+    programs = lib.mkIf (!cfg.aliasOnly) {
+      zsh.initContent = lib.mkIf config.programs.zsh.enable ''
+        source <(${lib.getExe pkgs.kubectl} completion zsh)
+      '';
     };
   };
 }

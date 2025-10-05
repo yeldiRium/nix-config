@@ -20,40 +20,42 @@ in
   ];
 
   options = {
-    yeldirs.system.username = lib.mkOption {
-      type = lib.types.str;
-      example = "yeldir";
-    };
+    yeldirs.system = {
+      username = lib.mkOption {
+        type = lib.types.str;
+        example = "yeldir";
+      };
 
-    yeldirs.system.hostName = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      example = "laboratory";
-      description = "The hostname of the system.";
-    };
-    yeldirs.system.platform = lib.mkOption {
-      type = lib.types.enum [
-        "linux"
-        "darwin"
-      ];
-      description = "The system platform";
-    };
+      hostName = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        example = "laboratory";
+        description = "The hostname of the system.";
+      };
+      platform = lib.mkOption {
+        type = lib.types.enum [
+          "linux"
+          "darwin"
+        ];
+        description = "The system platform";
+      };
 
-    yeldirs.system.keyboardLayout = lib.mkOption {
-      type = lib.types.str;
-      default = "de";
-      description = "The keyboard layout to use.";
-    };
-    yeldirs.system.keyboardVariant = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "The keyboard variant to use.";
-    };
+      keyboardLayout = lib.mkOption {
+        type = lib.types.str;
+        default = "de";
+        description = "The keyboard layout to use.";
+      };
+      keyboardVariant = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The keyboard variant to use.";
+      };
 
-    yeldirs.system.accessTokens.enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Whether to include access tokens. Needs sops to be enabled and a sops secret named \"nixAccessTokens\" to exist.";
+      accessTokens.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether to include access tokens. Needs sops to be enabled and a sops secret named \"nixAccessTokens\" to exist.";
+      };
     };
   };
 
@@ -73,8 +75,7 @@ in
       }
       {
         assertion =
-          cfg.accessTokens.enable == false
-          || (cfg.sops.enable && config.sops.secrets.nixAccessTokens != null);
+          !cfg.accessTokens.enable || (cfg.sops.enable && config.sops.secrets.nixAccessTokens != null);
         message = "To enable access tokens, sops has to be enabled and a sops secret named \"nixAccessTokens\" needs to exist.";
       }
     ];

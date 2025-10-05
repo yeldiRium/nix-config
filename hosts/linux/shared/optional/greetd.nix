@@ -35,9 +35,9 @@ in
   };
 
   programs.regreet = {
+    inherit (yeldirCfg.gtk) iconTheme theme;
+
     enable = true;
-    iconTheme = yeldirCfg.gtk.iconTheme;
-    theme = yeldirCfg.gtk.theme;
     font = yeldirCfg.fontProfiles.regular;
     cursorTheme = {
       inherit (yeldirCfg.home.pointerCursor) name package;

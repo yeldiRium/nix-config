@@ -5,8 +5,8 @@
   ...
 }:
 let
+  inherit (config.yeldirs.cli.essentials.neovim) supportedLanguages;
   cfg = config.yeldirs.cli.essentials.neovim.lsp;
-  supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
   isLanguageSupported = language: lib.elem language supportedLanguages;
   forLanguage = language: list: lib.optionals (isLanguageSupported language) list;
@@ -188,16 +188,22 @@ in
             if isLanguageSupported "nix" then
               # lua
               ''
-                add_lsp(lspconfig.nixd, {
-                  settings = { nixd = {
-                    formatting = { command = { "nixfmt" }},
-                    diagnostic = {
-                      suppress = {
-                        "sema-extra-with",
+                if vim.fn.executable("nixd") == 1 then
+                  vim.lsp.enable("nixd")
+                  vim.lsp.config("nixd", {
+                    settings = { nixd = {
+                      formatting = { command = { "nixfmt" }},
+                      diagnostic = {
+                        suppress = {
+                          "sema-extra-with",
+                        },
                       },
-                    },
-                  }},
-                })
+                    }},
+                  })
+                else
+                  -- TODO: inform the user that nix language support is degraded
+                  --       but only do so if nix language support is actually required, e.g. when a .nix file is opened
+                end
               ''
             else
               ""

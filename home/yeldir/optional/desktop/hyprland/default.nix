@@ -146,8 +146,7 @@ in
               ];
               transparentApps =
                 if cfg.enableTransparency then
-                  [ ]
-                  ++ lib.optionals yeldirsCfg.desktop.essentials.kitty.enable [
+                  lib.optionals yeldirsCfg.desktop.essentials.kitty.enable [
                     "class:^(kitty)$"
                   ]
                 else
@@ -300,7 +299,7 @@ in
                 else
                   "disable"
               }"
-            ) (config.monitors));
+            ) config.monitors);
 
           workspace = map (m: "name:${m.workspace},monitor:${m.name}") (
             lib.filter (m: m.enabled && m.workspace != null) config.monitors

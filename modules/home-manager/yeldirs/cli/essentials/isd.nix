@@ -6,8 +6,8 @@
   ...
 }:
 let
-  essentials = config.yeldirs.cli.essentials;
-  platform = config.yeldirs.system.platform;
+  inherit (config.yeldirs.cli) essentials;
+  inherit (config.yeldirs.system) platform;
 in
 {
   config = lib.mkIf (essentials.enable && platform == "linux") {

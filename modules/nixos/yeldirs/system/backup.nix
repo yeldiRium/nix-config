@@ -4,9 +4,8 @@
   ...
 }:
 let
+  inherit (config.networking) hostName;
   cfg = config.yeldirs.system.backup;
-
-  hostName = config.networking.hostName;
 in
 {
   options = {
@@ -31,7 +30,7 @@ in
   config = lib.mkIf cfg.enable {
     assertions = [
       {
-        assertion = config.nixpkgs.hostPlatform.isLinux == true;
+        assertion = config.nixpkgs.hostPlatform.isLinux;
         message = "Backups are only available on linux";
       }
       {
@@ -44,28 +43,30 @@ in
       }
     ];
 
-    environment.shellAliases = {
-      "backup-create" = "sudo borgmatic create --verbosity 1 --list --stats";
-    };
-
     services.borgmatic = {
       enable = true;
     };
 
-    environment.etc = {
-      "borgmatic.d/${hostName}.yaml" = {
-        text = ''
-          repositories:
-          - label: ${hostName}
-            path: ssh://yeldir@backup/mnt/raid/borg/${hostName}
-          patterns:
-          ${cfg.patterns}
-        '';
+    environment = {
+      shellAliases = {
+        "backup-create" = "sudo borgmatic create --verbosity 1 --list --stats";
       };
-    };
 
-    environment.sessionVariables = {
-      BORG_PASSCOMMAND = "cat /run/secrets/borg-encryption";
+      etc = {
+        "borgmatic.d/${hostName}.yaml" = {
+          text = ''
+            repositories:
+            - label: ${hostName}
+              path: ssh://yeldir@backup/mnt/raid/borg/${hostName}
+            patterns:
+            ${cfg.patterns}
+          '';
+        };
+      };
+
+      sessionVariables = {
+        BORG_PASSCOMMAND = "cat /run/secrets/borg-encryption";
+      };
     };
 
     programs.ssh.extraConfig = ''

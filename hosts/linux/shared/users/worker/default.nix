@@ -32,7 +32,7 @@ in
     ];
   };
 
-  home-manager.users.worker = (
-    import ../../../../../home/worker { hostName = config.networking.hostName; }
-  );
+  home-manager.users.worker = import ../../../../../home/worker {
+    inherit (config.networking) hostName;
+  };
 }

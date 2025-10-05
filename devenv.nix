@@ -19,23 +19,38 @@
     "app:lint-fix".exec = "nix fmt";
   };
 
-  git-hooks.hooks = {
-    check-merge-conflicts.enable = true;
-    check-shebang-scripts-are-executable.enable = true;
-    deadnix = {
-      enable = true;
-      excludes = [ "hardware-configuration\.nix$" ];
+  git-hooks.hooks =
+    let
+      nixIgnores = [
+        "hardware-configuration.nix"
+
+        # Contains pipe operators, which statix does not support.
+        # Remove this once https://github.com/oppiliappan/statix/issues/139 is resolved.
+        "lib/y/workers.nix"
+      ];
+    in
+    {
+      check-merge-conflicts.enable = true;
+      check-shebang-scripts-are-executable.enable = true;
+      deadnix = {
+        enable = true;
+        excludes = nixIgnores;
+      };
+      end-of-file-fixer.enable = true;
+      gitleaks = {
+        enable = true;
+        name = "Gitleaks";
+        entry = "${lib.getExe pkgs.gitleaks} git --pre-commit --redact --staged --verbose";
+        pass_filenames = false;
+      };
+      nixfmt-rfc-style.enable = true;
+      pre-commit-hook-ensure-sops.enable = true;
+      shellcheck.enable = true;
+      statix = {
+        enable = true;
+        excludes = nixIgnores;
+        settings.ignore = nixIgnores;
+      };
+      trim-trailing-whitespace.enable = true;
     };
-    end-of-file-fixer.enable = true;
-    gitleaks = {
-      enable = true;
-      name = "Gitleaks";
-      entry = "${lib.getExe pkgs.gitleaks} git --pre-commit --redact --staged --verbose";
-      pass_filenames = false;
-    };
-    nixfmt-rfc-style.enable = true;
-    pre-commit-hook-ensure-sops.enable = true;
-    shellcheck.enable = true;
-    trim-trailing-whitespace.enable = true;
-  };
 }

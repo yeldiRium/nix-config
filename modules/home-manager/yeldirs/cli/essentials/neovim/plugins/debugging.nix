@@ -5,8 +5,8 @@
   ...
 }:
 let
+  inherit (config.yeldirs.cli.essentials.neovim) supportedLanguages;
   cfg = config.yeldirs.cli.essentials.neovim.debugging;
-  supportedLanguages = config.yeldirs.cli.essentials.neovim.supportedLanguages;
 
   isLanguageSupported = language: lib.elem language supportedLanguages;
   forLanguage = language: list: lib.optionals (isLanguageSupported language) list;

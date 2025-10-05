@@ -49,9 +49,9 @@ in
   accounts.calendar.accounts =
     let
       makeNextcloudCalendar = calendar: {
-        primary = calendar.primary;
+        inherit (calendar) primary;
         remote = {
-          type = calendar.type;
+          inherit (calendar) type;
           userName = getCalendarUsername calendar;
           url = getCalendarUrl calendar;
         };
@@ -85,7 +85,7 @@ in
           "calendar.registry.${calendarAccountSafeName}.suppressAlarms" = calendar.suppressAlarms;
         };
     in
-    lib.attrsets.mergeAttrsList (map (calendar: makeThunderbirdCalendar calendar) calendars)
+    lib.attrsets.mergeAttrsList (map makeThunderbirdCalendar calendars)
     // {
       "calendar.list.sortOrder" = lib.fold (cal: acc: cal.name + " " + acc) "" calendars;
 

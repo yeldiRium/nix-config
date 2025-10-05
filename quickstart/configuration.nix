@@ -8,9 +8,6 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -29,22 +26,30 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    btrfs subvolume create /btrfs_tmp/root
-    umount /btrfs_tmp
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    initrd.postDeviceCommands = lib.mkAfter ''
+      btrfs subvolume create /btrfs_tmp/root
+      umount /btrfs_tmp
 
-    mkdir /btrfs_tmp
-    mount /dev/root_vg/root /btrfs_tmp
-    if [[ -e /btrfs_tmp/root ]]; then
-      rm -rf /btrfs_tmp/root
-      btrfs subvolume delete /btrfs_tmp/root
-    fi
+      mkdir /btrfs_tmp
+      mount /dev/root_vg/root /btrfs_tmp
+      if [[ -e /btrfs_tmp/root ]]; then
+        rm -rf /btrfs_tmp/root
+        btrfs subvolume delete /btrfs_tmp/root
+      fi
 
-    btrfs subvolume create /btrfs_tmp/root
-    umount /btrfs_tmp
-  '';
+      btrfs subvolume create /btrfs_tmp/root
+      umount /btrfs_tmp
+    '';
+  };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 }

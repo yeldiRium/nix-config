@@ -5,7 +5,7 @@
   ...
 }:
 let
-  essentials = config.yeldirs.cli.essentials;
+  inherit (config.yeldirs.cli) essentials;
   cfg = config.yeldirs.cli.essentials.git;
 in
 {
@@ -32,7 +32,7 @@ in
   config = lib.mkIf essentials.enable {
     assertions = [
       {
-        assertion = cfg.signCommits == false || cfg.signingKey != "";
+        assertion = !cfg.signCommits || cfg.signingKey != "";
         message = "If commit signing is enabled, a signing key fingerprint must be set.";
       }
     ];
