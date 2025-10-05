@@ -1,5 +1,6 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash -p jq httpie
+# shellcheck disable=all # I didn't write this
 
 image="$(echo "$1" | rev | cut -d '/' -f1 | rev | cut -d '.' -f1)"
 clientid="0c2b2b57cdbe5d8"

@@ -1,4 +1,5 @@
 #!/usr/bin/env -S nix shell nixpkgs#httpie nixpkgs#jq --command bash
+# shellcheck disable=all # I didn't write this
 
 function fetch_image() {
     jq -n \

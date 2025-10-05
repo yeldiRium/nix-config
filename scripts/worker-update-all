@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2317 # To remove the warning in argbash generated code
 
 # ARG_HELP([Update all workers.])
 # ARG_USE_ENV([FLAKE],[],[Absolute path to the nix-config flake directory.])

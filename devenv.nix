@@ -12,4 +12,8 @@
     "app:build".exec = "./scripts/build";
     "app:lint-fix".exec = "nix fmt";
   };
+
+  git-hooks.hooks = {
+    shellcheck.enable = true;
+  };
 }
