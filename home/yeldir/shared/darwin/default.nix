@@ -12,6 +12,11 @@
       platform = "darwin";
 
       keyboardLayout = "de";
+      sops = {
+        enable = true;
+        sopsFile = ../../secrets.yaml;
+        keyFile = "/Users/yeldir/querbeet/keys.txt";
+      };
     };
   };
 }
