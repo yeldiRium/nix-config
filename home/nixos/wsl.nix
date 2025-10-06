@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -20,6 +21,12 @@
 
       keyboardLayout = "de";
       keyboardVariant = "";
+
+      sops = {
+        enable = true;
+        sopsFile = ./secrets.yaml;
+        keyFile = "${config.home.homeDirectory}/keys.txt";
+      };
     };
 
     cli = {
