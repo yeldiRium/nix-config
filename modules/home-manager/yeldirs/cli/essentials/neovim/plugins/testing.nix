@@ -23,10 +23,7 @@ in
         nvim-nio
         plenary-nvim
         {
-          # Upgrade to pkgs.unstable.vimPlugins.neotest once they have a working
-          # release again
-          # https://github.com/nvim-neotest/neotest/issues/530
-          plugin = pkgs.vimPlugins.neotest;
+          plugin = neotest;
           type = "lua";
           config =
             # lua
@@ -65,10 +62,10 @@ in
         }
       ]
       ++ (forLanguage "go" [
-        pkgs.vimPlugins.neotest-golang
+        neotest-golang
       ])
       ++ (forLanguage "rust" [
-        pkgs.vimPlugins.neotest-rust
+        neotest-rust
       ]);
   };
 }

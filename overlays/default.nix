@@ -26,7 +26,7 @@ in
     };
   };
 
-  zz-modifications = _: prev: {
+  zz01-modifications = _: prev: {
     unstable = lib.updateManyAttrsByPath [
       {
         path = [
@@ -36,5 +36,16 @@ in
         update = old: addPatches old [ ./hy3-0.43.0-disable-selection-hook.patch ];
       }
     ] prev.unstable;
+  };
+  # Remove this once neotest has a working version again.
+  # https://github.com/nvim-neotest/neotest/issues/530
+  zz02-modifications = _: prev: {
+    unstable = prev.unstable // {
+      luaPackages = prev.unstable.luaPackages // {
+        neotest = prev.unstable.luaPackages.neotest.override {
+          doCheck = false;
+        };
+      };
+    };
   };
 }
