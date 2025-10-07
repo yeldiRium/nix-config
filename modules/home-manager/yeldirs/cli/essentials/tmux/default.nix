@@ -18,6 +18,9 @@ let
   ]
   ++ (lib.optionals config.yeldirs.workerSupport [
     "worker-(?<match>[0-9a-f]{5})"
+  ])
+  ++ (lib.optionals config.yeldirs.cli.ops.aws.enable [
+    "\\W(?<match>arn:[^\\s\"]*)"
   ]);
 in
 {
