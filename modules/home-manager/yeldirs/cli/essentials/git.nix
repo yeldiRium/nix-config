@@ -26,6 +26,11 @@ in
         description = "Entries for the global .gitignore file";
         default = [ ];
       };
+      enableDelta = lib.mkOption {
+        type = lib.types.bool;
+        description = "delta diff tool";
+        default = true;
+      };
     };
   };
 
@@ -51,7 +56,21 @@ in
           user.signing.key = cfg.signingKey;
 
           rerere.enabled = true;
-        };
+        }
+        // (lib.optionalAttrs cfg.enableDelta {
+          core.pager = "${lib.getExe pkgs.delta}";
+          pager.range-diff = "${lib.getExe pkgs.delta}";
+          interactive.diffFilter = "${lib.getExe pkgs.delta} --color-only";
+          merge.conflictStyle = "zdiff3";
+
+          delta = {
+            navigate = true;
+            dark = true;
+            line-numbers = true;
+            side-by-side = true;
+            syntax-theme = "Monokai Extended";
+          };
+        });
 
         ignores = [
           ".fuse_hidden*"
@@ -73,11 +92,16 @@ in
         gldog = "git log --decorate --oneline --graph";
       };
 
-      packages = with pkgs; [
-        unstable.git-bug
-        (y.shellScript ./scripts/is-git-bug-initialized)
-        (y.shellScript ./scripts/open-git-file)
-      ];
+      packages =
+        with pkgs;
+        [
+          unstable.git-bug
+          (y.shellScript ./scripts/is-git-bug-initialized)
+          (y.shellScript ./scripts/open-git-file)
+        ]
+        ++ (lib.optionals cfg.enableDelta [
+          delta
+        ]);
       persistence."/persist/${config.home.homeDirectory}" = {
         directories = [
           ".config/git-bug"
