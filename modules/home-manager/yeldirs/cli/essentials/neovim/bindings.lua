@@ -43,24 +43,17 @@ vim.keymap.set("n", "<M-O>", "O<Esc>", { desc = "Insert line above without enter
 -- LSP
 vim.keymap.set("n", "<leader>clr", "<cmd>LspRestart<cr>", { desc = "Restart current LSP" })
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Ask LSP to format the current buffer" })
-vim.keymap.set("n", "<leader>chh", function()
+vim.keymap.set("n", "K", function() -- This overrides a default binding
   vim.lsp.buf.hover({
     border = "rounded",
   })
 end, { desc = "Show short documentation in floating window" })
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Pick code action" })
 vim.keymap.set("i", "<C-Space>", function()
   require("cmp").complete()
 end, { desc = "Trigger completion suggestions request" })
---   refactoring
-vim.keymap.set("n", "<leader>crr", vim.lsp.buf.rename, { desc = "Ask LSP to rename symbol under cursor" })
-
 --   navigation
-vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
-vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
+vim.keymap.set("n", "grD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "Go to definition" })
 --   diagnostics
 vim.keymap.set("n", "<leader>chd", vim.diagnostic.open_float, { desc = "Floating diagnostic" })
 

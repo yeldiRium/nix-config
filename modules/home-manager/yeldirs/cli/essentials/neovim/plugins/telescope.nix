@@ -61,10 +61,10 @@ in
               if neovimCfg.lsp.enable then
                 # lua
                 ''
-                  vim.keymap.set("n", "gd", telescope.lsp_definitions, { desc = "Go to definition" })
-                  vim.keymap.set("n", "gi", telescope.lsp_implementations, { desc = "Go to implementation" })
-                  vim.keymap.set("n", "gr", telescope.lsp_references, { desc = "Show references" })
-                  vim.keymap.set("n", "gt", telescope.lsp_type_definitions, { desc = "Go to type definition" })
+                  vim.keymap.set("n", "grd", telescope.lsp_definitions, { desc = "Go to definition" })
+                  vim.keymap.set("n", "gri", telescope.lsp_implementations, { desc = "Go to implementation" })
+                  vim.keymap.set("n", "grr", telescope.lsp_references, { desc = "Show references" })
+                  vim.keymap.set("n", "grt", telescope.lsp_type_definitions, { desc = "Go to type definition" })
                 ''
               else
                 ""
