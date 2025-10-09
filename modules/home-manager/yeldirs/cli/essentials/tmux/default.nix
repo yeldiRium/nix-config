@@ -73,6 +73,15 @@ in
                 bind-key -T prefix '"' split-window -v -c "#{pane_current_path}"
                 bind-key -T prefix % split-window -h -c "#{pane_current_path}"
 
+                bind-key -T prefix S-Up copy-mode\; send-keys -X scroll-up
+                bind-key -T prefix S-Down copy-mode\; send-keys -X scroll-down
+                bind-key -T copy-mode-vi S-Up send-keys -X scroll-up
+                bind-key -T copy-mode-vi S-Down send-keys -X scroll-down
+                bind-key -T prefix M-Up copy-mode\; send-keys -X halfpage-up
+                bind-key -T prefix M-Down copy-mode\; send-keys -X halfpage-down
+                bind-key -T copy-mode-vi M-Up send-keys -X halfpage-up
+                bind-key -T copy-mode-vi M-Down send-keys -X halfpage-down
+
                 # =============================================
                 # ===   Nesting local and remote sessions   ===
                 # =============================================
