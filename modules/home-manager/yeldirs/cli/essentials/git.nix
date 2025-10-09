@@ -88,6 +88,9 @@ in
 
     home = {
       shellAliases = {
+        # commit
+        gcan = "git commit --amend --no-edit";
+
         # fetch
         gfa = "git fetch --all";
 
@@ -95,6 +98,9 @@ in
         gladog = "git log --all --decorate --oneline --graph";
         gldog = "git log --decorate --oneline --graph";
         glmdog = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/origin/HEAD --short) HEAD";
+
+        # push
+        gpf = "git push --force-with-lease";
 
         # switch
         gs = "git switch";
