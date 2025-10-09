@@ -88,8 +88,17 @@ in
 
     home = {
       shellAliases = {
+        # fetch
+        gfa = "git fetch --all";
+
+        # log
         gladog = "git log --all --decorate --oneline --graph";
         gldog = "git log --decorate --oneline --graph";
+        glmdog = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/origin/HEAD --short) HEAD";
+
+        # switch
+        gs = "git switch";
+        gsc = "git switch -c";
       };
 
       packages =
