@@ -88,23 +88,28 @@ in
 
     home = {
       shellAliases = {
+        # add
+        gapa = "git add --patch";
+
         # commit
-        gcan = "git commit --amend --no-edit";
+        gcm = "git commit --verbose --message";
+        "gcn!" = "git commit --verbose --no-edit --amend";
 
         # fetch
-        gfa = "git fetch --all";
+        gfa = "git fetch --all --tags --prune";
 
         # log
-        gladog = "git log --all --decorate --oneline --graph";
-        gldog = "git log --decorate --oneline --graph";
-        glmdog = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/origin/HEAD --short) HEAD";
+        glog = "git log --decorate --oneline --graph";
+        gloga = "git log --decorate --oneline --graph --all";
+        glogm = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/origin/HEAD --short) HEAD";
 
         # push
-        gpf = "git push --force-with-lease";
+        gp = "git push";
+        gpf = "git push --force-with-lease --force-if-includes";
 
         # switch
-        gs = "git switch";
-        gsc = "git switch -c";
+        gsw = "git switch";
+        gswc = "git switch -c";
       };
 
       packages =
