@@ -89,6 +89,7 @@ in
     home = {
       shellAliases = {
         # add
+        ga = "git add";
         gapa = "git add --patch";
 
         # commit
