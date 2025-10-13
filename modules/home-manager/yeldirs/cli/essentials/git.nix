@@ -107,6 +107,10 @@ in
         gp = "git push";
         gpf = "git push --force-with-lease --force-if-includes";
 
+        # status
+        gst = "git status";
+        gss = "git status --short --branch";
+
         # switch
         gsw = "git switch";
         gswc = "git switch -c";
