@@ -105,6 +105,10 @@ in
         gloga = "git log --decorate --oneline --graph --all";
         glogm = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/origin/HEAD --short) HEAD";
 
+        # merge
+        gm = "git merge";
+        "gm!" = "git merge --no-commit";
+
         # push
         gp = "git push";
         gpf = "git push --force-with-lease --force-if-includes";
