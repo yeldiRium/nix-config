@@ -87,41 +87,55 @@ in
     };
 
     home = {
-      shellAliases = {
-        # add
-        ga = "git add";
-        gapa = "git add --patch";
+      # ToDo: Write script that finds remote name.
+      #       If only one remote exists, use that.
+      #       Otherwise if one of the remotes is called "origin", use that.
+      #       Otherwise fail and print an error.
+      # ToDo: Write script that finds the default branch.
+      #       If a "main" exists, use that.
+      #       Otherwise if a "master" exists, use that.
+      #       Otherwise fail and print an error.
+      # ToDo: Add script that does `git switch --detach && reset --soft <default>`
+      shellAliases =
+        let
+          upstreamName = "origin";
+        in
+        {
+          # add
+          ga = "git add";
+          gapa = "git add --patch";
 
-        # commit
-        gcm = "git commit --verbose --message";
-        "gc!" = "git commit --verbose --amend";
-        "gcn!" = "git commit --verbose --no-edit --amend";
+          # commit
+          gcm = "git commit --verbose --message";
+          "gc!" = "git commit --verbose --amend";
+          "gcn!" = "git commit --verbose --no-edit --amend";
 
-        # fetch
-        gfa = "git fetch --all --tags --prune";
+          # fetch
+          gfa = "git fetch --all --tags --prune";
 
-        # log
-        glog = "git log --decorate --oneline --graph";
-        gloga = "git log --decorate --oneline --graph --all";
-        glogm = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/origin/HEAD --short) HEAD";
+          # log
+          glog = "git log --decorate --oneline --graph";
+          gloga = "git log --decorate --oneline --graph --all";
+          # ToDo: Use script that finds remote name here.
+          glogm = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/${upstreamName}/HEAD --short) HEAD";
 
-        # merge
-        gm = "git merge";
-        "gm!" = "git merge --no-commit";
+          # merge
+          gm = "git merge";
+          "gm!" = "git merge --no-commit";
 
-        # push
-        gp = "git push";
-        gpf = "git push --force-with-lease --force-if-includes";
+          # push
+          gp = "git push";
+          gpf = "git push --force-with-lease --force-if-includes";
 
-        # status
-        gst = "git status";
-        gss = "git status --short --branch";
+          # status
+          gst = "git status";
+          gss = "git status --short --branch";
 
-        # switch
-        gsw = "git switch";
-        gswc = "git switch --create";
-        gswd = "git switch --detach";
-      };
+          # switch
+          gsw = "git switch";
+          gswc = "git switch --create";
+          gswd = "git switch --detach";
+        };
 
       packages =
         with pkgs;
