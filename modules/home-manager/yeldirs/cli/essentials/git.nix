@@ -93,6 +93,7 @@ in
 
         # commit
         gcm = "git commit --verbose --message";
+        "gc!" = "git commit --verbose --amend";
         "gcn!" = "git commit --verbose --no-edit --amend";
 
         # fetch
