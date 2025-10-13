@@ -119,7 +119,8 @@ in
 
         # switch
         gsw = "git switch";
-        gswc = "git switch -c";
+        gswc = "git switch --create";
+        gswd = "git switch --detach";
       };
 
       packages =
