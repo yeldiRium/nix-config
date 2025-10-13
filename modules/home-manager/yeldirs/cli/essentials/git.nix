@@ -121,7 +121,7 @@ in
 
           # merge
           gm = "git merge";
-          "gm!" = "git merge --no-commit";
+          "gm!" = "git merge --no-edit";
 
           # push
           gp = "git push";
