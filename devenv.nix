@@ -41,11 +41,6 @@
       };
 
       check-merge-conflicts.enable = true;
-      check-shebang-scripts-are-executable.enable = true;
-      deadnix = {
-        enable = true;
-        excludes = nixIgnores;
-      };
       end-of-file-fixer.enable = true;
       gitleaks = {
         enable = true;
@@ -53,14 +48,23 @@
         entry = "${lib.getExe pkgs.gitleaks} git --pre-commit --redact --staged --verbose";
         pass_filenames = false;
       };
-      nixfmt-rfc-style.enable = true;
       pre-commit-hook-ensure-sops.enable = true;
-      shellcheck.enable = true;
+      trim-trailing-whitespace.enable = true;
+
+      # Nix
+      deadnix = {
+        enable = true;
+        excludes = nixIgnores;
+      };
+      nixfmt-rfc-style.enable = true;
       statix = {
         enable = true;
         excludes = nixIgnores;
         settings.ignore = nixIgnores;
       };
-      trim-trailing-whitespace.enable = true;
+
+      # Bash
+      check-shebang-scripts-are-executable.enable = true;
+      shellcheck.enable = true;
     };
 }
