@@ -158,6 +158,8 @@ in
           unstable.git-bug
           (y.shellScript ./scripts/is-git-bug-initialized)
           (y.shellScript ./scripts/open-git-file)
+
+          y.git-find-remote
         ]
         ++ (lib.optionals cfg.enableDelta [
           delta

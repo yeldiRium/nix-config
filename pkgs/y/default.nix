@@ -1,6 +1,7 @@
 { pkgs }:
 {
   aws-ssm-tools = pkgs.callPackage ./aws-ssm-tools.nix { };
+  git-find-remote = pkgs.unstable.callPackage ./git-find-remote { };
   golangci-lint-langserver = pkgs.callPackage ./golangci-lint-langserver.nix { };
   konfig = pkgs.callPackage ./konfig.nix { };
   hledger-language-server = pkgs.callPackage ./hledger-language-server.nix { };
