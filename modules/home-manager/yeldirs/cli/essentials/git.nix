@@ -110,6 +110,10 @@ in
           "gc!" = "git commit --verbose --amend";
           "gcn!" = "git commit --verbose --no-edit --amend";
 
+          # diff
+          gd = "git diff";
+          gdc = "git diff --cached";
+
           # fetch
           gfa = "git fetch --all --tags --prune";
 
