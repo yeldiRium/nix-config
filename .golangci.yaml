@@ -1,0 +1,41 @@
+version: "2"
+
+linters:
+  enable:
+    - embeddedstructfieldcheck
+    - errcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - gocheckcompilerdirectives
+    - gocritic
+    - godot
+    - gomodguard
+    - govet
+    - grouper
+    - iface
+    - ineffassign
+    - importas
+    - intrange
+    - ireturn
+    - nakedret
+    - nlreturn
+    - nolintlint
+    - paralleltest
+    - prealloc
+    - predeclared
+    - recvcheck
+    - sloglint
+    - staticcheck
+    - tagalign
+    - testableexamples
+    - testifylint
+    - unconvert
+    - usestdlibvars
+    - whitespace
+
+formatters:
+  # Enable specific formatter.
+  # Default: [] (uses standard Go formatting)
+  enable:
+    - gofmt

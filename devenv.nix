@@ -8,11 +8,22 @@
   packages = with pkgs; [
     git
     git-bug
+
+    # Go
+    golangci-lint
+    gotestsum
   ];
 
-  languages.nix = {
-    enable = true;
-    lsp.package = pkgs.nixd;
+  languages = {
+    go = {
+      enable = true;
+      enableHardeningWorkaround = true;
+    };
+
+    nix = {
+      enable = true;
+      lsp.package = pkgs.nixd;
+    };
   };
 
   tasks = {
@@ -76,6 +87,23 @@
         enable = true;
         excludes = nixIgnores;
         settings.ignore = nixIgnores;
+      };
+
+      # Go
+      gofmt.enable = true;
+      golangci-lint-monorepo = {
+        enable = true;
+        entry = # bash
+          ''
+            for dir in $(echo "$@" | xargs -n1 dirname | sort -u); do
+            	cd "''${dir}"
+            	${lib.getExe pkgs.golangci-lint} run
+            	cd -
+            done
+          '';
+        language = "system";
+        files = "\\.go$";
+        require_serial = true;
       };
     };
 }
