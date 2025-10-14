@@ -127,6 +127,9 @@ in
           gm = "git merge";
           "gm!" = "git merge --no-edit";
 
+          # pull
+          gpl = "git pull";
+
           # push
           gp = "git push";
           gpf = "git push --force-with-lease --force-if-includes";
