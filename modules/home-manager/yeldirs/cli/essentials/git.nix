@@ -87,16 +87,6 @@ in
     };
 
     home = {
-      # ToDo: Write script that finds remote name.
-      #       If only one remote exists, use that.
-      #       Otherwise if one of the remotes is called "origin", use that.
-      #       Otherwise fail and print an error.
-      # ToDo: Write script that finds the default branch.
-      #       If a "main" exists, use that.
-      #       Otherwise if a "master" exists, use that.
-      #       Otherwise fail and print an error.
-      # ToDo: Add script that does `git switch --detach && reset --soft <default>`.
-      # ToDo: Add alias glogu to see log from head to upstream.
       shellAliases =
         let
           upstreamName = "origin";
@@ -121,7 +111,6 @@ in
           # log
           glog = "git log --decorate --oneline --graph";
           gloga = "git log --decorate --oneline --graph --all";
-          # ToDo: Use script that finds remote name here.
           glogm = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/${upstreamName}/HEAD --short) HEAD";
 
           # merge
