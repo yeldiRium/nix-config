@@ -119,6 +119,7 @@ in
 
           # pull
           gpl = "git pull";
+          gplr = "git pull --rebase";
 
           # push
           gp = "git push";
