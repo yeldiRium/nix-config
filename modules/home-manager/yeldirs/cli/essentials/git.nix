@@ -92,6 +92,9 @@ in
           upstreamName = "origin";
         in
         {
+          # conveniencp
+          grt = ''cd "$(git rev-parse --show-toplevel || echo .)"'';
+
           # add
           ga = "git add";
           gapa = "git add --patch";
