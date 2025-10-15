@@ -124,6 +124,12 @@ in
           gp = "git push";
           gpf = "git push --force-with-lease --force-if-includes";
 
+          # stash
+          gsta = "git stash apply";
+          gstl = "git stash list";
+          gstp = "git stash pop";
+          gsts = "git stash push --include-untracked";
+
           # status
           gst = "git status";
           gss = "git status --short --branch";
