@@ -28,7 +28,7 @@ in
       ])
       ++ (forLanguage "go" [
         gopls
-        golangci-lint-langserver
+        y.golangci-lint-langserver
       ])
       ++ (forLanguage "javascript" [
         nodePackages.typescript-language-server
