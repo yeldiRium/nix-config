@@ -95,7 +95,8 @@ in
       #       If a "main" exists, use that.
       #       Otherwise if a "master" exists, use that.
       #       Otherwise fail and print an error.
-      # ToDo: Add script that does `git switch --detach && reset --soft <default>`
+      # ToDo: Add script that does `git switch --detach && reset --soft <default>`.
+      # ToDo: Add alias glogu to see log from head to upstream.
       shellAliases =
         let
           upstreamName = "origin";
