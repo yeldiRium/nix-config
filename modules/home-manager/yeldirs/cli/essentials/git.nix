@@ -125,6 +125,12 @@ in
           gp = "git push";
           gpf = "git push --force-with-lease --force-if-includes";
 
+          # rebase
+          grb = "git rebase --interactive";
+          "grb!" = "git rebase";
+          grbc = "git rebase --continue";
+          grba = "git rebase --abort";
+
           # stash
           gsta = "git stash apply";
           gstl = "git stash list";
