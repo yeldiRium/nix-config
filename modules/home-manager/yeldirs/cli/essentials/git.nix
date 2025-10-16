@@ -139,7 +139,7 @@ in
           gstl = "git stash list";
           gstp = "git stash pop";
           gsts = "git stash push";
-          gstsu = "git stash push --include-untracked";
+          gstsu = "git stash push --all --include-untracked";
           gstsp = "git stash push --patch";
 
           # status
