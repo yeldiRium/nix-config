@@ -9,7 +9,6 @@
     argbash
     git
     git-bug
-    silver-searcher
   ];
 
   languages.nix = {
@@ -18,7 +17,17 @@
   };
 
   tasks = {
-    "app:build".exec = "./scripts/build";
+    "app:build".exec = # bash
+      ''
+        ${lib.getExe pkgs.silver-searcher} \
+          --files-with-matches \
+          --ignore 'devenv.nix' \
+          --literal '# [ <-- needed because of Argbash' |
+        while read -r template; do
+        	echo "building ''${template}..."
+        	argbash --in-place "''${template}"
+        done
+      '';
     "app:lint-fix".exec = "nix fmt";
   };
 
