@@ -42,7 +42,7 @@ vim.keymap.set("n", "<M-O>", "O<Esc>", { desc = "Insert line above without enter
 -- Programming
 -- LSP
 vim.keymap.set("n", "<leader>clr", "<cmd>LspRestart<cr>", { desc = "Restart current LSP" })
-vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Ask LSP to format the current buffer" })
+vim.keymap.set("n", "grf", vim.lsp.buf.format, { desc = "Ask LSP to format the current buffer" })
 vim.keymap.set("n", "K", function() -- This overrides a default binding
   vim.lsp.buf.hover({
     border = "rounded",
