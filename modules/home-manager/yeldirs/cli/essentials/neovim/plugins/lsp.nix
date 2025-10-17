@@ -270,7 +270,6 @@ in
 
       # Completion sources for nvim-cmp
       cmp-nvim-lsp # cmp source to access Neovim's LSP client
-      luasnip # Snippet support
       cmp-path # cmp source for System paths
 
       # Completion engine that uses the client
@@ -294,11 +293,6 @@ in
                   end,
                 }),
               },
-              snippet = {
-                expand = function(args)
-                  require("luasnip").lsp_expand(args.body)
-                end,
-              },
               mapping = cmp.mapping.preset.insert({
                 ["<C-Up>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-Down>"] = cmp.mapping.scroll_docs(4),
@@ -309,7 +303,6 @@ in
               sources = {
                 { name = "otter" },
                 { name = "nvim_lsp" },
-                { name = "luasnip" },
                 { name = "path" },
               },
             })
