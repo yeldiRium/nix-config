@@ -60,8 +60,6 @@ in
       ]);
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
-      otter-nvim # LSP for embedded languages
-
       # LSP client configuration
       {
         plugin = nvim-lspconfig;
@@ -271,6 +269,7 @@ in
       # Completion sources for nvim-cmp
       cmp-nvim-lsp # cmp source to access Neovim's LSP client
       cmp-path # cmp source for System paths
+      otter-nvim # LSP for embedded languages
 
       # Completion engine that uses the client
       lspkind-nvim
