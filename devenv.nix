@@ -17,7 +17,8 @@
   };
 
   tasks = {
-    "app:build".exec = # bash
+    # Bash
+    "app:build:bash".exec = # bash
       ''
         ${lib.getExe pkgs.silver-searcher} \
           --files-with-matches \
@@ -28,7 +29,9 @@
         	argbash --in-place "''${template}"
         done
       '';
-    "app:lint-fix".exec = "nix fmt";
+
+    # Nix
+    "app:lint-fix:nix".exec = "nix fmt";
   };
 
   git-hooks.hooks =
@@ -42,9 +45,9 @@
       ];
     in
     {
-      build = {
+      build-bash = {
         enable = true;
-        entry = config.tasks."app:build".exec;
+        entry = config.tasks."app:build:bash".exec;
         types = [ "bash" ];
         pass_filenames = false;
       };
@@ -60,6 +63,10 @@
       pre-commit-hook-ensure-sops.enable = true;
       trim-trailing-whitespace.enable = true;
 
+      # Bash
+      check-shebang-scripts-are-executable.enable = true;
+      shellcheck.enable = true;
+
       # Nix
       deadnix = {
         enable = true;
@@ -71,9 +78,5 @@
         excludes = nixIgnores;
         settings.ignore = nixIgnores;
       };
-
-      # Bash
-      check-shebang-scripts-are-executable.enable = true;
-      shellcheck.enable = true;
     };
 }
