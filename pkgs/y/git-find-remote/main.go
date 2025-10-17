@@ -35,12 +35,12 @@ func cancelOnSignal(cancel context.CancelFunc) {
 // FindRemote decides, which in a slice of remotes should be used as the default.
 // It prefers 'origin' as the most widely used default name.
 func FindRemote(remotes []string) (string, error) {
-	if slices.Contains(remotes, "origin") {
-		return "origin", nil
-	}
-
 	if len(remotes) == 1 {
 		return remotes[0], nil
+	}
+
+	if slices.Contains(remotes, "origin") {
+		return "origin", nil
 	}
 
 	if len(remotes) > 1 {
