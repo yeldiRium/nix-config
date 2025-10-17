@@ -30,7 +30,6 @@
       development = {
         claude.enable = true;
         gh.enable = true;
-        pre-commit.enable = true;
         qmk.enable = true;
       };
 

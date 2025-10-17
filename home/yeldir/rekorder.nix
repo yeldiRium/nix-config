@@ -24,10 +24,6 @@
         };
       };
 
-      development = {
-        pre-commit.enable = true;
-      };
-
       media = {
         rss.enable = true;
       };
