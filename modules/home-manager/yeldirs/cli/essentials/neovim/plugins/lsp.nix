@@ -9,7 +9,9 @@ let
   cfg = config.yeldirs.cli.essentials.neovim.lsp;
 
   isLanguageSupported = language: lib.elem language supportedLanguages;
-  forLanguage = language: list: lib.optionals (isLanguageSupported language) list;
+  forLanguagesList = languages: list: lib.optionals (lib.any isLanguageSupported languages) list;
+  forLanguagesString =
+    languages: string: lib.optionalString (lib.any isLanguageSupported languages) string;
 in
 {
   options = {
@@ -19,45 +21,75 @@ in
     # LSP servers
     home.packages =
       with pkgs;
-      (forLanguage "bash" [
-        nodePackages.bash-language-server
-      ])
-      ++ (forLanguage "docker" [
-        docker-compose-language-service
-        dockerfile-language-server-nodejs
-      ])
-      ++ (forLanguage "go" [
-        gopls
-        y.golangci-lint-langserver
-      ])
-      ++ (forLanguage "javascript" [
-        nodePackages.typescript-language-server
-      ])
-      ++ (forLanguage "json" [
-        vscode-langservers-extracted
-      ])
-      ++ (forLanguage "ledger" [
-        y.hledger-language-server
-      ])
-      ++ (forLanguage "lua" [
-        lua-language-server
-      ])
-      ++ (forLanguage "nix" [
-        unstable.nixd
-      ])
-      ++ (forLanguage "rego" [
-        regols
-      ])
-      ++ (forLanguage "rust" [
-        rust-analyzer
-        rustfmt
-      ])
-      ++ (forLanguage "typescript" [
-        nodePackages.typescript-language-server
-      ])
-      ++ (forLanguage "yaml" [
-        yaml-language-server
-      ]);
+      (forLanguagesList
+        [ "bash" ]
+        [
+          nodePackages.bash-language-server
+        ]
+      )
+      ++ (forLanguagesList
+        [ "docker" ]
+        [
+          docker-compose-language-service
+          dockerfile-language-server-nodejs
+        ]
+      )
+      ++ (forLanguagesList
+        [ "go" ]
+        [
+          gopls
+          y.golangci-lint-langserver
+        ]
+      )
+      ++ (forLanguagesList
+        [ "javascript" "typescript" ]
+        [
+          nodePackages.typescript-language-server
+        ]
+      )
+      ++ (forLanguagesList
+        [ "json" ]
+        [
+          vscode-langservers-extracted
+        ]
+      )
+      ++ (forLanguagesList
+        [ "ledger" ]
+        [
+          y.hledger-language-server
+        ]
+      )
+      ++ (forLanguagesList
+        [ "lua" ]
+        [
+          lua-language-server
+        ]
+      )
+      ++ (forLanguagesList
+        [ "nix" ]
+        [
+          unstable.nixd
+        ]
+      )
+      ++ (forLanguagesList
+        [ "rego" ]
+        [
+          regols
+        ]
+      )
+      ++ (forLanguagesList
+        [ "rust" ]
+        [
+          rust-analyzer
+          rustfmt
+        ]
+      )
+      ++ (forLanguagesList
+        [ "yaml" ]
+        [
+          yaml-language-server
+        ]
+      );
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       # LSP client configuration
@@ -67,10 +99,7 @@ in
         config = lib.concatLines [
           # lua
           ''
-            local lspconfig = require("lspconfig")
-            local lspConfigurations = require("lspconfig.configs")
-
-            function add_lsp(server, options)
+            function add_lsp(name, options)
               if not options["capabilities"] then
                 options["capabilities"] = {}
               end
@@ -79,189 +108,124 @@ in
                 require("cmp_nvim_lsp").default_capabilities()
               )
 
-              server.setup(options)
+              vim.lsp.enable(name)
+              vim.lsp.config(name, options)
             end
           ''
-          (
-            if isLanguageSupported "bash" then
-              # lua
-              ''
-                add_lsp(lspconfig.bashls, {})
-              ''
-            else
-              ""
+          (forLanguagesString [ "bash" ] # lua
+            ''
+              add_lsp("bashls", {})
+            ''
           )
-          (
-            if isLanguageSupported "docker" then
-              # lua
-              ''
-                add_lsp(lspconfig.docker_compose_language_service, {})
-                add_lsp(lspconfig.dockerls, {})
-              ''
-            else
-              ""
+          (forLanguagesString [ "docker" ] # lua
+            ''
+              add_lsp("docker_compose_language_service", {})
+              add_lsp("dockerls", {})
+            ''
           )
-          (
-            if isLanguageSupported "go" then
-              # lua
-              ''
-                if vim.fn.executable("go") == 1 then
-                  add_lsp(lspconfig.gopls, {})
-                else
-                  -- TODO: inform the user that go language support is degraded
-                  --       but only do so if go language support is actually required, e.g. when a .go file is opened
-                end
-                if vim.fn.executable("golangci-lint") == 1 then
-                  add_lsp(lspconfig.golangci_lint_ls, {})
-                else
-                  -- TODO: inform the user that go linter support is degraded
-                  --       but only do so if go linter support is actually required, e.g. when a .go file is opened
-                end
-              ''
-            else
-              ""
+          (forLanguagesString [ "go" ] # lua
+            ''
+              if vim.fn.executable("go") == 1 then
+                add_lsp("gopls", {})
+              else
+                -- TODO: inform the user that go language support is degraded
+                --       but only do so if go language support is actually required, e.g. when a .go file is opened
+              end
+              if vim.fn.executable("golangci-lint") == 1 then
+                add_lsp("golangci_lint_ls", {})
+              else
+                -- TODO: inform the user that go linter support is degraded
+                --       but only do so if go linter support is actually required, e.g. when a .go file is opened
+              end
+            ''
           )
-          (
-            if isLanguageSupported "ledger" then
-              # lua
-              ''
-                if not lspConfigurations.hledger_ls then
-                  lspConfigurations.hledger_ls = {
-                    default_config = {
-                      -- production:
-                      -- cmd = { "${lib.getExe pkgs.y.hledger-language-server}" },
-                      -- development:
-                      cmd = { "/home/yeldir/querbeet/workspace/private/projects/hledger-language-server/hledger-language-server" },
-                      filetypes = { "ledger" },
-                      root_dir = require("lspconfig.util").root_pattern(".git", "*.journal"),
-                      settings = {},
+          (forLanguagesString [ "ledger" ] # lua
+            ''
+              add_lsp("hledger_ls", {
+                -- production:
+                -- cmd = { "${lib.getExe pkgs.y.hledger-language-server}" },
+                -- development:
+                cmd = { "/home/yeldir/querbeet/workspace/private/projects/hledger-language-server/hledger-language-server" },
+                filetypes = { "ledger" },
+                root_markers = { ".git" },
+              })
+            ''
+          )
+          (forLanguagesString [ "json" ] # lua
+            ''
+              add_lsp("jsonls", {})
+            ''
+          )
+          (forLanguagesString [ "lua" ] # lua
+            ''
+              add_lsp("lua_ls", {
+                settings = {
+                  Lua = {
+                    workspace = {
+                      library = {
+                        vim.env.VIMRUNTIME,
+                      },
                     },
-                  }
-                end
+                  },
+                },
+              })
+            ''
+          )
+          (forLanguagesString [ "nix" ] # lua
+            ''
+              add_lsp("nixd", {
+                settings = { nixd = {
+                  formatting = { command = { "nixfmt" }},
+                  diagnostic = {
+                    suppress = {
+                      "sema-extra-with",
+                    },
+                  },
+                }},
+              })
+            ''
+          )
+          (forLanguagesString [ "javascript" "typescript" ] # lua
+            ''
+              add_lsp("ts_ls", {})
+            ''
+          )
+          (forLanguagesString [ "rego" ] # lua
+            ''
+              add_lsp("regols", {})
+            ''
+          )
+          (forLanguagesString [ "rust" ] # lua
+            ''
+              local rustConfig = {}
+              if vim.fn.executable("cargo-clippy") == 1 then
+                rustConfig = {
+                  settings = {
+                    ['rust-analyzer'] = {
+                      check = {
+                        command = "clippy",
+                      },
+                    },
+                  },
+                }
+              end
 
-                add_lsp(lspconfig.hledger_ls, {})
-              ''
-            else
-              ""
+              add_lsp("rust_analyzer", rustConfig)
+            ''
           )
-          (
-            if isLanguageSupported "json" then
-              # lua
-              ''
-                add_lsp(lspconfig.jsonls, {
-                  capabilities = {
-                    textDocument = {
-                      completion = {
-                        completionItem = {
-                          snippetSupport = true,
-                        },
-                      },
-                    },
-                  },
-                })
-              ''
-            else
-              ""
-          )
-          (
-            if isLanguageSupported "lua" then
-              # lua
-              ''
-                add_lsp(lspconfig.lua_ls, {
-                  settings = {
-                    Lua = {
-                      workspace = {
-                        library = {
-                          vim.env.VIMRUNTIME,
-                        },
-                      },
-                    },
-                  },
-                })
-              ''
-            else
-              ""
-          )
-          (
-            if isLanguageSupported "nix" then
-              # lua
-              ''
-                if vim.fn.executable("nixd") == 1 then
-                  vim.lsp.enable("nixd")
-                  vim.lsp.config("nixd", {
-                    settings = { nixd = {
-                      formatting = { command = { "nixfmt" }},
-                      diagnostic = {
-                        suppress = {
-                          "sema-extra-with",
-                        },
-                      },
-                    }},
-                  })
-                else
-                  -- TODO: inform the user that nix language support is degraded
-                  --       but only do so if nix language support is actually required, e.g. when a .nix file is opened
-                end
-              ''
-            else
-              ""
-          )
-          (
-            if isLanguageSupported "javascript" || isLanguageSupported "typescript" then
-              # lua
-              ''
-                add_lsp(lspconfig.ts_ls, {})
-              ''
-            else
-              ""
-          )
-          (
-            if isLanguageSupported "rego" then
-              # lua
-              ''
-                add_lsp(lspconfig.regols, {})
-              ''
-            else
-              ""
-          )
-          (
-            if isLanguageSupported "rust" then
-              # lua
-              ''
-                local rustConfig = {}
-                if vim.fn.executable("cargo-clippy") == 1 then
-                  rustConfig = {
-                    settings = {
-                      ['rust-analyzer'] = {
-                        check = {
-                          command = "clippy",
-                        },
-                      },
-                    },
-                  }
-                end
-                add_lsp(lspconfig.rust_analyzer, rustConfig)
-              ''
-            else
-              ""
-          )
-          (
-            if isLanguageSupported "yaml" then
-              # lua
-              ''
-                add_lsp(lspconfig.yamlls, {
-                  settings = {
-                    yaml = {
-                      schemas = {
-                        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                        ["https://taskfile.dev/schema.json"] = "/Taskfile.yaml",
-                      }
+          (forLanguagesString [ "yaml" ] # lua
+            ''
+              add_lsp("yamlls", {
+                settings = {
+                  yaml = {
+                    schemas = {
+                      ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                      ["https://taskfile.dev/schema.json"] = "/Taskfile.yaml",
                     }
-                  },
-                })
-              ''
-            else
-              ""
+                  }
+                },
+              })
+            ''
           )
         ];
       }
