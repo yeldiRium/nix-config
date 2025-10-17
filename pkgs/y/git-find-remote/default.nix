@@ -19,4 +19,8 @@ buildGoModule {
     '';
 
   vendorHash = "sha256-9dguTsRa0PvgydQzPWRIcjtJdgFbsXnWkIiAI8LKSuM=";
+
+  meta = {
+    mainProgram = "git-find-remote";
+  };
 }
