@@ -28,6 +28,7 @@
             supportedLanguages = [
               "bash"
               "docker"
+              "go"
               "json"
               "ledger"
               "lua"

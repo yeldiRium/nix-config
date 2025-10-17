@@ -27,18 +27,6 @@
     };
 
     cli = {
-      essentials = {
-        neovim = {
-          supportedLanguages = [
-            "go"
-            "javascript"
-            "poefilter"
-            "rust"
-            "typescript"
-          ];
-        };
-      };
-
       development = {
         claude.enable = true;
         gh.enable = true;
