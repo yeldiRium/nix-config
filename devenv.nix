@@ -6,7 +6,6 @@
 }:
 {
   packages = with pkgs; [
-    argbash
     git
     git-bug
   ];
@@ -26,7 +25,7 @@
           --literal '# [ <-- needed because of Argbash' |
         while read -r template; do
         	echo "building ''${template}..."
-        	argbash --in-place "''${template}"
+        	${lib.getExe' pkgs.argbash "argbash"} --in-place "''${template}"
         done
       '';
 
