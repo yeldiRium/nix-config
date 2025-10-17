@@ -93,14 +93,23 @@
       gofmt.enable = true;
       golangci-lint-monorepo = {
         enable = true;
-        entry = # bash
-          ''
-            for dir in $(echo "$@" | xargs -n1 dirname | sort -u); do
-            	cd "''${dir}"
-            	${lib.getExe pkgs.golangci-lint} run
-            	cd -
-            done
-          '';
+        entry =
+          (pkgs.writeShellScript "golangci-lint-monorepo" # bash
+            ''
+              errors=0
+              for dir in $(echo "$@" | xargs -n1 dirname | sort -u); do
+                cd "''${dir}"
+                if ! $(${lib.getExe pkgs.golangci-lint} run); then
+                  ((errors += 1))
+                fi
+                cd -
+              done
+
+              if [[ $errors -gt 0 ]]; then
+                exit 1
+              fi
+            ''
+          ).outPath;
         language = "system";
         files = "\\.go$";
         require_serial = true;
