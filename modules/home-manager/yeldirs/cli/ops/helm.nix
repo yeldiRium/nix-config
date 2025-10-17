@@ -24,7 +24,11 @@ in
     ];
 
     home.packages = with pkgs; [
-      kubernetes-helm
+      (wrapHelm kubernetes-helm {
+        plugins = [
+          kubernetes-helmPlugins.helm-diff
+        ];
+      })
     ];
   };
 }
