@@ -39,9 +39,6 @@
         	${lib.getExe' pkgs.argbash "argbash"} --in-place "''${template}"
         done
       '';
-
-    # Nix
-    "app:lint-fix:nix".exec = "nix fmt";
   };
 
   git-hooks.hooks =
