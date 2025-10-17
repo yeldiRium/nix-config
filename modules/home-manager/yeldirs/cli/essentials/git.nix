@@ -87,70 +87,66 @@ in
     };
 
     home = {
-      shellAliases =
-        let
-          upstreamName = "origin";
-        in
-        {
-          # conveniencp
-          grt = ''cd "$(git rev-parse --show-toplevel || echo .)"'';
+      shellAliases = {
+        # convenience
+        grt = ''cd "$(git rev-parse --show-toplevel || echo .)"'';
 
-          # add
-          ga = "git add";
-          gapa = "git add --patch";
+        # add
+        ga = "git add";
+        gapa = "git add --patch";
 
-          # commit
-          gcm = "git commit --verbose --message";
-          "gc!" = "git commit --verbose --amend";
-          "gcn!" = "git commit --verbose --no-edit --amend";
+        # commit
+        gcm = "git commit --verbose --message";
+        "gc!" = "git commit --verbose --amend";
+        "gcn!" = "git commit --verbose --no-edit --amend";
 
-          # diff
-          gd = "git diff";
-          gdc = "git diff --cached";
+        # diff
+        gd = "git diff";
+        gdc = "git diff --cached";
 
-          # fetch
-          gfa = "git fetch --all --tags --prune";
+        # fetch
+        gfa = "git fetch --all --tags --prune";
 
-          # log
-          glog = "git log --decorate --oneline --graph";
-          gloga = "git log --decorate --oneline --graph --all";
-          glogm = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/${upstreamName}/HEAD --short) HEAD";
+        # log
+        glog = "git log --decorate --oneline --graph";
+        gloga = "git log --decorate --oneline --graph --all";
+        glogm = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/$(${lib.getExe pkgs.y.git-find-remote})/HEAD --short) HEAD";
 
-          # merge
-          gm = "git merge";
-          "gm!" = "git merge --no-edit";
+        # merge
+        gm = "git merge";
+        "gm!" = "git merge --no-edit";
 
-          # pull
-          gpl = "git pull";
-          gplr = "git pull --rebase";
+        # pull
+        gpl = "git pull";
+        gplr = "git pull --rebase";
 
-          # push
-          gp = "git push";
-          gpf = "git push --force-with-lease --force-if-includes";
+        # push
+        gp = "git push";
+        gpf = "git push --force-with-lease --force-if-includes";
 
-          # rebase
-          grb = "git rebase --interactive";
-          "grb!" = "git rebase";
-          grbc = "git rebase --continue";
-          grba = "git rebase --abort";
+        # rebase
+        grb = "git rebase --interactive";
+        "grb!" = "git rebase";
+        grbc = "git rebase --continue";
+        grba = "git rebase --abort";
 
-          # stash
-          gsta = "git stash apply";
-          gstl = "git stash list";
-          gstp = "git stash pop";
-          gsts = "git stash push";
-          gstsu = "git stash push --all --include-untracked";
-          gstsp = "git stash push --patch";
+        # stash
+        gsta = "git stash apply";
+        gstl = "git stash list";
+        gstp = "git stash pop";
+        gsts = "git stash push";
+        gstsu = "git stash push --all --include-untracked";
+        gstsp = "git stash push --patch";
 
-          # status
-          gst = "git status";
-          gss = "git status --short --branch";
+        # status
+        gst = "git status";
+        gss = "git status --short --branch";
 
-          # switch
-          gsw = "git switch";
-          gswc = "git switch --create";
-          gswd = "git switch --detach";
-        };
+        # switch
+        gsw = "git switch";
+        gswc = "git switch --create";
+        gswd = "git switch --detach";
+      };
 
       packages =
         with pkgs;
