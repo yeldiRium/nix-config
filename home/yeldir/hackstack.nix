@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ../shared
@@ -20,6 +20,18 @@
       keyboardVariant = "neo";
     };
 
+    desktop = {
+      essentials = {
+        firefox = {
+          enable = true;
+          default = true;
+        };
+        chrome = {
+          default = lib.mkForce false;
+        };
+      };
+    };
+
     # Deprecated non-module options:
     hyprland = {
       enableAnimations = false;
@@ -32,7 +44,9 @@
           selector = "class:org.telegram.desktop";
         }
         {
-          command = "gtk-launch google-chrome";
+          command = "gtk-launch zotero";
+          workspace = "1";
+          selector = "class:Zotero";
         }
         {
           command = "gtk-launch obsidian";
@@ -43,6 +57,11 @@
           command = "gtk-launch thunderbird";
           workspace = "7";
           selector = "class:thunderbird";
+        }
+        {
+          command = "gtk-launch firefox";
+          workspace = "3";
+          selector = "class:firefox";
         }
       ];
     };

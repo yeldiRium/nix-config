@@ -42,9 +42,6 @@
     system = {
       sops.enable = true;
     };
-    mounts = {
-      datengrab.enable = true;
-    };
   };
 
   programs = {
