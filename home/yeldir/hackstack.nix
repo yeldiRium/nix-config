@@ -9,7 +9,6 @@
 
     ./optional/desktop/media
     ./optional/desktop/office
-    ./optional/desktop/spotify.nix
   ];
 
   wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;
@@ -60,6 +59,6 @@
   ];
 
   home = {
-    stateVersion = "24.05";
+    stateVersion = "25.05";
   };
 }
