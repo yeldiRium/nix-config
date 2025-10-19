@@ -72,6 +72,12 @@ in
         ]
       )
       ++ (forLanguagesList
+        [ "python" ]
+        [
+          python313Packages.python-lsp-server
+        ]
+      )
+      ++ (forLanguagesList
         [ "rego" ]
         [
           regols

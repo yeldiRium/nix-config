@@ -58,6 +58,7 @@ in
             "markdown"
             "nix"
             "poefilter"
+            "python"
             "rego"
             "rust"
             "typescript"

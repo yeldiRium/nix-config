@@ -85,6 +85,9 @@ in
       ++ (forLanguage "nix" [
         nvim-treesitter-parsers.nix
       ])
+      ++ (forLanguage "python" [
+        nvim-treesitter-parsers.python
+      ])
       ++ (forLanguage "rego" [
         nvim-treesitter-parsers.rego
       ])
