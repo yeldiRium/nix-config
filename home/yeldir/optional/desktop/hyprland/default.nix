@@ -122,6 +122,8 @@ in
                 "zsa-technology-labs-inc-ergodox-ez-keyboard"
                 "zsa-technology-labs-inc-ergodox-ez-system-control"
                 "zsa-technology-labs-inc-ergodox-ez-consumer-control"
+                "foostan-corne"
+                "foostan-corne-keyboard"
               ];
           ecosystem = {
             no_update_news = true;
