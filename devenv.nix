@@ -96,7 +96,7 @@
               errors=0
               for dir in $(echo "$@" | xargs -n1 dirname | sort -u); do
                 cd "''${dir}"
-                if ! $(${lib.getExe pkgs.golangci-lint} run); then
+                if ! ${lib.getExe pkgs.golangci-lint} run; then
                   ((errors += 1))
                 fi
                 cd -
