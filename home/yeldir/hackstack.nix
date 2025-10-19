@@ -20,6 +20,10 @@
       keyboardVariant = "neo";
     };
 
+    cli.essentials.neovim.supportedLanguages = [
+      "python"
+    ];
+
     desktop = {
       essentials = {
         firefox = {
