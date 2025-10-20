@@ -110,7 +110,16 @@ in
         # log
         glog = "git log --decorate --oneline --graph";
         gloga = "git log --decorate --oneline --graph --all";
-        glogm = "git log --decorate --oneline --graph $(git symbolic-ref refs/remotes/$(${lib.getExe pkgs.y.git-find-remote})/HEAD --short) HEAD";
+        glogm = "git log --decorate --oneline --graph \"$(git symbolic-ref \"refs/remotes/$(${lib.getExe pkgs.y.git-find-remote})/HEAD\" --short)\" HEAD";
+        glogu = # bash
+          ''
+            branchName=$(git branch --show-current --format="%(refname:short)")
+            upstreamBranchRefName=$(git config get "branch.''${branchName}.merge")
+            upstreamBranchName=$(echo "''${upstreamBranchRefName}" | sed 's/refs\/heads\///')
+            remoteName=$(${lib.getExe pkgs.y.git-find-remote})
+            remoteBranchName="''${remoteName}/''${upstreamBranchName}"
+            git log --decorate --oneline --graph "''${remoteBranchName}" HEAD
+          '';
 
         # merge
         gm = "git merge";
