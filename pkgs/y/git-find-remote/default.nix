@@ -18,7 +18,7 @@ buildGoModule {
       ${lib.getExe gotestsum} ./...
     '';
 
-  vendorHash = "sha256-9dguTsRa0PvgydQzPWRIcjtJdgFbsXnWkIiAI8LKSuM=";
+  vendorHash = "sha256-Zxntgt3UtTTf0fq+/KfEmhRYi9UxJmkp8WvRbrEPJYo=";
 
   meta = {
     mainProgram = "git-find-remote";
