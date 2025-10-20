@@ -18,7 +18,7 @@ buildGoModule {
       ${lib.getExe gotestsum} ./...
     '';
 
-  vendorHash = "sha256-9dguTsRa0PvgydQzPWRIcjtJdgFbsXnWkIiAI8LKSuM=";
+  vendorHash = "sha256-UNsQgTKdyvnUYiF8Mfi7GkwfMEX9eQIUhPNMmELiTwI=";
 
   meta = {
     mainProgram = "git-find-default-branch";

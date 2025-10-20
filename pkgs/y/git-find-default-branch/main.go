@@ -1,35 +1,17 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"os"
-	"os/exec"
-	"os/signal"
 	"slices"
 	"strings"
 
-	"golang.org/x/sys/unix"
+	"github.com/go-git/go-git/v6"
 )
 
 var (
 	ErrNoDefaultBranch = fmt.Errorf("could not find either a 'main' or a 'master' branch")
 )
-
-func cancelOnSignal(cancel context.CancelFunc) {
-	signals := make(chan os.Signal, 1)
-	signal.Notify(
-		signals,
-		unix.SIGHUP,
-		unix.SIGINT,
-		unix.SIGTERM,
-	)
-	go func() {
-		sig := <-signals
-		fmt.Printf("Caught signal '%s', exiting...\n", sig)
-		cancel()
-	}()
-}
 
 func FindDefaultBranch(branches []string) (string, error) {
 	if slices.Contains(branches, "main") {
@@ -44,19 +26,42 @@ func FindDefaultBranch(branches []string) (string, error) {
 }
 
 func main() {
-	ctx, cancel := context.WithCancel(context.Background())
-	cancelOnSignal(cancel)
-
-	out, err := exec.CommandContext(ctx, "git", "branch", "--format", "%(refname:short)").CombinedOutput()
+	cwd, err := os.Getwd()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "failed to read git branches: %s\n%s\n", err.Error(), out)
+		fmt.Fprintf(os.Stderr, "failed to get current working directory: %s\n", err)
 		os.Exit(1)
 	}
 
-	branches := strings.Split(string(out), "\n")
-	remote, err := FindDefaultBranch(branches)
+	repo, err := git.PlainOpenWithOptions(cwd, &git.PlainOpenOptions{
+		DetectDotGit: true,
+	})
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "could not determine default branch: %s", err.Error())
+		fmt.Fprintf(os.Stderr, "failed to open git repository: %s\n", err)
+		os.Exit(1)
+	}
+
+	branches, err := repo.Branches()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to find branches: %s\n", err)
+		os.Exit(1)
+	}
+
+	branchNames := make([]string, 0)
+	for {
+		branch, err := branches.Next()
+		if err != nil {
+			break
+		}
+		branchName := string(branch.Name())
+		shortBranchName, _ := strings.CutPrefix(branchName, "refs/heads/")
+
+		branchNames = append(branchNames, shortBranchName)
+	}
+
+	remote, err := FindDefaultBranch(branchNames)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "could not determine default branch: %s", err)
+		os.Exit(1)
 	}
 
 	fmt.Printf("%s\n", remote)
