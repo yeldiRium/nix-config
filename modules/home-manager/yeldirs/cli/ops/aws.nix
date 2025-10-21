@@ -17,10 +17,6 @@ in
         type = lib.types.str;
         default = "eu-central-1";
       };
-
-      ecrIntegration = lib.mkEnableOption "docker integration for ecr";
-      ssmTools = lib.mkEnableOption "aws-ssm-tools";
-
       ssoConfigs =
         with lib.types;
         lib.mkOption {
@@ -43,6 +39,33 @@ in
             };
           });
         };
+
+      ec2 = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          description = "ec2 support";
+          default = cfg.enable;
+        };
+      };
+      ecr = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          description = "ecr support";
+          default = cfg.enable;
+        };
+        enableDockerIntegration = lib.mkOption {
+          type = lib.types.bool;
+          description = "docker integration for ecr login";
+          default = cfg.ecr.enable;
+        };
+      };
+      ecs = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          description = "ecs support";
+          default = cfg.enable;
+        };
+      };
     };
   };
 
@@ -54,10 +77,10 @@ in
           awscli2
           (y.shellScript ./aws-scripts/aws-sg-why)
         ]
-        ++ lib.optionals cfg.ecrIntegration [
+        ++ lib.optionals cfg.ecr.enable [
           amazon-ecr-credential-helper
         ]
-        ++ lib.optionals cfg.ssmTools [
+        ++ lib.optionals (cfg.ec2.enable || cfg.ecs.enable) [
           ssm-session-manager-plugin
           y.aws-ssm-tools
         ];
@@ -68,7 +91,7 @@ in
 
       file = {
         ".docker/config.json" = {
-          enable = cfg.ecrIntegration;
+          enable = cfg.ecr.enableDockerIntegration;
           text = "{\"credsStore\":\"ecr-login\"}";
         };
         ".aws/config" =
