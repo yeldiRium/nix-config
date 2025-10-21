@@ -66,6 +66,13 @@ in
           default = cfg.enable;
         };
       };
+      eks = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          description = "eks support";
+          default = cfg.enable;
+        };
+      };
     };
   };
 
@@ -83,6 +90,9 @@ in
         ++ lib.optionals (cfg.ec2.enable || cfg.ecs.enable) [
           ssm-session-manager-plugin
           y.aws-ssm-tools
+        ]
+        ++ lib.optionals cfg.eks.enable [
+          eks-node-viewer
         ];
 
       sessionVariables = {
