@@ -87,87 +87,97 @@ in
     };
 
     home = {
-      shellAliases = {
-        # convenience
-        grt = ''cd "$(git rev-parse --show-toplevel || echo .)"'';
+      shellAliases =
+        let
+          branchName = # bash
+            ''
+              branchName=$(git branch --show-current --format="%(refname:short)")
+            '';
+          remoteBranchName = # bash
+            ''
+              upstreamBranchRefName=$(git config get "branch.''${branchName}.merge")
+              upstreamBranchName=$(echo "''${upstreamBranchRefName}" | sed 's/refs\/heads\///')
+              remoteName=$(${lib.getExe pkgs.y.git-find-remote})
+              remoteBranchName="''${remoteName}/''${upstreamBranchName}"
+            '';
 
-        # add
-        ga = "git add";
-        gapa = "git add --patch";
+        in
+        {
+          # convenience
+          grt = ''cd "$(git rev-parse --show-toplevel || echo .)"'';
 
-        # commit
-        gcm = "git commit --verbose --message";
-        "gc!" = "git commit --verbose --amend";
-        "gcn!" = "git commit --verbose --no-edit --amend";
+          # add
+          ga = "git add";
+          gapa = "git add --patch";
 
-        # diff
-        gd = "git diff";
-        gdc = "git diff --cached";
-        # range-diff
-        grdu = # bash
-          ''
-            branchName=$(git branch --show-current --format="%(refname:short)")
-            upstreamBranchRefName=$(git config get "branch.''${branchName}.merge")
-            upstreamBranchName=$(echo "''${upstreamBranchRefName}" | sed 's/refs\/heads\///')
-            defaultBranch=$(${lib.getExe pkgs.y.git-find-default-branch})
-            remoteName=$(${lib.getExe pkgs.y.git-find-remote})
-            git range-diff "''${defaultBranch}..''${remoteName}/''${upstreamBranchName}" "''${defaultBranch}..''${branchName}"
-          '';
+          # commit
+          gcm = "git commit --verbose --message";
+          "gc!" = "git commit --verbose --amend";
+          "gcn!" = "git commit --verbose --no-edit --amend";
 
-        # fetch
-        gfa = "git fetch --all --tags --prune";
+          # diff
+          gd = "git diff";
+          gdc = "git diff --cached";
+          # range-diff
+          grdu = # bash
+            ''
+              ${branchName}
+              ${remoteBranchName}
+              defaultBranch=$(${lib.getExe pkgs.y.git-find-default-branch})
+              git range-diff "''${defaultBranch}..''${remoteBranchName}" "''${defaultBranch}..''${branchName}"
+            '';
 
-        # log
-        glog = "git log --decorate --oneline --graph";
-        gloga = "git log --decorate --oneline --graph --all";
-        glogm = "git log --decorate --oneline --graph \"$(git symbolic-ref \"refs/remotes/$(${lib.getExe pkgs.y.git-find-remote})/HEAD\" --short)\" HEAD";
-        glogu = # bash
-          ''
-            branchName=$(git branch --show-current --format="%(refname:short)")
-            upstreamBranchRefName=$(git config get "branch.''${branchName}.merge")
-            upstreamBranchName=$(echo "''${upstreamBranchRefName}" | sed 's/refs\/heads\///')
-            remoteName=$(${lib.getExe pkgs.y.git-find-remote})
-            remoteBranchName="''${remoteName}/''${upstreamBranchName}"
-            git log --decorate --oneline --graph "''${remoteBranchName}" HEAD
-          '';
+          # fetch
+          gfa = "git fetch --all --tags --prune";
 
-        # merge
-        gm = "git merge";
-        "gm!" = "git merge --no-edit";
+          # log
+          glog = "git log --decorate --oneline --graph";
+          gloga = "git log --decorate --oneline --graph --all";
+          glogm = "git log --decorate --oneline --graph \"$(git symbolic-ref \"refs/remotes/$(${lib.getExe pkgs.y.git-find-remote})/HEAD\" --short)\" HEAD";
+          glogu = # bash
+            ''
+              ${branchName}
+              ${remoteBranchName}
+              git log --decorate --oneline --graph "''${remoteBranchName}" HEAD
+            '';
 
-        # pull
-        gpl = "git pull";
-        gplr = "git pull --rebase";
+          # merge
+          gm = "git merge";
+          "gm!" = "git merge --no-edit";
 
-        # push
-        gp = "git push";
-        gpf = "git push --force-with-lease --force-if-includes";
+          # pull
+          gpl = "git pull";
+          gplr = "git pull --rebase";
 
-        # rebase
-        grb = "git rebase --interactive";
-        "grb!" = "git rebase";
-        grbc = "git rebase --continue";
-        grba = "git rebase --abort";
+          # push
+          gp = "git push";
+          gpf = "git push --force-with-lease --force-if-includes";
 
-        # stash
-        gsta = "git stash push";
-        gstau = "git stash push --all --include-untracked";
-        gstap = "git stash push --patch";
-        gstl = "git stash list";
-        gsts = "git stash show --patch";
-        gstaa = "git stash apply";
-        gstp = "git stash pop";
-        gstd = "git stash drop";
+          # rebase
+          grb = "git rebase --interactive";
+          "grb!" = "git rebase";
+          grbc = "git rebase --continue";
+          grba = "git rebase --abort";
 
-        # status
-        gst = "git status";
-        gss = "git status --short --branch";
+          # stash
+          gsta = "git stash push";
+          gstau = "git stash push --all --include-untracked";
+          gstap = "git stash push --patch";
+          gstl = "git stash list";
+          gsts = "git stash show --patch";
+          gstaa = "git stash apply";
+          gstp = "git stash pop";
+          gstd = "git stash drop";
 
-        # switch
-        gsw = "git switch";
-        gswc = "git switch --create";
-        gswd = "git switch --detach";
-      };
+          # status
+          gst = "git status";
+          gss = "git status --short --branch";
+
+          # switch
+          gsw = "git switch";
+          gswc = "git switch --create";
+          gswd = "git switch --detach";
+        };
 
       packages =
         with pkgs;
