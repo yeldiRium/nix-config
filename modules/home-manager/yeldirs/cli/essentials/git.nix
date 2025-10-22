@@ -150,12 +150,14 @@ in
         grba = "git rebase --abort";
 
         # stash
-        gsta = "git stash apply";
+        gsta = "git stash push";
+        gstau = "git stash push --all --include-untracked";
+        gstap = "git stash push --patch";
         gstl = "git stash list";
+        gsts = "git stash show --patch";
+        gstaa = "git stash apply";
         gstp = "git stash pop";
-        gsts = "git stash push";
-        gstsu = "git stash push --all --include-untracked";
-        gstsp = "git stash push --patch";
+        gstd = "git stash drop";
 
         # status
         gst = "git status";
