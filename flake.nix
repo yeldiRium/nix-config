@@ -33,10 +33,6 @@
       url = "github:isd-project/isd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    gonzo = {
-      url = "github:control-theory/gonzo";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # darwin only
     nix-darwin = {
