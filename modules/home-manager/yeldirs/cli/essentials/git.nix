@@ -103,6 +103,16 @@ in
         # diff
         gd = "git diff";
         gdc = "git diff --cached";
+        # range-diff
+        grdu = # bash
+          ''
+            branchName=$(git branch --show-current --format="%(refname:short)")
+            upstreamBranchRefName=$(git config get "branch.''${branchName}.merge")
+            upstreamBranchName=$(echo "''${upstreamBranchRefName}" | sed 's/refs\/heads\///')
+            defaultBranch=$(${lib.getExe pkgs.y.git-find-default-branch})
+            remoteName=$(${lib.getExe pkgs.y.git-find-remote})
+            git range-diff "''${defaultBranch}..''${remoteName}/''${upstreamBranchName}" "''${defaultBranch}..''${branchName}"
+          '';
 
         # fetch
         gfa = "git fetch --all --tags --prune";
