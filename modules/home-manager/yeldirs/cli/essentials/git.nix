@@ -109,6 +109,7 @@ in
           # add
           ga = "git add";
           gapa = "git add --patch";
+          gaa = "git add .";
 
           # commit
           gcm = "git commit --verbose --message";
