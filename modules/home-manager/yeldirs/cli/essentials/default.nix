@@ -53,6 +53,7 @@ in
 
           # to evaluate
           pv
+          ttyplot
         ]
         ++ lib.optionals (platform == "linux") [
           dysk
