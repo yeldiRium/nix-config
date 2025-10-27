@@ -9,6 +9,10 @@
     git
     git-bug
 
+    # Bash
+    argbash
+    silver-searcher
+
     # Go
     golangci-lint
     gotestsum
@@ -27,18 +31,7 @@
   };
 
   tasks = {
-    # Bash
-    "app:build:bash".exec = # bash
-      ''
-        ${lib.getExe pkgs.silver-searcher} \
-          --files-with-matches \
-          --ignore 'devenv.nix' \
-          --literal '# [ <-- needed because of Argbash' |
-        while read -r template; do
-        	echo "building ''${template}..."
-        	${lib.getExe' pkgs.argbash "argbash"} --in-place "''${template}"
-        done
-      '';
+    "app:build:bash".exec = "./scripts/build";
   };
 
   git-hooks.hooks =
@@ -52,13 +45,6 @@
       ];
     in
     {
-      build-bash = {
-        enable = true;
-        entry = config.tasks."app:build:bash".exec;
-        types = [ "bash" ];
-        pass_filenames = false;
-      };
-
       check-merge-conflicts.enable = true;
       end-of-file-fixer.enable = true;
       gitleaks = {
@@ -71,6 +57,12 @@
       trim-trailing-whitespace.enable = true;
 
       # Bash
+      build-bash = {
+        enable = true;
+        entry = config.tasks."app:build:bash".exec;
+        types = [ "bash" ];
+        pass_filenames = false;
+      };
       check-shebang-scripts-are-executable.enable = true;
       shellcheck.enable = true;
 

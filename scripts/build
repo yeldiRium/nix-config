@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+ag --files-with-matches \
+	--ignore 'scripts/build' \
+	--literal "# [ <-- needed because of Argbash" |
+while read -r template; do
+	echo "building ${template}..."
+	argbash --in-place "${template}"
+done
