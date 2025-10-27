@@ -40,7 +40,6 @@ in
           eza
           unstable.ijq
           jq
-          pv
           silver-searcher
           unzip
           yq-go
@@ -51,6 +50,9 @@ in
 
           # encryption
           age
+
+          # to evaluate
+          pv
         ]
         ++ lib.optionals (platform == "linux") [
           dysk
