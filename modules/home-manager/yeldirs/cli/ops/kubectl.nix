@@ -27,7 +27,7 @@ in
           kubectx
           y.konfig
 
-          colordiff
+          delta
         ]
       );
 
@@ -40,7 +40,7 @@ in
       };
 
       sessionVariables = {
-        KUBECTL_EXTERNAL_DIFF = "${lib.getExe pkgs.colordiff} -N -u";
+        KUBECTL_EXTERNAL_DIFF = "${lib.getExe pkgs.delta} --default-language yaml";
       };
 
       shellAliases = {
