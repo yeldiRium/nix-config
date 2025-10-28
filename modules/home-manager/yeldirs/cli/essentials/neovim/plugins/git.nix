@@ -58,19 +58,13 @@ in
           ''
             local gitsigns = require("gitsigns")
             gitsigns.setup({})
-          '';
-      }
-      {
-        plugin = blamer-nvim;
-        type = "lua";
-        config =
-          # lua
-          ''
-            vim.g.blamer_enabled = false
 
-            vim.keymap.set("n", "<leader>gb", function()
-              vim.cmd("BlamerToggle")
-            end, { desc = "Toggle Blamer plugin for inline git blame" })
+            vim.keymap.set("n", "<leader>gbb", function()
+              vim.cmd("Gitsigns blame")
+            end, { desc = "Open git blame buffer" })
+            vim.keymap.set("n", "<leader>gbl", function()
+              vim.cmd("Gitsigns blame_line")
+            end, { desc = "Show git blame for current line" })
           '';
       }
     ];
