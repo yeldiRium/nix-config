@@ -65,7 +65,6 @@
             indentation-guides.enable = true;
           };
 
-          blamer.enable = true;
           fold-cycle.enable = true;
           git.enable = true;
           illuminate.enable = true;

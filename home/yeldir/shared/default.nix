@@ -41,7 +41,6 @@
               indentation-guides.enable = true;
             };
 
-            blamer.enable = true;
             copilot.enable = false;
             debugging.enable = true;
             fold-cycle.enable = true;

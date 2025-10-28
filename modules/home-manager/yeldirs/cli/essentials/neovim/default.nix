@@ -18,7 +18,6 @@ let
 in
 {
   imports = [
-    ./plugins/blamer.nix
     ./plugins/copilot.nix
     ./plugins/debugging.nix
     ./plugins/fidget.nix

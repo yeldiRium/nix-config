@@ -60,6 +60,19 @@ in
             gitsigns.setup({})
           '';
       }
+      {
+        plugin = blamer-nvim;
+        type = "lua";
+        config =
+          # lua
+          ''
+            vim.g.blamer_enabled = false
+
+            vim.keymap.set("n", "<leader>gb", function()
+              vim.cmd("BlamerToggle")
+            end, { desc = "Toggle Blamer plugin for inline git blame" })
+          '';
+      }
     ];
   };
 }
