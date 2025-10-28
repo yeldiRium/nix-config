@@ -25,7 +25,6 @@ if ! tmux has-session -t $session 2>/dev/null; then
   tmux send-keys -t "${session}:nix.2" " devenv shell zsh" "C-m"
 
   tmux send-keys -t "${session}:nix.0" " nvim" "C-m"
-  tmux send-keys -t "${session}:nix.0" " gg"
 
   tmux send-keys -t "${session}:nix.1" " git bug pull" "C-m"
   tmux send-keys -t "${session}:nix.1" " git bug termui" "C-m"
