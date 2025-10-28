@@ -12,5 +12,6 @@
     ./lazydocker.nix
     ./nix.nix
     ./minikube.nix
+    ./watching.nix
   ];
 }
