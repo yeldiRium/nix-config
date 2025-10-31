@@ -101,6 +101,7 @@ in
               remoteBranchName="''${remoteName}/''${upstreamBranchName}"
             '';
 
+          logFormat = "--format='%C(auto)%h %s %Cblue(%an, %as)%C(auto) %d'";
         in
         {
           # convenience
@@ -132,14 +133,14 @@ in
           gfa = "git fetch --all --tags --prune";
 
           # log
-          glog = "git log --decorate --oneline --graph";
-          gloga = "git log --decorate --oneline --graph --all";
-          glogm = "git log --decorate --oneline --graph \"$(git symbolic-ref \"refs/remotes/$(${lib.getExe pkgs.y.git-find-remote})/HEAD\" --short)\" HEAD";
+          glog = "git log ${logFormat} --graph";
+          gloga = "git log ${logFormat} --graph --all";
+          glogm = "git log ${logFormat} --graph \"$(git symbolic-ref \"refs/remotes/$(${lib.getExe pkgs.y.git-find-remote})/HEAD\" --short)\" HEAD";
           glogu = # bash
             ''
               ${branchName}
               ${remoteBranchName}
-              git log --decorate --oneline --graph "''${remoteBranchName}" HEAD
+              git log ${logFormat} --graph "''${remoteBranchName}" HEAD
             '';
 
           # merge
