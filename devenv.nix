@@ -19,6 +19,10 @@
   ];
 
   languages = {
+    shell = {
+      enable = true;
+    };
+
     go = {
       enable = true;
       enableHardeningWorkaround = true;
