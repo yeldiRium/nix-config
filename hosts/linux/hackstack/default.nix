@@ -41,6 +41,7 @@
   yeldirs = {
     system = {
       sops.enable = true;
+      tailscale.enable = true;
     };
   };
 

@@ -1,6 +1,7 @@
 keys:
   - &admin age1vl5e32vpsdfevc5k9zgz3p524dlt85pkw6u3wuufdrm54ewp0u6q24g8ve
   - hosts:
+      - &host-hackstack age17gnzwn8mgxqng422fus8n7er8tgaetaczqqwwvca5ddmmue5gccq007cvp
       - &host-recreate age12yf69pp0f9pj47fzlhfwp0zcg34v6kdhew2n3f5sf2czpjnen9uqs8q5lf
       - &host-rekorder age1hwjnjs8u74sr6pakc2txcnpsdrlkdrn9guputuknfdhxh3vgw4nsn736mg
       - &host-worker age108cl60wjsjetdc5sd52wjnyw2jhpzck4k4dc7v5mupnp60jq9elqufjf8r
@@ -16,6 +17,7 @@ creation_rules:
     key_groups:
       - age:
           - *admin
+          - *host-hackstack
           - *host-recreate
           - *host-rekorder
           - *host-worker
