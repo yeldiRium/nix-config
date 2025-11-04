@@ -14,20 +14,31 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    home = {
-      packages = with pkgs; [
-        openttd
-        openttd-ttf
-      ];
+  config = lib.mkIf cfg.enable (
+    let
+      openttdFiles = builtins.readDir ./openttd;
+      configFiles = lib.filterAttrs (name: _: lib.hasSuffix ".cfg" name) openttdFiles;
+      xdgConfigFiles = lib.mapAttrs' (
+        name: _: lib.nameValuePair "openttd/${name}" { source = ./openttd/${name}; }
+      ) configFiles;
+    in
+    {
+      xdg.configFile = xdgConfigFiles;
 
-      persistence = {
-        "/persist/${config.home.homeDirectory}" = {
-          directories = [
-            ".local/share/openttd"
-          ];
+      home = {
+        packages = with pkgs; [
+          openttd
+          openttd-ttf
+        ];
+
+        persistence = {
+          "/persist/${config.home.homeDirectory}" = {
+            directories = [
+              ".local/share/openttd"
+            ];
+          };
         };
       };
-    };
-  };
+    }
+  );
 }
