@@ -47,7 +47,7 @@ in
       );
 
     xdg.configFile = {
-      "qmk/qmk.ini".source = pkgs.writeText "qmk.ini" (builtins.readFile ./qmk.ini);
+      "qmk/qmk.ini".source = ./qmk.ini;
     };
   };
 }
