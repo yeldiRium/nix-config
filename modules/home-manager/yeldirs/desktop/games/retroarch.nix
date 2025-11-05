@@ -19,7 +19,9 @@ in
       packages = with pkgs; [
         (retroarch.withCores (
           cores: with cores; [
-            desmume
+            desmume # nds
+            mgba # gba
+            ppsspp # psp
           ]
         ))
       ];
