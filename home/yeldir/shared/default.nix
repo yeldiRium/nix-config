@@ -30,7 +30,6 @@
               "docker"
               "go"
               "json"
-              "ledger"
               "lua"
               "markdown"
               "nix"
@@ -65,6 +64,7 @@
         };
 
         office = {
+          hledger.enable = true;
           taskwarrior.enable = true;
         };
 
