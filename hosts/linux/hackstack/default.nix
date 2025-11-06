@@ -23,6 +23,8 @@
     ../shared/optional/printing.nix
     ../shared/optional/upower.nix
 
+    ../shared/optional/mounts/datengrab.nix
+
     ../shared/users/yeldir
   ];
 
@@ -42,6 +44,10 @@
     system = {
       sops.enable = true;
       tailscale.enable = true;
+    };
+
+    mounts = {
+      datengrab.enable = true;
     };
   };
 
