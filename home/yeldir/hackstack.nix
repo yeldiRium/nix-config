@@ -34,6 +34,10 @@
           default = lib.mkForce false;
         };
       };
+
+      games = {
+        retroarch.enable = true;
+      };
     };
 
     # Deprecated non-module options:
