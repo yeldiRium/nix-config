@@ -21,7 +21,8 @@ in
           cores: with cores; [
             desmume # nds
             mgba # gba
-            ppsspp # psp
+            ppsspp # psp, requires manual [bios setup](https://docs.libretro.com/library/ppsspp/#installing-from-the-core-system-files-downloader)
+            pcsx2 # ps2, requires manual [GameIndex.yaml](https://docs.libretro.com/library/lrps2/#core-system-files-downloader) and [bios setup](https://docs.libretro.com/library/lrps2/#bios)
           ]
         ))
       ];
