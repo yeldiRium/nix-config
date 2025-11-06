@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -ueo pipefail
+
+if [ "$(git remote | wc -l)" -eq 1 ]; then
+	git remote
+	exit 0
+fi
+
+if git remote | ag 'origin' >/dev/null; then
+	echo 'origin'
+	exit 0
+fi
+
+echo "could not determine remote. origin is not present and either zero or more than one remote is set." 1>&2
+exit 1

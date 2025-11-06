@@ -1,24 +1,26 @@
 {
-  buildGoModule,
-  gotestsum,
+  bats,
   lib,
+  silver-searcher,
+  writeShellApplication,
 }:
-buildGoModule {
+writeShellApplication {
   name = "git-find-remote";
-  src = builtins.path {
-    path = ./.;
-  };
+  text = builtins.readFile ./git-find-remote;
 
-  checkInputs = [
-    gotestsum
+  runtimeInputs = [
+    silver-searcher
   ];
+
+  derivationArgs = {
+    checkInputs = [
+      bats
+    ];
+  };
   checkPhase = # bash
     ''
-      echo ${gotestsum}
-      ${lib.getExe gotestsum} ./...
+      ${lib.getExe bats} test/
     '';
-
-  vendorHash = "sha256-Zxntgt3UtTTf0fq+/KfEmhRYi9UxJmkp8WvRbrEPJYo=";
 
   meta = {
     mainProgram = "git-find-remote";
