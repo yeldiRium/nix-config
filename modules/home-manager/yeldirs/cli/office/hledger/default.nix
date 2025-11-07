@@ -30,6 +30,7 @@ in
       packages = with pkgs; [
         hledger
         y.hledger-helpers-bash
+        y.hledger-helpers-go
       ];
 
       shellAliases = {
