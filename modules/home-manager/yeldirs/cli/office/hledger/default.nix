@@ -29,12 +29,7 @@ in
     home = {
       packages = with pkgs; [
         hledger
-        (y.shellScript ./scripts/hlc)
-        (y.shellScript ./scripts/hlb)
-        (y.shellScript ./scripts/hlbudget)
-        (y.shellScript ./scripts/hlcompare)
-        (y.shellScript ./scripts/hlevents)
-        (y.shellScript ./scripts/hlprojects)
+        y.hledger-helpers-bash
       ];
 
       shellAliases = {
