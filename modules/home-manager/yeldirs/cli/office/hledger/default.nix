@@ -15,6 +15,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = config.yeldirs.cli.essentials.zsh.enableSecretEnv;
+        message = "secret env must be activated for hledger to work";
+      }
+    ];
+
     yeldirs.cli.essentials.neovim.supportedLanguages = [
       "ledger"
     ];
