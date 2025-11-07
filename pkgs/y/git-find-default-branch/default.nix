@@ -14,7 +14,6 @@ buildGoModule {
   ];
   checkPhase = # bash
     ''
-      echo ${gotestsum}
       ${lib.getExe gotestsum} ./...
     '';
 
