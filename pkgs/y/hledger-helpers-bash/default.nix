@@ -22,4 +22,9 @@ stdenv.mkDerivation {
 
       cp ./src/* $out/bin
     '';
+
+  meta = {
+    description = "A collection of helper scripts for hledger written in go.";
+    license = lib.licenses.mit;
+  };
 }
