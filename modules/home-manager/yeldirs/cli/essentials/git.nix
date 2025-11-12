@@ -153,6 +153,7 @@ in
 
           # push
           gp = "git push";
+          gpt = "git push $(${lib.getExe pkgs.y.git-find-remote}) tag";
           gpf = "git push --force-with-lease --force-if-includes";
 
           # rebase
@@ -179,6 +180,9 @@ in
           gsw = "git switch";
           gswc = "git switch --create";
           gswd = "git switch --detach";
+
+          # tag
+          gt = "git tag";
         };
 
       packages =
