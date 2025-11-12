@@ -62,3 +62,11 @@ vim.keymap.set("n", "<leader>go", function()
   local filePath = vim.fn.expand("%:p")
   vim.cmd("!open-git-file " .. filePath)
 end, { desc = "If the open file belongs to a git repository with a remote, open the file in the remote's GUI" })
+
+-- Diff
+vim.keymap.set("n", "<leader>dt", function()
+  vim.cmd("difft")
+end, { desc = "Add current buffer to diff" })
+vim.keymap.set("n", "<leader>do", function()
+  vim.cmd("diffo!")
+end, { desc = "Remove all buffers from diff" })
