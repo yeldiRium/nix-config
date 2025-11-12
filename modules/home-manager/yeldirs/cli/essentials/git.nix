@@ -162,6 +162,11 @@ in
           grbc = "git rebase --continue";
           grba = "git rebase --abort";
 
+          # restore
+          grs = "git restore";
+          grss = "git restore --source";
+          grst = "git restore --staged";
+
           # stash
           gsta = "git stash push";
           gstau = "git stash push --all --include-untracked";
