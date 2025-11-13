@@ -19,6 +19,12 @@ in
       tmuxExtraPlugins = (prev.tmuxExtraPlugins or { }) // import ../pkgs/tmux-plugins { pkgs = final; };
     };
 
+  staging-packages = final: _: {
+    staging = import inputs.nixpkgs-staging {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
   unstable-packages = final: _: {
     unstable = import inputs.nixpkgs-unstable {
       inherit (final) system;
