@@ -48,6 +48,17 @@ in
                 additional_args = { "--hidden", "--multiline", "--iglob", "!.git" },
               })
             end, { desc = "Grep pwd using telescope" })
+            vim.keymap.set("n", "<leader>fS", function()
+              local bufferDirectory = vim.fn.expand("%:p:h")
+              telescope.grep_string({
+                search = vim.fn.input("Grep bufferdir > "),
+                use_regex = true,
+                additional_args = { "--hidden", "--multiline", "--iglob", "!.git" },
+                search_dirs = {
+                  bufferDirectory,
+                },
+              })
+            end, { desc = "Grep directory of open buffer using telescope" })
 
             vim.keymap.set("n", "<leader>fm", telescope.marks, { desc = "Show marks" })
             vim.keymap.set("n", "<leader>fr", telescope.registers, { desc = "Show register contents" })
