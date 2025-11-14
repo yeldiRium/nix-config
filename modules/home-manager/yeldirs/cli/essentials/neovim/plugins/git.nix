@@ -28,6 +28,10 @@ in
             vim.keymap.set("n", "<leader>gbl", function()
               vim.cmd("Gitsigns blame_line")
             end, { desc = "Show git blame for current line" })
+
+            vim.keymap.set("n", "<leader>gdh", function()
+              vim.cmd("Gitsigns diffthis HEAD")
+            end, { desc = "Show diff of current buffer with HEAD" })
           '';
       }
     ];
