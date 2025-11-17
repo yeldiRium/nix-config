@@ -20,7 +20,11 @@ in
           # lua
           ''
             local gitsigns = require("gitsigns")
-            gitsigns.setup({})
+            gitsigns.setup({
+              preview_config = {
+                border = 'single',
+              },
+            })
 
             vim.keymap.set("n", "<leader>gbb", function()
               vim.cmd("Gitsigns blame")
@@ -32,6 +36,10 @@ in
             vim.keymap.set("n", "<leader>gdh", function()
               vim.cmd("Gitsigns diffthis HEAD")
             end, { desc = "Show diff of current buffer with HEAD" })
+
+            vim.keymap.set("n", "<leader>ghp", function()
+              vim.cmd("Gitsigns preview_hunk")
+            end, { desc = "Show hunk preview in popup" })
           '';
       }
     ];
