@@ -24,10 +24,10 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=main";
+      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.51.1";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=master";
+      url = "github:outfoxxed/hy3?ref=hl0.51.0";
       inputs.hyprland.follows = "hyprland";
     };
     isd = {
