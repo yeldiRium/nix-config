@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -135,6 +136,15 @@
       workspace = "1";
     }
   ];
+
+  home.persistence = {
+    "/persist/${config.home.homeDirectory}" = {
+      allowOther = true;
+      directories = [
+        ".local/share/Red Hook Studios" # Darkest Dungeon
+      ];
+    };
+  };
 
   home = {
     stateVersion = "24.05";
