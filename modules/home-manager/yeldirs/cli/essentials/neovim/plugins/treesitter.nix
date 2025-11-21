@@ -30,12 +30,12 @@ in
             # lua
             ''
               require("nvim-treesitter.configs").setup({
-                  indent = {
-                      enable = true
-                  },
-                  highlight = {
-                      enable = true,
-                  },
+                indent = {
+                  enable = true
+                },
+                highlight = {
+                  enable = true,
+                },
               })
 
               vim.opt.foldmethod = "expr"
@@ -69,9 +69,9 @@ in
             # lua
             ''
               vim.filetype.add({
-                  extension = {
-                      prices = "ledger",
-                  },
+                extension = {
+                  prices = "ledger",
+                },
               })
             '';
         }
@@ -93,6 +93,19 @@ in
       ])
       ++ (forLanguage "tofu" [
         nvim-treesitter-parsers.hcl
+        {
+          plugin = nvim-treesitter-parsers.hcl;
+          type = "lua";
+          config =
+            # lua
+            ''
+              vim.filetype.add({
+                extension = {
+                  tf = "hcl",
+                },
+              })
+            '';
+        }
       ])
       ++ (forLanguage "yaml" [
         nvim-treesitter-parsers.yaml

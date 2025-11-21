@@ -91,6 +91,12 @@ in
         ]
       )
       ++ (forLanguagesList
+        [ "tofu" ]
+        [
+          opentofu-ls
+        ]
+      )
+      ++ (forLanguagesList
         [ "yaml" ]
         [
           yaml-language-server
@@ -221,7 +227,10 @@ in
           )
           (forLanguagesString [ "tofu" ] # lua
             ''
-              add_lsp("tofu_ls", {})
+              add_lsp("tofu_ls", {
+                cmd = { "opentofu-ls", "serve" },
+                filetypes = { "opentofu", "opentofu-vars", "terraform", "hcl" },
+              })
             ''
           )
           (forLanguagesString [ "yaml" ] # lua
