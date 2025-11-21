@@ -48,8 +48,10 @@ in
           lib.types.enum [
             "asciidoc"
             "bash"
+            "css"
             "docker"
             "go"
+            "html"
             "javascript"
             "json"
             "ledger"
@@ -109,6 +111,9 @@ in
     // forLanguage "bash" {
       "nvim/ftplugin/bash.lua".source = pkgs.writeText "bash.lua" (builtins.readFile ./ftplugin/bash.lua);
     }
+    // forLanguage "css" {
+      "nvim/ftplugin/css.lua".source = pkgs.writeText "css.lua" (builtins.readFile ./ftplugin/css.lua);
+    }
     // lib.optionalAttrs cfg.git.enable {
       "nvim/ftplugin/NeogitCommitMessage.lua".source = pkgs.writeText "NeogitCommitMessage.lua" (
         builtins.readFile ./ftplugin/NeogitCommitMessage.lua
@@ -116,6 +121,9 @@ in
     }
     // forLanguage "go" {
       "nvim/ftplugin/go.lua".source = pkgs.writeText "go.lua" (builtins.readFile ./ftplugin/go.lua);
+    }
+    // forLanguage "html" {
+      "nvim/ftplugin/html.lua".source = pkgs.writeText "html.lua" (builtins.readFile ./ftplugin/html.lua);
     }
     // forLanguage "javascript" {
       "nvim/ftplugin/javascript.lua".source = pkgs.writeText "javascript.lua" (

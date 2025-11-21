@@ -28,6 +28,12 @@ in
         ]
       )
       ++ (forLanguagesList
+        [ "css" ]
+        [
+          vscode-langservers-extracted
+        ]
+      )
+      ++ (forLanguagesList
         [ "docker" ]
         [
           docker-compose-language-service
@@ -39,6 +45,12 @@ in
         [
           gopls
           y.golangci-lint-langserver
+        ]
+      )
+      ++ (forLanguagesList
+        [ "html" ]
+        [
+          vscode-langservers-extracted
         ]
       )
       ++ (forLanguagesList
@@ -129,6 +141,12 @@ in
               add_lsp("bashls", {})
             ''
           )
+          (forLanguagesString [ "css" ] # lua
+            ''
+              add_lsp("cssls", {})
+              add_lsp("css_variables", {})
+            ''
+          )
           (forLanguagesString [ "docker" ] # lua
             ''
               add_lsp("docker_compose_language_service", {})
@@ -149,6 +167,11 @@ in
                 -- TODO: inform the user that go linter support is degraded
                 --       but only do so if go linter support is actually required, e.g. when a .go file is opened
               end
+            ''
+          )
+          (forLanguagesString [ "html" ] # lua
+            ''
+              add_lsp("html", {})
             ''
           )
           (forLanguagesString [ "ledger" ] # lua

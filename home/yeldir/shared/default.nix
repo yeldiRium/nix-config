@@ -27,8 +27,11 @@
           neovim = {
             supportedLanguages = [
               "bash"
+              "css"
               "docker"
               "go"
+              "html"
+              "javascript"
               "json"
               "lua"
               "markdown"

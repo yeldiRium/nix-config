@@ -50,10 +50,16 @@ in
       ++ (forLanguage "bash" [
         nvim-treesitter-parsers.bash
       ])
+      ++ (forLanguage "css" [
+        nvim-treesitter-parsers.css
+      ])
       ++ (forLanguage "go" [
         nvim-treesitter-parsers.go
         nvim-treesitter-parsers.gomod
         nvim-treesitter-parsers.gosum
+      ])
+      ++ (forLanguage "html" [
+        nvim-treesitter-parsers.html
       ])
       ++ (forLanguage "javascript" [
         nvim-treesitter-parsers.javascript
