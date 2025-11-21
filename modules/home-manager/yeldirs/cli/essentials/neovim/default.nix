@@ -60,6 +60,7 @@ in
             "python"
             "rego"
             "rust"
+            "tofu"
             "typescript"
             "yaml"
           ]
@@ -142,6 +143,9 @@ in
     }
     // forLanguage "rust" {
       "nvim/ftplugin/rust.lua".source = pkgs.writeText "rust.lua" (builtins.readFile ./ftplugin/rust.lua);
+    }
+    // forLanguage "tofu" {
+      "nvim/ftplugin/tofu.lua".source = pkgs.writeText "tofu.lua" (builtins.readFile ./ftplugin/tofu.lua);
     }
     // forLanguage "typescript" {
       "nvim/ftplugin/typescript.lua".source = pkgs.writeText "typescript.lua" (

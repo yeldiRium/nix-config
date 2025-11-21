@@ -91,6 +91,9 @@ in
       ++ (forLanguage "rego" [
         nvim-treesitter-parsers.rego
       ])
+      ++ (forLanguage "tofu" [
+        nvim-treesitter-parsers.hcl
+      ])
       ++ (forLanguage "yaml" [
         nvim-treesitter-parsers.yaml
       ]);

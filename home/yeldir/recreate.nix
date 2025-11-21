@@ -49,6 +49,7 @@
         kubectl.enable = true;
         lazydocker.enable = true;
         nix.enable = true;
+        tofu.enable = true;
       };
     };
 

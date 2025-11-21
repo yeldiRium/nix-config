@@ -219,6 +219,11 @@ in
               add_lsp("rust_analyzer", rustConfig)
             ''
           )
+          (forLanguagesString [ "tofu" ] # lua
+            ''
+              add_lsp("tofu_ls", {})
+            ''
+          )
           (forLanguagesString [ "yaml" ] # lua
             ''
               add_lsp("yamlls", {
