@@ -169,7 +169,9 @@ in
 
           # stash
           gsta = "git stash push";
-          gstau = "git stash push --all --include-untracked";
+          "gsta!" = "git stash push --all --include-untracked";
+          gstas = "git stash push --staged";
+          gstau = "git stash push --keep-index --include-untracked";
           gstap = "git stash push --patch";
           gstl = "git stash list";
           gsts = "git stash show --patch";
