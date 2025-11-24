@@ -168,11 +168,10 @@ in
           grst = "git restore --staged";
 
           # stash
-          gsta = "git stash push";
-          "gsta!" = "git stash push --all --include-untracked";
-          gstas = "git stash push --staged";
-          gstau = "git stash push --keep-index --include-untracked";
-          gstap = "git stash push --patch";
+          gsta = "git stash push --include-untracked --message";
+          gstas = "git stash push --staged --message";
+          gstau = "git stash push --keep-index --include-untracked --message";
+          gstap = "git stash push --patch --message";
           gstl = "git stash list";
           gsts = "git stash show --patch";
           gstaa = "git stash apply";
