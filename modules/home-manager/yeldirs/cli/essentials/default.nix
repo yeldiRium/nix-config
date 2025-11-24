@@ -66,6 +66,7 @@ in
       shellAliases = {
         ll = "eza --all --long --group-directories-first --binary --group --header --mounts --git";
         cat = "bat";
+        batj = "bat --language json";
         baty = "bat --language yaml";
         hi = "ag --passthrough";
         ijq = "ijq -hide-input-pane";
