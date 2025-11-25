@@ -105,14 +105,20 @@ in
           config =
             # lua
             ''
-              vim.treesitter.language.register("hcl", "opentofu")
-              vim.treesitter.language.register("hcl", "opentofu-vars")
-              vim.treesitter.language.register("hcl", "terraform")
               vim.filetype.add({
                 extension = {
                   tf = "opentofu",
                 },
               })
+              vim.filetype.add({
+                extension = {
+                  alloy = "alloy",
+                },
+              })
+              vim.treesitter.language.register("hcl", "opentofu")
+              vim.treesitter.language.register("hcl", "opentofu-vars")
+              vim.treesitter.language.register("hcl", "terraform")
+              vim.treesitter.language.register("hcl", "alloy")
             '';
         }
       ])
