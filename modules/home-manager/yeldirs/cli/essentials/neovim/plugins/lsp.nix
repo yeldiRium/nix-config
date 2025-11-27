@@ -178,9 +178,9 @@ in
             ''
               add_lsp("hledger_ls", {
                 -- production:
-                -- cmd = { "${lib.getExe pkgs.y.hledger-language-server}" },
+                cmd = { "${lib.getExe pkgs.y.hledger-language-server}" },
                 -- development:
-                cmd = { "/home/yeldir/querbeet/workspace/private/projects/hledger-language-server/hledger-language-server" },
+                -- cmd = { "/home/yeldir/querbeet/workspace/private/projects/hledger-language-server/hledger-language-server" },
                 filetypes = { "ledger" },
                 root_markers = { ".git" },
               })

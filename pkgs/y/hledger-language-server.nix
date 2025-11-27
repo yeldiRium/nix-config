@@ -3,7 +3,7 @@
   lib,
 }:
 let
-  revision = "70f93977b7c2baa5c8eb281c4eb75ac744f9cb0a";
+  revision = "v0.2.0";
 in
 pkgs.buildGo124Module {
   name = "hledger-language-server";
@@ -13,10 +13,10 @@ pkgs.buildGo124Module {
     owner = "yeldiRium";
     repo = "hledger-language-server";
     rev = revision;
-    hash = "sha256-LpTrUaHC+P64+Ske8UR7zG6U7F2cWXKb940rK4SAMfA=";
+    hash = "sha256-/eUBTpcsF+/efVa4Nuqj9gaI9tvVJA+KiufjNHD8TVU=";
   };
 
-  vendorHash = "sha256-MskYchNvyehWQDLX/T8PwOo6k+6KKFlZW2aoE6BIFTc=";
+  vendorHash = "sha256-3clCH55J3ImjwSMkepqGJwwPfOIUXDrqlA8dXQeSa6s=";
 
   meta = {
     mainProgram = "hledger-language-server";
