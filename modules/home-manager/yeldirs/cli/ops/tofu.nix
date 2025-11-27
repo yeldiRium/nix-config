@@ -19,6 +19,11 @@ in
       opentofu
     ];
 
+    programs = {
+      zsh.initContent = lib.mkIf config.programs.zsh.enable ''
+        complete -o nospace -C "${lib.getExe pkgs.opentofu}" tofu
+      '';
+    };
     yeldirs.cli.essentials.neovim.supportedLanguages = [
       "tofu"
     ];
