@@ -153,6 +153,13 @@ in
       "nvim/ftplugin/rust.lua".source = pkgs.writeText "rust.lua" (builtins.readFile ./ftplugin/rust.lua);
     }
     // forLanguage "tofu" {
+      "nvim/ftplugin/alloy.lua".source = pkgs.writeText "alloy.lua" (
+        builtins.readFile ./ftplugin/alloy.lua
+      );
+      "nvim/ftplugin/hcl.lua".source = pkgs.writeText "hcl.lua" (builtins.readFile ./ftplugin/hcl.lua);
+      "nvim/ftplugin/opentofu.lua".source = pkgs.writeText "opentofu.lua" (
+        builtins.readFile ./ftplugin/opentofu.lua
+      );
       "nvim/ftplugin/tofu.lua".source = pkgs.writeText "tofu.lua" (builtins.readFile ./ftplugin/tofu.lua);
     }
     // forLanguage "typescript" {
