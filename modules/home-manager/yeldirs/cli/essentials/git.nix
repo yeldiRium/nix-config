@@ -164,8 +164,10 @@ in
 
           # restore
           grs = "git restore";
+          grsp = "git restore --patch";
           grss = "git restore --source";
           grst = "git restore --staged";
+          grstp = "git restore --staged --patch";
 
           # stash
           gsta = "git stash push --include-untracked --message";
