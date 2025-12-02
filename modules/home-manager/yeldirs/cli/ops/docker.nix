@@ -17,6 +17,8 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       lazydocker
+      y.docker-volume-backup
+      y.docker-volume-inspect
     ];
   };
 }
