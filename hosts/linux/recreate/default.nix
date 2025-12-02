@@ -63,6 +63,8 @@
           - "! persist/home/yeldir/querbeet/workspace/private/qmk_firmware"
           - "! persist/home/yeldir/querbeet/workspace/vendor"
           - "- **/node_modules/**"
+          - "- **/.devenv/**"
+          - "- **/.devenv.*/**"
           - "+ persist/home/**"
           - "+ persist/system/**"
         '';
