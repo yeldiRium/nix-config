@@ -5,12 +5,12 @@
   ...
 }:
 let
-  cfg = config.yeldirs.cli.ops.lazydocker;
+  cfg = config.yeldirs.cli.ops.docker;
 in
 {
   options = {
-    yeldirs.cli.ops.lazydocker = {
-      enable = lib.mkEnableOption "lazydocker";
+    yeldirs.cli.ops.docker = {
+      enable = lib.mkEnableOption "docker";
     };
   };
 

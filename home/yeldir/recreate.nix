@@ -43,11 +43,11 @@
       };
 
       ops = {
+        docker.enable = true;
         fluxcd.enable = true;
         hetzner.enable = true;
         k9s.enable = true;
         kubectl.enable = true;
-        lazydocker.enable = true;
         nix.enable = true;
         tofu.enable = true;
       };

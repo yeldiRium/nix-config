@@ -81,9 +81,9 @@
 
       ops = {
         crossplane.enable = true;
+        docker.enable = true;
         k9s.enable = true;
         kubectl.enable = true;
-        lazydocker.enable = true;
       };
     };
   };

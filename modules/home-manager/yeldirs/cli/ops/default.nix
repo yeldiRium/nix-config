@@ -9,7 +9,7 @@
     ./hetzner.nix
     ./k9s.nix
     ./kubectl.nix
-    ./lazydocker.nix
+    ./docker.nix
     ./minikube.nix
     ./nix.nix
     ./tofu.nix
