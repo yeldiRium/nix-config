@@ -46,14 +46,16 @@ in
       git = {
         enable = true;
 
-        userName = lib.mkDefault "Hannes Leutloff";
-        userEmail = lib.mkDefault cfg.userEmail;
+        settings = {
+          user = {
+            name = lib.mkDefault "Hannes Leutloff";
+            email = lib.mkDefault cfg.userEmail;
+            signing.key = cfg.signingKey;
+          };
 
-        extraConfig = {
           init.defaultBranch = "main";
 
           commit.gpgSign = cfg.signCommits;
-          user.signing.key = cfg.signingKey;
 
           rerere.enabled = true;
         }

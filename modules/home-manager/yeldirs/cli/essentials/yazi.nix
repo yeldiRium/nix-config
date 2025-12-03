@@ -32,7 +32,7 @@ in
           ffmpeg
           mediainfo
           imagemagick
-          poppler_utils
+          poppler-utils
           resvg
         ]);
     };

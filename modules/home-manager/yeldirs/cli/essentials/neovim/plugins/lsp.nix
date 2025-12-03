@@ -37,7 +37,7 @@ in
         [ "docker" ]
         [
           docker-compose-language-service
-          dockerfile-language-server-nodejs
+          dockerfile-language-server
         ]
       )
       ++ (forLanguagesList
@@ -105,7 +105,7 @@ in
       ++ (forLanguagesList
         [ "tofu" ]
         [
-          opentofu-ls
+          tofu-ls
         ]
       )
       ++ (forLanguagesList
@@ -251,7 +251,7 @@ in
           (forLanguagesString [ "tofu" ] # lua
             ''
               add_lsp("tofu_ls", {
-                cmd = { "opentofu-ls", "serve" },
+                cmd = { "tofu-ls", "serve" },
                 filetypes = { "opentofu", "opentofu-vars", "terraform", "hcl" },
               })
             ''

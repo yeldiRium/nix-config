@@ -15,7 +15,7 @@ in
 {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     font = "${config.fontProfiles.regular.name} ${toString config.fontProfiles.regular.size}";
     terminal = "${pkgs.kitty}/bin/kitty";
 

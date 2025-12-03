@@ -84,10 +84,6 @@ in
           "--tmux"
         ];
       };
-      thefuck = {
-        enable = true;
-        enableZshIntegration = config.programs.zsh.enable;
-      };
     };
   };
 }

@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      citrix_workspace
+      pinned-citrix.citrix_workspace
     ];
 
     # home.persistence = {
