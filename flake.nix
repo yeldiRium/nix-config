@@ -24,7 +24,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.52.1";
+      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.52.2";
     };
     hy3 = {
       url = "github:outfoxxed/hy3?ref=hl0.52.0";
