@@ -80,8 +80,14 @@
       name = "eDP-1";
       width = 1920;
       height = 1080;
-      position = "1920x800";
+      position = "0x0";
       primary = true;
+    }
+    {
+      name = "desc:DENON Ltd. DENON-AVR 0x01010101";
+      width = 1920;
+      height = 1080;
+      position = "1920x0";
     }
   ];
 
