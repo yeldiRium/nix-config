@@ -16,10 +16,14 @@ in
 
       shellAliases = {
         devs = "devenv shell zsh";
+
         devt = "devenv test --dont-override-dotfile";
+
         devtb = "devenv tasks run app:build";
         devtl = "devenv tasks run app:lint";
         devtlf = "devenv tasks run app:lint-fix";
+
+        devpu = "devenv processes up";
       };
     };
   };

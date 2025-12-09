@@ -18,6 +18,7 @@ in
     home.packages = with pkgs; [
       lazydocker
       y.docker-volume-backup
+      y.docker-volume-copy
       y.docker-volume-inspect
     ];
   };

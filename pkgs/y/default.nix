@@ -2,6 +2,7 @@
 {
   aws-ssm-tools = pkgs.callPackage ./aws-ssm-tools.nix { };
   docker-volume-backup = pkgs.callPackage ./docker-volume-backup { };
+  docker-volume-copy = pkgs.callPackage ./docker-volume-copy { };
   docker-volume-inspect = pkgs.callPackage ./docker-volume-inspect { };
   git-find-default-branch = pkgs.unstable.callPackage ./git-find-default-branch { };
   git-find-remote = pkgs.unstable.callPackage ./git-find-remote { };

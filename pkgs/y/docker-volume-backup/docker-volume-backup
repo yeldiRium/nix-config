@@ -104,22 +104,6 @@ set -euo pipefail
 source_volume="${_arg_volume}"
 target_volume="backup_${_arg_volume}_$(date '+%Y-%m-%d')"
 
-printf 'Backing up volume %s...\n' "${source_volume}"
-printf 'Creating new volume %s as target...\n' "${target_volume}"
-docker volume create "${target_volume}"
-
-printf 'Running alpine docker container and installing rsync...\n'
-cid=$(docker run --detach --volume "${source_volume}:/source" --volume "${target_volume}:/target" alpine:3.22 sleep 1800)
-docker exec "${cid}" apk update
-docker exec "${cid}" apk add rsync
-
-printf 'Creating backup...\n'
-docker exec "${cid}" rsync --archive --info=progress2 /source/ /target/
-
-printf 'Stopping docker container...\n'
-docker stop --signal sigkill "${cid}"
-docker container rm "${cid}"
-
-printf 'Backup complete.\n'
+docker-volume-copy "${source_volume}" "${target_volume}"
 
 # ] <-- needed because of Argbash
