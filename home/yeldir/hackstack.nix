@@ -9,6 +9,7 @@
 
     ./optional/desktop/media
     ./optional/desktop/office
+    ./optional/desktop/spotify.nix
   ];
 
   wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;
@@ -19,10 +20,6 @@
 
       keyboardVariant = "neo";
     };
-
-    cli.essentials.neovim.supportedLanguages = [
-      "python"
-    ];
 
     desktop = {
       essentials = {
@@ -35,8 +32,8 @@
         };
       };
 
-      games = {
-        retroarch.enable = true;
+      office = {
+        citrix.enable = true;
       };
     };
 
