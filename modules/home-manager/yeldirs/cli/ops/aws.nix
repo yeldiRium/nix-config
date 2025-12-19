@@ -140,9 +140,16 @@ in
     };
 
     programs = {
-      zsh.initContent = lib.mkIf config.programs.zsh.enable ''
-        complete -C aws_completer aws
-      '';
+      zsh = {
+        initContent = lib.mkIf config.programs.zsh.enable ''
+          complete -C aws_completer aws
+        '';
+        oh-my-zsh = {
+          plugins = [
+            "aws"
+          ];
+        };
+      };
     };
 
     home.persistence = {
