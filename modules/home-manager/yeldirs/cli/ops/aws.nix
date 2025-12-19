@@ -95,6 +95,10 @@ in
           eks-node-viewer
         ];
 
+      shellAliases = lib.optionalAttrs cfg.ec2.enable {
+        "ec2-session" = "ec2-session --region ${cfg.region}";
+      };
+
       sessionVariables = {
         AWS_REGION = cfg.region;
       };

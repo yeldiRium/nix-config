@@ -40,6 +40,9 @@ in
         '';
         oh-my-zsh = {
           enable = true;
+          plugins = [
+            "aws"
+          ];
         };
         plugins = [
           {
