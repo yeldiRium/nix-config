@@ -26,6 +26,7 @@ in
           kubectl
           kubectx
           y.konfig
+          y.k8s-scripts
 
           delta
         ]

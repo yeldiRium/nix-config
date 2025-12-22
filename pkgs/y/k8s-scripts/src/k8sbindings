@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+whoami="$(kubectl auth whoami --output json)"
+
+bindings="$(kubectl get --all-namespaces rolebinding,clusterrolebinding --output json)"
+
+# shellcheck disable=SC2016 # The $ is jq, not shell expansion
+filter='.items | map(select(.subjects // empty | map((.kind == "User" and .name == $whoami.status.userInfo.username) or (.kind == "Group" and ([.name] | inside($whoami.status.userInfo.groups)))) | any))'
+
+echo "${bindings}" | jq --argjson whoami "${whoami}" "${filter}"

@@ -10,6 +10,7 @@
   hledger-helpers-bash = pkgs.callPackage ./hledger-helpers-bash { };
   hledger-helpers-go = pkgs.unstable.callPackage ./hledger-helpers-go { };
   hledger-language-server = pkgs.callPackage ./hledger-language-server.nix { };
+  k8s-scripts = pkgs.callPackage ./k8s-scripts { };
   konfig = pkgs.callPackage ./konfig.nix { };
   shellScript = pkgs.callPackage ./shellScript.nix { };
   watchcmd = pkgs.callPackage ./watchcmd { };
