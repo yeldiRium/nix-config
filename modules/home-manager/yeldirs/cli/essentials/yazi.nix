@@ -12,6 +12,7 @@ in
   options = {
     yeldirs.cli.essentials.yazi = {
       enableGui = lib.mkEnableOption "yazi with graphical ui";
+      enablePersistentCaching = lib.mkEnableOption "yazi with persistent caching";
     };
   };
 
@@ -36,7 +37,7 @@ in
           resvg
         ]);
 
-      persistence = {
+      persistence = lib.mkIf cfg.enablePersistentCaching {
         "/persist/${config.home.homeDirectory}" = {
           directories = [
             ".cache/yazi"
@@ -54,7 +55,7 @@ in
           mgr = {
             show_hidden = true;
           };
-          preview = {
+          preview = lib.mkIf cfg.enablePersistentCaching {
             cache_dir = "$XDG_CACHE_HOME/yazi";
           };
         };
