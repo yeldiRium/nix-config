@@ -35,6 +35,14 @@ in
           poppler-utils
           resvg
         ]);
+
+      persistence = {
+        "/persist/${config.home.homeDirectory}" = {
+          directories = [
+            ".cache/yazi"
+          ];
+        };
+      };
     };
 
     programs = {
@@ -45,6 +53,9 @@ in
         settings = {
           mgr = {
             show_hidden = true;
+          };
+          preview = {
+            cache_dir = "$XDG_CACHE_HOME/yazi";
           };
         };
         keymap = {
