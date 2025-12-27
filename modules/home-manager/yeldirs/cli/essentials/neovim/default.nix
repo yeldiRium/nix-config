@@ -30,6 +30,7 @@ in
     ./plugins/obsidian.nix
     ./plugins/oil.nix
     ./plugins/screenkey.nix
+    ./plugins/symbols.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix
     ./plugins/treesitter.nix
