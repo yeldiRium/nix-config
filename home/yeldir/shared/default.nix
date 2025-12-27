@@ -53,6 +53,7 @@
             quickfilepicker = {
               grapple.enable = true;
             };
+            symbols.enable = true;
             telescope.enable = true;
             testing.enable = true;
             treesitter.enable = true;
