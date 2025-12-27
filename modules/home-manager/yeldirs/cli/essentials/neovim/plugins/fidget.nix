@@ -16,11 +16,16 @@ in
         config =
           # lua
           ''
-            require("fidget").setup({
+            local fidget = require("fidget")
+            fidget.setup({
               notification = {
                 override_vim_notify = true,
               },
             })
+
+            vim.keymap.set("n", "<leader>nn", function()
+              fidget.notification.show_history()
+            end, { desc = "Show notification history" })
           '';
       }
     ];
