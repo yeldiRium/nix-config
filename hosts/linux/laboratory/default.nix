@@ -15,7 +15,6 @@
     ../shared/optional/bluetooth.nix
     ../shared/optional/docker.nix
     ../shared/optional/greetd.nix
-    ../shared/optional/networkmanager.nix
     ../shared/optional/persistence.nix
     ../shared/optional/pipewire.nix
     ../shared/optional/printing.nix
@@ -40,6 +39,9 @@
 
   yeldirs = {
     system = {
+      networking = {
+        enableNetworkManager = true;
+      };
       sops.enable = true;
       tailscale.enable = true;
     };
