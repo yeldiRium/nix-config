@@ -56,6 +56,7 @@
     enable = true;
     networks."30-wan" = {
       matchConfig.Name = "enp1s0";
+      networkConfig.DHCP = "ipv4";
       address = [
         "${worker.ipv6}/64"
       ];
