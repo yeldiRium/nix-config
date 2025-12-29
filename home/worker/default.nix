@@ -36,10 +36,7 @@
       ops = {
         helm.enable = true;
         k9s.enable = true;
-        kubectl = {
-          enable = true;
-          aliasOnly = true;
-        };
+        kubectl.enable = true;
       };
       essentials = {
         enable = true;

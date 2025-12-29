@@ -11,28 +11,21 @@ in
   options = {
     yeldirs.cli.ops.kubectl = {
       enable = lib.mkEnableOption "kubectl";
-      aliasOnly = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-      };
     };
   };
 
   config = lib.mkIf cfg.enable {
     home = {
-      packages = lib.mkIf (!cfg.aliasOnly) (
-        with pkgs;
-        [
-          kubectl
-          kubectx
-          y.konfig
-          y.k8s-scripts
+      packages = with pkgs; [
+        kubectl
+        kubectx
+        y.konfig
+        y.k8s-scripts
 
-          delta
-        ]
-      );
+        delta
+      ];
 
-      persistence = lib.mkIf (!cfg.aliasOnly) {
+      persistence = {
         "/persist/${config.home.homeDirectory}" = {
           directories = [
             ".kube"
@@ -60,7 +53,7 @@ in
       };
     };
 
-    programs = lib.mkIf (!cfg.aliasOnly) {
+    programs = {
       zsh.initContent = lib.mkIf config.programs.zsh.enable ''
         source <(${lib.getExe pkgs.kubectl} completion zsh)
       '';
