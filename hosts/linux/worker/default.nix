@@ -96,6 +96,7 @@
 
   yeldirs = {
     system = {
+      disable-impermanence = true;
       sops = {
         enable = true;
         keyFile = "/root/keys.txt";

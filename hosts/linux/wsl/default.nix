@@ -18,6 +18,12 @@
     hostId = "12345678";
   };
 
+  yeldirs = {
+    system = {
+      disable-impermanence = true;
+    };
+  };
+
   virtualisation.docker.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
