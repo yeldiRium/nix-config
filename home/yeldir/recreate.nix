@@ -52,6 +52,7 @@
         hetzner.enable = true;
         k9s.enable = true;
         kubectl.enable = true;
+        networking.enable = true;
         nix.enable = true;
         tofu.enable = true;
       };
