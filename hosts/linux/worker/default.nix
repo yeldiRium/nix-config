@@ -87,7 +87,9 @@
       tokenFile = config.sops.secrets.k3sToken.path;
 
       extraFlags = [
+        # Give user worker access to the cluster
         "--write-kubeconfig-mode 644"
+        "--write-kubeconfig /home/worker/.kube/config"
       ];
       gracefulNodeShutdown.enable = true;
     };
