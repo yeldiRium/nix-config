@@ -3,13 +3,14 @@
     ./aws.nix
     ./colima.nix
     ./crossplane.nix
+    ./docker.nix
     ./flux.nix
     ./fs-tools.nix
     ./helm.nix
     ./hetzner.nix
     ./k9s.nix
     ./kubectl.nix
-    ./docker.nix
+    ./networking.nix
     ./minikube.nix
     ./nix.nix
     ./tofu.nix
