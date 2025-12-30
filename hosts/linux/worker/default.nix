@@ -100,6 +100,8 @@
 
       manifests = {
         traefik-values.source = ./k8s-manifests/traefik-values.yaml;
+        certmanager-chart.source = ./k8s-manifests/certmanager-chart.yaml;
+        clusterissuer.source = ./k8s-manifests/clusterissuer.yaml;
       };
     };
   };

@@ -10,7 +10,7 @@ spec:
         enabled: true
     gateway:
       annotations:
-        cert-manager.io/issuer: letsencrypt
+        cert-manager.io/cluster-issuer: letsencrypt
       listeners:
         web:
           # Allow HTTPRoutes from all namespaces to bind to the Gateway.
@@ -23,5 +23,5 @@ spec:
           namespacePolicy:
             from: All
           certificateRefs:
-            - amogus-yeldirium-de-tls
+            - name: amogus-yeldirium-de-tls
           mode: Terminate
