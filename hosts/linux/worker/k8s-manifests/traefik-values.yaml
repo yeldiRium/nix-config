@@ -1,0 +1,27 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    providers:
+      kubernetesGateway:
+        enabled: true
+    gateway:
+      annotations:
+        cert-manager.io/issuer: letsencrypt
+      listeners:
+        web:
+          # Allow HTTPRoutes from all namespaces to bind to the Gateway.
+          namespacePolicy:
+            from: All
+        amogus-tls:
+          hostname: amogus.yeldirium.de
+          port: 8443
+          protocol: HTTPS
+          namespacePolicy:
+            from: All
+          certificateRefs:
+            - amogus-yeldirium-de-tls
+          mode: Terminate

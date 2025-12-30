@@ -97,6 +97,10 @@
         "--flannel-ipv6-masq"
       ];
       gracefulNodeShutdown.enable = true;
+
+      manifests = {
+        traefik-values.source = ./k8s-manifests/traefik-values.yaml;
+      };
     };
   };
   virtualisation.docker.enable = true;
