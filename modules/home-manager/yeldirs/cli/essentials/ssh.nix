@@ -39,7 +39,7 @@ in
             lib.y.workers.eachToAttrs (w: {
               name = "worker-${w.shortname} ${w.ipv6}";
               value = {
-                hostname = w.hostName;
+                hostname = w.ipv6;
                 user = "worker";
                 identityFile = "~/.ssh/worker";
                 port = 58008;
