@@ -90,6 +90,11 @@
         # Give user worker access to the cluster
         "--write-kubeconfig-mode 644"
         "--write-kubeconfig /home/worker/.kube/config"
+
+        # Dual Stack ipv4/6 networking
+        "--cluster-cidr=10.42.0.0/16,2001:db8:42::/56"
+        "--service-cidr=10.43.0.0/16,2001:db8:43::/112"
+        "--flannel-ipv6-masq"
       ];
       gracefulNodeShutdown.enable = true;
     };
