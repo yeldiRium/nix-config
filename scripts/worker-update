@@ -117,7 +117,7 @@ ipv6=$(echo "${entry}" | jq --raw-output '.ipv6')
 
 echo "updating worker \"${_arg_shortname}\"..."
 
-nixos-rebuild switch --flake "${FLAKE}#worker-${_arg_shortname}" --target-host "worker@${ipv6}" --use-remote-sudo
+nixos-rebuild switch --flake "${FLAKE}#worker-${_arg_shortname}" --target-host "worker@${ipv6}" --sudo
 
 echo "worker with name \"${_arg_shortname}\" was updated."
 
