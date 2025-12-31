@@ -20,7 +20,7 @@ attach() {
   fi
 }
 
-if ! tmux has-session -t "${session}" 2>/dev/null; then
+if ! tmux has-session -t "=${session}" 2>/dev/null; then
   tmux new-session -d -s "${session}" -x "$(tput cols)" -y "$(tput lines)"
 
   tmux split-window -t "${session}:0.0" -h -l "40%"
