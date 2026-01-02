@@ -24,18 +24,6 @@
     };
   };
 
-  # Remove this once neotest has a working version again.
-  # https://github.com/nvim-neotest/neotest/issues/530
-  zz02-modifications = _: prev: {
-    unstable = prev.unstable // {
-      luaPackages = prev.unstable.luaPackages // {
-        neotest = prev.unstable.luaPackages.neotest.override {
-          doCheck = false;
-        };
-      };
-    };
-  };
-
   # Remove this once citrix fixes their dependencies.
   # https://github.com/NixOS/nixpkgs/issues/454151
   zz03-modifications = final: _: {
