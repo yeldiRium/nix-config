@@ -17,11 +17,12 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      tree-sitter
       gcc
     ];
 
     programs.neovim.plugins =
-      with pkgs.unstable.vimPlugins;
+      with pkgs.vimPlugins;
       [
         {
           plugin = nvim-treesitter;
@@ -29,66 +30,249 @@ in
           config =
             # lua
             ''
-              require("nvim-treesitter").setup({})
+              local treesitter = require("nvim-treesitter")
 
-              vim.opt.foldmethod = "expr"
-              vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-              vim.opt.foldlevel = 99
+              vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+              vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+              vim.wo[0][0].foldmethod = 'expr'
             '';
         }
       ]
       ++ (forLanguage "poefilter" [
-        nvim-treesitter-parsers.poe_filter
-      ])
-      ++ (forLanguage "bash" [
-        nvim-treesitter-parsers.bash
-      ])
-      ++ (forLanguage "css" [
-        nvim-treesitter-parsers.css
-      ])
-      ++ (forLanguage "go" [
-        nvim-treesitter-parsers.go
-        nvim-treesitter-parsers.gomod
-        nvim-treesitter-parsers.gosum
-      ])
-      ++ (forLanguage "html" [
-        nvim-treesitter-parsers.html
-      ])
-      ++ (forLanguage "javascript" [
-        nvim-treesitter-parsers.javascript
-      ])
-      ++ (forLanguage "typescript" [
-        nvim-treesitter-parsers.typescript
-      ])
-      ++ (forLanguage "ledger" [
         {
-          plugin = nvim-treesitter-parsers.ledger;
+          plugin = nvim-treesitter.grammarPlugins.poe_filter;
           type = "lua";
           config =
             # lua
             ''
-              vim.filetype.add({
-                extension = {
-                  prices = "ledger",
-                },
+              treesitter.install({
+                "poefilter"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "poefilter" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+      ])
+      ++ (forLanguage "bash" [
+        {
+          plugin = nvim-treesitter.grammarPlugins.bash;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "bash"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "bash", "sh" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+      ])
+      ++ (forLanguage "css" [
+        nvim-treesitter-parsers.css
+        {
+          plugin = nvim-treesitter.grammarPlugins.css;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "css"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "css" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+      ])
+      ++ (forLanguage "go" [
+        {
+          plugin = nvim-treesitter.grammarPlugins.go;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "go"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "go" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+        {
+          plugin = nvim-treesitter.grammarPlugins.gomod;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "gomod"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "gomod" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+        {
+          plugin = nvim-treesitter.grammarPlugins.gosum;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "gosum"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "gosum" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+      ])
+      ++ (forLanguage "html" [
+        {
+          plugin = nvim-treesitter.grammarPlugins.html;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "html"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "html", "htmx", "html5" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+      ])
+      ++ (forLanguage "javascript" [
+        {
+          plugin = nvim-treesitter.grammarPlugins.javascript;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "javascript"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "javascript" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+      ])
+      ++ (forLanguage "typescript" [
+        {
+          plugin = nvim-treesitter.grammarPlugins.typescript;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "typescript"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "typescript" },
+                callback = function() vim.treesitter.start() end,
               })
             '';
         }
       ])
       ++ (forLanguage "lua" [
-        nvim-treesitter-parsers.lua
+        {
+          plugin = nvim-treesitter.grammarPlugins.lua;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "lua"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "lua" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
       ])
       ++ (forLanguage "markdown" [
-        nvim-treesitter-parsers.markdown
+        {
+          plugin = nvim-treesitter.grammarPlugins.markdown;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "markdown"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "markdown" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
       ])
       ++ (forLanguage "nix" [
-        nvim-treesitter-parsers.nix
+        {
+          plugin = nvim-treesitter.grammarPlugins.nix;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "nix"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "nix" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
       ])
       ++ (forLanguage "python" [
-        nvim-treesitter-parsers.python
+        {
+          plugin = nvim-treesitter.grammarPlugins.python;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "python"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "py" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
       ])
       ++ (forLanguage "rego" [
-        nvim-treesitter-parsers.rego
+        {
+          plugin = nvim-treesitter.grammarPlugins.rego;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "rego"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "rego" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
       ])
       ++ (forLanguage "tofu" [
         nvim-treesitter-parsers.hcl
@@ -98,6 +282,10 @@ in
           config =
             # lua
             ''
+              treesitter.install({
+                "hcl"
+              })
+
               vim.filetype.add({
                 extension = {
                   tf = "opentofu",
@@ -112,11 +300,52 @@ in
               vim.treesitter.language.register("hcl", "opentofu-vars")
               vim.treesitter.language.register("hcl", "terraform")
               vim.treesitter.language.register("hcl", "alloy")
+
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "tofu", "tf", "alloy", "hcl" },
+                callback = function() vim.treesitter.start() end,
+              })
             '';
         }
       ])
       ++ (forLanguage "yaml" [
-        nvim-treesitter-parsers.yaml
+        {
+          plugin = nvim-treesitter.grammarPlugins.yaml;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "yaml"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "yaml" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+      ])
+      ++ (forLanguage "ledger" [
+        {
+          plugin = nvim-treesitter.grammarPlugins.ledger;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "yaml"
+              })
+              vim.filetype.add({
+                extension = {
+                  prices = "ledger",
+                },
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "ledger", "prices" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
       ]);
   };
 }
