@@ -65,7 +65,15 @@
     {
       inherit lib;
 
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      legacyPackages = forAllSystems (
+        system:
+        import ./pkgs {
+          pkgs = import nixpkgs { inherit system; };
+        }
+      );
+      packages = forAllSystems (
+        system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system}
+      );
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
 
       overlays = import ./overlays { inherit inputs lib outputs; };

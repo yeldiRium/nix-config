@@ -333,7 +333,7 @@ in
             # lua
             ''
               treesitter.install({
-                "yaml"
+                "ledger"
               })
               vim.filetype.add({
                 extension = {
