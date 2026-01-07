@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -18,8 +17,7 @@
   ];
 
   home.persistence = {
-    "/persist/${config.home.homeDirectory}" = {
-      allowOther = true;
+    "/persist" = {
       directories = [
         ".local/share/applications" # For application .desktop files
         ".config/minigalaxy"

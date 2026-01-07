@@ -11,6 +11,6 @@ in
     yeldirs.system.disable-impermanence = lib.mkEnableOption "disable-impermanence";
   };
   config = {
-    home.persistence."/persist/${config.home.homeDirectory}" = lib.mkIf cfg (lib.mkForce { });
+    home.persistence."/persist" = lib.mkIf cfg (lib.mkForce { });
   };
 }

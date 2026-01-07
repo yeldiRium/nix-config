@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -9,7 +8,7 @@
     obsidian
   ];
 
-  home.persistence."/persist/${config.home.homeDirectory}" = {
+  home.persistence."/persist" = {
     directories = [
       ".config/obsidian"
     ];

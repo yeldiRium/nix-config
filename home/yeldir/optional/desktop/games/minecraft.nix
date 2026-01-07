@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -9,8 +8,7 @@
   ];
 
   home.persistence = {
-    "/persist/${config.home.homeDirectory}" = {
-      allowOther = true;
+    "/persist" = {
       directories = [
         ".local/share/PrismLauncher"
       ];

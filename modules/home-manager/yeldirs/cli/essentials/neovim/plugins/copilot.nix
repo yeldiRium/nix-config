@@ -123,7 +123,7 @@ in
     ];
 
     home.persistence = {
-      "/persist/${config.home.homeDirectory}" = {
+      "/persist" = {
         directories = [
           ".config/github-copilot"
         ];

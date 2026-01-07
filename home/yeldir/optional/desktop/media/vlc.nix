@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -9,7 +8,7 @@
   ];
 
   home.persistence = {
-    "/persist/${config.home.homeDirectory}" = {
+    "/persist" = {
       directories = [
         ".config/vlc"
       ];

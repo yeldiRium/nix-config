@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   accounts.email.accounts = {
     "hannes.leutloff@yeldirium.de" = {
@@ -50,7 +49,7 @@
     };
   };
 
-  home.persistence."/persist/${config.home.homeDirectory}" = {
+  home.persistence."/persist" = {
     directories = [
       ".thunderbird"
     ];

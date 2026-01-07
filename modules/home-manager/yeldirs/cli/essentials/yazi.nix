@@ -38,7 +38,7 @@ in
         ]);
 
       persistence = lib.mkIf cfg.enablePersistentCaching {
-        "/persist/${config.home.homeDirectory}" = {
+        "/persist" = {
           directories = [
             ".cache/yazi"
           ];

@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -144,8 +143,7 @@
   ];
 
   home.persistence = {
-    "/persist/${config.home.homeDirectory}" = {
-      allowOther = true;
+    "/persist" = {
       directories = [
         ".local/share/Red Hook Studios" # Darkest Dungeon
       ];

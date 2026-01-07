@@ -1,10 +1,9 @@
-{ config, ... }:
 {
   services.nextcloud-client = {
     enable = true;
   };
 
-  home.persistence."/persist/${config.home.homeDirectory}" = {
+  home.persistence."/persist" = {
     directories = [
       ".config/Nextcloud"
     ];

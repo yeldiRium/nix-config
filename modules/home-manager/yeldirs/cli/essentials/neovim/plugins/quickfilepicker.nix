@@ -59,7 +59,7 @@ in
     ];
 
     home.persistence = {
-      "/persist/${config.home.homeDirectory}" = {
+      "/persist" = {
         directories = [
           (lib.mkIf cfg.harpoon2.enable ".local/share/nvim/harpoon")
           (lib.mkIf cfg.grapple.enable ".local/share/nvim/grapple")

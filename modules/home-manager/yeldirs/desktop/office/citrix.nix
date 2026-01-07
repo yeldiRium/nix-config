@@ -18,7 +18,7 @@ in
     ];
 
     # home.persistence = {
-    #   "/persist/${config.home.homeDirectory}" = {
+    #   "/persist" = {
     #     directories = [
     #       ".citrix"
     #       "citrix"

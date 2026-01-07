@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -8,7 +7,7 @@
     calibre
   ];
 
-  home.persistence."/persist/${config.home.homeDirectory}" = {
+  home.persistence."/persist" = {
     directories = [
       ".config/calibre"
     ];

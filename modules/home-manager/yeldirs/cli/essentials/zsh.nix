@@ -67,7 +67,7 @@ in
       ];
 
       persistence = {
-        "/persist/${config.home.homeDirectory}" = {
+        "/persist" = {
           files = [
             ".warprc"
           ];

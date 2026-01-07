@@ -208,7 +208,7 @@ in
         ++ (lib.optionals cfg.enableDelta [
           delta
         ]);
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist" = {
         directories = [
           ".config/git-bug"
         ];

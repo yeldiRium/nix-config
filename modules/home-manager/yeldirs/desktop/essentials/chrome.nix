@@ -24,7 +24,7 @@ in
       google-chrome
     ];
 
-    home.persistence."/persist/${config.home.homeDirectory}" = {
+    home.persistence."/persist" = {
       directories = [
         ".config/google-chrome"
       ];

@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -10,8 +9,6 @@ let
 in
 {
   imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
-
     ./mounts
 
     ./keyring.nix
@@ -141,7 +138,7 @@ in
       };
 
       persistence = {
-        "/persist/${config.home.homeDirectory}" = {
+        "/persist" = {
           directories = [
             "Documents"
             "Downloads"
@@ -153,7 +150,6 @@ in
             ".local/bin"
             ".local/share/nix" # trusted settings and repl history
           ];
-          allowOther = true;
         };
       };
     };

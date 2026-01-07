@@ -1,7 +1,6 @@
-{ config, ... }:
 {
   home.persistence = {
-    "/persist/${config.home.homeDirectory}" = {
+    "/persist" = {
       directories = [
         ".local/state/wireplumber"
       ];

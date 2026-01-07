@@ -82,7 +82,7 @@ in
     };
 
     home = {
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist" = {
         directories = [
           ".mozilla"
         ];

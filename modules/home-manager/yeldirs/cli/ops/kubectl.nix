@@ -26,7 +26,7 @@ in
       ];
 
       persistence = {
-        "/persist/${config.home.homeDirectory}" = {
+        "/persist" = {
           directories = [
             ".kube"
           ];

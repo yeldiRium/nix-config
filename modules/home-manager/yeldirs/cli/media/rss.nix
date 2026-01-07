@@ -39,7 +39,7 @@ in
     };
 
     home.persistence = {
-      "/persist/${config.home.homeDirectory}" = {
+      "/persist" = {
         directories = [
           ".local/share/newsboat"
         ];
