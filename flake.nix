@@ -41,6 +41,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
+
+    y-editor = {
+      url = ./flakes/y-editor;
+    };
   };
 
   outputs =

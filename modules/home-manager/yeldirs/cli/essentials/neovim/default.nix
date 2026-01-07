@@ -5,7 +5,6 @@
   ...
 }:
 let
-  inherit (config.yeldirs.cli) essentials;
   cfg = config.yeldirs.cli.essentials.neovim;
   notifyOfConfigChange = ''
     for server in ''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/nvim.*; do
@@ -71,7 +70,7 @@ in
     };
   };
 
-  config = lib.mkIf essentials.enable {
+  config = lib.mkIf false {
     home.sessionVariables.EDITOR = "nvim";
 
     programs.neovim = {

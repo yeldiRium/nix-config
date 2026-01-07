@@ -12,6 +12,7 @@ in
 {
   imports = [
     ./neovim
+    ./nixCats
     ./tmux
 
     ./atuin.nix
