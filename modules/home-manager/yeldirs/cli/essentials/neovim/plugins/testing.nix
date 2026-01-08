@@ -36,7 +36,9 @@ in
                     if isLanguageSupported "go" then
                       # lua
                       ''
-                        require("neotest-golang"),
+                        require("neotest-golang")({
+                          runner = "gotestsum",
+                        }),
                       ''
                     else
                       ""
