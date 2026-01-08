@@ -43,15 +43,6 @@ in
                     else
                       ""
                   }
-                  ${
-                    if isLanguageSupported "rust" then
-                      # lua
-                      ''
-                        require("neotest-rust"),
-                      ''
-                    else
-                      ""
-                  }
                 },
               })
 
@@ -65,9 +56,6 @@ in
       ]
       ++ (forLanguage "go" [
         neotest-golang
-      ])
-      ++ (forLanguage "rust" [
-        neotest-rust
       ]);
   };
 }
