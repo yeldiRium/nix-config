@@ -60,19 +60,6 @@ in
           config = lib.concatLines [
             # lua
             ''
-              local dap = require("dap")
-
-              vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = ""})
-              vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = ""})
-
-              vim.keymap.set("n", "<leader>cdb", dap.toggle_breakpoint, { desc = "Set debugger breakpoint" })
-              vim.keymap.set("n", "<leader>cdc", dap.continue, { desc = "Start/continue debugger" })
-              vim.keymap.set("n", "<leader>cds", dap.terminate, { desc = "Stop the debugger" })
-
-              vim.keymap.set("n", "<leader>cdo", dap.step_over, { desc = "Step over statement" })
-              vim.keymap.set("n", "<leader>cdi", dap.step_into, { desc = "Step into function" })
-              vim.keymap.set("n", "<leader>cdx", dap.step_out, { desc = "Step out of function" })
-
               local dynamicDebuggerHooks = {}
               vim.keymap.set("n", "<leader>cdl", function()
                 for i = 1, #dynamicDebuggerHooks, 1 do
@@ -83,34 +70,15 @@ in
           ];
         }
         {
-          plugin = nvim-dap-ui;
+          plugin = debugmaster-nvim;
           type = "lua";
           config =
             # lua
             ''
-              local dap = require("dap")
-              local dapui = require("dapui")
+              local dm = require("debugmaster")
 
-              function setup()
-                dapui.setup({})
-              end
-              setup()
-
-              vim.keymap.set("n", "<leader>cdd", dapui.toggle, { desc = "Toggle debugger UI" })
-              vim.keymap.set("n", "<leader>cdr", setup, { desc = "Load debugger UI settings (resets layout)" })
-
-              dap.listeners.before.attach.dapui_config = function()
-                dapui.open()
-              end
-              dap.listeners.before.launch.dapui_config = function()
-                dapui.open()
-              end
-              dap.listeners.before.event_terminated.dapui_config = function()
-                dapui.close()
-              end
-              dap.listeners.before.event_exited.dapui_config = function()
-                dapui.close()
-              end
+              vim.keymap.set("n", "<Esc>", dm.mode.disable)
+              vim.keymap.set({ "n", "v" }, "<leader>cdd", dm.mode.toggle, { nowait = true })
             '';
         }
       ]
