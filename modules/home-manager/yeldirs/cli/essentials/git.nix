@@ -190,6 +190,7 @@ in
           gsw = "git switch";
           gswc = "git switch --create";
           gswd = "git switch --detach";
+          gswcso = "git-spin-off-branch";
 
           # tag
           gt = "git tag";
@@ -204,6 +205,7 @@ in
 
           y.git-find-default-branch
           y.git-find-remote
+          y.git-spin-off-branch
         ]
         ++ (lib.optionals cfg.enableDelta [
           delta
