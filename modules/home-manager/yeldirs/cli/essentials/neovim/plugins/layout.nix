@@ -54,11 +54,49 @@ in
             config =
               # lua
               ''
+                -- Below config assumes that
+                -- - debugmaster.nvim is installed and used for debug mode
                 local function lualineCwd()
                   return vim.fs.basename(vim.uv.cwd())
                 end
+
+                local debugmode = false
+                vim.api.nvim_create_autocmd("User", {
+                  pattern = "DebugModeChanged",
+                  callback = function(args)
+                    debugmode = args.data.enabled
+                  end
+                })
+
                 require("lualine").setup({
                   sections = {
+                    lualine_a = {
+                      {
+                        "mode",
+                        fmt = function(str) return debugmode and "DEBUG" or str end,
+                        -- TODO: Renable when https://github.com/nvim-lualine/lualine.nvim/issues/1424 is fixed
+                        -- color = function(tb)
+                        --   value = {}
+                        --   if debugmode then
+                        --     value.bg = "#2da84f"
+                        --   end
+                        --   return value
+                        -- end,
+                      },
+                    },
+                    -- TODO: Renable when https://github.com/nvim-lualine/lualine.nvim/issues/1424 is fixed
+                    -- lualine_b = {
+                    --   {
+                    --     "branch", "diff", "diagnostics",
+                    --     color = function(tb)
+                    --       value = {}
+                    --       if debugmode then
+                    --         value.fg =  "#2da84f"
+                    --       end
+                    --       return value
+                    --     end,
+                    --   },
+                    -- },
                     lualine_c = {
                       { "filename",
                         path = 1 }
