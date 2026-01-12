@@ -14,5 +14,6 @@
   k8s-scripts = pkgs.callPackage ./k8s-scripts { };
   konfig = pkgs.callPackage ./konfig.nix { };
   shellScript = pkgs.callPackage ./shellScript.nix { };
+  taws = pkgs.callPackage ./taws.nix { };
   watchcmd = pkgs.callPackage ./watchcmd { };
 }

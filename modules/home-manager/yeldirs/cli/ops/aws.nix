@@ -82,6 +82,7 @@ in
         with pkgs;
         [
           awscli2
+          y.taws
           (y.shellScript ./aws-scripts/aws-sg-why)
         ]
         ++ lib.optionals cfg.ecr.enable [
