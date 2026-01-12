@@ -1,7 +1,5 @@
 {
   imports = [
     ./nostromo.nix
-    ./openttd.nix
-    ./retroarch.nix
   ];
 }

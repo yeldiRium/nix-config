@@ -75,6 +75,10 @@
       tailscale.enable = true;
     };
 
+    gaming = {
+      nostromo.enable = true;
+    };
+
     mounts = {
       datengrab.enable = true;
     };

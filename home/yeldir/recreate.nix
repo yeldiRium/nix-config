@@ -79,6 +79,7 @@
       };
 
       games = {
+        nostromo.enable = true;
         openttd.enable = true;
         retroarch.enable = true;
       };
