@@ -193,7 +193,7 @@ in
           gswcso = "git-spin-off-branch";
 
           # tag
-          gt = "git tag";
+          gt = "git tag --sort=committerdate";
         };
 
       packages =
