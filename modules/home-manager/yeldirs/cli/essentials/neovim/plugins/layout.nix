@@ -43,6 +43,8 @@ in
 
           vim.opt.cursorline = true
           vim.opt.cursorcolumn = true
+
+          vim.opt.winborder = "rounded"
         '';
 
       plugins =

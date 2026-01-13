@@ -49,7 +49,12 @@ in
               vim.keymap.set("n", "<leader>ctt", neotest.summary.toggle, { desc = "Open test sidebar" })
               vim.keymap.set("n", "<leader>ctn", neotest.run.run, { desc = "Run the closest test" })
               vim.keymap.set("n", "<leader>cta", function () neotest.run.run(vim.fn.expand("%")) end, { desc = "Run all tests" })
-              vim.keymap.set("n", "<leader>cto", neotest.output.open, { desc = "Open test output" })
+              vim.keymap.set("n", "<leader>cto", function()
+                neotest.output.open({
+                  enter = true,
+                  auto_close = true,
+                })
+              end, { desc = "Open test output" })
               vim.keymap.set("n", "<leader>cts", neotest.run.stop, { desc = "Stop running tests" })
             '';
         }
