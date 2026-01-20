@@ -66,7 +66,6 @@
           git.enable = true;
           illuminate.enable = true;
           lsp.enable = true;
-          oil.enable = true;
           quickfilepicker = {
             grapple.enable = true;
           };

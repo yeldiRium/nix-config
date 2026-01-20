@@ -28,7 +28,6 @@ in
     ./plugins/layout.nix
     ./plugins/lsp.nix
     ./plugins/obsidian.nix
-    ./plugins/oil.nix
     ./plugins/symbols.nix
     ./plugins/telescope.nix
     ./plugins/testing.nix
