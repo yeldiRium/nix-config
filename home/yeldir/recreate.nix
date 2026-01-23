@@ -38,6 +38,7 @@
       };
 
       media = {
+        music.enable = true;
         rss.enable = true;
       };
 
