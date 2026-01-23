@@ -9,7 +9,6 @@ vim.keymap.set("n", "<leader>cr", "<Nop>", { desc = "Refactoring" })
 vim.keymap.set("n", "<leader>ct", "<Nop>", { desc = "Testing" })
 vim.keymap.set("n", "<leader>f", "<Nop>", { desc = "Pickers/Browsers" })
 vim.keymap.set("n", "<leader>g", "<Nop>", { desc = "Git" })
-vim.keymap.set("n", "<leader>h", "<Nop>", { desc = "Harpoon" })
 
 -- Move between windows
 vim.keymap.set("n", "<C-Left>", "<C-w><Left>", { desc = "Move focus to the window to the left" })

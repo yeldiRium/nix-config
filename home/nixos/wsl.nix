@@ -66,7 +66,6 @@
           git.enable = true;
           illuminate.enable = true;
           lsp.enable = true;
-          quickfilepicker.grapple.enable = true;
           telescope.enable = true;
           testing.enable = true;
           treesitter.enable = true;
