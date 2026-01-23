@@ -69,7 +69,31 @@ in
               end
             '';
         }
-      ]);
+      ])
+      ++ [
+        {
+          plugin = snacks-nvim;
+          type = "lua";
+          config =
+            # lua
+            ''
+              require("snacks").setup({})
+            '';
+        }
+        {
+          plugin = pkgs.vimExtraPlugins.seeker-nvim;
+          type = "lua";
+          config =
+            # lua
+            ''
+              local seeker = require("seeker")
+              seeker.setup({})
+              vim.keymap.set("n", "<C-O>", function()
+                seeker.seek()
+              end, { desc = "Seeker: Qery for file" })
+            '';
+        }
+      ];
 
     home.persistence = {
       "/persist" = {
