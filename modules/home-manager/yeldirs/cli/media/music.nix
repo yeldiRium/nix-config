@@ -18,12 +18,12 @@ in
     home = {
       packages = with pkgs; [
         id3
+        (pkgs.writeShellScriptBin "id3j" # bash
+          ''
+            id3 --query '{"title":"%t","artist":"%a","album":"%l","track":"%n","year":"%y","genre":"%g"}' "''${1}"
+          ''
+        )
       ];
-
-      shellAliases = {
-        # Todo: convert into executable so that it can be used in scripts
-        id3j = ''id3 --query '{"title":"%t","artist":"%a","album":"%l","track":"%n","year":"%y","genre":"%g"}' '';
-      };
     };
   };
 }
