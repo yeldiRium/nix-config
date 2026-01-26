@@ -29,6 +29,8 @@ in
     home = {
       packages = with pkgs; [
         glab
+        (pkgs.writeShellScriptBin "glabmrversions" (builtins.readFile ./scripts/glabmrversions))
+        (pkgs.writeShellScriptBin "glabmrrd" (builtins.readFile ./scripts/glabmrrd))
       ];
     };
 

@@ -4,6 +4,6 @@
 
     ./claude.nix
     ./gh.nix
-    ./gitlab.nix
+    ./gitlab
   ];
 }
