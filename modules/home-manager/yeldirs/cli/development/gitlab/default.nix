@@ -31,6 +31,12 @@ in
         glab
         (pkgs.writeShellScriptBin "glabmrversions" (builtins.readFile ./scripts/glabmrversions))
         (pkgs.writeShellScriptBin "glabmrrd" (builtins.readFile ./scripts/glabmrrd))
+        (pkgs.writeShellScriptBin "glabmrci" # bash
+          ''
+            pipeline_id=$(glab mr view --output json | jq -r '.head_pipeline.id')
+            glab ci trace --pipeline-id "''${pipeline_id}"
+          ''
+        )
       ];
     };
 
