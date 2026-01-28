@@ -17,6 +17,11 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       yt-dlp
+      (pkgs.writeShellScriptBin "ytp" # bash
+        ''
+          yt-dlp --cookies-from-browser firefox:h29pyan9.private "''${1}"
+        ''
+      )
     ];
   };
 }
