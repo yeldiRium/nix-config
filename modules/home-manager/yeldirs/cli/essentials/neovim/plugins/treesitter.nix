@@ -223,6 +223,17 @@ in
               })
             '';
         }
+        {
+          plugin = nvim-treesitter.grammarPlugins.markdown_inline;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "markdown_inline"
+              })
+            '';
+        }
       ])
       ++ (forLanguage "nix" [
         {
