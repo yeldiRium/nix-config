@@ -59,7 +59,6 @@
             indentation-guides.enable = true;
           };
 
-          copilot.enable = true;
           debugging.enable = true;
           early-retirement.enable = true;
           fold-cycle.enable = true;

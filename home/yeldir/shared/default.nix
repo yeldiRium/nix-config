@@ -43,7 +43,6 @@
               indentation-guides.enable = true;
             };
 
-            copilot.enable = false;
             debugging.enable = true;
             fold-cycle.enable = true;
             git.enable = true;
