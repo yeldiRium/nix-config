@@ -18,7 +18,6 @@ let
 in
 {
   imports = [
-    ./plugins/copilot.nix
     ./plugins/debugging.nix
     ./plugins/fidget.nix
     ./plugins/fold-cycle.nix
@@ -26,6 +25,7 @@ in
     ./plugins/quickfilepicker.nix
     ./plugins/illuminate.nix
     ./plugins/layout.nix
+    ./plugins/llm.nix
     ./plugins/lsp.nix
     ./plugins/obsidian.nix
     ./plugins/symbols.nix
