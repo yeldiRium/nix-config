@@ -23,6 +23,11 @@ in
         y.k8s-scripts
 
         delta
+        (pkgs.writeShellScriptBin "kunfinalize" # bash
+          ''
+            kubectl patch --type=merge --patch '{"metadata":{"finalizers":null}}' $@
+          ''
+        )
       ];
 
       persistence = {
