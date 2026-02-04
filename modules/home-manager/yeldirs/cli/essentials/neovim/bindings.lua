@@ -26,6 +26,22 @@ vim.keymap.set("n", ")", function() vim.cmd("+tabmove") end, { desc = "Move tab 
 vim.keymap.set("n", "<M-Left>", "<C-O>", { desc = "History back" })
 vim.keymap.set("n", "<M-Right>", "<C-I>", { desc = "History forward" })
 
+-- Scrolling
+vim.keymap.set({"n", "v"}, "<S-Up>", "<C-Y>", { desc = "Scroll up, don't move cursor" })
+vim.keymap.set({"n", "v"}, "<M-Up>", function()
+  local height = vim.api.nvim_win_get_height(0)
+  local scroll = math.floor(height / 2)
+  vim.cmd("normal! "..scroll.."<C-Y>")
+end, { desc = "Scroll half screen up, don't move cursor" })
+vim.keymap.set({"n", "v"}, "<S-Down>", "<C-E>", { desc = "Scroll down" })
+vim.keymap.set({"n", "v"}, "<M-Down>", function()
+  local height = vim.api.nvim_win_get_height(0)
+  local scroll = math.floor(height / 2)
+  vim.cmd("normal! "..scroll.."<C-E>")
+end, { desc = "Scroll half screen down, don't move cursor" })
+vim.keymap.set({"n", "v"}, "<S-Left>", "zh", { desc = "Scroll left" })
+vim.keymap.set({"n", "v"}, "<S-Right>", "zl", { desc = "Scroll right" })
+
 -- Misc
 vim.keymap.set("n", "<leader>/", ":nohlsearch<cr>", { desc = "Clear search highlight" })
 
