@@ -103,7 +103,7 @@ in
               remoteBranchName="''${remoteName}/''${upstreamBranchName}"
             '';
 
-          logFormat = "--format='%C(auto)%h %s %Cblue(%an, %as)%C(auto) %d'";
+          logFormat = "--format='%C(auto)%h%x09%Cblue%an%x09%ad%x09%C(auto)%s %d' --date=short";
         in
         {
           # convenience
