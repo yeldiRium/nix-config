@@ -71,7 +71,7 @@
         enable = true;
         excludes = nixIgnores;
       };
-      nixfmt-rfc-style.enable = true;
+      nixfmt.enable = true;
       statix = {
         enable = true;
         excludes = nixIgnores;
