@@ -27,10 +27,6 @@
     };
 
     cli = {
-      essentials = {
-        yazi.enablePersistentCaching = true;
-      };
-
       development = {
         claude.enable = true;
         gh.enable = true;

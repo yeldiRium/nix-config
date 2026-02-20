@@ -12,7 +12,6 @@ in
   options = {
     yeldirs.cli.essentials.yazi = {
       enableGui = lib.mkEnableOption "yazi with graphical ui";
-      enablePersistentCaching = lib.mkEnableOption "yazi with persistent caching";
     };
   };
 
@@ -30,20 +29,12 @@ in
           ripgrep
         ]
         ++ (lib.optionals cfg.enableGui [
-          ffmpeg
+          unstable.ffmpeg-full
           mediainfo
           imagemagick
           poppler-utils
           resvg
         ]);
-
-      persistence = lib.mkIf cfg.enablePersistentCaching {
-        "/persist" = {
-          directories = [
-            ".cache/yazi"
-          ];
-        };
-      };
     };
 
     programs = {
@@ -54,9 +45,6 @@ in
         settings = {
           mgr = {
             show_hidden = true;
-          };
-          preview = lib.mkIf cfg.enablePersistentCaching {
-            cache_dir = "$XDG_CACHE_HOME/yazi";
           };
         };
         keymap = {
