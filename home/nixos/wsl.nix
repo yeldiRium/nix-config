@@ -93,6 +93,8 @@
       nswitch = lib.mkForce "sudo nixos-rebuild switch --flake $FLAKE#wsl --impure";
       nrepl = lib.mkForce "sudo nixos-rebuild repl --flake $FLAKE#wsl --impure";
       nrollback = lib.mkForce "sudo nixos-rebuild switch --flake $FLAKE#wsl --impure --rollback";
+
+      clipc = "iconv -f utf8 -t utf16le | clipcopy";
     };
   };
 
