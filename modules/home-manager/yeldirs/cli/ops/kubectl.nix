@@ -28,6 +28,11 @@ in
             kubectl patch --type=merge --patch '{"metadata":{"finalizers":null}}' $@
           ''
         )
+        (pkgs.writeShellScriptBin "kreconcile" # bash
+          ''
+            kubectl annotate $@ "reconcile=$(date --iso-8601=m)"
+          ''
+        )
       ];
 
       persistence = {
