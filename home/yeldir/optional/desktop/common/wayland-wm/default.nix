@@ -22,7 +22,12 @@
 
   xdg.mimeApps.enable = true;
 
-  home.packages = with pkgs; [
-    wl-clipboard
-  ];
+  home = {
+    packages = with pkgs; [
+      wl-clipboard
+    ];
+    shellAliases = {
+      clipc = "wl-copy";
+    };
+  };
 }
