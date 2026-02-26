@@ -12,7 +12,6 @@
     ./optional/desktop/hyprland
 
     ./optional/desktop/games
-    ./optional/desktop/media
     ./optional/desktop/office
   ];
 
@@ -73,6 +72,7 @@
         clementine.enable = true;
         gimp.enable = true;
         spotify.enable = true;
+        vlc.enable = true;
       };
 
       games = {

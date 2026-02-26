@@ -7,7 +7,6 @@
 
     ./optional/desktop/hyprland
 
-    ./optional/desktop/media
     ./optional/desktop/office
   ];
 
@@ -37,6 +36,7 @@
 
       media = {
         spotify.enable = true;
+        vlc.enable = true;
       };
     };
 
