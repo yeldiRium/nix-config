@@ -100,6 +100,12 @@
             inherit inputs lib outputs;
           };
         };
+        nuc = lib.nixosSystem {
+          modules = [ ./hosts/linux/nuc ];
+          specialArgs = {
+            inherit inputs lib outputs;
+          };
+        };
 
         wsl = lib.nixosSystem {
           modules = [ ./hosts/linux/wsl ];
