@@ -170,8 +170,9 @@
           "    , XF86MonBrightnessDown, exec, light -U 10"
         ];
 
-    bindn = [
-      ", mouse:272, hy3:focustab, mouse"
+    bindm = [
+      # move floating window
+      "ALT, mouse:272, movewindow"
     ];
   };
 }
