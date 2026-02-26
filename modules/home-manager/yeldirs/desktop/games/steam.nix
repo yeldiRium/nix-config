@@ -7,6 +7,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.games.steam;
 
   monitor = lib.head (lib.filter (m: m.primary) config.monitors);
@@ -44,7 +45,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     home = {
       packages = with pkgs; [
         protonup-ng

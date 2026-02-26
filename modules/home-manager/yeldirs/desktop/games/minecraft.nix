@@ -5,6 +5,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.games.minecraft;
 in
 {
@@ -14,7 +15,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     home.packages = with pkgs; [
       prismlauncher
     ];

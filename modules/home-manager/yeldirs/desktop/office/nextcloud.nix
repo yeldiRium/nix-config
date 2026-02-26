@@ -1,5 +1,6 @@
 { config, lib, ... }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.office.nextcloud;
 in
 {
@@ -7,7 +8,7 @@ in
     yeldirs.desktop.office.nextcloud.enable = lib.mkEnableOption "nextcloud";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     services.nextcloud-client = {
       enable = true;
     };

@@ -4,6 +4,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.office.thunderbird;
 in
 {
@@ -16,7 +17,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     programs.thunderbird = {
       enable = true;
       profiles = {

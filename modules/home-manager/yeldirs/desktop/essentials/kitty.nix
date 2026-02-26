@@ -4,6 +4,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.essentials.kitty;
 in
 {
@@ -11,7 +12,7 @@ in
     yeldirs.desktop.essentials.kitty.enable = lib.mkEnableOption "kitty";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     programs = {
       kitty = {
         enable = true;

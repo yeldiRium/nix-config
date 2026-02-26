@@ -5,6 +5,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.essentials.chrome;
 in
 {
@@ -19,7 +20,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     home.packages = with pkgs; [
       google-chrome
     ];

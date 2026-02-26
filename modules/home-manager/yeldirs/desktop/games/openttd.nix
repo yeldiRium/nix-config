@@ -5,6 +5,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.games.openttd;
 in
 {
@@ -14,7 +15,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable (
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) (
     let
       openttdFiles = builtins.readDir ./openttd;
       configFiles = lib.filterAttrs (name: _: lib.hasSuffix ".cfg" name) openttdFiles;

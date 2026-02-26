@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   imports = [
     ./communication
@@ -6,4 +7,10 @@
     ./media
     ./office
   ];
+
+  options = {
+    yeldirs.desktop = {
+      enable = lib.mkEnableOption "desktop";
+    };
+  };
 }

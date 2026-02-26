@@ -5,6 +5,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.office.libreoffice;
 in
 {
@@ -12,7 +13,7 @@ in
     yeldirs.desktop.office.libreoffice.enable = lib.mkEnableOption "libreoffice";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     home.packages = with pkgs; [
       libreoffice-fresh
     ];

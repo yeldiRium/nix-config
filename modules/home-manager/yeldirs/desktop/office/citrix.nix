@@ -5,6 +5,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.office.citrix;
 in
 {
@@ -12,7 +13,7 @@ in
     yeldirs.desktop.office.citrix.enable = lib.mkEnableOption "citrix";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     home.packages = with pkgs; [
       pinned-citrix.citrix_workspace
     ];

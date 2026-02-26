@@ -5,6 +5,7 @@
   ...
 }:
 let
+  desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.office.obsidian;
 in
 {
@@ -12,7 +13,7 @@ in
     yeldirs.desktop.office.obsidian.enable = lib.mkEnableOption "obsidian";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     home.packages = with pkgs.unstable; [
       obsidian
     ];
