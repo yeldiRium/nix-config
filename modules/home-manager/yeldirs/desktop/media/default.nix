@@ -1,7 +1,7 @@
 {
   imports = [
-    ./clementine
-    ./gimp
+    ./clementine.nix
+    ./gimp.nix
     ./spotify.nix
   ];
 }
