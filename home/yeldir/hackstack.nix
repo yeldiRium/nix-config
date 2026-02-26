@@ -9,7 +9,6 @@
 
     ./optional/desktop/media
     ./optional/desktop/office
-    ./optional/desktop/spotify.nix
   ];
 
   wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;
@@ -34,6 +33,10 @@
 
       office = {
         citrix.enable = true;
+      };
+
+      media = {
+        spotify.enable = true;
       };
     };
 

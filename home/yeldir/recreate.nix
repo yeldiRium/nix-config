@@ -14,7 +14,6 @@
     ./optional/desktop/games
     ./optional/desktop/media
     ./optional/desktop/office
-    ./optional/desktop/spotify.nix
   ];
 
   wallpaper = pkgs.wallpapers.space-cloud-orange;
@@ -73,6 +72,7 @@
       media = {
         clementine.enable = true;
         gimp.enable = true;
+        spotify.enable = true;
       };
 
       games = {
