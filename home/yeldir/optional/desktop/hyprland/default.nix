@@ -7,7 +7,6 @@
 }:
 let
   cfg = config.yeldirs.hyprland;
-  yeldirsCfg = config.yeldirs;
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in
 {
@@ -148,7 +147,7 @@ in
               ];
               transparentApps =
                 if cfg.enableTransparency then
-                  lib.optionals yeldirsCfg.desktop.essentials.kitty.enable [
+                  [
                     "class:^(kitty)$"
                   ]
                 else

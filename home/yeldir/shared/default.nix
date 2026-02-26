@@ -78,10 +78,6 @@
           telegram.enable = true;
         };
 
-        essentials = {
-          kitty.enable = true;
-        };
-
         office = {
           zotero.enable = true;
         };
