@@ -11,7 +11,6 @@
 
     ./optional/desktop/hyprland
 
-    ./optional/desktop/games
     ./optional/desktop/office
   ];
 
@@ -76,9 +75,12 @@
       };
 
       games = {
+        bottles.enable = true;
+        minecraft.enable = true;
         nostromo.enable = true;
         openttd.enable = true;
         retroarch.enable = true;
+        steam.enable = true;
       };
 
       office = {
