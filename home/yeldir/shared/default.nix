@@ -1,4 +1,10 @@
 {
+  imports = [
+    ./calendar.nix
+    ./contacts.nix
+    ./email.nix
+  ];
+
   config = {
     yeldirs = {
       system = {

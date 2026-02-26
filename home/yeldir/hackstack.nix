@@ -6,8 +6,6 @@
     ./shared/linux
 
     ./optional/desktop/hyprland
-
-    ./optional/desktop/office
   ];
 
   wallpaper = pkgs.wallpapers.cyberpunk-tree-landscape;

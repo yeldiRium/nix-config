@@ -10,8 +10,6 @@
     ./shared/linux
 
     ./optional/desktop/hyprland
-
-    ./optional/desktop/office
   ];
 
   wallpaper = pkgs.wallpapers.space-cloud-orange;
