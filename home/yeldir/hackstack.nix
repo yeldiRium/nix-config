@@ -31,7 +31,8 @@
       };
 
       office = {
-        citrix.enable = true;
+        libreoffice.enable = true;
+        obsidian.enable = true;
         thunderbird = {
           enable = true;
           profile = "hannes.leutloff@yeldirium.de";

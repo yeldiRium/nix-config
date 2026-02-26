@@ -84,7 +84,11 @@
       };
 
       office = {
+        calibre.enable = true;
         citrix.enable = true;
+        libreoffice.enable = true;
+        nextcloud.enable = true;
+        obsidian.enable = true;
         thunderbird = {
           enable = true;
           profile = "hannes.leutloff@yeldirium.de";
