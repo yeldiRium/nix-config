@@ -1,3 +1,4 @@
+{ config, lib, ... }:
 {
   accounts.email.accounts = {
     "hannes.leutloff@yeldirium.de" = {
@@ -5,9 +6,8 @@
       address = "hannes.leutloff@yeldirium.de";
       realName = "Hannes Leutloff";
 
-      thunderbird = {
+      thunderbird = lib.mkIf config.programs.thunderbird.enable {
         enable = true;
-        profiles = [ "hannes.leutloff@yeldirium.de" ];
         settings = _: {
           "mail.openpgp.allow_external_gnupg" = true;
         };
@@ -31,27 +31,5 @@
         tls.enable = true;
       };
     };
-  };
-
-  programs.thunderbird = {
-    enable = true;
-    profiles = {
-      "hannes.leutloff@yeldirium.de" = {
-        isDefault = true;
-      };
-    };
-    settings = {
-      "mail.uidensity" = 0;
-      "mail.uifontsize" = 12;
-
-      # Suppress donation popup.
-      "app.donation.eoy.version.viewed" = 100;
-    };
-  };
-
-  home.persistence."/persist" = {
-    directories = [
-      ".thunderbird"
-    ];
   };
 }

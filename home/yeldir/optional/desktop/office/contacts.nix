@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   accounts.contact.accounts = {
     "Contacts" = {
@@ -7,7 +7,9 @@
         userName = "yeldir";
         url = "https://nextcloud.yeldirium.de/remote.php/dav/addressbooks/users/yeldir/contacts/";
       };
-      thunderbird.enable = config.programs.thunderbird.enable;
+      thunderbird = lib.mkIf config.programs.thunderbird.enable {
+        enable = true;
+      };
     };
   };
 }

@@ -32,6 +32,10 @@
 
       office = {
         citrix.enable = true;
+        thunderbird = {
+          enable = true;
+          profile = "hannes.leutloff@yeldirium.de";
+        };
       };
 
       media = {

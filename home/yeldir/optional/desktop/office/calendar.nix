@@ -75,11 +75,9 @@ in
     }) calendars
   );
 
-  programs.thunderbird.profiles."hannes.leutloff@yeldirium.de".calendarAccountsOrder = lib.map (
-    calendar: calendar.name
-  ) calendars;
-
-  programs.thunderbird.settings = {
-    "calendar.week.start" = 1;
+  programs.thunderbird = lib.mkIf config.programs.thunderbird.enable {
+    profiles."hannes.leutloff@yeldirium.de".calendarAccountsOrder = lib.map (
+      calendar: calendar.name
+    ) calendars;
   };
 }
