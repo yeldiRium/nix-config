@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   ...
 }:
@@ -10,6 +11,7 @@ let
       type = "caldav";
       path = "personal";
       suppressAlarms = false;
+      color = "#31CC7C";
     }
     {
       name = "Work";
@@ -17,6 +19,7 @@ let
       type = "caldav";
       path = "work";
       suppressAlarms = false;
+      color = "#C98879";
     }
     {
       name = "Lea";
@@ -24,6 +27,7 @@ let
       type = "caldav";
       path = "lea";
       suppressAlarms = false;
+      color = "#0082C9";
     }
     {
       name = "Festivals & Events";
@@ -31,6 +35,7 @@ let
       type = "caldav";
       path = "festivals-events";
       suppressAlarms = false;
+      color = "#B6469D";
     }
     {
       name = "Birthdays";
@@ -38,58 +43,43 @@ let
       type = "caldav";
       path = "contact_birthdays";
       suppressAlarms = true;
+      color = "#FFFFCA";
     }
   ];
 
   getCalendarUsername = _: "yeldir";
   getCalendarUrl =
     calendar: "https://nextcloud.yeldirium.de/remote.php/dav/calendars/yeldir/${calendar.path}/";
+  makeNextcloudCalendar = calendar: {
+    inherit (calendar) primary;
+
+    remote = {
+      inherit (calendar) type;
+      userName = getCalendarUsername calendar;
+      url = getCalendarUrl calendar;
+    };
+
+    thunderbird = lib.mkIf config.programs.thunderbird.enable {
+      enable = true;
+
+      inherit (calendar) color;
+
+      # TODO: If at some point possible, set suppressAlarms here.
+    };
+  };
 in
 {
-  accounts.calendar.accounts =
-    let
-      makeNextcloudCalendar = calendar: {
-        inherit (calendar) primary;
-        remote = {
-          inherit (calendar) type;
-          userName = getCalendarUsername calendar;
-          url = getCalendarUrl calendar;
-        };
-      };
-    in
-    lib.attrsets.mergeAttrsList (
-      map (calendar: {
-        "${calendar.name}" = makeNextcloudCalendar calendar;
-      }) calendars
-    );
+  accounts.calendar.accounts = lib.attrsets.mergeAttrsList (
+    map (calendar: {
+      "${calendar.name}" = makeNextcloudCalendar calendar;
+    }) calendars
+  );
 
-  # TODO: Replace this once HomeManager 25.11 is released and
-  # config.accounts.calendar.accounts.<name>.thunderbird.enable is available.
-  # Make sure it works, though, including the order of calendars.
-  programs.thunderbird.settings =
-    let
-      safeName = builtins.replaceStrings [ "." ] [ "-" ];
-      makeThunderbirdCalendar =
-        calendar:
-        let
-          calendarAccountSafeName = safeName calendar.name;
-        in
-        {
-          "calendar.registry.${calendarAccountSafeName}.cache.enabled" = true;
-          "calendar.registry.${calendarAccountSafeName}.calendar-main-default" = calendar.primary;
-          "calendar.registry.${calendarAccountSafeName}.calendar-main-in-composite" = true;
-          "calendar.registry.${calendarAccountSafeName}.name" = calendar.name;
-          "calendar.registry.${calendarAccountSafeName}.type" = calendar.type;
-          "calendar.registry.${calendarAccountSafeName}.uri" = getCalendarUrl calendar;
-          "calendar.registry.${calendarAccountSafeName}.username" = getCalendarUsername calendar;
-          "calendar.registry.${calendarAccountSafeName}.suppressAlarms" = calendar.suppressAlarms;
-        };
-    in
-    lib.attrsets.mergeAttrsList (map makeThunderbirdCalendar calendars)
-    // {
-      "calendar.list.sortOrder" = lib.fold (cal: acc: cal.name + " " + acc) "" calendars;
+  programs.thunderbird.profiles."hannes.leutloff@yeldirium.de".calendarAccountsOrder = lib.map (
+    calendar: calendar.name
+  ) calendars;
 
-      # Keep these after removing the above.
-      "calendar.week.start" = 1;
-    };
+  programs.thunderbird.settings = {
+    "calendar.week.start" = 1;
+  };
 }
