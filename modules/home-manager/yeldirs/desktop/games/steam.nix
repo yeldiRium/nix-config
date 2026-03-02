@@ -62,12 +62,14 @@ in
           directories = [
             ".local/share/Steam"
 
-            ".factorio"
             ".config/Loop_Hero"
             ".config/unity3d/Ludeon Studios/Rimworld by Ludeon Studios"
-            ".local/share/aspyr-media" # Borderlands
+            ".factorio"
+            ".local/share/ASM" # A Solitaire Mystrey
             ".local/share/Baba_Is_You"
             ".local/share/IntoTheBreach"
+            ".local/share/Opus Magnum"
+            ".local/share/aspyr-media" # Borderlands
           ];
         };
       };
