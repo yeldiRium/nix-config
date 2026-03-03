@@ -14,7 +14,7 @@
     "pipe-operators"
   ];
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
   environment.systemPackages = with pkgs; [
     git
@@ -32,9 +32,6 @@
       efi.canTouchEfiVariables = true;
     };
     initrd.postDeviceCommands = lib.mkAfter ''
-      btrfs subvolume create /btrfs_tmp/root
-      umount /btrfs_tmp
-
       mkdir /btrfs_tmp
       mount /dev/root_vg/root /btrfs_tmp
       if [[ -e /btrfs_tmp/root ]]; then
