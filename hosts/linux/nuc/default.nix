@@ -30,6 +30,19 @@
     system = {
       sops.enable = true;
       tailscale.enable = true;
+      networking = {
+        enableNetworkManager = true;
+      };
+    };
+  };
+  services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
     };
   };
 
