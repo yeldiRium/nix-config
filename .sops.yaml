@@ -5,6 +5,7 @@ keys:
       - &host-recreate age12yf69pp0f9pj47fzlhfwp0zcg34v6kdhew2n3f5sf2czpjnen9uqs8q5lf
       - &host-rekorder age1hwjnjs8u74sr6pakc2txcnpsdrlkdrn9guputuknfdhxh3vgw4nsn736mg
       - &host-worker age108cl60wjsjetdc5sd52wjnyw2jhpzck4k4dc7v5mupnp60jq9elqufjf8r
+      - &host-nuc age1mpc335qwa77nvytvf4zm8xs6da4ej49gykpfma9nrkzlwcu2qdrshlts39
   - users:
       - &user-yeldir age1lk02y47avhuawmsrg9ear7znpcnn6s035kg54nfzmzr8eevhqcgs0f63j4
       - &user-worker age1y8khnndkfdzfv6vmzjnnp3huj9jdtvvvdz7dp2pecu253jlhyyaqte3dsr
@@ -21,6 +22,7 @@ creation_rules:
           - *host-recreate
           - *host-rekorder
           - *host-worker
+          - *host-nuc
   - path_regex: hosts/linux/recreate/secrets\.yaml$
     key_groups:
       - age:
