@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   ...
 }:
@@ -16,7 +17,7 @@
       hostName = "nuc";
 
       mounts.datengrab.enable = false;
-      keyring.enable = false;
+      keyring.enable = lib.mkForce false;
     };
 
     cli = {
