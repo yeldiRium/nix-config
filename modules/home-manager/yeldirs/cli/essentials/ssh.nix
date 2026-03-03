@@ -67,6 +67,11 @@ in
                 user = "yeldir";
                 identityFile = "~/.ssh/hleutloff";
               };
+              "nuc" = {
+                hostname = "nuc";
+                user = "yeldir";
+                identityFile = "~/.ssh/hleutloff";
+              };
             }
         );
       };
