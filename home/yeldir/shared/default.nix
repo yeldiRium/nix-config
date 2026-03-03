@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   imports = [
     ./calendar.nix
@@ -22,7 +23,7 @@
           };
           git = {
             userEmail = "hannes.leutloff@yeldirium.de";
-            signCommits = true;
+            signCommits = lib.mkDefault true;
             signingKey = "8DFC 1FE9 7A49 B7CE F042  DE06 BA23 9C41 39A9 A514";
           };
           gpg = {

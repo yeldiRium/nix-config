@@ -20,6 +20,8 @@
     };
 
     cli = {
+      essentials.git.signCommits = false;
+
       ops = {
         docker.enable = true;
         nix.enable = true;
