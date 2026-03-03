@@ -146,7 +146,6 @@ in
             "Pictures"
             "querbeet"
             "Videos"
-            ".config/pulse"
             ".local/bin"
             ".local/share/nix" # trusted settings and repl history
           ];
