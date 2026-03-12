@@ -17,7 +17,7 @@ in
 
   config = lib.mkIf (desktopCfg.enable && cfg.enable) {
     home.packages = with pkgs; [
-      telegram-desktop
+      unstable.telegram-desktop
     ];
 
     home.persistence."/persist" = {
