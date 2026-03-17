@@ -21,6 +21,7 @@ in
         ln -s "${pkgs.crossplane-cli}/bin/crossplane" "$out/bin/crank"
       '')
       crossplane-cli
+      y.xpdig
     ];
   };
 }

@@ -26,6 +26,22 @@ in
     programs.k9s = {
       enable = true;
       package = pkgs.unstable.k9s;
+      plugins =
+        { }
+        // (lib.optionalAttrs config.yeldirs.cli.ops.crossplane.enable {
+          xpdig = {
+            shortCut = "Ctrl-T";
+            confirm = false;
+            description = "Crossplane Trace";
+            scopes = [ "all" ];
+            command = "sh";
+            background = false;
+            args = [
+              "-c"
+              "xpdig trace -n $([[ $NAMESPACE = \"-\" ]] && echo \"default\" || echo \"$NAMESPACE\") --context $CONTEXT $RESOURCE_NAME.$RESOURCE_GROUP/$NAME"
+            ];
+          };
+        });
     };
   };
 }
