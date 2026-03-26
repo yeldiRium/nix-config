@@ -84,6 +84,7 @@ in
           awscli2
           y.taws
           (y.shellScript ./aws-scripts/aws-sg-why)
+          (y.shellScript ./aws-scripts/aws-sts-assume-role)
         ]
         ++ lib.optionals cfg.ecr.enable [
           amazon-ecr-credential-helper
