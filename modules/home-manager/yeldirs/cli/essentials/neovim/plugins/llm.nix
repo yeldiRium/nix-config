@@ -66,6 +66,7 @@ in
         cfg.vllm
       ])
       {
+        home.packages = with pkgs; (lib.optionals cfg.copilot [ github-copilot-cli ]);
         programs.neovim.plugins =
           with pkgs.unstable.vimPlugins;
           [
