@@ -30,7 +30,7 @@ in
         )
         (pkgs.writeShellScriptBin "kreconcile" # bash
           ''
-            kubectl annotate $@ "reconcile=$(date --iso-8601=m)"
+            kubectl annotate $@ --overwrite "reconcile=$(date --iso-8601=m)"
           ''
         )
       ];
