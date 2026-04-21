@@ -7,7 +7,6 @@
   git-find-default-branch = pkgs.unstable.callPackage ./git-find-default-branch { };
   git-find-remote = pkgs.unstable.callPackage ./git-find-remote { };
   git-spin-off-branch = pkgs.unstable.callPackage ./git-spin-off-branch { };
-  golangci-lint-langserver = pkgs.callPackage ./golangci-lint-langserver.nix { };
   hledger-helpers-bash = pkgs.callPackage ./hledger-helpers-bash { };
   hledger-helpers-go = pkgs.unstable.callPackage ./hledger-helpers-go { };
   hledger-language-server = pkgs.callPackage ./hledger-language-server.nix { };

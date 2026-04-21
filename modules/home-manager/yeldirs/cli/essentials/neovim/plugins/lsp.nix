@@ -44,7 +44,7 @@ in
         [ "go" ]
         [
           gopls
-          y.golangci-lint-langserver
+          unstable.golangci-lint-langserver
         ]
       )
       ++ (forLanguagesList
