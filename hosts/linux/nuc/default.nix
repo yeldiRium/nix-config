@@ -33,6 +33,7 @@
       networking = {
         enableNetworkManager = true;
       };
+      gitops.enable = true;
     };
   };
   services = {
