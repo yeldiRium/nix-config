@@ -325,6 +325,21 @@ in
             end, { desc = "Toggle LSP autocompletion" })
           '';
       }
+
+      # Navigation based on LSP analysis
+      {
+        plugin = pkgs.vimExtraPlugins.wayfinder-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require("wayfinder").setup({})
+            vim.keymap.set("n", "<leader>wf", ":Wayfinder<cr>", { desc = "Wayfinder" })
+            vim.keymap.set("n", "<leader>wtn", ":WayfinderTrailNext<cr>", { desc = "Wayfinder Trail Next" })
+            vim.keymap.set("n", "<leader>wtp", ":WayfinderTrailPrev<cr>", { desc = "Wayfinder Trail Prev" })
+            vim.keymap.set("n", "<leader>wto", ":WayfinderTrailOpen<cr>", { desc = "Wayfinder Trail Open" })
+            vim.keymap.set("n", "<leader>wts", ":WayfinderTrailShow<cr>", { desc = "Wayfinder Trail Show" })
+          '';
+      }
     ];
   };
 }
