@@ -8,7 +8,6 @@
     import ../pkgs { pkgs = final; }
     // {
       vimExtraPlugins = (prev.vimExtraPlugins or { }) // import ../pkgs/vim-plugins { pkgs = final; };
-      tmuxExtraPlugins = (prev.tmuxExtraPlugins or { }) // import ../pkgs/tmux-plugins { pkgs = final; };
     };
 
   staging-packages = final: _: {

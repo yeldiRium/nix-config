@@ -11,7 +11,7 @@ in
   config = lib.mkIf essentials.enable {
     programs.tmux.plugins = [
       {
-        plugin = pkgs.tmuxExtraPlugins.vim-tmux-navigator;
+        plugin = pkgs.tmuxPlugins.vim-tmux-navigator;
         extraConfig =
           # tmux
           ''
