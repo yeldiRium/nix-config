@@ -123,6 +123,7 @@ in
                 "zsa-technology-labs-inc-ergodox-ez-consumer-control"
                 "foostan-corne"
                 "foostan-corne-keyboard"
+                "toucan-keyboard"
               ];
           ecosystem = {
             no_update_news = true;
