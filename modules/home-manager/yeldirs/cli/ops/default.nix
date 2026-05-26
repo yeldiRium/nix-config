@@ -3,6 +3,7 @@
     ./aws.nix
     ./colima.nix
     ./crossplane.nix
+    ./cryptography.nix
     ./docker.nix
     ./flux.nix
     ./fs-tools.nix
