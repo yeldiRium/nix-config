@@ -16,5 +16,5 @@
   shellScript = pkgs.callPackage ./shellScript.nix { };
   taws = pkgs.callPackage ./taws.nix { };
   watchcmd = pkgs.callPackage ./watchcmd { };
-  xpdig = pkgs.callPackage ./xpdig.nix { };
+  xpdig = pkgs.unstable.callPackage ./xpdig.nix { };
 }
