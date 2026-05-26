@@ -114,6 +114,12 @@ in
           gapa = "git add --patch";
           gaa = "git add .";
 
+          # branch
+          gb = ''
+            ${branchName}
+            echo "''${branchName}"
+          '';
+
           # commit
           gcm = "git commit --verbose --message";
           "gc!" = "git commit --verbose --amend";
