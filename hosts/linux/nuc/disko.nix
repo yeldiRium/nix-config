@@ -3,6 +3,15 @@
   ...
 }:
 {
+  disko.devices.nodev = {
+    "/" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "size=25%"
+        "mode=755"
+      ];
+    };
+  };
   disko.devices = {
     disk.main = {
       inherit device;
@@ -54,10 +63,6 @@
               extraArgs = [ "-f" ];
 
               subvolumes = {
-                "/root" = {
-                  mountpoint = "/";
-                };
-
                 "/persist" = {
                   mountOptions = [
                     "subvol=persist"

@@ -5,7 +5,7 @@
 let
   revision = "v0.2.0";
 in
-pkgs.buildGo124Module {
+pkgs.buildGoModule {
   name = "hledger-language-server";
   pname = "hledger-language-server";
   version = revision;

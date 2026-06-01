@@ -8,7 +8,7 @@
     ];
     zfs = {
       forceImportRoot = false;
-      allowHibernation = true;
+      unsafeAllowHibernation = true;
     };
   };
 }

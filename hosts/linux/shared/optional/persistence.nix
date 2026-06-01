@@ -4,21 +4,7 @@
   ...
 }:
 {
-  # This requires that a volume group named `root_vg` exists.
-  # Achive this by importing a disko.nix in the host and giving it the correct device name.
-
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    mkdir /btrfs_tmp
-    mount /dev/root_vg/root /btrfs_tmp
-    if [[ -e /btrfs_tmp/root ]]; then
-      rm -rf /btrfs_tmp/root
-      btrfs subvolume delete /btrfs_tmp/root
-    fi
-
-    btrfs subvolume create /btrfs_tmp/root
-    umount /btrfs_tmp
-  '';
-
+  fileSystems."/nix".neededForBoot = true;
   fileSystems."/persist".neededForBoot = true;
   environment.persistence = {
     "/persist/system" = {
@@ -51,7 +37,7 @@
       mkHomePersist =
         user:
         lib.optionalString user.createHome ''
-               	mkdir -p /persist/${user.home}
+          mkdir -p /persist/${user.home}
           chown ${user.name}:${user.group} /persist/${user.home}
           chmod ${user.homeMode} /persist/${user.home}
         '';
