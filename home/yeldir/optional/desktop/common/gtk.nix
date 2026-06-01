@@ -5,42 +5,19 @@
   ...
 }:
 let
-  inherit (builtins) hashString toJSON;
   rendersvg = pkgs.runCommand "rendersvg" { } ''
     mkdir -p $out/bin
     ln -s ${pkgs.resvg}/bin/resvg $out/bin/rendersvg
   '';
+
   materiaTheme =
     name: colors:
-    pkgs.stdenv.mkDerivation {
-      name = "generated-gtk-theme";
-      src = pkgs.fetchFromGitHub {
-        owner = "nana-4";
-        repo = "materia-theme";
-        rev = "76cac96ca7fe45dc9e5b9822b0fbb5f4cad47984";
-        sha256 = "sha256-0eCAfm/MWXv6BbCl2vbVbvgv8DiUH09TAUhoKq7Ow0k=";
-      };
-      buildInputs = with pkgs; [
-        sassc
-        bc
-        which
+    pkgs.materia-theme.overrideAttrs (old: {
+      buildInputs = old.buildInputs ++ [
+        pkgs.bc
         rendersvg
-        meson
-        ninja
-        nodePackages.sass
-        gtk4.dev
-        optipng
       ];
-      phases = [
-        "unpackPhase"
-        "installPhase"
-      ];
-      installPhase = ''
-        HOME=/build
-        chmod 777 -R .
-        patchShebangs .
-        mkdir -p $out/share/themes
-        mkdir bin
+      postPatch = ''
         sed -e 's/handle-horz-.*//' -e 's/handle-vert-.*//' -i ./src/gtk-2.0/assets.txt
 
         cat > /build/gtk-colors << EOF
@@ -68,23 +45,22 @@ let
           NAME=${name}
           MATERIA_STYLE_COMPACT=True
         EOF
-
-        echo "Changing colours:"
+        patchShebangs .
         ./change_color.sh -o ${name} /build/gtk-colors -i False -t "$out/share/themes"
-        chmod 555 -R .
       '';
-    };
+    });
 in
-rec {
+{
   gtk = {
     enable = true;
     font = {
       inherit (config.fontProfiles.regular) name size;
     };
+    gtk4.theme = config.gtk.theme;
     theme =
       let
         inherit (config.colorscheme) mode colors;
-        name = "generated-${hashString "md5" (toJSON colors)}-${mode}";
+        name = "generated-${builtins.hashString "md5" (builtins.toJSON colors)}-${mode}";
       in
       {
         inherit name;
@@ -96,11 +72,19 @@ rec {
     };
   };
 
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    # hyprcursor.enable = true;
+  };
+
   services.xsettingsd = {
     enable = true;
     settings = {
-      "Net/ThemeName" = "${gtk.theme.name}";
-      "Net/IconThemeName" = "${gtk.iconTheme.name}";
+      "Net/ThemeName" = "${config.gtk.theme.name}";
+      "Net/IconThemeName" = "${config.gtk.iconTheme.name}";
     };
   };
 
