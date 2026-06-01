@@ -32,6 +32,8 @@ in
 
         # Suppress donation popup.
         "app.donation.eoy.version.viewed" = 100;
+        # Suppress default client check
+        "mail.shell.checkDefaultClient" = false;
       };
     };
 
