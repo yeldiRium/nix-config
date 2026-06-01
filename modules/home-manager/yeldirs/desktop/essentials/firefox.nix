@@ -29,6 +29,7 @@ in
             pkgs.tridactyl-native
           ];
         };
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
       };
     };
 

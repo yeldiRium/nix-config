@@ -72,12 +72,17 @@ in
     };
   };
 
-  home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 24;
-    gtk.enable = true;
-    # hyprcursor.enable = true;
+  home = {
+    packages = with pkgs; [
+      bibata-cursors
+    ];
+    pointerCursor = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
+      gtk.enable = true;
+      # hyprcursor.enable = true;
+    };
   };
 
   services.xsettingsd = {

@@ -48,8 +48,6 @@
 - darwin
 - modularity
   - [ ] refactor creation of scripts - multiple places have function definitions to create script packages
-  - [ ] move home manager modules out of home, make user name configurable
-    - [ ] move desktops and autostart into yeldirs.desktop configuration
   - [ ] rethink the "supported languages" support in my module options
     - The list becomes very long and clutters the config
     - I might want to cluster some languages, e.g. json/yaml/xml/csv because they are related, but they might have complicated setups

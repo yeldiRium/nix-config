@@ -82,13 +82,16 @@ in
       vimAlias = true;
       vimdiffAlias = true;
 
+      withRuby = false;
+      withPython3 = false;
+
       extraConfig =
         # vim
         ''
           source ~/.config/nvim/color.vim
         '';
 
-      extraLuaConfig = ''
+      initLua = ''
         ${builtins.readFile ./options.lua}
         ${builtins.readFile ./bindings.lua}
         ${builtins.readFile ./autocommands/restore-cursor-position.lua}

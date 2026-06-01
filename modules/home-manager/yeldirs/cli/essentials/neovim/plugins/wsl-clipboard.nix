@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.neovim.extraLuaConfig =
+    programs.neovim.initLua =
       # lua
       ''
         vim.g.clipboard = {

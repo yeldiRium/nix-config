@@ -16,7 +16,7 @@ in
 
   config = {
     programs.neovim = {
-      extraLuaConfig =
+      initLua =
         # lua
         ''
           vim.opt.number = true

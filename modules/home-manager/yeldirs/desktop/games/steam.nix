@@ -10,7 +10,7 @@ let
   desktopCfg = config.yeldirs.desktop;
   cfg = config.yeldirs.desktop.games.steam;
 
-  monitor = lib.head (lib.filter (m: m.primary) config.monitors);
+  monitor = lib.head (lib.filter (m: m.primary) config.yeldirs.desktop.monitors);
   steam-session =
     let
       gamescope = lib.concatStringsSep " " [

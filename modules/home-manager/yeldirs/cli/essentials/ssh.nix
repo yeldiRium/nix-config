@@ -23,7 +23,7 @@ in
       ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks = {
+        settings = {
           "github.com" = {
             user = "git";
             identityFile = "~/.ssh/hleutloff";

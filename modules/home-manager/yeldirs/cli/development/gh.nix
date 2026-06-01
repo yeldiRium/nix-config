@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 let
@@ -21,9 +20,6 @@ in
         settings = {
           git_protocol = "ssh";
         };
-        extensions = [
-          pkgs.gh-copilot
-        ];
         gitCredentialHelper.enable = false;
       };
 

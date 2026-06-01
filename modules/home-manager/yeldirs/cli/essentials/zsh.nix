@@ -47,6 +47,7 @@ in
             src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
           }
         ];
+        dotDir = "${config.xdg.configHome}/zsh";
 
         syntaxHighlighting = {
           enable = true;

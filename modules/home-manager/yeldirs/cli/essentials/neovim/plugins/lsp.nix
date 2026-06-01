@@ -24,7 +24,7 @@ in
       (forLanguagesList
         [ "bash" ]
         [
-          nodePackages.bash-language-server
+          bash-language-server
         ]
       )
       ++ (forLanguagesList
@@ -56,7 +56,7 @@ in
       ++ (forLanguagesList
         [ "javascript" "typescript" ]
         [
-          nodePackages.typescript-language-server
+          typescript-language-server
         ]
       )
       ++ (forLanguagesList

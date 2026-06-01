@@ -46,7 +46,7 @@ in
           zip
 
           # nix utils
-          nixfmt-rfc-style
+          nixfmt
 
           # encryption
           age
