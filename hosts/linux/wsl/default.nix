@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   imports = [
-    <nixos-wsl/modules>
+    inputs.nixos-wsl.nixosModules.default
 
     ./hardware-configuration.nix
 

@@ -39,6 +39,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # wsl only
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     # darwin only
     nix-darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-26.05";
