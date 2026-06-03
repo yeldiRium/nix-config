@@ -66,9 +66,8 @@ in
         cfg.vllm
       ])
       {
-        home.packages =
-          with pkgs;
-          [ y.mcp-atlassian ] ++ (lib.optionals cfg.copilot [ unstable.github-copilot-cli ]);
+        yeldirs.cli.development.copilot.enable = lib.mkIf cfg.copilot true;
+
         programs.neovim.plugins =
           with pkgs.unstable.vimPlugins;
           [
@@ -169,13 +168,5 @@ in
                 '';
             }
           ]);
-
-        home.persistence = {
-          "/persist" = {
-            directories = lib.optionals cfg.copilot [
-              ".config/github-copilot"
-            ];
-          };
-        };
       };
 }

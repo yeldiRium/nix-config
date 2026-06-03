@@ -50,7 +50,6 @@
               indentation-guides.enable = true;
             };
 
-            llm.vllm = true;
             debugging.enable = true;
             fold-cycle.enable = true;
             git.enable = true;
