@@ -2,8 +2,8 @@
   imports = [
     ./qmk
 
-    ./claude.nix
-    ./copilot.nix
+    ./llm/claude.nix
+    ./llm/copilot.nix
     ./gh.nix
     ./gitlab
   ];
