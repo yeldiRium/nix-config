@@ -29,5 +29,15 @@ in
     };
 
     sops.secrets.tailscale-authkey = { };
+
+    systemd.services."tailscale-restart-after-hibernate" = {
+      description = "Restart Tailscale after resuming from hibernation to reconnect with servers";
+      after = [ "systemd-suspend.service" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "systemctl restart tailscaled";
+      };
+      wantedBy = [ "systemd-suspend.service" ];
+    };
   };
 }
