@@ -304,16 +304,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1778750252,
-        "narHash": "sha256-P3wwiIfqo89evW7xzI+wOI/qM1WPZBiiSmGNtBmYeVk=",
-        "owner": "outfoxxed",
+        "lastModified": 1780934225,
+        "narHash": "sha256-PdqZ6qdTtvrdViGzCHfYBpADvQDP6fz6R1GO5m4160g=",
+        "owner": "yeldiRium",
         "repo": "hy3",
-        "rev": "a7282db2d7ca336d3c9faa5d10d75fc43eed37aa",
+        "rev": "51c66bf291714de97064a7e5ac67a2cf0ad22711",
         "type": "github"
       },
       "original": {
-        "owner": "outfoxxed",
-        "ref": "hl0.55.0",
+        "owner": "yeldiRium",
+        "ref": "fix/tab-bars-rotated-screen",
         "repo": "hy3",
         "type": "github"
       }

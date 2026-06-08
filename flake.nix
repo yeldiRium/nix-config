@@ -31,7 +31,7 @@
       url = "github:hyprwm/Hyprland?submodules=1&ref=v0.55.2";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.55.0";
+      url = "github:yeldiRium/hy3?ref=fix/tab-bars-rotated-screen";
       inputs.hyprland.follows = "hyprland";
     };
     isd = {
