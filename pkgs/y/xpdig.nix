@@ -5,12 +5,12 @@
 }:
 buildGoModule rec {
   pname = "xpdig";
-  version = "v1.24.0";
+  version = "v1.25.0";
   src = fetchFromGitHub {
     owner = "brunoluiz";
     repo = "xpdig";
     rev = version;
-    hash = "sha256-kXE52yphuM60D5skGxDVqIWZA9zywCUkLoY3EVYOv04=";
+    hash = "sha256-K9UJjaZVuzdT+7Aog3thlVW3xp/jNvqaQByT7mk4J58=";
   };
 
   vendorHash = "sha256-YPNrIJjNuItvxTRzmjh3CuMmRzzzzLhz07nhy11drcU=";
