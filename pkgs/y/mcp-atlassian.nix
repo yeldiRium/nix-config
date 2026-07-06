@@ -4,9 +4,79 @@
   python3Packages,
   fetchFromGitHub,
   fetchPypi,
+  rustPlatform,
+  cargo,
+  rustc,
 }:
 with python3Packages;
 let
+  # Pinned pydantic-core 2.33.2 — required by pydantic 2.11.10
+  pydantic-core-pinned = buildPythonPackage rec {
+    pname = "pydantic-core";
+    version = "2.33.2";
+    pyproject = true;
+
+    src = fetchFromGitHub {
+      owner = "pydantic";
+      repo = "pydantic-core";
+      tag = "v${version}";
+      hash = "sha256-2jUkd/Y92Iuq/A31cevqjZK4bCOp+AEC/MAnHSt2HLY=";
+    };
+
+    cargoDeps = rustPlatform.fetchCargoVendor {
+      inherit pname version src;
+      hash = "sha256-MY6Gxoz5Q7nCptR+zvdABh2agfbpqOtfTtor4pmkb9c=";
+    };
+
+    nativeBuildInputs = [
+      cargo
+      rustPlatform.cargoSetupHook
+      rustPlatform.maturinBuildHook
+      rustc
+    ];
+
+    dependencies = [ typing-extensions ];
+
+    doCheck = false;
+  };
+
+  # Pinned pydantic <2.12.0 to avoid a breaking upstream change
+  pydantic-pinned = buildPythonPackage rec {
+    pname = "pydantic";
+    version = "2.11.10";
+    pyproject = true;
+
+    src = fetchPypi {
+      inherit pname version;
+      hash = "sha256-3CgPCYL72mw4+tpOR23ApPOur5xq1MKN9opmbsPGFCM=";
+    };
+
+    build-system = [
+      hatch-fancy-pypi-readme
+      hatchling
+    ];
+
+    dependencies = [
+      annotated-types
+      pydantic-core-pinned
+      typing-extensions
+      typing-inspection
+    ];
+
+    doCheck = false;
+  };
+
+  # pydantic-settings and mcp overridden to use pydantic-pinned, avoiding
+  # two conflicting pydantic-core versions in the closure
+  pydantic-settings-pinned = pydantic-settings.override {
+    pydantic = pydantic-pinned;
+  };
+
+  mcp-pinned = mcp.override {
+    pydantic = pydantic-pinned;
+    pydantic-settings = pydantic-settings-pinned;
+  };
+
   # Custom openapi-pydantic package (not in nixpkgs)
   openapi-pydantic = buildPythonPackage rec {
     pname = "openapi-pydantic";
@@ -18,7 +88,7 @@ let
     };
     pyproject = true;
     build-system = [ poetry-core ];
-    propagatedBuildInputs = [ pydantic ];
+    propagatedBuildInputs = [ pydantic-pinned ];
     doCheck = false;
   };
 
@@ -38,7 +108,7 @@ let
     propagatedBuildInputs = [
       exceptiongroup
       httpx
-      mcp
+      mcp-pinned
       openapi-pydantic
       python-dotenv
       rich
@@ -100,13 +170,13 @@ buildPythonApplication rec {
     requests
     beautifulsoup4
     httpx
-    mcp
+    mcp-pinned
     fastmcp-2_3_5
     python-dotenv
     markdownify
     markdown
     markdown-to-confluence
-    pydantic
+    pydantic-pinned
     trio
     click
     uvicorn
