@@ -122,6 +122,7 @@
         clementine.enable = true;
         gimp.enable = true;
         spotify.enable = true;
+        tagstudio.enable = true;
         vlc.enable = true;
       };
 

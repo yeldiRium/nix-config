@@ -38,6 +38,10 @@
       url = "github:isd-project/isd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tagstudio = {
+      url = "github:TagStudioDev/TagStudio";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # wsl only
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
