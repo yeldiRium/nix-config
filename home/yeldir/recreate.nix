@@ -129,7 +129,6 @@
       games = {
         bottles.enable = true;
         minecraft.enable = true;
-        nostromo.enable = true;
         openttd.enable = true;
         retroarch.enable = true;
         steam.enable = true;
