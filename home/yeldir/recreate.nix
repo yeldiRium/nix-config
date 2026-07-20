@@ -23,7 +23,6 @@
 
     cli = {
       development = {
-        claude.enable = true;
         gh.enable = true;
         qmk.enable = true;
       };
