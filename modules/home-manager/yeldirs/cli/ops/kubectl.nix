@@ -19,6 +19,7 @@ in
       packages = with pkgs; [
         kubectl
         kubectx
+        kubectl-tree
         y.konfig
         y.k8s-scripts
 
