@@ -28,10 +28,10 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.55.2";
+      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.56.1";
     };
     hy3 = {
-      url = "github:yeldiRium/hy3?ref=fix/tab-bars-rotated-screen";
+      url = "github:outfoxxed/hy3?ref=hl0.56.0.1";
       inputs.hyprland.follows = "hyprland";
     };
     isd = {
@@ -40,7 +40,7 @@
     };
     tagstudio = {
       url = "github:TagStudioDev/TagStudio";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # wsl only
