@@ -66,6 +66,11 @@
           windowClass = "org.telegram.desktop";
         }
         {
+          command = "gtk-launch element-desktop";
+          workspace = "1";
+          windowClass = "element";
+        }
+        {
           command = "gtk-launch zotero";
           workspace = "1";
           windowClass = "Zotero";
