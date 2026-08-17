@@ -121,9 +121,9 @@ in
           '';
 
           # commit
-          gcm = "git commit --verbose --message";
-          "gc!" = "git commit --verbose --amend";
-          "gcn!" = "git commit --verbose --no-edit --amend";
+          gcm = "git commit --verbose --signoff --message";
+          "gc!" = "git commit --verbose --signoff --amend";
+          "gcn!" = "git commit --verbose --signoff --no-edit --amend";
 
           # diff
           gd = "git diff";
