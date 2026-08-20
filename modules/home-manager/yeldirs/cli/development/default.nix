@@ -5,5 +5,6 @@
 
     ./gh.nix
     ./gitlab
+    ./gomodcache.nix
   ];
 }

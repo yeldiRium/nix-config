@@ -25,6 +25,7 @@
       development = {
         gh.enable = true;
         qmk.enable = true;
+        gomodcache.enable = true;
       };
 
       media = {
