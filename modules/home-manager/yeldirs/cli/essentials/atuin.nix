@@ -20,6 +20,9 @@ in
           ];
           style = "full";
           inline_height = 0;
+          ai = {
+            enabled = false;
+          };
         };
       };
     };
