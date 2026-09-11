@@ -234,13 +234,6 @@ in
               hl.bind("SUPER + "..key, hy3.move_focus(direction))
               hl.bind("SUPER + SHIFT + "..key, hy3.move_window(direction))
             end
-            -- moving floating windows with the mouse
-            hl.config({
-              binds = { drag_threshold = 10 },
-            })
-            hl.bind("ALT + mouse:272", hl.dsp.window.drag(), {
-              mouse = true, drag = true,
-            })
 
             -- resizing window
             hl.bind("SUPER + R", hl.dsp.submap("resize"))
