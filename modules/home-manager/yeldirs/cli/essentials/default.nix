@@ -20,6 +20,7 @@ in
     ./git.nix
     ./gpg.nix
     ./isd.nix
+    ./json.nix
     ./ssh.nix
     ./yazi.nix
     ./zoxide.nix
@@ -38,8 +39,6 @@ in
           # poweruser
           btop
           eza
-          unstable.ijq
-          jq
           silver-searcher
           unzip
           yq-go
@@ -69,7 +68,6 @@ in
         batj = "bat --language json";
         baty = "bat --language yaml";
         hi = "ag --passthrough";
-        ijq = "ijq -hide-input-pane";
       };
     };
 
