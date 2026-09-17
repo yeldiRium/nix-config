@@ -11,7 +11,7 @@
 
     # Bash
     argbash
-    silver-searcher
+    silver-searcher-ng
 
     # Go
     golangci-lint
