@@ -39,7 +39,7 @@ in
           # poweruser
           btop
           eza
-          silver-searcher
+          unstable.silver-searcher-ng
           unzip
           yq-go
           zip
