@@ -103,9 +103,21 @@ in
         ]
       )
       ++ (forLanguagesList
+        [ "svg" ]
+        [
+          lemminx
+        ]
+      )
+      ++ (forLanguagesList
         [ "tofu" ]
         [
           tofu-ls
+        ]
+      )
+      ++ (forLanguagesList
+        [ "xml" ]
+        [
+          lemminx
         ]
       )
       ++ (forLanguagesList
@@ -246,6 +258,11 @@ in
               end
 
               add_lsp("rust_analyzer", rustConfig)
+            ''
+          )
+          (forLanguagesString [ "xml" ] # lua
+            ''
+              add_lsp("lemminx", {})
             ''
           )
           (forLanguagesString [ "tofu" ] # lua

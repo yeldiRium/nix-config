@@ -320,6 +320,23 @@ in
             '';
         }
       ])
+      ++ (forLanguage "xml" [
+        {
+          plugin = nvim-treesitter.grammarPlugins.xml;
+          type = "lua";
+          config =
+            # lua
+            ''
+              treesitter.install({
+                "xml"
+              })
+              vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "svg", "xml" },
+                callback = function() vim.treesitter.start() end,
+              })
+            '';
+        }
+      ])
       ++ (forLanguage "yaml" [
         {
           plugin = nvim-treesitter.grammarPlugins.yaml;

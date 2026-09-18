@@ -43,6 +43,7 @@
               "lua"
               "markdown"
               "nix"
+              "xml"
               "yaml"
             ];
 

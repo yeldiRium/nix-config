@@ -63,6 +63,7 @@ in
             "rust"
             "tofu"
             "typescript"
+            "xml"
             "yaml"
           ]
         );
@@ -154,6 +155,9 @@ in
     // forLanguage "rust" {
       "nvim/ftplugin/rust.lua".source = pkgs.writeText "rust.lua" (builtins.readFile ./ftplugin/rust.lua);
     }
+    // forLanguage "svg" {
+      "nvim/ftplugin/svg.lua".source = pkgs.writeText "svg.lua" (builtins.readFile ./ftplugin/svg.lua);
+    }
     // forLanguage "tofu" {
       "nvim/ftplugin/alloy.lua".source = pkgs.writeText "alloy.lua" (
         builtins.readFile ./ftplugin/alloy.lua
@@ -168,6 +172,9 @@ in
       "nvim/ftplugin/typescript.lua".source = pkgs.writeText "typescript.lua" (
         builtins.readFile ./ftplugin/typescript.lua
       );
+    }
+    // forLanguage "xml" {
+      "nvim/ftplugin/xml.lua".source = pkgs.writeText "xml.lua" (builtins.readFile ./ftplugin/xml.lua);
     };
   };
 }
