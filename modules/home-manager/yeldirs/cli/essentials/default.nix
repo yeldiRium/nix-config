@@ -68,6 +68,7 @@ in
         batj = "bat --language json";
         baty = "bat --language yaml";
         hi = "ag --passthrough";
+        lsblk = "lsblk --output name,size,type,tran,fstype,owner,label";
       };
     };
 
