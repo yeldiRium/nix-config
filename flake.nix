@@ -39,7 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tagstudio = {
-      url = "github:TagStudioDev/TagStudio";
+      url = "github:TagStudioDev/TagStudio?ref=v9.6.3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
