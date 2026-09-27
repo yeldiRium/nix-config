@@ -203,11 +203,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782949081,
-        "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
+        "lastModified": 1787559586,
+        "narHash": "sha256-onL0VLf9vPllmT0H/OlURIU5r5t5WIEl7t4tVNKT0Nw=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
+        "rev": "9d0d87172c374f89da73c1cfe6d81ae62feac1f1",
         "type": "github"
       },
       "original": {
@@ -1179,16 +1179,16 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1786827946,
-        "narHash": "sha256-Qe2BTrDPPq0ePKYUkDGgDxAzu54ns43qEuXIXI+DpdI=",
+        "lastModified": 1787938130,
+        "narHash": "sha256-3xbZyOqXhmtYrPQy5xWASOefbSXYbx0I2sFzRhctxlg=",
         "owner": "TagStudioDev",
         "repo": "TagStudio",
-        "rev": "435f5ff2b6297353afa4cd9b91492364215da3a7",
+        "rev": "55b033eca4d03f5e635dc5148f9afaeea5fb570a",
         "type": "github"
       },
       "original": {
         "owner": "TagStudioDev",
-        "ref": "v9.6.3",
+        "ref": "55b033eca4d03f5e635dc5148f9afaeea5fb570a",
         "repo": "TagStudio",
         "type": "github"
       }
