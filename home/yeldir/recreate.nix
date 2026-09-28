@@ -128,6 +128,7 @@
         gimp.enable = true;
         spotify.enable = true;
         tagstudio.enable = true;
+        transmission.enable = true;
         vlc.enable = true;
       };
 
