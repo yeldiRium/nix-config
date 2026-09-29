@@ -26,6 +26,10 @@
         gh.enable = true;
         qmk.enable = true;
         gomodcache.enable = true;
+        llm = {
+          ollama.enable = true;
+          opencode.enable = true;
+        };
       };
 
       media = {
