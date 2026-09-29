@@ -41,6 +41,30 @@ in
               "xpdig trace -n $([[ $NAMESPACE = \"-\" ]] && echo \"default\" || echo \"$NAMESPACE\") --context $CONTEXT $RESOURCE_NAME.$RESOURCE_GROUP/$NAME"
             ];
           };
+          crossplane-pause = {
+            shortCut = "Shift-P";
+            confirm = true;
+            description = "Crossplane Pause";
+            scopes = [ "all" ];
+            command = "sh";
+            background = false;
+            args = [
+              "-c"
+              "kubectl annotate -n $([[ $NAMESPACE = \"-\" ]] && echo \"default\" || echo \"$NAMESPACE\") --context $CONTEXT $RESOURCE_NAME.$RESOURCE_GROUP/$NAME \"crossplane.io/paused=true\""
+            ];
+          };
+          crossplane-unpause = {
+            shortCut = "Shift-U";
+            confirm = true;
+            description = "Crossplane Unpause";
+            scopes = [ "all" ];
+            command = "sh";
+            background = false;
+            args = [
+              "-c"
+              "kubectl annotate -n $([[ $NAMESPACE = \"-\" ]] && echo \"default\" || echo \"$NAMESPACE\") --context $CONTEXT $RESOURCE_NAME.$RESOURCE_GROUP/$NAME \"crossplane.io/paused-\""
+            ];
+          };
         });
     };
   };
