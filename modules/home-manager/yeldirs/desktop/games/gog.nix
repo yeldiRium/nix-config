@@ -29,6 +29,9 @@ in
 
           ".config/minigalaxy"
           "Games"
+
+          # For manually installed games
+          "GOG Games"
         ];
       };
     };
