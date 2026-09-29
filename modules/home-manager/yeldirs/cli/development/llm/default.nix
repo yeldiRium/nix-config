@@ -5,5 +5,6 @@
     ./kiro.nix
     ./mcps.nix
     ./ollama.nix
+    ./opencode.nix
   ];
 }
