@@ -4,5 +4,6 @@
     ./copilot.nix
     ./kiro.nix
     ./mcps.nix
+    ./ollama.nix
   ];
 }

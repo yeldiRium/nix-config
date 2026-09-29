@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.yeldirs.cli.development;
+  cfg = config.yeldirs.cli.development.llm;
 in
 {
   config = lib.mkIf (cfg.copilot.enable || cfg.claude.enable) {

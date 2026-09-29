@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.yeldirs.cli.development.copilot;
+  cfg = config.yeldirs.cli.development.llm.copilot;
 in
 {
   options = {
-    yeldirs.cli.development.copilot = {
+    yeldirs.cli.development.llm.copilot = {
       enable = lib.mkEnableOption "copilot";
     };
   };

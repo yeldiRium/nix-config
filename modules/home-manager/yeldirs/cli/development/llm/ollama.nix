@@ -5,25 +5,25 @@
   ...
 }:
 let
-  cfg = config.yeldirs.cli.development.llm.claude;
+  cfg = config.yeldirs.cli.development.llm.ollama;
 in
 {
   options = {
-    yeldirs.cli.development.llm.claude = {
-      enable = lib.mkEnableOption "claude";
+    yeldirs.cli.development.llm.ollama = {
+      enable = lib.mkEnableOption "ollama";
     };
   };
 
   config = lib.mkIf cfg.enable {
     home = {
       packages = with pkgs; [
-        claude-code
+        unstable.ollama-rocm
       ];
 
       persistence = {
         "/persist" = {
           directories = [
-            ".claude"
+            ".ollama"
           ];
         };
       };

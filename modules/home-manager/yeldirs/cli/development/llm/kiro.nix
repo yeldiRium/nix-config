@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.yeldirs.cli.development.kiro;
+  cfg = config.yeldirs.cli.development.llm.kiro;
 in
 {
   options = {
-    yeldirs.cli.development.kiro = {
+    yeldirs.cli.development.llm.kiro = {
       enable = lib.mkEnableOption "kiro";
     };
   };

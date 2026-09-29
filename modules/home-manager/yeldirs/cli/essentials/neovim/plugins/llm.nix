@@ -66,7 +66,7 @@ in
         cfg.vllm
       ])
       {
-        yeldirs.cli.development.copilot.enable = lib.mkIf cfg.copilot true;
+        yeldirs.cli.development.llm.copilot.enable = lib.mkIf cfg.copilot true;
 
         programs.neovim.plugins =
           with pkgs.unstable.vimPlugins;
