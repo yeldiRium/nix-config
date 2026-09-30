@@ -83,7 +83,7 @@
         {
           command = "gtk-launch obsidian";
           workspace = "5";
-          windowClass = "obsidian";
+          windowClass = "md.obsidian.Obsidian";
         }
         {
           command = "gtk-launch thunderbird";
