@@ -131,7 +131,7 @@
         clementine.enable = true;
         gimp.enable = true;
         spotify.enable = true;
-        tagstudio.enable = true;
+        tagstudio.enable = false;
         transmission.enable = true;
         vlc.enable = true;
       };
