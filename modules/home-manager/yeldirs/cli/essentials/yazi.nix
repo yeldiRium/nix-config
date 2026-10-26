@@ -44,9 +44,20 @@ in
 
         shellWrapperName = "y";
 
+        # Default settings:
+        # https://github.com/sxyazi/yazi/tree/main/yazi-config/preset
         settings = {
           mgr = {
             show_hidden = true;
+          };
+          plugin = {
+            prepend_fetchers = [
+              {
+                url = "/mnt/**";
+                run = "noop";
+                group = "mime";
+              }
+            ];
           };
         };
         keymap = {
