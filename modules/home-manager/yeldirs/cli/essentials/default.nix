@@ -43,6 +43,7 @@ in
           unzip
           yq-go
           zip
+          p7zip-rar
 
           # nix utils
           nixfmt
