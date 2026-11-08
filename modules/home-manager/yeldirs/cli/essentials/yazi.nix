@@ -52,11 +52,11 @@ in
           };
           plugin = {
             prepend_fetchers = [
-              {
-                url = "/mnt/**";
+              (lib.mkIf config.yeldirs.system.mounts.datengrab.enable {
+                url = "/mnt/datengrab/**";
                 run = "noop";
                 group = "mime";
-              }
+              })
             ];
           };
         };
