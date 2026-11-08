@@ -25,9 +25,6 @@ in
     services.tailscale = {
       enable = true;
       package = pkgs.unstable.tailscale;
-      authKeyFile = config.sops.secrets.tailscale-authkey.path;
     };
-
-    sops.secrets.tailscale-authkey = { };
   };
 }
