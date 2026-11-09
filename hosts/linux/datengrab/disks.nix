@@ -5,9 +5,6 @@
   ...
 }:
 let
-  authorizedKeys = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCf4PuMuh6umz5hvl3u0sT20TP6+EKnOHKjy3uUjYCMjXMtjC83u5TKEl//oZ70g96Kn5w3KEN169ektClvHFJx8nOiZXAI617xVjTkYHtbpDaZOyaPNER23TQ+BNDarhAjtY9RAjgsO0M0wqfg69ElP6+UFl/MM+txjGnf3NasaDto5/bRNIBssBg++FI9xUHW/urD6hddRZ8iBIHxud8qezM9/a6+Q2/5AhBOmJy4MysWea1PP8jA2kbSDjUCNGA4w24pJzyVU8qB8WMWfIkkvUFCSQ/o0UZ133eoEZBGdTMW/oxI/wsUOqyBvbAkpJWPJH4LQqfopLfPjguI5QXj hannes.leutloff@yeldirium.de"
-  ];
   storageDisks = [
     "sda"
     "sdb"
@@ -53,26 +50,6 @@ in
       };
     }
 
-    {
-      # setup initrd ssh to unlock the encripted drive
-      boot = {
-        kernelParams = [ "ip=192.168.178.69" ];
-        initrd = {
-          network.enable = true;
-          availableKernelModules = [ "igc" ];
-          network.ssh = {
-            enable = true;
-            port = 22;
-            authorizedKeys = map (key: ''command="systemctl default" ${key}'') authorizedKeys;
-            hostKeys = [ "/etc/ssh/initrd" ];
-          };
-          secrets = {
-            "/etc/ssh/initrd" = "/etc/ssh/initrd";
-          };
-        };
-      };
-    }
-
     # zfs configuration and devices
     {
       environment.systemPackages = with pkgs; [
@@ -95,7 +72,6 @@ in
         zfs = {
           devNodes = "/dev/disk/by-id/";
           forceImportRoot = false;
-          requestEncryptionCredentials = true;
         };
       };
       services.zfs = {
@@ -124,17 +100,11 @@ in
                       mountpoint = "/boot";
                     };
                   };
-                  luks = {
+                  root = {
                     size = "100%";
                     content = {
-                      type = "luks";
-                      name = "crypt-root";
-                      settings.allowDiscards = true;
-                      passwordFile = "/tmp/secret.key";
-                      content = {
-                        type = "zfs";
-                        pool = "zroot";
-                      };
+                      type = "zfs";
+                      pool = "zroot";
                     };
                   };
                 };
@@ -151,17 +121,11 @@ in
                 content = {
                   type = "gpt";
                   partitions = {
-                    luks = {
+                    storage = {
                       size = "100%";
                       content = {
-                        type = "luks";
-                        name = "stg${diskname}";
-                        settings.allowDiscards = true;
-                        passwordFile = "/tmp/secret.key";
-                        content = {
-                          type = "zfs";
-                          pool = "zstorage";
-                        };
+                        type = "zfs";
+                        pool = "zstorage";
                       };
                     };
                   };
@@ -188,13 +152,6 @@ in
               autotrim = "on";
             };
             datasets = {
-              etcssh = {
-                type = "zfs_fs";
-                options.mountpoint = "legacy";
-                mountpoint = "/etc/ssh";
-                options."com.sun:auto-snapshot" = "false";
-                postCreateHook = "zfs snapshot zroot/etcssh@empty";
-              };
               persist = {
                 type = "zfs_fs";
                 options.mountpoint = "legacy";
