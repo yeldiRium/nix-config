@@ -18,7 +18,9 @@
     system = {
       hostName = "recreate";
 
-      keyboardVariant = "";
+      mounts = {
+        datengrab.enable = true;
+      };
     };
 
     cli = {

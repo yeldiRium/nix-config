@@ -15,6 +15,10 @@
       hostName = "hackstack";
 
       keyboardVariant = "neo";
+
+      mounts = {
+        datengrab.enable = true;
+      };
     };
 
     desktop = {

@@ -13,6 +13,10 @@
   yeldirs = {
     system = {
       hostName = "laboratory";
+
+      mounts = {
+        datengrab.enable = true;
+      };
     };
 
     # Deprecated non-module options.

@@ -10,9 +10,6 @@
         sopsFile = ./../../secrets.yaml;
         keyFile = "/persist/sops/age/keys.txt";
       };
-      mounts = {
-        datengrab.enable = true;
-      };
       keyring.enable = true;
     };
 
