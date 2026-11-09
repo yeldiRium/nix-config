@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 {
@@ -31,17 +30,6 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    initrd.postDeviceCommands = lib.mkAfter ''
-      mkdir /btrfs_tmp
-      mount /dev/root_vg/root /btrfs_tmp
-      if [[ -e /btrfs_tmp/root ]]; then
-        rm -rf /btrfs_tmp/root
-        btrfs subvolume delete /btrfs_tmp/root
-      fi
-
-      btrfs subvolume create /btrfs_tmp/root
-      umount /btrfs_tmp
-    '';
   };
 
   services.xserver = {
