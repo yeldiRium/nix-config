@@ -8,6 +8,8 @@
     ../../shared/global
     ../shared/global
 
+    ../shared/optional/filesystems.nix
+
     ../shared/users/nixos
   ];
 

@@ -19,6 +19,7 @@
     ../shared/optional/gaming
     ../shared/optional/bluetooth.nix
     ../shared/optional/docker.nix
+    ../shared/optional/filesystems.nix
     ../shared/optional/greetd.nix
     ../shared/optional/persistence.nix
     ../shared/optional/pipewire.nix

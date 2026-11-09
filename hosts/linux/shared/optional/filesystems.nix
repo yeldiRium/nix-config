@@ -6,6 +6,7 @@
       "ntfs"
       "ext4"
       "exfat"
+      "vfat"
     ];
     zfs = {
       forceImportRoot = false;
