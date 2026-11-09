@@ -93,6 +93,12 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
+        datengrab = lib.nixosSystem {
+          modules = [ ./hosts/linux/datengrab ];
+          specialArgs = {
+            inherit inputs lib outputs;
+          };
+        };
         hackstack = lib.nixosSystem {
           modules = [ ./hosts/linux/hackstack ];
           specialArgs = {
