@@ -56,6 +56,8 @@
     };
 
     desktop = {
+      enable = true;
+
       essentials = {
         firefox = {
           enable = true;

@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   yeldirs = {
     system = {
@@ -14,8 +13,6 @@
     };
 
     desktop = {
-      enable = lib.mkDefault true;
-
       essentials = {
         chrome = {
           enable = true;
