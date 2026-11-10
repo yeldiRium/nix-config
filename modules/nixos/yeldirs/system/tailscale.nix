@@ -26,5 +26,13 @@ in
       enable = true;
       package = pkgs.unstable.tailscale;
     };
+
+    environment.persistence = {
+      "/persist/system" = {
+        directories = [
+          "/var/lib/tailscale"
+        ];
+      };
+    };
   };
 }
