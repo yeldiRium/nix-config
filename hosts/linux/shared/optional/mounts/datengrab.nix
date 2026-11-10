@@ -20,15 +20,11 @@ in
       extraConfig = ''
         Host datengrab
           User yeldir
-          IdentityFile ${config.users.users.yeldir.home}/.ssh/hleutloff
+          IdentityFile ${config.users.users.yeldir.home}/.ssh/hleutloff02
       '';
       knownHosts = {
         datengrab = {
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBHHAQQrrZtf+iL/QySaxfg29Y2hZx/6ySy4SbMOxdO9";
-        };
-        "datengrab/ecdsa" = {
-          hostNames = [ "datengrab" ];
-          publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPs4cbixkaqvjU5qJBVh2poCYDdOF1Q0pat0QL1vfBHXwG6AMCYJiqnshkKdBLAM9TbKOdDA/tsK70qFgtHVavM=";
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2NATryhaBhnV/a8gVDpqyxwcfIh6g4aDoJxYNa6kqU";
         };
       };
     };
@@ -39,7 +35,7 @@ in
         mountConfig = {
           Options = "allow_other";
         };
-        what = "datengrab:/mnt/raid";
+        what = "datengrab:/storage";
         where = "/mnt/datengrab";
       }
     ];
