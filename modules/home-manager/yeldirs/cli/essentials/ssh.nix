@@ -26,11 +26,11 @@ in
         settings = {
           "github.com" = {
             user = "git";
-            identityFile = "~/.ssh/hleutloff";
+            identityFile = "~/.ssh/hleutloff02";
           };
           "git.staubwolke.org" = {
             user = "git";
-            identityFile = "~/.ssh/hleutloff";
+            identityFile = "~/.ssh/hleutloff02";
             port = 30022;
           };
         }
@@ -55,22 +55,17 @@ in
             {
               "datengrab" = {
                 user = "yeldir";
-                identityFile = "~/.ssh/hleutloff";
+                identityFile = "~/.ssh/hleutloff02";
               };
               "heck" = {
                 hostname = "yeldirium.de";
                 user = "yeldir";
-                identityFile = "~/.ssh/hleutloff";
-              };
-              "backup" = {
-                hostname = "192.168.178.41";
-                user = "yeldir";
-                identityFile = "~/.ssh/hleutloff";
+                identityFile = "~/.ssh/hleutloff02";
               };
               "nuc" = {
                 hostname = "nuc";
                 user = "yeldir";
-                identityFile = "~/.ssh/hleutloff";
+                identityFile = "~/.ssh/hleutloff02";
               };
             }
         );
