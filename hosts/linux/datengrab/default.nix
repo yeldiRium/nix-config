@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   ...
 }:
 {
@@ -14,7 +13,7 @@
     ../../shared/global
     ../shared/global
 
-    # ../shared/users/yeldir
+    ../shared/users/yeldir
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -32,19 +31,6 @@
       tailscale.enable = true;
     };
   };
-
-  ######
-  # quickstart
-  # replace with actual user later
-  environment.systemPackages = with pkgs; [
-    git
-  ];
-  users.users."yeldir" = {
-    isNormalUser = true;
-    initialPassword = "12345";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  };
-  ######
 
   services = {
     openssh = {
