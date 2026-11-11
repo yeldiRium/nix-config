@@ -57,7 +57,7 @@ in
           text = ''
             repositories:
             - label: ${hostName}
-              path: ssh://yeldir@backup/mnt/raid/borg/${hostName}
+              path: ssh://borg@backup/storage/borg/${hostName}
             patterns:
             ${cfg.patterns}
           '';
@@ -71,8 +71,8 @@ in
 
     programs.ssh.extraConfig = ''
       Host backup
-        HostName 192.168.178.41
-        User yeldir
+        HostName datengrab.yeldir.de
+        User borg
         IdentityFile ${cfg.sshKeyPath}
     '';
 
