@@ -41,6 +41,17 @@
         KbdInteractiveAuthentication = false;
       };
     };
+
+    borgbackup = {
+      repos = {
+        recreate = {
+          path = "/storage/borg/recreate";
+          authorizedKeys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE45YijDajl0VRD56CFDgvjDjfF+FuOQ4X3QiqaXfvPQ"
+          ];
+        };
+      };
+    };
   };
 
   virtualisation.docker = {
