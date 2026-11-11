@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   imports = [
     ../shared
     ./shared
@@ -13,6 +13,7 @@
     };
 
     cli = {
+      essentials.yazi.enableGui = lib.mkForce false;
       ops = {
         docker.enable = true;
         networking.enable = true;
