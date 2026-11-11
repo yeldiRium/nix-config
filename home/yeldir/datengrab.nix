@@ -13,7 +13,10 @@
     };
 
     cli = {
-      essentials.yazi.enableGui = lib.mkForce false;
+      essentials.yazi = {
+        enableGui = lib.mkForce false;
+        disablePreview = true;
+      };
       ops = {
         docker.enable = true;
         networking.enable = true;

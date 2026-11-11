@@ -12,6 +12,7 @@ in
   options = {
     yeldirs.cli.essentials.yazi = {
       enableGui = lib.mkEnableOption "yazi with graphical ui";
+      disablePreview = lib.mkEnableOption "disable graphical preview";
     };
   };
 
@@ -51,6 +52,12 @@ in
             show_hidden = true;
           };
           plugin = {
+            prepend_previewers = [
+              (lib.mkIf cfg.disablePreview {
+                url = "*";
+                run = "noop";
+              })
+            ];
             prepend_fetchers = [
               (lib.mkIf config.yeldirs.system.mounts.datengrab.enable {
                 url = "/mnt/datengrab/**";
