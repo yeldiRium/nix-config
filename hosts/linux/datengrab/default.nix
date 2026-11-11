@@ -57,12 +57,8 @@
   virtualisation.docker = {
     enable = true;
     logDriver = "json-file";
-  };
-  environment.persistence = {
-    "/persist/system" = {
-      directories = [
-        "/var/lib/docker"
-      ];
+    daemon.settings = {
+      data-root = "/storage/docker";
     };
   };
 
