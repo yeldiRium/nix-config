@@ -30,6 +30,7 @@
     system = {
       sops.enable = true;
       tailscale.enable = true;
+      gitops.enable = true;
     };
   };
 
@@ -68,7 +69,7 @@
     };
   };
 
-  systemd.services.docker-prune = {
+  systemd.services.docker-prune-images = {
     description = "Prune Docker images";
     serviceConfig = {
       Type = "oneshot";
@@ -76,7 +77,7 @@
     };
   };
 
-  systemd.timers.docker-prune = {
+  systemd.timers.docker-prune-images = {
     description = "Prune docker images daily at 2:00 AM UTC";
     wantedBy = [ "timers.target" ];
     timerConfig = {
