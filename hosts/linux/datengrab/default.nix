@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   ...
 }:
 {
@@ -57,8 +58,26 @@
   virtualisation.docker = {
     enable = true;
     logDriver = "json-file";
+    storageDriver = "overlay2";
     daemon.settings = {
       data-root = "/storage/docker";
+    };
+  };
+
+  systemd.services.docker-prune = {
+    description = "Prune Docker images";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.docker}/bin/docker image prune --all --force";
+    };
+  };
+
+  systemd.timers.docker-prune = {
+    description = "Prune docker images daily at 2:00 AM UTC";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 02:00:00 UTC";
+      Persistent = true;
     };
   };
 
