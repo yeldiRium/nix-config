@@ -7,7 +7,6 @@
     ../shared/global
 
     ../shared/optional/persistence.nix
-    ../shared/optional/docker.nix
 
     ../shared/users/yeldir
   ];
@@ -30,7 +29,9 @@
       };
       gitops.enable = true;
     };
+    docker.enable = true;
   };
+
   services = {
     openssh = {
       enable = true;
