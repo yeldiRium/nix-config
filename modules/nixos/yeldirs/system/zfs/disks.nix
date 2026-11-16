@@ -9,18 +9,90 @@ let
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCf4PuMuh6umz5hvl3u0sT20TP6+EKnOHKjy3uUjYCMjXMtjC83u5TKEl//oZ70g96Kn5w3KEN169ektClvHFJx8nOiZXAI617xVjTkYHtbpDaZOyaPNER23TQ+BNDarhAjtY9RAjgsO0M0wqfg69ElP6+UFl/MM+txjGnf3NasaDto5/bRNIBssBg++FI9xUHW/urD6hddRZ8iBIHxud8qezM9/a6+Q2/5AhBOmJy4MysWea1PP8jA2kbSDjUCNGA4w24pJzyVU8qB8WMWfIkkvUFCSQ/o0UZ133eoEZBGdTMW/oxI/wsUOqyBvbAkpJWPJH4LQqfopLfPjguI5QXj hannes.leutloff@yeldirium.de"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE45YijDajl0VRD56CFDgvjDjfF+FuOQ4X3QiqaXfvPQ"
   ];
-  storageDisks = [
-    "sda"
-    "sdb"
-    "sdd"
-    "sde"
-  ];
   inherit (config.networking) hostName;
+
+  cfg = config.yeldirs.system.disks;
 in
 {
+  options = {
+    yeldirs.system.disks = {
+      enable = lib.mkEnableOption "standard disk setup using zfs";
+
+      enableImpermance = lib.mkEnableOption "disk impermanence setup using zfs rollback";
+
+      initrd-ssh = {
+        enable = lib.mkEnableOption "initrd-ssh";
+        ethernetDrivers = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+          description = ''
+            ethernet drivers to load (run "lspci -v | grep -iA8 'network\|ethernet'")
+          '';
+        };
+      };
+
+      zfs = {
+        enable = lib.mkEnableOption "zfs";
+        root = {
+          encrypt = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+          };
+          disk = lib.mkOption {
+            type = lib.types.str;
+            default = "";
+            description = ''
+              device name for root disk
+            '';
+          };
+          reservation = lib.mkOption {
+            type = lib.types.str;
+            default = "20GiB";
+            description = ''
+              zfs reservation
+            '';
+          };
+          impermanenceRoot = lib.mkEnableOption "roll back root on boot";
+        };
+        storage = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+          };
+          disks = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+            description = ''
+              device names for storage pool
+            '';
+          };
+          mode = lib.mkOption {
+            type = lib.types.enum [
+              ""
+              "mirror"
+              "raidz"
+            ];
+            default = "";
+          };
+          reservation = lib.mkOption {
+            type = lib.types.str;
+            default = "20GiB";
+            description = ''
+              zfs reservation
+            '';
+          };
+        };
+      };
+    };
+  };
+
   config = lib.mkMerge [
-    # impermanence
-    {
+    (lib.mkIf cfg.enable {
+      boot.loader.systemd-boot.enable = true;
+      boot.loader.efi.canTouchEfiVariables = true;
+    })
+    (lib.mkIf cfg.enable {
+      # impermanence
       environment.persistence = {
         "/persist/system" = {
           enable = true;
@@ -37,36 +109,14 @@ in
       };
       boot.initrd.systemd.suppressedUnits = [ "systemd-machine-id-commit.service" ];
       systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
-
-      fileSystems = {
-        "/etc/ssh".neededForBoot = true;
-        "/nix".neededForBoot = true;
-        "/persist".neededForBoot = true;
-      };
-
-      boot.initrd.systemd.services.rollback = {
-        wantedBy = [ "initrd.target" ];
-        after = [ "zfs-import-zroot.service" ];
-        before = [ "sysroot.mount" ];
-        path = [ config.boot.zfs.package ];
-        unitConfig.DefaultDependencies = "no";
-        serviceConfig.Type = "oneshot";
-        script = ''
-          zfs rollback -r zroot/root@empty
-        '';
-      };
-    }
-
-    {
-      # setup initrd ssh to unlock the encripted drive
+    })
+    (lib.mkIf (cfg.enable && cfg.initrd-ssh.enable) {
+      # setup initrd ssh to unlock the encrypted drive
       boot = {
         kernelParams = [ "ip=::::${hostName}-initrd::dhcp" ];
         initrd = {
           network.enable = true;
-          availableKernelModules = [
-            "igb"
-            "e1000e"
-          ];
+          availableKernelModules = cfg.initrd-ssh.ethernetDrivers;
           network.ssh = {
             enable = true;
             port = 22;
@@ -78,10 +128,22 @@ in
           };
         };
       };
-    }
-
-    # zfs configuration and devices
-    {
+    })
+    (lib.mkIf cfg.zfs.root.impermanenceRoot {
+      boot.initrd.systemd.services.rollback = {
+        wantedBy = [ "initrd.target" ];
+        after = [ "zfs-import-zroot.service" ];
+        before = [ "sysroot.mount" ];
+        path = [ config.boot.zfs.package ];
+        unitConfig.DefaultDependencies = "no";
+        serviceConfig.Type = "oneshot";
+        script = ''
+          zfs rollback -r zroot/root@empty
+        '';
+      };
+    })
+    (lib.mkIf (cfg.enable && cfg.zfs.enable) {
+      # zfs configuration and devices
       environment.systemPackages = with pkgs; [
         zfs-prune-snapshots
       ];
@@ -115,7 +177,7 @@ in
           {
             root = {
               type = "disk";
-              device = "/dev/sdc";
+              device = "/dev/${cfg.zfs.root.disk}";
               content = {
                 type = "gpt";
                 partitions = {
@@ -130,7 +192,7 @@ in
                       mountpoint = "/boot";
                     };
                   };
-                  luks = {
+                  luks = lib.mkIf cfg.zfs.root.encrypt {
                     size = "100%";
                     content = {
                       type = "luks";
@@ -143,38 +205,49 @@ in
                       };
                     };
                   };
+                  notluks = lib.mkIf (!cfg.zfs.root.encrypt) {
+                    size = "100%";
+                    content = {
+                      type = "zfs";
+                      pool = "zroot";
+                    };
+                  };
                 };
               };
             };
           }
 
-          # hdd raid storage pool
-          (lib.mkMerge (
-            map (diskname: {
-              "${diskname}" = {
-                type = "disk";
-                device = "/dev/${diskname}";
-                content = {
-                  type = "gpt";
-                  partitions = {
-                    luks = {
-                      size = "100%";
-                      content = {
-                        type = "luks";
-                        name = "stg${diskname}";
-                        settings.allowDiscards = true;
-                        passwordFile = "/persist/luks/secret.key";
-                        content = {
-                          type = "zfs";
-                          pool = "zstorage";
+          (lib.mkIf cfg.zfs.storage.enable
+            # hdd raid storage pool
+            (
+              lib.mkMerge (
+                map (diskname: {
+                  "${diskname}" = {
+                    type = "disk";
+                    device = "/dev/${diskname}";
+                    content = {
+                      type = "gpt";
+                      partitions = {
+                        luks = {
+                          size = "100%";
+                          content = {
+                            type = "luks";
+                            name = "stg${diskname}";
+                            settings.allowDiscards = true;
+                            passwordFile = "/persist/luks/secret.key";
+                            content = {
+                              type = "zfs";
+                              pool = "zstorage";
+                            };
+                          };
                         };
                       };
                     };
                   };
-                };
-              };
-            }) storageDisks
-          ))
+                }) cfg.zfs.storage.disks
+              )
+            )
+          )
         ];
         zpool = {
           zroot = {
@@ -194,6 +267,17 @@ in
               autotrim = "on";
             };
             datasets = {
+              reserved = lib.mkIf (cfg.zfs.root.reservation != "") {
+                # zfs gets in trouble when a pool gets too full.
+                # shrink this reserved dataset when all the other datasets are
+                # at capacity.
+                options = {
+                  canmount = "off";
+                  mountpoint = "none";
+                  reservation = "${cfg.zfs.root.reservation}";
+                };
+                type = "zfs_fs";
+              };
               etcssh = {
                 type = "zfs_fs";
                 options.mountpoint = "legacy";
@@ -230,9 +314,9 @@ in
               };
             };
           };
-          zstorage = {
+          zstorage = lib.mkIf cfg.zfs.storage.enable {
             type = "zpool";
-            mode = "raidz";
+            mode = cfg.zfs.storage.mode;
             rootFsOptions = {
               canmount = "off";
               checksum = "edonr";
@@ -252,7 +336,7 @@ in
                 type = "zfs_fs";
                 options = {
                   canmount = "off";
-                  reservation = "20GiB";
+                  reservation = cfg.zfs.storage.reservation;
                 };
               };
               storage = {
@@ -268,6 +352,12 @@ in
           };
         };
       };
-    }
+
+      fileSystems = {
+        "/etc/ssh".neededForBoot = true;
+        "/nix".neededForBoot = true;
+        "/persist".neededForBoot = true;
+      };
+    })
   ];
 }

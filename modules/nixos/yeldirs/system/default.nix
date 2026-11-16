@@ -2,6 +2,7 @@
   imports = [
     ./disko
     ./impermanence
+    ./zfs
 
     ./backup.nix
     ./gitops.nix

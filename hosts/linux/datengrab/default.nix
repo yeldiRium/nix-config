@@ -8,8 +8,6 @@
     inputs.hardware.nixosModules.common-pc-ssd
     ./hardware-configuration.nix
 
-    ./disks.nix
-
     ../../shared/global
     ../shared/global
 
@@ -30,6 +28,37 @@
       sops.enable = true;
       tailscale.enable = true;
       gitops.enable = true;
+
+      disks = {
+        enable = true;
+        initrd-ssh = {
+          enable = true;
+          ethernetDrivers = [
+            "igb"
+            "e1000e"
+          ];
+        };
+        zfs = {
+          enable = true;
+          root = {
+            encrypt = true;
+            disk = "sdc";
+            reservation = "";
+            impermanenceRoot = true;
+          };
+          storage = {
+            enable = true;
+            disks = [
+              "sda"
+              "sdb"
+              "sdd"
+              "sde"
+            ];
+            mode = "raidz";
+            reservation = "20GiB";
+          };
+        };
+      };
     };
   };
 
