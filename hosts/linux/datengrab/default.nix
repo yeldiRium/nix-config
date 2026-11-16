@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   ...
 }:
 {
@@ -69,6 +68,7 @@
     docker = {
       enable = true;
       storageRoot = "/storage/docker";
+      pruneImages = true;
     };
   };
 
@@ -89,23 +89,6 @@
           ];
         };
       };
-    };
-  };
-
-  systemd.services.docker-prune-images = {
-    description = "Prune Docker images";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.docker}/bin/docker image prune --all --force";
-    };
-  };
-
-  systemd.timers.docker-prune-images = {
-    description = "Prune docker images daily at 2:00 AM UTC";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "*-*-* 02:00:00 UTC";
-      Persistent = true;
     };
   };
 
