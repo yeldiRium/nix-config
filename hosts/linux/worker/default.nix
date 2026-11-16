@@ -71,9 +71,7 @@
       enable = true;
       ports = [ 58008 ];
       settings = {
-        PermitRootLogin = "no";
         PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
       };
     };
     fail2ban.enable = true;
