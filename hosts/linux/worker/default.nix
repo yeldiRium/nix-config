@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   modulesPath,
   worker,
@@ -23,7 +22,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./hardware-configuration.nix
-    inputs.disko.nixosModules.default
     ./disko.nix
 
     ../../shared/global

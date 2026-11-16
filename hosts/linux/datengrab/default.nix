@@ -8,7 +8,6 @@
     inputs.hardware.nixosModules.common-pc-ssd
     ./hardware-configuration.nix
 
-    inputs.disko.nixosModules.default
     ./disks.nix
 
     ../../shared/global
