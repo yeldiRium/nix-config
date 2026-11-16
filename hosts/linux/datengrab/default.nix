@@ -65,6 +65,11 @@
         };
       };
     };
+
+    docker = {
+      enable = true;
+      storageRoot = "/storage/docker";
+    };
   };
 
   services = {
@@ -84,19 +89,6 @@
           ];
         };
       };
-    };
-  };
-
-  virtualisation.docker = {
-    enable = true;
-    logDriver = "json-file";
-
-    # I use cadvisor to scrape metrics. cadvisor is incompatible with overlayfs,
-    # which is the default.
-    # https://github.com/google/cadvisor/issues/3772
-    storageDriver = "overlay2";
-    daemon.settings = {
-      data-root = "/storage/docker";
     };
   };
 

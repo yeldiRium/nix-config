@@ -1,5 +1,6 @@
 {
   imports = [
+    ./docker
     ./gaming
     ./system
   ];
