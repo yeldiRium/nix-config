@@ -6,6 +6,8 @@
 }:
 let
   cfg = config.yeldirs.system.gitops;
+
+  cominPort = 4243;
 in
 {
   imports = [
@@ -15,6 +17,16 @@ in
   options = {
     yeldirs.system.gitops = {
       enable = lib.mkEnableOption "gitops";
+
+      openFirewallForInterfaces = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = ''
+          To scrape comin metrics, open firewall on these interfaces.
+          Look up the docker bridge interface on which alloy is deployed.
+          The interface name is always `br-` followed by the first twelve
+          characters in the network's id.
+        '';
+      };
     };
   };
 
@@ -36,8 +48,16 @@ in
           auth.access_token_path = config.sops.secrets.configPullToken.path;
         }
       ];
+
+      exporter = {
+        port = cominPort;
+      };
     };
 
     sops.secrets.configPullToken = { };
+
+    networking.firewall.interfaces = lib.genAttrs cfg.openFirewallForInterfaces (_: {
+      allowedTCPPorts = [ cominPort ];
+    });
   };
 }

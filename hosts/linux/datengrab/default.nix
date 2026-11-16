@@ -27,7 +27,12 @@
     system = {
       sops.enable = true;
       tailscale.enable = true;
-      gitops.enable = true;
+      gitops = {
+        enable = true;
+        openFirewallForInterfaces = [
+          "br-01c79d712ed8"
+        ];
+      };
 
       disks = {
         enable = true;
@@ -61,12 +66,6 @@
       };
     };
   };
-
-  # Allow traffic from otel docker network to host to allow alloy to scrape
-  # metrics from comin.
-  networking.firewall.interfaces."br-01c79d712ed8".allowedTCPPorts = [
-    4243
-  ];
 
   services = {
     openssh = {
