@@ -17,7 +17,6 @@
 
     ../shared/optional/gaming
     ../shared/optional/bluetooth.nix
-    ../shared/optional/docker.nix
     ../shared/optional/filesystems.nix
     ../shared/optional/greetd.nix
     ../shared/optional/persistence.nix
@@ -73,6 +72,12 @@
       };
       sops.enable = true;
       tailscale.enable = true;
+    };
+
+    docker = {
+      enable = true;
+      enablePersistence = true;
+      pruneImages = true;
     };
 
     mounts = {
