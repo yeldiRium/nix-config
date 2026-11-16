@@ -29,7 +29,10 @@
       };
       gitops.enable = true;
     };
-    docker.enable = true;
+    docker = {
+      enable = true;
+      pruneImages = true;
+    };
   };
 
   services = {
