@@ -28,8 +28,9 @@
           name = "LVDS-1";
           width = 1600;
           height = 900;
-          workspace = "9";
           position = "1920x800";
+          primary = true;
+          workspace = "9";
         }
       ];
 
