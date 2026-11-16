@@ -113,7 +113,7 @@ in
       ];
 
       shellAliases = {
-        ndiff = "nbuild && nix-diff /nix/var/nix/profiles/system result";
+        ndiff = "nbuild && nix-diff /run/current-system result";
       }
       // (
         if cfg.platform == "linux" then
