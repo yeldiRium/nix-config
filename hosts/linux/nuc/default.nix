@@ -31,6 +31,7 @@
     };
     docker = {
       enable = true;
+      enablePersistence = true;
       pruneImages = true;
     };
   };
