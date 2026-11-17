@@ -33,6 +33,11 @@ in
 
       zfs = {
         enable = lib.mkEnableOption "zfs";
+        arcMax = lib.mkOption {
+          type = lib.types.str;
+          default = "2147483648";
+          description = "maximum size of zfs arc";
+        };
         root = {
           encrypt = lib.mkOption {
             type = lib.types.bool;
@@ -151,7 +156,7 @@ in
         # ZFS does not support swapfiles, disable hibernate and set cache max
         kernelParams = [
           "nohibernate"
-          "zfs.zfs_arc_max=17179869184"
+          "zfs.zfs_arc_max=${cfg.zfs.arcMax}"
         ];
         supportedFilesystems = [
           "zfs"
