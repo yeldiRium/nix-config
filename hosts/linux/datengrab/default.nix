@@ -14,8 +14,16 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    # zfs was taking up half of RAM, which might have lead to performance issues
+    # when demand from other apps spiked. Reduced to 2GiB.
+    kernelParams = [ "zfs.zfs_arc_max=2147483648" ];
+  };
 
   networking = {
     hostName = "datengrab";
