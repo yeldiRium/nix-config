@@ -121,13 +121,15 @@ else
 			printf "."
 		fi
 	done
-	printf "\nSuccess.\n"
+	printf "\n"
+	printf "Success.\n"
 
 	printf "Enter password:\n"
 	read -rs password
 	echo "${password}" | ssh -T -i ~/.ssh/hleutloff02 "root@${_arg_hostname}-initrd" >/dev/null
 
-	printf "\nWaiting for %s to be reachable." "${_arg_hostname}"
+	printf "\n"
+	printf "Waiting for %s to be reachable." "${_arg_hostname}"
 	while true; do
 		if ping -w 1 -c 1 "${_arg_hostname}" >/dev/null 2>&1; then
 			break
@@ -136,7 +138,8 @@ else
 			printf "."
 		fi
 	done
-	printf "\nSuccess.\n"
+	printf "\n"
+	printf "Success.\n"
 	printf "%s is now reachable.\n" "${_arg_hostname}"
 fi
 
