@@ -10,11 +10,28 @@ if [[ "${REPLY}" != "yes" ]]; then
 	exit 1
 fi
 
+printf "Also this script formats your disks according to your configuration.\n"
+read -p "Are you really sure? (yes/no) " -r
+if [[ "${REPLY}" != "yes" ]]; then
+	printf "Aborting...\n"
+	exit 1
+fi
+
 printf "What host are you setting up?\n"
 read -r hostname
 
 printf "Do you need wifi? (yes/no)\n"
 read -r wifi
+
+if [[ "${wifi}" == "yes" ]]; then
+	printf "What's your wifi's SSID?\n"
+	read -r wifi_ssid
+	printf "What's your wifi's password?\n"
+	read -rs wifi_password
+fi
+
+printf "Where is your age key?\n"
+read -r ageKeyFile
 
 # 1. Create encryption key
 printf "Creating encryption key file...\n"
@@ -29,7 +46,7 @@ sudo mv "${secretFile}" /persist/luks/secret.key
 
 # 2. Format disks
 printf "Destructively formatting disks...\n"
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount --flake ".#${hostname}"
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount --yes-wipe-all-disks --flake ".#${hostname}"
 
 # 3. Create workspace and move nix-config
 printf "Creating workspace and moving nix-config...\n"
@@ -47,10 +64,6 @@ sudo chmod 600 /mnt/etc/ssh/initrd
 # 5. Optional: wpa_supplicant
 if [[ "${wifi}" == "yes" ]]; then
 	printf "Generating wpa_suplicant config...\n"
-	printf "What's your wifi's SSID?\n"
-	read -r wifi_ssid
-	printf "What's your wifi's password?\n"
-	read -rs wifi_password
 	wpaSupplicantFile=$(mktemp)
 	wpa_passphrase "${wifi_ssid}" "${wifi_password}" | sed '/#psk/d' > "${wpaSupplicantFile}"
 	sudo chown root:root "${wpaSupplicantFile}"
@@ -59,8 +72,6 @@ fi
 
 # 6. Put age key in /mnt/persist/sops/age/keys.txt
 printf "Bringing age key in position...\n"
-printf "Where is your age key?\n"
-read -r ageKeyFile
 sudo mkdir -p /mnt/persist/sops/age
 sudo cp "${ageKeyFile}" /mnt/persist/sops/age/keys.txt
 
