@@ -125,7 +125,8 @@ in
           network.ssh = {
             enable = true;
             port = 22;
-            authorizedKeys = map (key: ''command="systemctl default" ${key}'') authorizedKeys;
+            # authorizedKeys = map (key: ''command="systemctl default" ${key}'') authorizedKeys;
+            inherit authorizedKeys;
             hostKeys = [ "/etc/ssh/initrd" ];
           };
           secrets = {
