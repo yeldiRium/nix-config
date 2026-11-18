@@ -72,6 +72,7 @@
       };
       sops.enable = true;
       tailscale.enable = true;
+      quiet-boot.enable = true;
     };
 
     docker = {
