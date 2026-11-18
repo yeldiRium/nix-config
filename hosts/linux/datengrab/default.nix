@@ -30,6 +30,7 @@
     system = {
       sops.enable = true;
       tailscale.enable = true;
+      remote-shutdown.enable = true;
       gitops = {
         enable = true;
         openFirewallForInterfaces = [
