@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -21,11 +20,11 @@ in
           groups = [ "wheel" ];
           commands = [
             {
-              command = "${pkgs.systemd}/bin/poweroff";
+              command = "/run/current-system/sw/bin/poweroff";
               options = [ "NOPASSWD" ];
             }
             {
-              command = "${pkgs.systemd}/bin/reboot";
+              command = "/run/current-system/sw/bin/reboot";
               options = [ "NOPASSWD" ];
             }
           ];
