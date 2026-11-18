@@ -160,6 +160,8 @@ in
           initrdBin = [ pkgs.wpa_supplicant ];
           targets.initrd.wants = [ "wpa_supplicant@wifi.service" ];
 
+          users.root.shell = "/bin/systemd-tty-ask-password-agent";
+
           # prevent WPA supplicant from requiring `sysinit.target`.
           services."wpa_supplicant@".unitConfig.DefaultDependencies = false;
 
