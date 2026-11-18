@@ -17,8 +17,8 @@
   };
 
   networking = {
-    hostName = "nuc";
-    hostId = "b4b6238f";
+    hostName = "pistachio";
+    hostId = "09840a19";
   };
 
   yeldirs = {
