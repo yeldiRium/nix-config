@@ -61,6 +61,7 @@ in
         ++ [
           (y.shellScript ./scripts/diffex)
           (y.shellScript ./scripts/rand5)
+          (y.shellScript ./scripts/unlock)
         ];
 
       shellAliases = {

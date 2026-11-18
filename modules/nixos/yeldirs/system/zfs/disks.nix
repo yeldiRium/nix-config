@@ -125,8 +125,9 @@ in
           network.ssh = {
             enable = true;
             port = 22;
-            # authorizedKeys = map (key: ''command="systemctl default" ${key}'') authorizedKeys;
-            inherit authorizedKeys;
+            authorizedKeys = map (
+              key: ''command="systemd-tty-ask-password-agent --query" ${key}''
+            ) authorizedKeys;
             hostKeys = [ "/etc/ssh/initrd" ];
           };
           secrets = {
