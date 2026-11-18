@@ -3,7 +3,9 @@
 Compare `datengrab`.
 
 These steps can be run automatically using ./quickstart.bash.
-Do the steps until including 0. manually, then run the script.
+To use the script do the steps until including 0 and get your age key ready.
+Do not put the age key anywhere under /mnt, since that will be mounted over.
+Then run the script.
 
 -2. Create new host config, generate hardware config, check right disk device, find ethernet kernel modules for initrd, etc.
 -1. Optional: connect to wifi
@@ -25,8 +27,8 @@ Do the steps until including 0. manually, then run the script.
 5.1. `wpa_passphrase "<ssid>" "<password>" | sed '/#psk/d' > ~/wpa_supplicant.conf"
 5.3. `sudo chown root:root /home/nixos/wpa_supplicant.conf`
 5.2. `sudo mv /home/nixos/wpa_supplicant.conf /mnt/etc/wpa_supplicant/wpa_supplicant-wifi.conf`
-6. Put age key in /mnt/persist/sops/age/keys.txt
-6.1. Optional: mount usb stick or somthing else to get the prepared age keys
+6. Put age key in place
+6.1. Optional: mount usb stick or somthing else to get the prepared age keys.
 6.2. `sudo mkdir -p /mnt/persist/sops/age`
 6.3. `sudo cp <path-to>/keys.txt /mnt/persist/sops/age/keys.txt`
 7. Move disk encryption key

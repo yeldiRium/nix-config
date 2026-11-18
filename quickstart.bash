@@ -3,6 +3,7 @@
 set -euo pipefail
 
 printf "Before running this script, make sure you have your age key accessible somewhere.\n"
+printf "It must not be anywhere under /mnt, since that will be mounted over.\n"
 read -p "Continue? (yes/no) " -r
 if [[ "${REPLY}" != "yes" ]]; then
 	printf "Aborting...\n"
