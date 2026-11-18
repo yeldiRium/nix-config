@@ -37,12 +37,16 @@
         enable = true;
         initrd-ssh = {
           enable = true;
-          enableWifi = true;
           ethernetDrivers = [
             "e1000e"
-            "iwlwifi"
-            "iwlmvm"
           ];
+          wifi = {
+            enable = true;
+            ethernetDrivers = [
+              "iwlwifi"
+              "iwlmvm"
+            ];
+          };
         };
         zfs = {
           enable = true;

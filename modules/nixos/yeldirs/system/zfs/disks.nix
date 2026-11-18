@@ -27,11 +27,19 @@ in
           default = [ ];
           description = ''
             ethernet drivers to load (run "lspci -v | grep -iA8 'network\|ethernet'").
-            must include wifi drivers if enableWifi is set to true.
-            if using iwlwifi, check whether you need iwlmvm or iwldvm, too.
           '';
         };
-        enableWifi = lib.mkEnableOption "initrd wifi";
+        wifi = {
+          enable = lib.mkEnableOption "initrd wifi";
+          ethernetDrivers = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+            description = ''
+              ethernet drivers to load (run "lspci -v | grep -iA8 'network\|ethernet'").
+              if using iwlwifi, check whether you need iwlmvm or iwldvm, too.
+            '';
+          };
+        };
       };
 
       zfs = {
@@ -139,11 +147,13 @@ in
         };
       };
     })
-    (lib.mkIf (cfg.enable && cfg.initrd-ssh.enable && cfg.initrd-ssh.enableWifi) {
+    (lib.mkIf (cfg.enable && cfg.initrd-ssh.enable && cfg.initrd-ssh.wifi.enable) {
       boot.initrd = {
-        availableKernelModules = [
+        availableKernelModules = cfg.initrd-ssh.wifi.ethernetDrivers ++ [
           "ccm" # crypto for wpa2
           "ctr" # dependency of ccm
+          "iwlwifi"
+          "iwlmvm"
         ];
         systemd = {
           packages = [ pkgs.wpa_supplicant ];
@@ -155,6 +165,14 @@ in
 
           network = {
             enable = true;
+
+            # Add a link to an existing interface and name it `wifi`, so that
+            # we don't need to know and hardcode the interface name in advance.
+            # Warning: This breaks if multiple wlan interface exist.
+            links."10-wifi" = {
+              matchConfig.Type = "wlan";
+              linkConfig.Name = "wifi";
+            };
             networks."10-wlan" = {
               matchConfig.Name = "wifi";
               DHCP = "yes";
@@ -323,7 +341,7 @@ in
                 options."com.sun:auto-snapshot" = "false";
                 postCreateHook = "zfs snapshot zroot/etcssh@empty";
               };
-              wpasupplicant = lib.mkIf cfg.initrd-ssh.enableWifi {
+              wpasupplicant = lib.mkIf cfg.initrd-ssh.wifi.enable {
                 type = "zfs_fs";
                 options.mountpoint = "legacy";
                 mountpoint = "/etc/wpa_supplicant";
@@ -401,7 +419,7 @@ in
 
       fileSystems = {
         "/etc/ssh".neededForBoot = lib.mkIf cfg.initrd-ssh.enable true;
-        "/etc/wpa_supplicant".neededForBoot = lib.mkIf cfg.initrd-ssh.enableWifi true;
+        "/etc/wpa_supplicant".neededForBoot = lib.mkIf cfg.initrd-ssh.wifi.enable true;
         "/nix".neededForBoot = true;
         "/persist".neededForBoot = true;
       };
