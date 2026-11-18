@@ -26,9 +26,12 @@ in
           type = lib.types.listOf lib.types.str;
           default = [ ];
           description = ''
-            ethernet drivers to load (run "lspci -v | grep -iA8 'network\|ethernet'")
+            ethernet drivers to load (run "lspci -v | grep -iA8 'network\|ethernet'").
+            must include wifi drivers if enableWifi is set to true.
+            if using iwlwifi, check whether you need iwlmvm or iwldvm, too.
           '';
         };
+        enableWifi = lib.mkEnableOption "initrd wifi";
       };
 
       zfs = {
@@ -133,6 +136,34 @@ in
           secrets = {
             "/etc/ssh/initrd" = "/etc/ssh/initrd";
           };
+        };
+      };
+    })
+    (lib.mkIf (cfg.enable && cfg.initrd-ssh.enable && cfg.initrd-ssh.enableWifi) {
+      boot.initrd = {
+        availableKernelModules = [
+          "ccm" # crypto for wpa2
+          "ctr" # dependency of ccm
+        ];
+        systemd = {
+          packages = [ pkgs.wpa_supplicant ];
+          initrdBin = [ pkgs.wpa_supplicant ];
+          targets.initrd.wants = [ "wpa_supplicant@wifi.service" ];
+
+          # prevent WPA supplicant from requiring `sysinit.target`.
+          services."wpa_supplicant@".unitConfig.DefaultDependencies = false;
+
+          network = {
+            enable = true;
+            networks."10-wlan" = {
+              matchConfig.Name = "wifi";
+              DHCP = "yes";
+            };
+          };
+        };
+
+        secrets = {
+          "/etc/wpa_supplicant/wpa_supplicant-wifi.conf" = "/etc/wpa_supplicant/wpa_supplicant-wifi.conf";
         };
       };
     })
@@ -285,12 +316,19 @@ in
                 };
                 type = "zfs_fs";
               };
-              etcssh = {
+              etcssh = lib.mkIf cfg.initrd-ssh.enable {
                 type = "zfs_fs";
                 options.mountpoint = "legacy";
                 mountpoint = "/etc/ssh";
                 options."com.sun:auto-snapshot" = "false";
                 postCreateHook = "zfs snapshot zroot/etcssh@empty";
+              };
+              wpasupplicant = lib.mkIf cfg.initrd-ssh.enableWifi {
+                type = "zfs_fs";
+                options.mountpoint = "legacy";
+                mountpoint = "/etc/wpa_supplicant";
+                options."com.sun:auto-snapshot" = "false";
+                postCreateHook = "zfs snapshot zroot/wpasupplicant@empty";
               };
               persist = {
                 type = "zfs_fs";
@@ -362,7 +400,8 @@ in
       };
 
       fileSystems = {
-        "/etc/ssh".neededForBoot = true;
+        "/etc/ssh".neededForBoot = lib.mkIf cfg.initrd-ssh.enable true;
+        "/etc/wpa_supplicant".neededForBoot = lib.mkIf cfg.initrd-ssh.enableWifi true;
         "/nix".neededForBoot = true;
         "/persist".neededForBoot = true;
       };
