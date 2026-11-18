@@ -1,15 +1,19 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }:
+let
+  cfg = config.yeldirs.system.quiet-boot;
+in
 {
   options = {
     yeldirs.system.quiet-boot = {
       enable = lib.mkEnableOption "quiet boot";
     };
   };
-  config = {
+  config = lib.mkIf cfg.enable {
     boot = {
       plymouth = {
         enable = true;
