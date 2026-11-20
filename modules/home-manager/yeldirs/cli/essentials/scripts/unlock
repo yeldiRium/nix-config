@@ -106,7 +106,7 @@ assign_positional_args 1 "${_positionals[@]}"
 # [ <-- needed because of Argbash
 
 if [[ "${_arg_up}" == "on" ]]; then
-	if ping -c 1 "${_arg_hostname}" >/dev/null 2>&1; then
+	if ping -w 1 -c 1 "${_arg_hostname}" >/dev/null 2>&1; then
 		printf "%s is up\n" "${_arg_hostname}"
 	else
 		printf "could not reach %s\n" "${_arg_hostname}"
