@@ -62,8 +62,8 @@ in
                 user = "yeldir";
                 identityFile = "~/.ssh/hleutloff02";
               };
-              "nuc" = {
-                hostname = "nuc";
+              "pistachio" = {
+                hostname = "pistachio";
                 user = "yeldir";
                 identityFile = "~/.ssh/hleutloff02";
               };

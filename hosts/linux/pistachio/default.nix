@@ -1,34 +1,58 @@
 {
   imports = [
     ./hardware-configuration.nix
-    (import ./disko.nix { device = "/dev/nvme0n1"; })
 
     ../../shared/global
     ../shared/global
-
-    ../shared/optional/persistence.nix
 
     ../shared/users/yeldir
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   networking = {
-    hostName = "nuc";
-    hostId = "b4b6238e";
+    hostName = "pistachio";
+    hostId = "09840a19";
   };
 
   yeldirs = {
     system = {
       sops.enable = true;
       tailscale.enable = true;
+      remote-shutdown.enable = true;
       networking = {
         enableNetworkManager = true;
       };
-      gitops.enable = true;
+      gitops = {
+        enable = true;
+      };
+
+      disks = {
+        enable = true;
+        initrd-ssh = {
+          enable = true;
+          ethernetDrivers = [
+            "e1000e"
+          ];
+        };
+        zfs = {
+          enable = true;
+          root = {
+            encrypt = true;
+            disk = "nvme0n1";
+            reservation = "";
+            impermanenceRoot = true;
+          };
+        };
+      };
     };
+
     docker = {
       enable = true;
       enablePersistence = true;

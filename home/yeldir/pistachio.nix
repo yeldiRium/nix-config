@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   ...
 }:
 {
@@ -10,11 +9,11 @@
     ./shared/linux
   ];
 
-  wallpaper = pkgs.wallpapers.nature-calm-valley;
+  colorscheme.source = "#93c572";
 
   yeldirs = {
     system = {
-      hostName = "nuc";
+      hostName = "pistachio";
 
       mounts.datengrab.enable = false;
       keyring.enable = lib.mkForce false;
@@ -33,6 +32,6 @@
   };
 
   home = {
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
 }

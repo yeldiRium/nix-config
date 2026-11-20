@@ -117,8 +117,8 @@
             inherit inputs lib outputs;
           };
         };
-        nuc = lib.nixosSystem {
-          modules = [ ./hosts/linux/nuc ];
+        pistachio = lib.nixosSystem {
+          modules = [ ./hosts/linux/pistachio ];
           specialArgs = {
             inherit inputs lib outputs;
           };
