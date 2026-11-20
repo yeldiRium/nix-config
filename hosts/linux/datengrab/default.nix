@@ -24,21 +24,6 @@
   networking = {
     hostName = "datengrab";
     hostId = "36ab3def";
-
-    dhcpcd = {
-      allowInterfaces = [ "br0" ];
-    };
-    interfaces."br0".useDHCP = true;
-
-    bridges = {
-      br0 = {
-        interfaces = [
-          "eno1"
-          "enp2s0"
-        ];
-        rstp = true;
-      };
-    };
   };
 
   yeldirs = {
