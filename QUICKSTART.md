@@ -1,0 +1,35 @@
+# quickstart
+## New host with full disk encryption and initrd-ssh
+Compare `datengrab`.
+
+These steps can be run automatically using ./quickstart.bash.
+To use the script do the steps until including 0 and get your age key ready.
+Do not put the age key anywhere under /mnt, since that will be mounted over.
+Then run the script.
+
+-1. Create new host config, generate hardware config, check right disk device, find ethernet kernel modules for initrd, etc.
+0. `cd ~ && git clone https://github.com/yeldirium/nix-config && cd nix-config`
+1. Create encryption key
+1.1. `sudo mkdir -p /persist/luks`
+1.2. `sudo vim /persist/luks/secret.key` and enter the encryption key
+2. Format disks with `sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount --flake .#<hostname>`
+3. Create workspace and move nix config
+3.1. `sudo mkdir -p /mnt/persist/home/yeldir/querbeet/workspace`
+3.2. `sudo chown -R 1000:100 /mnt/persist/home/yeldir`
+3.3. `sudo mv ~/nix-config /mnt/persist/home/yeldir/querbeet/workspace/`
+3.4. `cd /mnt/persist/home/yeldir/querbeet/workspace/nix-config`
+4. Create hostkey for initrd
+4.1. `sudo mkdir -p /mnt/etc/ssh`
+4.2. `sudo ssh-keygen -t ed25519 -N "" -f /mnt/etc/ssh/initrd`
+4.3. `sudo chmod 600 /mnt/etc/ssh/initrd`
+5. Put age key in place
+5.1. Optional: mount usb stick or somthing else to get the prepared age keys.
+5.2. `sudo mkdir -p /mnt/persist/sops/age`
+5.3. `sudo cp <path-to>/keys.txt /mnt/persist/sops/age/keys.txt`
+6. Move disk encryption key
+6.1. `sudo mkdir -p /mnt/persist/luks`
+6.2. `sudo cp /persist/luks/secret.key /mnt/persist/luks/secret.key`
+7. Check if ethernet kernel module is correct (`lspci -v | grep -iA8 'network\|ethernet'`)
+7.1. Optional: Set the correct kernel modules in the hostconfig
+8. Install nixos using `sudo nixos-install --flake .#<hostname>`
+9. Unlock luks containers manually, delete initrd key, generate new one at /etc/ssh/initrd, as described in 4.
