@@ -1,19 +1,19 @@
 {
-  buildGoModule,
+  buildGo126Module,
   fetchFromGitHub,
   lib,
 }:
-buildGoModule rec {
+buildGo126Module rec {
   pname = "xpdig";
-  version = "v1.25.0";
+  version = "v1.26.0";
   src = fetchFromGitHub {
     owner = "brunoluiz";
     repo = "xpdig";
     rev = version;
-    hash = "sha256-K9UJjaZVuzdT+7Aog3thlVW3xp/jNvqaQByT7mk4J58=";
+    hash = "sha256-z02p+0Mu6jmPjHDDF/mYEsYzVA9cx4Rsx4ARmT4Kwt4=";
   };
 
-  vendorHash = "sha256-YPNrIJjNuItvxTRzmjh3CuMmRzzzzLhz07nhy11drcU=";
+  vendorHash = "sha256-rwQOOIDWKwZThFUhOM2OifeSr696ei7Kz8Yla7QeazM=";
 
   meta = {
     description = "🧰 Dig into Crossplane traces via TUI (a là k9s)";
