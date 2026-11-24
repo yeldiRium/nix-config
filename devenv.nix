@@ -38,10 +38,6 @@
     let
       nixIgnores = [
         "hardware-configuration.nix"
-
-        # Contains pipe operators, which statix does not support.
-        # Remove this once https://github.com/oppiliappan/statix/issues/139 is resolved.
-        "lib/y/workers.nix"
       ];
     in
     {

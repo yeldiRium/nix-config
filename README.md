@@ -54,13 +54,6 @@ If after starting the WSL VM your user's systemd bus does not work, which someti
 sudo systemctl restart user@1000
 ```
 
-## Setting up a worker
-
-I've built some scripts to easily manage worker servers using my nix config and to differentiate them from my work computers.
-I might extend this to easily setup k3s clusters or similar, but for now they're just machines that don't do anything but connect to a tailscale network.
-
-I have a separate [guide to using them](./WORKER.md).
-
 ## Assumed filesystem
 
 Some parts of this config assume certain paths are present in the system,

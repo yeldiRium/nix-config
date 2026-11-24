@@ -13,8 +13,6 @@
         accessTokens.enable = true;
       };
 
-      workerSupport = true;
-
       cli = {
         essentials = {
           enable = true;

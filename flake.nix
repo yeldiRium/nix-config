@@ -130,17 +130,7 @@
             inherit inputs lib outputs;
           };
         };
-      }
-      // (lib.y.workers.eachToAttrs (workerCfg: {
-        name = "worker-${workerCfg.shortname}";
-        value = lib.nixosSystem {
-          modules = [ ./hosts/linux/worker ];
-          specialArgs = {
-            inherit inputs lib outputs;
-            worker = workerCfg;
-          };
-        };
-      }));
+      };
 
       darwinConfigurations = {
         rekorder = nix-darwin.lib.darwinSystem {

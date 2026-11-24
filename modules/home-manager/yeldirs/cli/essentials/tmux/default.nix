@@ -16,9 +16,6 @@ let
     "([a-f0-9:]+:+)+[a-f0-9]+" # very rudimentary ipv6 regex, taken from https://stackoverflow.com/a/37355379
     "sha256-.*?=" # Nix hash
   ]
-  ++ (lib.optionals config.yeldirs.workerSupport [
-    "worker-(?<match>[0-9a-f]{5})"
-  ])
   ++ (lib.optionals config.yeldirs.cli.ops.aws.enable [
     "\\W(?<match>arn:[^\\s\"]*)"
   ]);
