@@ -1,11 +1,11 @@
-{ lib, pkgs, ... }: {
+{ lib, ... }: {
   imports = [
     ../shared
     ./shared
     ./shared/linux
   ];
 
-  wallpaper = pkgs.wallpapers.kitty-minimal-green;
+  colorscheme.source = "#ffbf00";
 
   yeldirs = {
     system = {
