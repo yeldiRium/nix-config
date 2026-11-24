@@ -99,8 +99,8 @@
             inherit inputs lib outputs;
           };
         };
-        hackstack = lib.nixosSystem {
-          modules = [ ./hosts/linux/hackstack ];
+        emihr = lib.nixosSystem {
+          modules = [ ./hosts/linux/emihr ];
           specialArgs = {
             inherit inputs lib outputs;
           };

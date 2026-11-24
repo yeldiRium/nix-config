@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   ...
 }:
 {
@@ -9,15 +8,12 @@
     inputs.hardware.nixosModules.common-pc-ssd
 
     ./hardware-configuration.nix
-    (import ./disko.nix { device = "/dev/nvme0n1"; })
 
     ../../shared/global
     ../shared/global
 
     ../shared/optional/bluetooth.nix
-    ../shared/optional/filesystems.nix
     ../shared/optional/greetd.nix
-    ../shared/optional/persistence.nix
     ../shared/optional/pipewire.nix
     ../shared/optional/printing.nix
     ../shared/optional/upower.nix
@@ -28,24 +24,48 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  environment.systemPackages = with pkgs; [
-  ];
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   networking = {
-    hostName = "hackstack";
-    hostId = "963c546b";
+    hostName = "emihr";
+    hostId = "f613e6cb";
   };
 
   yeldirs = {
     system = {
+      sops.enable = true;
+      tailscale.enable = true;
       networking = {
         enableNetworkManager = true;
       };
-      sops.enable = true;
-      tailscale.enable = true;
+
+      disks = {
+        enable = true;
+        initrd-ssh = {
+          enable = true;
+          ethernetDrivers = [
+            "igb" # todo
+            "e1000e" # todo
+          ];
+        };
+        zfs = {
+          enable = true;
+          root = {
+            encrypt = true;
+            disk = "sdc"; # todo
+            reservation = "";
+            impermanenceRoot = true;
+          };
+          storage = {
+            enable = false; # todo
+          };
+        };
+      };
     };
 
     mounts = {
@@ -74,5 +94,5 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 }
