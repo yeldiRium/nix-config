@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }:
@@ -9,7 +8,7 @@
     ../shared
   ];
 
-  wallpaper = pkgs.wallpapers.cyberpunk-living-quarter;
+  colorscheme.source = "#2995eb";
 
   yeldirs = {
     system = {
