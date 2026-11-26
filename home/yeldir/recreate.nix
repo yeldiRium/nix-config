@@ -142,7 +142,6 @@
 
       games = {
         bottles.enable = true;
-        gog.enable = true;
         minecraft.enable = true;
         openttd.enable = true;
         retroarch.enable = true;
